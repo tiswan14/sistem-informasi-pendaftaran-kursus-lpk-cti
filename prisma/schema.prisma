@@ -1,0 +1,150 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String  @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String  @map("provider_account_id")
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  nama          String
+  nik           String    @unique
+  jenisKelamin  String
+  tempatLahir   String
+  tanggalLahir  String
+  mediaSosial   String?
+  noHp          String
+  email         String    @unique
+  agama         String
+  jurusan       String
+  tahunAkademik String
+  password      String?
+  role          String    @default("peserta") // Bisa menjadi 'instruktur', 'admin', atau 'peserta'
+  image         String?
+  emailVerified DateTime? @map("email_verified")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  kursus        Kursus[]
+  Account       Account[]
+  Session       Session[]
+  Pendaftaran   Pendaftaran[]
+  HistoriKursus HistoriKursus[]
+  Admin         Admin?
+  Instruktur    Instruktur[]
+
+  @@map("users")
+}
+
+model Kursus {
+  id            String          @id @default(cuid())
+  nama          String
+  harga         Int
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  userId        String
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Pendaftaran   Pendaftaran[]
+  HistoriKursus HistoriKursus[]
+  Instruktur    Instruktur[]
+
+  @@map("kursus")
+}
+
+model Pendaftaran {
+  id        String   @id @default(cuid())
+  userId    String
+  kursusId  String
+  status    String   @default("Belum diverifikasi")
+  createdAt DateTime @default(now())
+
+  user       User        @relation(fields: [userId], references: [id])
+  kursus     Kursus      @relation(fields: [kursusId], references: [id])
+  Pembayaran Pembayaran?
+}
+
+model Pembayaran {
+  id            String   @id @default(cuid())
+  pendaftaranId String   @unique
+  metode        String
+  jumlah        Int
+  buktiBayar    String
+  status        String   @default("Menunggu")
+  createdAt     DateTime @default(now())
+
+  pendaftaran Pendaftaran @relation(fields: [pendaftaranId], references: [id], onDelete: Cascade)
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  jabatan   String
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Instruktur {
+  id        String   @id @default(cuid())
+  userId    String
+  kursusId  String
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  kursus Kursus @relation(fields: [kursusId], references: [id], onDelete: Cascade)
+}
+
+model HistoriKursus {
+  id             String  @id @default(cuid())
+  userId         String
+  kursusId       String
+  tanggalSelesai String
+  sertifikat     String?
+  keterangan     String?
+
+  user   User   @relation(fields: [userId], references: [id])
+  kursus Kursus @relation(fields: [kursusId], references: [id])
+}
