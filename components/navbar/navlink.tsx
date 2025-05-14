@@ -71,7 +71,7 @@ const Navlink = () => {
                         { hidden: !open }
                     )}
                 >
-                    <ul className="text-center md:text-right flex flex-col font-semibold text-sm uppercase p-5 mt-5 rounded-lg bg-gray-100 
+                    <ul className="text-center transition-all duration-300 ease-in-out md:text-right flex flex-col font-semibold text-sm uppercase p-5 mt-5 rounded-lg bg-gray-100 
         md:flex-row md:items-center md:space-x-6 md:p-0 md:mt-0 md:border-0 md:bg-transparent md:shadow-none md:rounded-none">
 
                         <li>
