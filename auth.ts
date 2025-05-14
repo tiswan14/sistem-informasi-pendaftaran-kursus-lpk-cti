@@ -46,26 +46,42 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     callbacks: {
         authorized({ auth, request: { nextUrl } }) {
             const isLoggedIn = !!auth?.user
+            const role = auth?.user?.role
+            const path = nextUrl.pathname
 
-            const ProtectedRoutes = ["/dashboard", "/user"]
+            const ProtectedRoutes = ["/dashboard", "/user", "/"]
 
             if (!isLoggedIn && ProtectedRoutes.includes(nextUrl.pathname)) {
                 return Response.redirect(new URL("/login", nextUrl))
             }
 
             if (isLoggedIn && (nextUrl.pathname.startsWith("/login") || nextUrl.pathname.startsWith("/register"))) {
+                return Response.redirect(new URL("/", nextUrl))
+            }
+
+            if (path.startsWith("/dashboard") && role !== "admin") {
+                return Response.redirect(new URL("/", nextUrl))
+            }
+
+            if (isLoggedIn && role === "admin" && path === "/") {
                 return Response.redirect(new URL("/dashboard", nextUrl))
             }
+
 
             return true
         },
         jwt({ token, user }) {
-            if (user) token.role = user.role
+            if (user) {
+                token.role = user.role
+                token.name = user.nama
+            }
+
             return token
         },
         session({ session, token }) {
             session.user.id = token.sub
             session.user.role = token.role
+            session.user.nama = token.nama
             return session
         }
     }

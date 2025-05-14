@@ -7,6 +7,7 @@ declare module "next-auth" {
     }
     interface User {
         role: string
+        nama?: string
     }
 }
 
@@ -14,5 +15,6 @@ declare module "next-auth/jwt" {
     interface JWT {
         sub: string
         role: string
+        nama: string
     }
 }

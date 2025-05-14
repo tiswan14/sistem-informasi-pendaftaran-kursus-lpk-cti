@@ -2,7 +2,7 @@
 import { useActionState, useState, useEffect } from "react"
 import Link from "next/link"
 import { LoginCredentials } from "@/lib/action"
-import ButtonAuth from "@/app/components/button"
+import ButtonAuth from "@/components/button"
 const FormLogin = () => {
     const [state, formAction] = useActionState(LoginCredentials, null)
 
