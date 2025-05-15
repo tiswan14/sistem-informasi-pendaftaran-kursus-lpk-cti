@@ -10,7 +10,6 @@ import {
     FaClipboardList,
     FaCalendarAlt,
     FaCertificate,
-    FaSignOutAlt,
 } from "react-icons/fa";
 
 const Sidebar = () => {
@@ -18,8 +17,8 @@ const Sidebar = () => {
         <aside className="w-64 bg-[#f5f5f5] text-gray-800 flex flex-col h-screen shadow-md border-r border-gray-200">
             {/* Logo dan Judul */}
             <div className="py-6 px-6 flex items-center gap-3 bg-[#eaeaea] border-b border-gray-300">
-                <Image src="/logo-lpk-cti.png" alt="Logo" width={40} height={40} className="rounded-full" />
-                <span className="text-xl font-bold text-gray-900">LPK CTI</span>
+                <Image src="/logo-lpk-cti.png" alt="Logo" width={40} height={40} className="rounded-md" />
+                <span className="text-lg font-semibold text-gray-900">LPK CTI</span>
             </div>
 
             {/* Navigasi */}
@@ -38,7 +37,7 @@ const Sidebar = () => {
                     </div>
                 </Link>
 
-                <Link href="/dashboard/instruktur">
+                <Link href="/dashboard/data-instruktur">
                     <div className="flex items-center gap-3 p-3 rounded-md hover:bg-gray-200 transition">
                         <FaChalkboardTeacher />
                         Data Instruktur
@@ -75,14 +74,6 @@ const Sidebar = () => {
                     </div>
                 </Link>
             </nav>
-
-            {/* Logout */}
-            <div className="p-4">
-                <button className="w-full flex items-center justify-center gap-2 p-2 bg-red-500 text-white font-semibold rounded-md hover:bg-red-600 transition">
-                    <FaSignOutAlt />
-                    Logout
-                </button>
-            </div>
         </aside>
     );
 };

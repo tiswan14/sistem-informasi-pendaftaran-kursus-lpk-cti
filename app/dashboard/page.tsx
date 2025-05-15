@@ -1,19 +1,44 @@
+"use client"; // wajib kalau di folder app dan menggunakan hook client-side
+
+import React, { useState, useEffect } from "react";
 import { FaUsers, FaClipboardList, FaChalkboardTeacher, FaCertificate } from "react-icons/fa";
-import { getTotalPeserta } from "@/lib/data"
-const DashboardPage = async () => {
-    // Data contoh
-    const totalPeserta = await getTotalPeserta();
+
+const DashboardPage = () => {
+    const [loading, setLoading] = useState(true);
+    const [totalPeserta, setTotalPeserta] = useState(0);
+
     const kursusAktif = 5;
     const instrukturTerdaftar = 8;
     const sertifikatDiberikan = 50;
 
+    useEffect(() => {
+        async function fetchTotalPeserta() {
+            setLoading(true);
+            try {
+                const response = await fetch("/api/peserta/total-peserta");
+                const data = await response.json();
+                setTotalPeserta(data.total);
+            } catch (error) {
+                console.error("Gagal mengambil total peserta:", error);
+            }
+            setLoading(false);
+        }
+        fetchTotalPeserta();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
+            </div>
+        );
+    }
+
     return (
         <div className="p-6 bg-white rounded-lg shadow-md">
-            <h1 className="text-2xl font-semibold mb-6"></h1>
+            <h1 className="text-2xl font-semibold mb-6">Dashboard</h1>
 
-            {/* Statistik dengan ikon dan shadow */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-                {/* Peserta Kursus */}
                 <div className="bg-blue-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
                     <div className="flex items-center gap-4">
                         <FaUsers className="text-3xl text-blue-600" />
@@ -23,8 +48,7 @@ const DashboardPage = async () => {
                         </div>
                     </div>
                 </div>
-
-                {/* Kursus Aktif */}
+                {/* Komponen lainnya tetap */}
                 <div className="bg-green-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
                     <div className="flex items-center gap-4">
                         <FaClipboardList className="text-3xl text-green-600" />
@@ -35,7 +59,6 @@ const DashboardPage = async () => {
                     </div>
                 </div>
 
-                {/* Instruktur Terdaftar */}
                 <div className="bg-yellow-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
                     <div className="flex items-center gap-4">
                         <FaChalkboardTeacher className="text-3xl text-yellow-600" />
@@ -46,7 +69,6 @@ const DashboardPage = async () => {
                     </div>
                 </div>
 
-                {/* Sertifikat Diberikan */}
                 <div className="bg-purple-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
                     <div className="flex items-center gap-4">
                         <FaCertificate className="text-3xl text-purple-600" />
@@ -58,7 +80,7 @@ const DashboardPage = async () => {
                 </div>
             </div>
 
-
+            {/* Jadwal Kursus Terdekat */}
             <div className="mt-6">
                 <h2 className="text-xl font-semibold mb-4">Jadwal Kursus Terdekat</h2>
                 <div className="bg-white p-6 rounded-lg shadow-md">
@@ -90,10 +112,8 @@ const DashboardPage = async () => {
                     </ul>
                 </div>
             </div>
-
-
         </div>
     );
-}
+};
 
 export default DashboardPage;

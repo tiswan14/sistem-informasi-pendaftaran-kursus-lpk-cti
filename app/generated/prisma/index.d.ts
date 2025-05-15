@@ -49,16 +49,6 @@ export type Pendaftaran = $Result.DefaultSelection<Prisma.$PendaftaranPayload>
  */
 export type Pembayaran = $Result.DefaultSelection<Prisma.$PembayaranPayload>
 /**
- * Model Admin
- * 
- */
-export type Admin = $Result.DefaultSelection<Prisma.$AdminPayload>
-/**
- * Model Instruktur
- * 
- */
-export type Instruktur = $Result.DefaultSelection<Prisma.$InstrukturPayload>
-/**
  * Model HistoriKursus
  * 
  */
@@ -258,26 +248,6 @@ export class PrismaClient<
     * ```
     */
   get pembayaran(): Prisma.PembayaranDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.admin`: Exposes CRUD operations for the **Admin** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Admins
-    * const admins = await prisma.admin.findMany()
-    * ```
-    */
-  get admin(): Prisma.AdminDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.instruktur`: Exposes CRUD operations for the **Instruktur** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Instrukturs
-    * const instrukturs = await prisma.instruktur.findMany()
-    * ```
-    */
-  get instruktur(): Prisma.InstrukturDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.historiKursus`: Exposes CRUD operations for the **HistoriKursus** model.
@@ -735,8 +705,6 @@ export namespace Prisma {
     Kursus: 'Kursus',
     Pendaftaran: 'Pendaftaran',
     Pembayaran: 'Pembayaran',
-    Admin: 'Admin',
-    Instruktur: 'Instruktur',
     HistoriKursus: 'HistoriKursus'
   };
 
@@ -756,7 +724,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "account" | "session" | "verificationToken" | "user" | "kursus" | "pendaftaran" | "pembayaran" | "admin" | "instruktur" | "historiKursus"
+      modelProps: "account" | "session" | "verificationToken" | "user" | "kursus" | "pendaftaran" | "pembayaran" | "historiKursus"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1278,154 +1246,6 @@ export namespace Prisma {
           }
         }
       }
-      Admin: {
-        payload: Prisma.$AdminPayload<ExtArgs>
-        fields: Prisma.AdminFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.AdminFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdminPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.AdminFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
-          }
-          findFirst: {
-            args: Prisma.AdminFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdminPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.AdminFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
-          }
-          findMany: {
-            args: Prisma.AdminFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdminPayload>[]
-          }
-          create: {
-            args: Prisma.AdminCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
-          }
-          createMany: {
-            args: Prisma.AdminCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.AdminCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdminPayload>[]
-          }
-          delete: {
-            args: Prisma.AdminDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
-          }
-          update: {
-            args: Prisma.AdminUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
-          }
-          deleteMany: {
-            args: Prisma.AdminDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.AdminUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.AdminUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdminPayload>[]
-          }
-          upsert: {
-            args: Prisma.AdminUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$AdminPayload>
-          }
-          aggregate: {
-            args: Prisma.AdminAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateAdmin>
-          }
-          groupBy: {
-            args: Prisma.AdminGroupByArgs<ExtArgs>
-            result: $Utils.Optional<AdminGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.AdminCountArgs<ExtArgs>
-            result: $Utils.Optional<AdminCountAggregateOutputType> | number
-          }
-        }
-      }
-      Instruktur: {
-        payload: Prisma.$InstrukturPayload<ExtArgs>
-        fields: Prisma.InstrukturFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.InstrukturFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$InstrukturPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.InstrukturFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$InstrukturPayload>
-          }
-          findFirst: {
-            args: Prisma.InstrukturFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$InstrukturPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.InstrukturFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$InstrukturPayload>
-          }
-          findMany: {
-            args: Prisma.InstrukturFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$InstrukturPayload>[]
-          }
-          create: {
-            args: Prisma.InstrukturCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$InstrukturPayload>
-          }
-          createMany: {
-            args: Prisma.InstrukturCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.InstrukturCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$InstrukturPayload>[]
-          }
-          delete: {
-            args: Prisma.InstrukturDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$InstrukturPayload>
-          }
-          update: {
-            args: Prisma.InstrukturUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$InstrukturPayload>
-          }
-          deleteMany: {
-            args: Prisma.InstrukturDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.InstrukturUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.InstrukturUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$InstrukturPayload>[]
-          }
-          upsert: {
-            args: Prisma.InstrukturUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$InstrukturPayload>
-          }
-          aggregate: {
-            args: Prisma.InstrukturAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateInstruktur>
-          }
-          groupBy: {
-            args: Prisma.InstrukturGroupByArgs<ExtArgs>
-            result: $Utils.Optional<InstrukturGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.InstrukturCountArgs<ExtArgs>
-            result: $Utils.Optional<InstrukturCountAggregateOutputType> | number
-          }
-        }
-      }
       HistoriKursus: {
         payload: Prisma.$HistoriKursusPayload<ExtArgs>
         fields: Prisma.HistoriKursusFieldRefs
@@ -1591,8 +1411,6 @@ export namespace Prisma {
     kursus?: KursusOmit
     pendaftaran?: PendaftaranOmit
     pembayaran?: PembayaranOmit
-    admin?: AdminOmit
-    instruktur?: InstrukturOmit
     historiKursus?: HistoriKursusOmit
   }
 
@@ -1693,7 +1511,6 @@ export namespace Prisma {
     Session: number
     Pendaftaran: number
     HistoriKursus: number
-    Instruktur: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1702,7 +1519,6 @@ export namespace Prisma {
     Session?: boolean | UserCountOutputTypeCountSessionArgs
     Pendaftaran?: boolean | UserCountOutputTypeCountPendaftaranArgs
     HistoriKursus?: boolean | UserCountOutputTypeCountHistoriKursusArgs
-    Instruktur?: boolean | UserCountOutputTypeCountInstrukturArgs
   }
 
   // Custom InputTypes
@@ -1751,13 +1567,6 @@ export namespace Prisma {
     where?: HistoriKursusWhereInput
   }
 
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountInstrukturArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: InstrukturWhereInput
-  }
-
 
   /**
    * Count Type KursusCountOutputType
@@ -1766,13 +1575,11 @@ export namespace Prisma {
   export type KursusCountOutputType = {
     Pendaftaran: number
     HistoriKursus: number
-    Instruktur: number
   }
 
   export type KursusCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Pendaftaran?: boolean | KursusCountOutputTypeCountPendaftaranArgs
     HistoriKursus?: boolean | KursusCountOutputTypeCountHistoriKursusArgs
-    Instruktur?: boolean | KursusCountOutputTypeCountInstrukturArgs
   }
 
   // Custom InputTypes
@@ -1798,13 +1605,6 @@ export namespace Prisma {
    */
   export type KursusCountOutputTypeCountHistoriKursusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: HistoriKursusWhereInput
-  }
-
-  /**
-   * KursusCountOutputType without action
-   */
-  export type KursusCountOutputTypeCountInstrukturArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: InstrukturWhereInput
   }
 
 
@@ -5034,6 +4834,8 @@ export namespace Prisma {
     tahunAkademik: string | null
     password: string | null
     role: string | null
+    keahlian: string | null
+    jabatan: string | null
     image: string | null
     emailVerified: Date | null
     createdAt: Date | null
@@ -5055,6 +4857,8 @@ export namespace Prisma {
     tahunAkademik: string | null
     password: string | null
     role: string | null
+    keahlian: string | null
+    jabatan: string | null
     image: string | null
     emailVerified: Date | null
     createdAt: Date | null
@@ -5076,6 +4880,8 @@ export namespace Prisma {
     tahunAkademik: number
     password: number
     role: number
+    keahlian: number
+    jabatan: number
     image: number
     emailVerified: number
     createdAt: number
@@ -5099,6 +4905,8 @@ export namespace Prisma {
     tahunAkademik?: true
     password?: true
     role?: true
+    keahlian?: true
+    jabatan?: true
     image?: true
     emailVerified?: true
     createdAt?: true
@@ -5120,6 +4928,8 @@ export namespace Prisma {
     tahunAkademik?: true
     password?: true
     role?: true
+    keahlian?: true
+    jabatan?: true
     image?: true
     emailVerified?: true
     createdAt?: true
@@ -5141,6 +4951,8 @@ export namespace Prisma {
     tahunAkademik?: true
     password?: true
     role?: true
+    keahlian?: true
+    jabatan?: true
     image?: true
     emailVerified?: true
     createdAt?: true
@@ -5223,18 +5035,20 @@ export namespace Prisma {
   export type UserGroupByOutputType = {
     id: string
     nama: string
-    nik: string
+    nik: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir: string | null
+    tanggalLahir: string | null
     mediaSosial: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama: string | null
+    jurusan: string | null
+    tahunAkademik: string | null
     password: string | null
     role: string
+    keahlian: string | null
+    jabatan: string | null
     image: string | null
     emailVerified: Date | null
     createdAt: Date
@@ -5273,6 +5087,8 @@ export namespace Prisma {
     tahunAkademik?: boolean
     password?: boolean
     role?: boolean
+    keahlian?: boolean
+    jabatan?: boolean
     image?: boolean
     emailVerified?: boolean
     createdAt?: boolean
@@ -5282,8 +5098,6 @@ export namespace Prisma {
     Session?: boolean | User$SessionArgs<ExtArgs>
     Pendaftaran?: boolean | User$PendaftaranArgs<ExtArgs>
     HistoriKursus?: boolean | User$HistoriKursusArgs<ExtArgs>
-    Admin?: boolean | User$AdminArgs<ExtArgs>
-    Instruktur?: boolean | User$InstrukturArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -5302,6 +5116,8 @@ export namespace Prisma {
     tahunAkademik?: boolean
     password?: boolean
     role?: boolean
+    keahlian?: boolean
+    jabatan?: boolean
     image?: boolean
     emailVerified?: boolean
     createdAt?: boolean
@@ -5323,6 +5139,8 @@ export namespace Prisma {
     tahunAkademik?: boolean
     password?: boolean
     role?: boolean
+    keahlian?: boolean
+    jabatan?: boolean
     image?: boolean
     emailVerified?: boolean
     createdAt?: boolean
@@ -5344,21 +5162,21 @@ export namespace Prisma {
     tahunAkademik?: boolean
     password?: boolean
     role?: boolean
+    keahlian?: boolean
+    jabatan?: boolean
     image?: boolean
     emailVerified?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "nik" | "jenisKelamin" | "tempatLahir" | "tanggalLahir" | "mediaSosial" | "noHp" | "email" | "agama" | "jurusan" | "tahunAkademik" | "password" | "role" | "image" | "emailVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "nik" | "jenisKelamin" | "tempatLahir" | "tanggalLahir" | "mediaSosial" | "noHp" | "email" | "agama" | "jurusan" | "tahunAkademik" | "password" | "role" | "keahlian" | "jabatan" | "image" | "emailVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     kursus?: boolean | User$kursusArgs<ExtArgs>
     Account?: boolean | User$AccountArgs<ExtArgs>
     Session?: boolean | User$SessionArgs<ExtArgs>
     Pendaftaran?: boolean | User$PendaftaranArgs<ExtArgs>
     HistoriKursus?: boolean | User$HistoriKursusArgs<ExtArgs>
-    Admin?: boolean | User$AdminArgs<ExtArgs>
-    Instruktur?: boolean | User$InstrukturArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5372,24 +5190,24 @@ export namespace Prisma {
       Session: Prisma.$SessionPayload<ExtArgs>[]
       Pendaftaran: Prisma.$PendaftaranPayload<ExtArgs>[]
       HistoriKursus: Prisma.$HistoriKursusPayload<ExtArgs>[]
-      Admin: Prisma.$AdminPayload<ExtArgs> | null
-      Instruktur: Prisma.$InstrukturPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       nama: string
-      nik: string
+      nik: string | null
       jenisKelamin: string
-      tempatLahir: string
-      tanggalLahir: string
+      tempatLahir: string | null
+      tanggalLahir: string | null
       mediaSosial: string | null
       noHp: string
       email: string
-      agama: string
-      jurusan: string
-      tahunAkademik: string
+      agama: string | null
+      jurusan: string | null
+      tahunAkademik: string | null
       password: string | null
       role: string
+      keahlian: string | null
+      jabatan: string | null
       image: string | null
       emailVerified: Date | null
       createdAt: Date
@@ -5793,8 +5611,6 @@ export namespace Prisma {
     Session<T extends User$SessionArgs<ExtArgs> = {}>(args?: Subset<T, User$SessionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Pendaftaran<T extends User$PendaftaranArgs<ExtArgs> = {}>(args?: Subset<T, User$PendaftaranArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendaftaranPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     HistoriKursus<T extends User$HistoriKursusArgs<ExtArgs> = {}>(args?: Subset<T, User$HistoriKursusArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Admin<T extends User$AdminArgs<ExtArgs> = {}>(args?: Subset<T, User$AdminArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    Instruktur<T extends User$InstrukturArgs<ExtArgs> = {}>(args?: Subset<T, User$InstrukturArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstrukturPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5838,6 +5654,8 @@ export namespace Prisma {
     readonly tahunAkademik: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly role: FieldRef<"User", 'String'>
+    readonly keahlian: FieldRef<"User", 'String'>
+    readonly jabatan: FieldRef<"User", 'String'>
     readonly image: FieldRef<"User", 'String'>
     readonly emailVerified: FieldRef<"User", 'DateTime'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
@@ -6350,49 +6168,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.Admin
-   */
-  export type User$AdminArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Admin
-     */
-    select?: AdminSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Admin
-     */
-    omit?: AdminOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdminInclude<ExtArgs> | null
-    where?: AdminWhereInput
-  }
-
-  /**
-   * User.Instruktur
-   */
-  export type User$InstrukturArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturInclude<ExtArgs> | null
-    where?: InstrukturWhereInput
-    orderBy?: InstrukturOrderByWithRelationInput | InstrukturOrderByWithRelationInput[]
-    cursor?: InstrukturWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: InstrukturScalarFieldEnum | InstrukturScalarFieldEnum[]
-  }
-
-  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6438,6 +6213,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
+    instrukturId: string | null
   }
 
   export type KursusMaxAggregateOutputType = {
@@ -6447,6 +6223,7 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     userId: string | null
+    instrukturId: string | null
   }
 
   export type KursusCountAggregateOutputType = {
@@ -6456,6 +6233,7 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     userId: number
+    instrukturId: number
     _all: number
   }
 
@@ -6475,6 +6253,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
+    instrukturId?: true
   }
 
   export type KursusMaxAggregateInputType = {
@@ -6484,6 +6263,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
+    instrukturId?: true
   }
 
   export type KursusCountAggregateInputType = {
@@ -6493,6 +6273,7 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     userId?: true
+    instrukturId?: true
     _all?: true
   }
 
@@ -6589,6 +6370,7 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     userId: string
+    instrukturId: string
     _count: KursusCountAggregateOutputType | null
     _avg: KursusAvgAggregateOutputType | null
     _sum: KursusSumAggregateOutputType | null
@@ -6617,10 +6399,10 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    instrukturId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     Pendaftaran?: boolean | Kursus$PendaftaranArgs<ExtArgs>
     HistoriKursus?: boolean | Kursus$HistoriKursusArgs<ExtArgs>
-    Instruktur?: boolean | Kursus$InstrukturArgs<ExtArgs>
     _count?: boolean | KursusCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["kursus"]>
 
@@ -6631,6 +6413,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    instrukturId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["kursus"]>
 
@@ -6641,6 +6424,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    instrukturId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["kursus"]>
 
@@ -6651,14 +6435,14 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
+    instrukturId?: boolean
   }
 
-  export type KursusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "harga" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["kursus"]>
+  export type KursusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "harga" | "createdAt" | "updatedAt" | "userId" | "instrukturId", ExtArgs["result"]["kursus"]>
   export type KursusInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     Pendaftaran?: boolean | Kursus$PendaftaranArgs<ExtArgs>
     HistoriKursus?: boolean | Kursus$HistoriKursusArgs<ExtArgs>
-    Instruktur?: boolean | Kursus$InstrukturArgs<ExtArgs>
     _count?: boolean | KursusCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type KursusIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6674,7 +6458,6 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
       Pendaftaran: Prisma.$PendaftaranPayload<ExtArgs>[]
       HistoriKursus: Prisma.$HistoriKursusPayload<ExtArgs>[]
-      Instruktur: Prisma.$InstrukturPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6683,6 +6466,7 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       userId: string
+      instrukturId: string
     }, ExtArgs["result"]["kursus"]>
     composites: {}
   }
@@ -7080,7 +6864,6 @@ export namespace Prisma {
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Pendaftaran<T extends Kursus$PendaftaranArgs<ExtArgs> = {}>(args?: Subset<T, Kursus$PendaftaranArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendaftaranPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     HistoriKursus<T extends Kursus$HistoriKursusArgs<ExtArgs> = {}>(args?: Subset<T, Kursus$HistoriKursusArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Instruktur<T extends Kursus$InstrukturArgs<ExtArgs> = {}>(args?: Subset<T, Kursus$InstrukturArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstrukturPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7116,6 +6899,7 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"Kursus", 'DateTime'>
     readonly updatedAt: FieldRef<"Kursus", 'DateTime'>
     readonly userId: FieldRef<"Kursus", 'String'>
+    readonly instrukturId: FieldRef<"Kursus", 'String'>
   }
     
 
@@ -7557,30 +7341,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: HistoriKursusScalarFieldEnum | HistoriKursusScalarFieldEnum[]
-  }
-
-  /**
-   * Kursus.Instruktur
-   */
-  export type Kursus$InstrukturArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturInclude<ExtArgs> | null
-    where?: InstrukturWhereInput
-    orderBy?: InstrukturOrderByWithRelationInput | InstrukturOrderByWithRelationInput[]
-    cursor?: InstrukturWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: InstrukturScalarFieldEnum | InstrukturScalarFieldEnum[]
   }
 
   /**
@@ -9810,2104 +9570,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Admin
-   */
-
-  export type AggregateAdmin = {
-    _count: AdminCountAggregateOutputType | null
-    _min: AdminMinAggregateOutputType | null
-    _max: AdminMaxAggregateOutputType | null
-  }
-
-  export type AdminMinAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    jabatan: string | null
-    createdAt: Date | null
-  }
-
-  export type AdminMaxAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    jabatan: string | null
-    createdAt: Date | null
-  }
-
-  export type AdminCountAggregateOutputType = {
-    id: number
-    userId: number
-    jabatan: number
-    createdAt: number
-    _all: number
-  }
-
-
-  export type AdminMinAggregateInputType = {
-    id?: true
-    userId?: true
-    jabatan?: true
-    createdAt?: true
-  }
-
-  export type AdminMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    jabatan?: true
-    createdAt?: true
-  }
-
-  export type AdminCountAggregateInputType = {
-    id?: true
-    userId?: true
-    jabatan?: true
-    createdAt?: true
-    _all?: true
-  }
-
-  export type AdminAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Admin to aggregate.
-     */
-    where?: AdminWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Admins to fetch.
-     */
-    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: AdminWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Admins from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Admins.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Admins
-    **/
-    _count?: true | AdminCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: AdminMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: AdminMaxAggregateInputType
-  }
-
-  export type GetAdminAggregateType<T extends AdminAggregateArgs> = {
-        [P in keyof T & keyof AggregateAdmin]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateAdmin[P]>
-      : GetScalarType<T[P], AggregateAdmin[P]>
-  }
-
-
-
-
-  export type AdminGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: AdminWhereInput
-    orderBy?: AdminOrderByWithAggregationInput | AdminOrderByWithAggregationInput[]
-    by: AdminScalarFieldEnum[] | AdminScalarFieldEnum
-    having?: AdminScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: AdminCountAggregateInputType | true
-    _min?: AdminMinAggregateInputType
-    _max?: AdminMaxAggregateInputType
-  }
-
-  export type AdminGroupByOutputType = {
-    id: string
-    userId: string
-    jabatan: string
-    createdAt: Date
-    _count: AdminCountAggregateOutputType | null
-    _min: AdminMinAggregateOutputType | null
-    _max: AdminMaxAggregateOutputType | null
-  }
-
-  type GetAdminGroupByPayload<T extends AdminGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<AdminGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof AdminGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], AdminGroupByOutputType[P]>
-            : GetScalarType<T[P], AdminGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type AdminSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    jabatan?: boolean
-    createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["admin"]>
-
-  export type AdminSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    jabatan?: boolean
-    createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["admin"]>
-
-  export type AdminSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    jabatan?: boolean
-    createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["admin"]>
-
-  export type AdminSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    jabatan?: boolean
-    createdAt?: boolean
-  }
-
-  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "jabatan" | "createdAt", ExtArgs["result"]["admin"]>
-  export type AdminInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type AdminIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type AdminIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-  export type $AdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Admin"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      userId: string
-      jabatan: string
-      createdAt: Date
-    }, ExtArgs["result"]["admin"]>
-    composites: {}
-  }
-
-  type AdminGetPayload<S extends boolean | null | undefined | AdminDefaultArgs> = $Result.GetResult<Prisma.$AdminPayload, S>
-
-  type AdminCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<AdminFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: AdminCountAggregateInputType | true
-    }
-
-  export interface AdminDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Admin'], meta: { name: 'Admin' } }
-    /**
-     * Find zero or one Admin that matches the filter.
-     * @param {AdminFindUniqueArgs} args - Arguments to find a Admin
-     * @example
-     * // Get one Admin
-     * const admin = await prisma.admin.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends AdminFindUniqueArgs>(args: SelectSubset<T, AdminFindUniqueArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Admin that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {AdminFindUniqueOrThrowArgs} args - Arguments to find a Admin
-     * @example
-     * // Get one Admin
-     * const admin = await prisma.admin.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends AdminFindUniqueOrThrowArgs>(args: SelectSubset<T, AdminFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Admin that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdminFindFirstArgs} args - Arguments to find a Admin
-     * @example
-     * // Get one Admin
-     * const admin = await prisma.admin.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends AdminFindFirstArgs>(args?: SelectSubset<T, AdminFindFirstArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Admin that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdminFindFirstOrThrowArgs} args - Arguments to find a Admin
-     * @example
-     * // Get one Admin
-     * const admin = await prisma.admin.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends AdminFindFirstOrThrowArgs>(args?: SelectSubset<T, AdminFindFirstOrThrowArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Admins that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdminFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Admins
-     * const admins = await prisma.admin.findMany()
-     * 
-     * // Get first 10 Admins
-     * const admins = await prisma.admin.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const adminWithIdOnly = await prisma.admin.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends AdminFindManyArgs>(args?: SelectSubset<T, AdminFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Admin.
-     * @param {AdminCreateArgs} args - Arguments to create a Admin.
-     * @example
-     * // Create one Admin
-     * const Admin = await prisma.admin.create({
-     *   data: {
-     *     // ... data to create a Admin
-     *   }
-     * })
-     * 
-     */
-    create<T extends AdminCreateArgs>(args: SelectSubset<T, AdminCreateArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Admins.
-     * @param {AdminCreateManyArgs} args - Arguments to create many Admins.
-     * @example
-     * // Create many Admins
-     * const admin = await prisma.admin.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends AdminCreateManyArgs>(args?: SelectSubset<T, AdminCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Admins and returns the data saved in the database.
-     * @param {AdminCreateManyAndReturnArgs} args - Arguments to create many Admins.
-     * @example
-     * // Create many Admins
-     * const admin = await prisma.admin.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Admins and only return the `id`
-     * const adminWithIdOnly = await prisma.admin.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends AdminCreateManyAndReturnArgs>(args?: SelectSubset<T, AdminCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Admin.
-     * @param {AdminDeleteArgs} args - Arguments to delete one Admin.
-     * @example
-     * // Delete one Admin
-     * const Admin = await prisma.admin.delete({
-     *   where: {
-     *     // ... filter to delete one Admin
-     *   }
-     * })
-     * 
-     */
-    delete<T extends AdminDeleteArgs>(args: SelectSubset<T, AdminDeleteArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Admin.
-     * @param {AdminUpdateArgs} args - Arguments to update one Admin.
-     * @example
-     * // Update one Admin
-     * const admin = await prisma.admin.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends AdminUpdateArgs>(args: SelectSubset<T, AdminUpdateArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Admins.
-     * @param {AdminDeleteManyArgs} args - Arguments to filter Admins to delete.
-     * @example
-     * // Delete a few Admins
-     * const { count } = await prisma.admin.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends AdminDeleteManyArgs>(args?: SelectSubset<T, AdminDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Admins.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdminUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Admins
-     * const admin = await prisma.admin.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends AdminUpdateManyArgs>(args: SelectSubset<T, AdminUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Admins and returns the data updated in the database.
-     * @param {AdminUpdateManyAndReturnArgs} args - Arguments to update many Admins.
-     * @example
-     * // Update many Admins
-     * const admin = await prisma.admin.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Admins and only return the `id`
-     * const adminWithIdOnly = await prisma.admin.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends AdminUpdateManyAndReturnArgs>(args: SelectSubset<T, AdminUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Admin.
-     * @param {AdminUpsertArgs} args - Arguments to update or create a Admin.
-     * @example
-     * // Update or create a Admin
-     * const admin = await prisma.admin.upsert({
-     *   create: {
-     *     // ... data to create a Admin
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Admin we want to update
-     *   }
-     * })
-     */
-    upsert<T extends AdminUpsertArgs>(args: SelectSubset<T, AdminUpsertArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Admins.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdminCountArgs} args - Arguments to filter Admins to count.
-     * @example
-     * // Count the number of Admins
-     * const count = await prisma.admin.count({
-     *   where: {
-     *     // ... the filter for the Admins we want to count
-     *   }
-     * })
-    **/
-    count<T extends AdminCountArgs>(
-      args?: Subset<T, AdminCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], AdminCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Admin.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdminAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends AdminAggregateArgs>(args: Subset<T, AdminAggregateArgs>): Prisma.PrismaPromise<GetAdminAggregateType<T>>
-
-    /**
-     * Group by Admin.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {AdminGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends AdminGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: AdminGroupByArgs['orderBy'] }
-        : { orderBy?: AdminGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, AdminGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAdminGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Admin model
-   */
-  readonly fields: AdminFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Admin.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__AdminClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Admin model
-   */
-  interface AdminFieldRefs {
-    readonly id: FieldRef<"Admin", 'String'>
-    readonly userId: FieldRef<"Admin", 'String'>
-    readonly jabatan: FieldRef<"Admin", 'String'>
-    readonly createdAt: FieldRef<"Admin", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Admin findUnique
-   */
-  export type AdminFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Admin
-     */
-    select?: AdminSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Admin
-     */
-    omit?: AdminOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdminInclude<ExtArgs> | null
-    /**
-     * Filter, which Admin to fetch.
-     */
-    where: AdminWhereUniqueInput
-  }
-
-  /**
-   * Admin findUniqueOrThrow
-   */
-  export type AdminFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Admin
-     */
-    select?: AdminSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Admin
-     */
-    omit?: AdminOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdminInclude<ExtArgs> | null
-    /**
-     * Filter, which Admin to fetch.
-     */
-    where: AdminWhereUniqueInput
-  }
-
-  /**
-   * Admin findFirst
-   */
-  export type AdminFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Admin
-     */
-    select?: AdminSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Admin
-     */
-    omit?: AdminOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdminInclude<ExtArgs> | null
-    /**
-     * Filter, which Admin to fetch.
-     */
-    where?: AdminWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Admins to fetch.
-     */
-    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Admins.
-     */
-    cursor?: AdminWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Admins from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Admins.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Admins.
-     */
-    distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
-  }
-
-  /**
-   * Admin findFirstOrThrow
-   */
-  export type AdminFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Admin
-     */
-    select?: AdminSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Admin
-     */
-    omit?: AdminOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdminInclude<ExtArgs> | null
-    /**
-     * Filter, which Admin to fetch.
-     */
-    where?: AdminWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Admins to fetch.
-     */
-    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Admins.
-     */
-    cursor?: AdminWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Admins from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Admins.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Admins.
-     */
-    distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
-  }
-
-  /**
-   * Admin findMany
-   */
-  export type AdminFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Admin
-     */
-    select?: AdminSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Admin
-     */
-    omit?: AdminOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdminInclude<ExtArgs> | null
-    /**
-     * Filter, which Admins to fetch.
-     */
-    where?: AdminWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Admins to fetch.
-     */
-    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Admins.
-     */
-    cursor?: AdminWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Admins from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Admins.
-     */
-    skip?: number
-    distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
-  }
-
-  /**
-   * Admin create
-   */
-  export type AdminCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Admin
-     */
-    select?: AdminSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Admin
-     */
-    omit?: AdminOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdminInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Admin.
-     */
-    data: XOR<AdminCreateInput, AdminUncheckedCreateInput>
-  }
-
-  /**
-   * Admin createMany
-   */
-  export type AdminCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Admins.
-     */
-    data: AdminCreateManyInput | AdminCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Admin createManyAndReturn
-   */
-  export type AdminCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Admin
-     */
-    select?: AdminSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Admin
-     */
-    omit?: AdminOmit<ExtArgs> | null
-    /**
-     * The data used to create many Admins.
-     */
-    data: AdminCreateManyInput | AdminCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdminIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Admin update
-   */
-  export type AdminUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Admin
-     */
-    select?: AdminSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Admin
-     */
-    omit?: AdminOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdminInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Admin.
-     */
-    data: XOR<AdminUpdateInput, AdminUncheckedUpdateInput>
-    /**
-     * Choose, which Admin to update.
-     */
-    where: AdminWhereUniqueInput
-  }
-
-  /**
-   * Admin updateMany
-   */
-  export type AdminUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Admins.
-     */
-    data: XOR<AdminUpdateManyMutationInput, AdminUncheckedUpdateManyInput>
-    /**
-     * Filter which Admins to update
-     */
-    where?: AdminWhereInput
-    /**
-     * Limit how many Admins to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Admin updateManyAndReturn
-   */
-  export type AdminUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Admin
-     */
-    select?: AdminSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Admin
-     */
-    omit?: AdminOmit<ExtArgs> | null
-    /**
-     * The data used to update Admins.
-     */
-    data: XOR<AdminUpdateManyMutationInput, AdminUncheckedUpdateManyInput>
-    /**
-     * Filter which Admins to update
-     */
-    where?: AdminWhereInput
-    /**
-     * Limit how many Admins to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdminIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Admin upsert
-   */
-  export type AdminUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Admin
-     */
-    select?: AdminSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Admin
-     */
-    omit?: AdminOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdminInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Admin to update in case it exists.
-     */
-    where: AdminWhereUniqueInput
-    /**
-     * In case the Admin found by the `where` argument doesn't exist, create a new Admin with this data.
-     */
-    create: XOR<AdminCreateInput, AdminUncheckedCreateInput>
-    /**
-     * In case the Admin was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<AdminUpdateInput, AdminUncheckedUpdateInput>
-  }
-
-  /**
-   * Admin delete
-   */
-  export type AdminDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Admin
-     */
-    select?: AdminSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Admin
-     */
-    omit?: AdminOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdminInclude<ExtArgs> | null
-    /**
-     * Filter which Admin to delete.
-     */
-    where: AdminWhereUniqueInput
-  }
-
-  /**
-   * Admin deleteMany
-   */
-  export type AdminDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Admins to delete
-     */
-    where?: AdminWhereInput
-    /**
-     * Limit how many Admins to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Admin without action
-   */
-  export type AdminDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Admin
-     */
-    select?: AdminSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Admin
-     */
-    omit?: AdminOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: AdminInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Instruktur
-   */
-
-  export type AggregateInstruktur = {
-    _count: InstrukturCountAggregateOutputType | null
-    _min: InstrukturMinAggregateOutputType | null
-    _max: InstrukturMaxAggregateOutputType | null
-  }
-
-  export type InstrukturMinAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    kursusId: string | null
-    createdAt: Date | null
-  }
-
-  export type InstrukturMaxAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    kursusId: string | null
-    createdAt: Date | null
-  }
-
-  export type InstrukturCountAggregateOutputType = {
-    id: number
-    userId: number
-    kursusId: number
-    createdAt: number
-    _all: number
-  }
-
-
-  export type InstrukturMinAggregateInputType = {
-    id?: true
-    userId?: true
-    kursusId?: true
-    createdAt?: true
-  }
-
-  export type InstrukturMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    kursusId?: true
-    createdAt?: true
-  }
-
-  export type InstrukturCountAggregateInputType = {
-    id?: true
-    userId?: true
-    kursusId?: true
-    createdAt?: true
-    _all?: true
-  }
-
-  export type InstrukturAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Instruktur to aggregate.
-     */
-    where?: InstrukturWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Instrukturs to fetch.
-     */
-    orderBy?: InstrukturOrderByWithRelationInput | InstrukturOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: InstrukturWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Instrukturs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Instrukturs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Instrukturs
-    **/
-    _count?: true | InstrukturCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: InstrukturMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: InstrukturMaxAggregateInputType
-  }
-
-  export type GetInstrukturAggregateType<T extends InstrukturAggregateArgs> = {
-        [P in keyof T & keyof AggregateInstruktur]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateInstruktur[P]>
-      : GetScalarType<T[P], AggregateInstruktur[P]>
-  }
-
-
-
-
-  export type InstrukturGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: InstrukturWhereInput
-    orderBy?: InstrukturOrderByWithAggregationInput | InstrukturOrderByWithAggregationInput[]
-    by: InstrukturScalarFieldEnum[] | InstrukturScalarFieldEnum
-    having?: InstrukturScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: InstrukturCountAggregateInputType | true
-    _min?: InstrukturMinAggregateInputType
-    _max?: InstrukturMaxAggregateInputType
-  }
-
-  export type InstrukturGroupByOutputType = {
-    id: string
-    userId: string
-    kursusId: string
-    createdAt: Date
-    _count: InstrukturCountAggregateOutputType | null
-    _min: InstrukturMinAggregateOutputType | null
-    _max: InstrukturMaxAggregateOutputType | null
-  }
-
-  type GetInstrukturGroupByPayload<T extends InstrukturGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<InstrukturGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof InstrukturGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], InstrukturGroupByOutputType[P]>
-            : GetScalarType<T[P], InstrukturGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type InstrukturSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    kursusId?: boolean
-    createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["instruktur"]>
-
-  export type InstrukturSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    kursusId?: boolean
-    createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["instruktur"]>
-
-  export type InstrukturSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    kursusId?: boolean
-    createdAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["instruktur"]>
-
-  export type InstrukturSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    kursusId?: boolean
-    createdAt?: boolean
-  }
-
-  export type InstrukturOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "kursusId" | "createdAt", ExtArgs["result"]["instruktur"]>
-  export type InstrukturInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }
-  export type InstrukturIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }
-  export type InstrukturIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }
-
-  export type $InstrukturPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Instruktur"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-      kursus: Prisma.$KursusPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      userId: string
-      kursusId: string
-      createdAt: Date
-    }, ExtArgs["result"]["instruktur"]>
-    composites: {}
-  }
-
-  type InstrukturGetPayload<S extends boolean | null | undefined | InstrukturDefaultArgs> = $Result.GetResult<Prisma.$InstrukturPayload, S>
-
-  type InstrukturCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<InstrukturFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: InstrukturCountAggregateInputType | true
-    }
-
-  export interface InstrukturDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Instruktur'], meta: { name: 'Instruktur' } }
-    /**
-     * Find zero or one Instruktur that matches the filter.
-     * @param {InstrukturFindUniqueArgs} args - Arguments to find a Instruktur
-     * @example
-     * // Get one Instruktur
-     * const instruktur = await prisma.instruktur.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends InstrukturFindUniqueArgs>(args: SelectSubset<T, InstrukturFindUniqueArgs<ExtArgs>>): Prisma__InstrukturClient<$Result.GetResult<Prisma.$InstrukturPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Instruktur that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {InstrukturFindUniqueOrThrowArgs} args - Arguments to find a Instruktur
-     * @example
-     * // Get one Instruktur
-     * const instruktur = await prisma.instruktur.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends InstrukturFindUniqueOrThrowArgs>(args: SelectSubset<T, InstrukturFindUniqueOrThrowArgs<ExtArgs>>): Prisma__InstrukturClient<$Result.GetResult<Prisma.$InstrukturPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Instruktur that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstrukturFindFirstArgs} args - Arguments to find a Instruktur
-     * @example
-     * // Get one Instruktur
-     * const instruktur = await prisma.instruktur.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends InstrukturFindFirstArgs>(args?: SelectSubset<T, InstrukturFindFirstArgs<ExtArgs>>): Prisma__InstrukturClient<$Result.GetResult<Prisma.$InstrukturPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Instruktur that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstrukturFindFirstOrThrowArgs} args - Arguments to find a Instruktur
-     * @example
-     * // Get one Instruktur
-     * const instruktur = await prisma.instruktur.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends InstrukturFindFirstOrThrowArgs>(args?: SelectSubset<T, InstrukturFindFirstOrThrowArgs<ExtArgs>>): Prisma__InstrukturClient<$Result.GetResult<Prisma.$InstrukturPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Instrukturs that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstrukturFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Instrukturs
-     * const instrukturs = await prisma.instruktur.findMany()
-     * 
-     * // Get first 10 Instrukturs
-     * const instrukturs = await prisma.instruktur.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const instrukturWithIdOnly = await prisma.instruktur.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends InstrukturFindManyArgs>(args?: SelectSubset<T, InstrukturFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstrukturPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Instruktur.
-     * @param {InstrukturCreateArgs} args - Arguments to create a Instruktur.
-     * @example
-     * // Create one Instruktur
-     * const Instruktur = await prisma.instruktur.create({
-     *   data: {
-     *     // ... data to create a Instruktur
-     *   }
-     * })
-     * 
-     */
-    create<T extends InstrukturCreateArgs>(args: SelectSubset<T, InstrukturCreateArgs<ExtArgs>>): Prisma__InstrukturClient<$Result.GetResult<Prisma.$InstrukturPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Instrukturs.
-     * @param {InstrukturCreateManyArgs} args - Arguments to create many Instrukturs.
-     * @example
-     * // Create many Instrukturs
-     * const instruktur = await prisma.instruktur.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends InstrukturCreateManyArgs>(args?: SelectSubset<T, InstrukturCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Instrukturs and returns the data saved in the database.
-     * @param {InstrukturCreateManyAndReturnArgs} args - Arguments to create many Instrukturs.
-     * @example
-     * // Create many Instrukturs
-     * const instruktur = await prisma.instruktur.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Instrukturs and only return the `id`
-     * const instrukturWithIdOnly = await prisma.instruktur.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends InstrukturCreateManyAndReturnArgs>(args?: SelectSubset<T, InstrukturCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstrukturPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Instruktur.
-     * @param {InstrukturDeleteArgs} args - Arguments to delete one Instruktur.
-     * @example
-     * // Delete one Instruktur
-     * const Instruktur = await prisma.instruktur.delete({
-     *   where: {
-     *     // ... filter to delete one Instruktur
-     *   }
-     * })
-     * 
-     */
-    delete<T extends InstrukturDeleteArgs>(args: SelectSubset<T, InstrukturDeleteArgs<ExtArgs>>): Prisma__InstrukturClient<$Result.GetResult<Prisma.$InstrukturPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Instruktur.
-     * @param {InstrukturUpdateArgs} args - Arguments to update one Instruktur.
-     * @example
-     * // Update one Instruktur
-     * const instruktur = await prisma.instruktur.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends InstrukturUpdateArgs>(args: SelectSubset<T, InstrukturUpdateArgs<ExtArgs>>): Prisma__InstrukturClient<$Result.GetResult<Prisma.$InstrukturPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Instrukturs.
-     * @param {InstrukturDeleteManyArgs} args - Arguments to filter Instrukturs to delete.
-     * @example
-     * // Delete a few Instrukturs
-     * const { count } = await prisma.instruktur.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends InstrukturDeleteManyArgs>(args?: SelectSubset<T, InstrukturDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Instrukturs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstrukturUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Instrukturs
-     * const instruktur = await prisma.instruktur.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends InstrukturUpdateManyArgs>(args: SelectSubset<T, InstrukturUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Instrukturs and returns the data updated in the database.
-     * @param {InstrukturUpdateManyAndReturnArgs} args - Arguments to update many Instrukturs.
-     * @example
-     * // Update many Instrukturs
-     * const instruktur = await prisma.instruktur.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Instrukturs and only return the `id`
-     * const instrukturWithIdOnly = await prisma.instruktur.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends InstrukturUpdateManyAndReturnArgs>(args: SelectSubset<T, InstrukturUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$InstrukturPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Instruktur.
-     * @param {InstrukturUpsertArgs} args - Arguments to update or create a Instruktur.
-     * @example
-     * // Update or create a Instruktur
-     * const instruktur = await prisma.instruktur.upsert({
-     *   create: {
-     *     // ... data to create a Instruktur
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Instruktur we want to update
-     *   }
-     * })
-     */
-    upsert<T extends InstrukturUpsertArgs>(args: SelectSubset<T, InstrukturUpsertArgs<ExtArgs>>): Prisma__InstrukturClient<$Result.GetResult<Prisma.$InstrukturPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Instrukturs.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstrukturCountArgs} args - Arguments to filter Instrukturs to count.
-     * @example
-     * // Count the number of Instrukturs
-     * const count = await prisma.instruktur.count({
-     *   where: {
-     *     // ... the filter for the Instrukturs we want to count
-     *   }
-     * })
-    **/
-    count<T extends InstrukturCountArgs>(
-      args?: Subset<T, InstrukturCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], InstrukturCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Instruktur.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstrukturAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends InstrukturAggregateArgs>(args: Subset<T, InstrukturAggregateArgs>): Prisma.PrismaPromise<GetInstrukturAggregateType<T>>
-
-    /**
-     * Group by Instruktur.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {InstrukturGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends InstrukturGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: InstrukturGroupByArgs['orderBy'] }
-        : { orderBy?: InstrukturGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, InstrukturGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetInstrukturGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Instruktur model
-   */
-  readonly fields: InstrukturFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Instruktur.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__InstrukturClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    kursus<T extends KursusDefaultArgs<ExtArgs> = {}>(args?: Subset<T, KursusDefaultArgs<ExtArgs>>): Prisma__KursusClient<$Result.GetResult<Prisma.$KursusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Instruktur model
-   */
-  interface InstrukturFieldRefs {
-    readonly id: FieldRef<"Instruktur", 'String'>
-    readonly userId: FieldRef<"Instruktur", 'String'>
-    readonly kursusId: FieldRef<"Instruktur", 'String'>
-    readonly createdAt: FieldRef<"Instruktur", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Instruktur findUnique
-   */
-  export type InstrukturFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturInclude<ExtArgs> | null
-    /**
-     * Filter, which Instruktur to fetch.
-     */
-    where: InstrukturWhereUniqueInput
-  }
-
-  /**
-   * Instruktur findUniqueOrThrow
-   */
-  export type InstrukturFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturInclude<ExtArgs> | null
-    /**
-     * Filter, which Instruktur to fetch.
-     */
-    where: InstrukturWhereUniqueInput
-  }
-
-  /**
-   * Instruktur findFirst
-   */
-  export type InstrukturFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturInclude<ExtArgs> | null
-    /**
-     * Filter, which Instruktur to fetch.
-     */
-    where?: InstrukturWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Instrukturs to fetch.
-     */
-    orderBy?: InstrukturOrderByWithRelationInput | InstrukturOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Instrukturs.
-     */
-    cursor?: InstrukturWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Instrukturs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Instrukturs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Instrukturs.
-     */
-    distinct?: InstrukturScalarFieldEnum | InstrukturScalarFieldEnum[]
-  }
-
-  /**
-   * Instruktur findFirstOrThrow
-   */
-  export type InstrukturFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturInclude<ExtArgs> | null
-    /**
-     * Filter, which Instruktur to fetch.
-     */
-    where?: InstrukturWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Instrukturs to fetch.
-     */
-    orderBy?: InstrukturOrderByWithRelationInput | InstrukturOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Instrukturs.
-     */
-    cursor?: InstrukturWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Instrukturs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Instrukturs.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Instrukturs.
-     */
-    distinct?: InstrukturScalarFieldEnum | InstrukturScalarFieldEnum[]
-  }
-
-  /**
-   * Instruktur findMany
-   */
-  export type InstrukturFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturInclude<ExtArgs> | null
-    /**
-     * Filter, which Instrukturs to fetch.
-     */
-    where?: InstrukturWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Instrukturs to fetch.
-     */
-    orderBy?: InstrukturOrderByWithRelationInput | InstrukturOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Instrukturs.
-     */
-    cursor?: InstrukturWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Instrukturs from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Instrukturs.
-     */
-    skip?: number
-    distinct?: InstrukturScalarFieldEnum | InstrukturScalarFieldEnum[]
-  }
-
-  /**
-   * Instruktur create
-   */
-  export type InstrukturCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Instruktur.
-     */
-    data: XOR<InstrukturCreateInput, InstrukturUncheckedCreateInput>
-  }
-
-  /**
-   * Instruktur createMany
-   */
-  export type InstrukturCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Instrukturs.
-     */
-    data: InstrukturCreateManyInput | InstrukturCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Instruktur createManyAndReturn
-   */
-  export type InstrukturCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * The data used to create many Instrukturs.
-     */
-    data: InstrukturCreateManyInput | InstrukturCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Instruktur update
-   */
-  export type InstrukturUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Instruktur.
-     */
-    data: XOR<InstrukturUpdateInput, InstrukturUncheckedUpdateInput>
-    /**
-     * Choose, which Instruktur to update.
-     */
-    where: InstrukturWhereUniqueInput
-  }
-
-  /**
-   * Instruktur updateMany
-   */
-  export type InstrukturUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Instrukturs.
-     */
-    data: XOR<InstrukturUpdateManyMutationInput, InstrukturUncheckedUpdateManyInput>
-    /**
-     * Filter which Instrukturs to update
-     */
-    where?: InstrukturWhereInput
-    /**
-     * Limit how many Instrukturs to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Instruktur updateManyAndReturn
-   */
-  export type InstrukturUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * The data used to update Instrukturs.
-     */
-    data: XOR<InstrukturUpdateManyMutationInput, InstrukturUncheckedUpdateManyInput>
-    /**
-     * Filter which Instrukturs to update
-     */
-    where?: InstrukturWhereInput
-    /**
-     * Limit how many Instrukturs to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Instruktur upsert
-   */
-  export type InstrukturUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Instruktur to update in case it exists.
-     */
-    where: InstrukturWhereUniqueInput
-    /**
-     * In case the Instruktur found by the `where` argument doesn't exist, create a new Instruktur with this data.
-     */
-    create: XOR<InstrukturCreateInput, InstrukturUncheckedCreateInput>
-    /**
-     * In case the Instruktur was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<InstrukturUpdateInput, InstrukturUncheckedUpdateInput>
-  }
-
-  /**
-   * Instruktur delete
-   */
-  export type InstrukturDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturInclude<ExtArgs> | null
-    /**
-     * Filter which Instruktur to delete.
-     */
-    where: InstrukturWhereUniqueInput
-  }
-
-  /**
-   * Instruktur deleteMany
-   */
-  export type InstrukturDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Instrukturs to delete
-     */
-    where?: InstrukturWhereInput
-    /**
-     * Limit how many Instrukturs to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Instruktur without action
-   */
-  export type InstrukturDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Instruktur
-     */
-    select?: InstrukturSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Instruktur
-     */
-    omit?: InstrukturOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: InstrukturInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model HistoriKursus
    */
 
@@ -13052,6 +10714,8 @@ export namespace Prisma {
     tahunAkademik: 'tahunAkademik',
     password: 'password',
     role: 'role',
+    keahlian: 'keahlian',
+    jabatan: 'jabatan',
     image: 'image',
     emailVerified: 'emailVerified',
     createdAt: 'createdAt',
@@ -13067,7 +10731,8 @@ export namespace Prisma {
     harga: 'harga',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    userId: 'userId'
+    userId: 'userId',
+    instrukturId: 'instrukturId'
   };
 
   export type KursusScalarFieldEnum = (typeof KursusScalarFieldEnum)[keyof typeof KursusScalarFieldEnum]
@@ -13095,26 +10760,6 @@ export namespace Prisma {
   };
 
   export type PembayaranScalarFieldEnum = (typeof PembayaranScalarFieldEnum)[keyof typeof PembayaranScalarFieldEnum]
-
-
-  export const AdminScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    jabatan: 'jabatan',
-    createdAt: 'createdAt'
-  };
-
-  export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
-
-
-  export const InstrukturScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    kursusId: 'kursusId',
-    createdAt: 'createdAt'
-  };
-
-  export type InstrukturScalarFieldEnum = (typeof InstrukturScalarFieldEnum)[keyof typeof InstrukturScalarFieldEnum]
 
 
   export const HistoriKursusScalarFieldEnum: {
@@ -13409,18 +11054,20 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
     nama?: StringFilter<"User"> | string
-    nik?: StringFilter<"User"> | string
+    nik?: StringNullableFilter<"User"> | string | null
     jenisKelamin?: StringFilter<"User"> | string
-    tempatLahir?: StringFilter<"User"> | string
-    tanggalLahir?: StringFilter<"User"> | string
+    tempatLahir?: StringNullableFilter<"User"> | string | null
+    tanggalLahir?: StringNullableFilter<"User"> | string | null
     mediaSosial?: StringNullableFilter<"User"> | string | null
     noHp?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
-    agama?: StringFilter<"User"> | string
-    jurusan?: StringFilter<"User"> | string
-    tahunAkademik?: StringFilter<"User"> | string
+    agama?: StringNullableFilter<"User"> | string | null
+    jurusan?: StringNullableFilter<"User"> | string | null
+    tahunAkademik?: StringNullableFilter<"User"> | string | null
     password?: StringNullableFilter<"User"> | string | null
     role?: StringFilter<"User"> | string
+    keahlian?: StringNullableFilter<"User"> | string | null
+    jabatan?: StringNullableFilter<"User"> | string | null
     image?: StringNullableFilter<"User"> | string | null
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -13430,25 +11077,25 @@ export namespace Prisma {
     Session?: SessionListRelationFilter
     Pendaftaran?: PendaftaranListRelationFilter
     HistoriKursus?: HistoriKursusListRelationFilter
-    Admin?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
-    Instruktur?: InstrukturListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     nama?: SortOrder
-    nik?: SortOrder
+    nik?: SortOrderInput | SortOrder
     jenisKelamin?: SortOrder
-    tempatLahir?: SortOrder
-    tanggalLahir?: SortOrder
+    tempatLahir?: SortOrderInput | SortOrder
+    tanggalLahir?: SortOrderInput | SortOrder
     mediaSosial?: SortOrderInput | SortOrder
     noHp?: SortOrder
     email?: SortOrder
-    agama?: SortOrder
-    jurusan?: SortOrder
-    tahunAkademik?: SortOrder
+    agama?: SortOrderInput | SortOrder
+    jurusan?: SortOrderInput | SortOrder
+    tahunAkademik?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
     role?: SortOrder
+    keahlian?: SortOrderInput | SortOrder
+    jabatan?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
     emailVerified?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -13458,8 +11105,6 @@ export namespace Prisma {
     Session?: SessionOrderByRelationAggregateInput
     Pendaftaran?: PendaftaranOrderByRelationAggregateInput
     HistoriKursus?: HistoriKursusOrderByRelationAggregateInput
-    Admin?: AdminOrderByWithRelationInput
-    Instruktur?: InstrukturOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -13471,15 +11116,17 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     nama?: StringFilter<"User"> | string
     jenisKelamin?: StringFilter<"User"> | string
-    tempatLahir?: StringFilter<"User"> | string
-    tanggalLahir?: StringFilter<"User"> | string
+    tempatLahir?: StringNullableFilter<"User"> | string | null
+    tanggalLahir?: StringNullableFilter<"User"> | string | null
     mediaSosial?: StringNullableFilter<"User"> | string | null
     noHp?: StringFilter<"User"> | string
-    agama?: StringFilter<"User"> | string
-    jurusan?: StringFilter<"User"> | string
-    tahunAkademik?: StringFilter<"User"> | string
+    agama?: StringNullableFilter<"User"> | string | null
+    jurusan?: StringNullableFilter<"User"> | string | null
+    tahunAkademik?: StringNullableFilter<"User"> | string | null
     password?: StringNullableFilter<"User"> | string | null
     role?: StringFilter<"User"> | string
+    keahlian?: StringNullableFilter<"User"> | string | null
+    jabatan?: StringNullableFilter<"User"> | string | null
     image?: StringNullableFilter<"User"> | string | null
     emailVerified?: DateTimeNullableFilter<"User"> | Date | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -13489,25 +11136,25 @@ export namespace Prisma {
     Session?: SessionListRelationFilter
     Pendaftaran?: PendaftaranListRelationFilter
     HistoriKursus?: HistoriKursusListRelationFilter
-    Admin?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
-    Instruktur?: InstrukturListRelationFilter
   }, "id" | "nik" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     nama?: SortOrder
-    nik?: SortOrder
+    nik?: SortOrderInput | SortOrder
     jenisKelamin?: SortOrder
-    tempatLahir?: SortOrder
-    tanggalLahir?: SortOrder
+    tempatLahir?: SortOrderInput | SortOrder
+    tanggalLahir?: SortOrderInput | SortOrder
     mediaSosial?: SortOrderInput | SortOrder
     noHp?: SortOrder
     email?: SortOrder
-    agama?: SortOrder
-    jurusan?: SortOrder
-    tahunAkademik?: SortOrder
+    agama?: SortOrderInput | SortOrder
+    jurusan?: SortOrderInput | SortOrder
+    tahunAkademik?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
     role?: SortOrder
+    keahlian?: SortOrderInput | SortOrder
+    jabatan?: SortOrderInput | SortOrder
     image?: SortOrderInput | SortOrder
     emailVerified?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -13523,18 +11170,20 @@ export namespace Prisma {
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
     nama?: StringWithAggregatesFilter<"User"> | string
-    nik?: StringWithAggregatesFilter<"User"> | string
+    nik?: StringNullableWithAggregatesFilter<"User"> | string | null
     jenisKelamin?: StringWithAggregatesFilter<"User"> | string
-    tempatLahir?: StringWithAggregatesFilter<"User"> | string
-    tanggalLahir?: StringWithAggregatesFilter<"User"> | string
+    tempatLahir?: StringNullableWithAggregatesFilter<"User"> | string | null
+    tanggalLahir?: StringNullableWithAggregatesFilter<"User"> | string | null
     mediaSosial?: StringNullableWithAggregatesFilter<"User"> | string | null
     noHp?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
-    agama?: StringWithAggregatesFilter<"User"> | string
-    jurusan?: StringWithAggregatesFilter<"User"> | string
-    tahunAkademik?: StringWithAggregatesFilter<"User"> | string
+    agama?: StringNullableWithAggregatesFilter<"User"> | string | null
+    jurusan?: StringNullableWithAggregatesFilter<"User"> | string | null
+    tahunAkademik?: StringNullableWithAggregatesFilter<"User"> | string | null
     password?: StringNullableWithAggregatesFilter<"User"> | string | null
     role?: StringWithAggregatesFilter<"User"> | string
+    keahlian?: StringNullableWithAggregatesFilter<"User"> | string | null
+    jabatan?: StringNullableWithAggregatesFilter<"User"> | string | null
     image?: StringNullableWithAggregatesFilter<"User"> | string | null
     emailVerified?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -13551,10 +11200,10 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Kursus"> | Date | string
     updatedAt?: DateTimeFilter<"Kursus"> | Date | string
     userId?: StringFilter<"Kursus"> | string
+    instrukturId?: StringFilter<"Kursus"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     Pendaftaran?: PendaftaranListRelationFilter
     HistoriKursus?: HistoriKursusListRelationFilter
-    Instruktur?: InstrukturListRelationFilter
   }
 
   export type KursusOrderByWithRelationInput = {
@@ -13564,10 +11213,10 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    instrukturId?: SortOrder
     user?: UserOrderByWithRelationInput
     Pendaftaran?: PendaftaranOrderByRelationAggregateInput
     HistoriKursus?: HistoriKursusOrderByRelationAggregateInput
-    Instruktur?: InstrukturOrderByRelationAggregateInput
   }
 
   export type KursusWhereUniqueInput = Prisma.AtLeast<{
@@ -13580,10 +11229,10 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Kursus"> | Date | string
     updatedAt?: DateTimeFilter<"Kursus"> | Date | string
     userId?: StringFilter<"Kursus"> | string
+    instrukturId?: StringFilter<"Kursus"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     Pendaftaran?: PendaftaranListRelationFilter
     HistoriKursus?: HistoriKursusListRelationFilter
-    Instruktur?: InstrukturListRelationFilter
   }, "id">
 
   export type KursusOrderByWithAggregationInput = {
@@ -13593,6 +11242,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    instrukturId?: SortOrder
     _count?: KursusCountOrderByAggregateInput
     _avg?: KursusAvgOrderByAggregateInput
     _max?: KursusMaxOrderByAggregateInput
@@ -13610,6 +11260,7 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Kursus"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Kursus"> | Date | string
     userId?: StringWithAggregatesFilter<"Kursus"> | string
+    instrukturId?: StringWithAggregatesFilter<"Kursus"> | string
   }
 
   export type PendaftaranWhereInput = {
@@ -13738,109 +11389,6 @@ export namespace Prisma {
     buktiBayar?: StringWithAggregatesFilter<"Pembayaran"> | string
     status?: StringWithAggregatesFilter<"Pembayaran"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Pembayaran"> | Date | string
-  }
-
-  export type AdminWhereInput = {
-    AND?: AdminWhereInput | AdminWhereInput[]
-    OR?: AdminWhereInput[]
-    NOT?: AdminWhereInput | AdminWhereInput[]
-    id?: StringFilter<"Admin"> | string
-    userId?: StringFilter<"Admin"> | string
-    jabatan?: StringFilter<"Admin"> | string
-    createdAt?: DateTimeFilter<"Admin"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }
-
-  export type AdminOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    jabatan?: SortOrder
-    createdAt?: SortOrder
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type AdminWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    userId?: string
-    AND?: AdminWhereInput | AdminWhereInput[]
-    OR?: AdminWhereInput[]
-    NOT?: AdminWhereInput | AdminWhereInput[]
-    jabatan?: StringFilter<"Admin"> | string
-    createdAt?: DateTimeFilter<"Admin"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "userId">
-
-  export type AdminOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    jabatan?: SortOrder
-    createdAt?: SortOrder
-    _count?: AdminCountOrderByAggregateInput
-    _max?: AdminMaxOrderByAggregateInput
-    _min?: AdminMinOrderByAggregateInput
-  }
-
-  export type AdminScalarWhereWithAggregatesInput = {
-    AND?: AdminScalarWhereWithAggregatesInput | AdminScalarWhereWithAggregatesInput[]
-    OR?: AdminScalarWhereWithAggregatesInput[]
-    NOT?: AdminScalarWhereWithAggregatesInput | AdminScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Admin"> | string
-    userId?: StringWithAggregatesFilter<"Admin"> | string
-    jabatan?: StringWithAggregatesFilter<"Admin"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
-  }
-
-  export type InstrukturWhereInput = {
-    AND?: InstrukturWhereInput | InstrukturWhereInput[]
-    OR?: InstrukturWhereInput[]
-    NOT?: InstrukturWhereInput | InstrukturWhereInput[]
-    id?: StringFilter<"Instruktur"> | string
-    userId?: StringFilter<"Instruktur"> | string
-    kursusId?: StringFilter<"Instruktur"> | string
-    createdAt?: DateTimeFilter<"Instruktur"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
-  }
-
-  export type InstrukturOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    createdAt?: SortOrder
-    user?: UserOrderByWithRelationInput
-    kursus?: KursusOrderByWithRelationInput
-  }
-
-  export type InstrukturWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: InstrukturWhereInput | InstrukturWhereInput[]
-    OR?: InstrukturWhereInput[]
-    NOT?: InstrukturWhereInput | InstrukturWhereInput[]
-    userId?: StringFilter<"Instruktur"> | string
-    kursusId?: StringFilter<"Instruktur"> | string
-    createdAt?: DateTimeFilter<"Instruktur"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
-  }, "id">
-
-  export type InstrukturOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    createdAt?: SortOrder
-    _count?: InstrukturCountOrderByAggregateInput
-    _max?: InstrukturMaxOrderByAggregateInput
-    _min?: InstrukturMinOrderByAggregateInput
-  }
-
-  export type InstrukturScalarWhereWithAggregatesInput = {
-    AND?: InstrukturScalarWhereWithAggregatesInput | InstrukturScalarWhereWithAggregatesInput[]
-    OR?: InstrukturScalarWhereWithAggregatesInput[]
-    NOT?: InstrukturScalarWhereWithAggregatesInput | InstrukturScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Instruktur"> | string
-    userId?: StringWithAggregatesFilter<"Instruktur"> | string
-    kursusId?: StringWithAggregatesFilter<"Instruktur"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"Instruktur"> | Date | string
   }
 
   export type HistoriKursusWhereInput = {
@@ -14103,18 +11651,20 @@ export namespace Prisma {
   export type UserCreateInput = {
     id?: string
     nama: string
-    nik: string
+    nik?: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
     mediaSosial?: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
     password?: string | null
     role?: string
+    keahlian?: string | null
+    jabatan?: string | null
     image?: string | null
     emailVerified?: Date | string | null
     createdAt?: Date | string
@@ -14124,25 +11674,25 @@ export namespace Prisma {
     Session?: SessionCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
     HistoriKursus?: HistoriKursusCreateNestedManyWithoutUserInput
-    Admin?: AdminCreateNestedOneWithoutUserInput
-    Instruktur?: InstrukturCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
     nama: string
-    nik: string
+    nik?: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
     mediaSosial?: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
     password?: string | null
     role?: string
+    keahlian?: string | null
+    jabatan?: string | null
     image?: string | null
     emailVerified?: Date | string | null
     createdAt?: Date | string
@@ -14152,25 +11702,25 @@ export namespace Prisma {
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
     HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutUserInput
-    Admin?: AdminUncheckedCreateNestedOneWithoutUserInput
-    Instruktur?: InstrukturUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14180,25 +11730,25 @@ export namespace Prisma {
     Session?: SessionUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
     HistoriKursus?: HistoriKursusUpdateManyWithoutUserNestedInput
-    Admin?: AdminUpdateOneWithoutUserNestedInput
-    Instruktur?: InstrukturUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14208,25 +11758,25 @@ export namespace Prisma {
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
     HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutUserNestedInput
-    Admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
-    Instruktur?: InstrukturUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: string
     nama: string
-    nik: string
+    nik?: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
     mediaSosial?: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
     password?: string | null
     role?: string
+    keahlian?: string | null
+    jabatan?: string | null
     image?: string | null
     emailVerified?: Date | string | null
     createdAt?: Date | string
@@ -14236,18 +11786,20 @@ export namespace Prisma {
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14257,18 +11809,20 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14281,10 +11835,10 @@ export namespace Prisma {
     harga: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    instrukturId: string
     user: UserCreateNestedOneWithoutKursusInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
     HistoriKursus?: HistoriKursusCreateNestedManyWithoutKursusInput
-    Instruktur?: InstrukturCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateInput = {
@@ -14294,9 +11848,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
+    instrukturId: string
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
     HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutKursusInput
-    Instruktur?: InstrukturUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUpdateInput = {
@@ -14305,10 +11859,10 @@ export namespace Prisma {
     harga?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    instrukturId?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutKursusNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
     HistoriKursus?: HistoriKursusUpdateManyWithoutKursusNestedInput
-    Instruktur?: InstrukturUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateInput = {
@@ -14318,9 +11872,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+    instrukturId?: StringFieldUpdateOperationsInput | string
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
     HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutKursusNestedInput
-    Instruktur?: InstrukturUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusCreateManyInput = {
@@ -14330,6 +11884,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
+    instrukturId: string
   }
 
   export type KursusUpdateManyMutationInput = {
@@ -14338,6 +11893,7 @@ export namespace Prisma {
     harga?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    instrukturId?: StringFieldUpdateOperationsInput | string
   }
 
   export type KursusUncheckedUpdateManyInput = {
@@ -14347,6 +11903,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+    instrukturId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PendaftaranCreateInput = {
@@ -14473,101 +12030,6 @@ export namespace Prisma {
     jumlah?: IntFieldUpdateOperationsInput | number
     buktiBayar?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AdminCreateInput = {
-    id?: string
-    jabatan: string
-    createdAt?: Date | string
-    user: UserCreateNestedOneWithoutAdminInput
-  }
-
-  export type AdminUncheckedCreateInput = {
-    id?: string
-    userId: string
-    jabatan: string
-    createdAt?: Date | string
-  }
-
-  export type AdminUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    jabatan?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutAdminNestedInput
-  }
-
-  export type AdminUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    jabatan?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AdminCreateManyInput = {
-    id?: string
-    userId: string
-    jabatan: string
-    createdAt?: Date | string
-  }
-
-  export type AdminUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    jabatan?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AdminUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    jabatan?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type InstrukturCreateInput = {
-    id?: string
-    createdAt?: Date | string
-    user: UserCreateNestedOneWithoutInstrukturInput
-    kursus: KursusCreateNestedOneWithoutInstrukturInput
-  }
-
-  export type InstrukturUncheckedCreateInput = {
-    id?: string
-    userId: string
-    kursusId: string
-    createdAt?: Date | string
-  }
-
-  export type InstrukturUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutInstrukturNestedInput
-    kursus?: KursusUpdateOneRequiredWithoutInstrukturNestedInput
-  }
-
-  export type InstrukturUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    kursusId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type InstrukturCreateManyInput = {
-    id?: string
-    userId: string
-    kursusId: string
-    createdAt?: Date | string
-  }
-
-  export type InstrukturUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type InstrukturUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    kursusId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -14903,17 +12365,6 @@ export namespace Prisma {
     none?: HistoriKursusWhereInput
   }
 
-  export type AdminNullableScalarRelationFilter = {
-    is?: AdminWhereInput | null
-    isNot?: AdminWhereInput | null
-  }
-
-  export type InstrukturListRelationFilter = {
-    every?: InstrukturWhereInput
-    some?: InstrukturWhereInput
-    none?: InstrukturWhereInput
-  }
-
   export type KursusOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -14934,10 +12385,6 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type InstrukturOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     nama?: SortOrder
@@ -14953,6 +12400,8 @@ export namespace Prisma {
     tahunAkademik?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    keahlian?: SortOrder
+    jabatan?: SortOrder
     image?: SortOrder
     emailVerified?: SortOrder
     createdAt?: SortOrder
@@ -14974,6 +12423,8 @@ export namespace Prisma {
     tahunAkademik?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    keahlian?: SortOrder
+    jabatan?: SortOrder
     image?: SortOrder
     emailVerified?: SortOrder
     createdAt?: SortOrder
@@ -14995,6 +12446,8 @@ export namespace Prisma {
     tahunAkademik?: SortOrder
     password?: SortOrder
     role?: SortOrder
+    keahlian?: SortOrder
+    jabatan?: SortOrder
     image?: SortOrder
     emailVerified?: SortOrder
     createdAt?: SortOrder
@@ -15033,6 +12486,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    instrukturId?: SortOrder
   }
 
   export type KursusAvgOrderByAggregateInput = {
@@ -15046,6 +12500,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    instrukturId?: SortOrder
   }
 
   export type KursusMinOrderByAggregateInput = {
@@ -15055,6 +12510,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
+    instrukturId?: SortOrder
   }
 
   export type KursusSumOrderByAggregateInput = {
@@ -15152,48 +12608,6 @@ export namespace Prisma {
 
   export type PembayaranSumOrderByAggregateInput = {
     jumlah?: SortOrder
-  }
-
-  export type AdminCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    jabatan?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type AdminMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    jabatan?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type AdminMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    jabatan?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type InstrukturCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type InstrukturMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    createdAt?: SortOrder
-  }
-
-  export type InstrukturMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    createdAt?: SortOrder
   }
 
   export type HistoriKursusCountOrderByAggregateInput = {
@@ -15306,19 +12720,6 @@ export namespace Prisma {
     connect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
   }
 
-  export type AdminCreateNestedOneWithoutUserInput = {
-    create?: XOR<AdminCreateWithoutUserInput, AdminUncheckedCreateWithoutUserInput>
-    connectOrCreate?: AdminCreateOrConnectWithoutUserInput
-    connect?: AdminWhereUniqueInput
-  }
-
-  export type InstrukturCreateNestedManyWithoutUserInput = {
-    create?: XOR<InstrukturCreateWithoutUserInput, InstrukturUncheckedCreateWithoutUserInput> | InstrukturCreateWithoutUserInput[] | InstrukturUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: InstrukturCreateOrConnectWithoutUserInput | InstrukturCreateOrConnectWithoutUserInput[]
-    createMany?: InstrukturCreateManyUserInputEnvelope
-    connect?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-  }
-
   export type KursusUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<KursusCreateWithoutUserInput, KursusUncheckedCreateWithoutUserInput> | KursusCreateWithoutUserInput[] | KursusUncheckedCreateWithoutUserInput[]
     connectOrCreate?: KursusCreateOrConnectWithoutUserInput | KursusCreateOrConnectWithoutUserInput[]
@@ -15352,19 +12753,6 @@ export namespace Prisma {
     connectOrCreate?: HistoriKursusCreateOrConnectWithoutUserInput | HistoriKursusCreateOrConnectWithoutUserInput[]
     createMany?: HistoriKursusCreateManyUserInputEnvelope
     connect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-  }
-
-  export type AdminUncheckedCreateNestedOneWithoutUserInput = {
-    create?: XOR<AdminCreateWithoutUserInput, AdminUncheckedCreateWithoutUserInput>
-    connectOrCreate?: AdminCreateOrConnectWithoutUserInput
-    connect?: AdminWhereUniqueInput
-  }
-
-  export type InstrukturUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<InstrukturCreateWithoutUserInput, InstrukturUncheckedCreateWithoutUserInput> | InstrukturCreateWithoutUserInput[] | InstrukturUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: InstrukturCreateOrConnectWithoutUserInput | InstrukturCreateOrConnectWithoutUserInput[]
-    createMany?: InstrukturCreateManyUserInputEnvelope
-    connect?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -15441,30 +12829,6 @@ export namespace Prisma {
     deleteMany?: HistoriKursusScalarWhereInput | HistoriKursusScalarWhereInput[]
   }
 
-  export type AdminUpdateOneWithoutUserNestedInput = {
-    create?: XOR<AdminCreateWithoutUserInput, AdminUncheckedCreateWithoutUserInput>
-    connectOrCreate?: AdminCreateOrConnectWithoutUserInput
-    upsert?: AdminUpsertWithoutUserInput
-    disconnect?: AdminWhereInput | boolean
-    delete?: AdminWhereInput | boolean
-    connect?: AdminWhereUniqueInput
-    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutUserInput, AdminUpdateWithoutUserInput>, AdminUncheckedUpdateWithoutUserInput>
-  }
-
-  export type InstrukturUpdateManyWithoutUserNestedInput = {
-    create?: XOR<InstrukturCreateWithoutUserInput, InstrukturUncheckedCreateWithoutUserInput> | InstrukturCreateWithoutUserInput[] | InstrukturUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: InstrukturCreateOrConnectWithoutUserInput | InstrukturCreateOrConnectWithoutUserInput[]
-    upsert?: InstrukturUpsertWithWhereUniqueWithoutUserInput | InstrukturUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: InstrukturCreateManyUserInputEnvelope
-    set?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    disconnect?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    delete?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    connect?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    update?: InstrukturUpdateWithWhereUniqueWithoutUserInput | InstrukturUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: InstrukturUpdateManyWithWhereWithoutUserInput | InstrukturUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: InstrukturScalarWhereInput | InstrukturScalarWhereInput[]
-  }
-
   export type KursusUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<KursusCreateWithoutUserInput, KursusUncheckedCreateWithoutUserInput> | KursusCreateWithoutUserInput[] | KursusUncheckedCreateWithoutUserInput[]
     connectOrCreate?: KursusCreateOrConnectWithoutUserInput | KursusCreateOrConnectWithoutUserInput[]
@@ -15535,30 +12899,6 @@ export namespace Prisma {
     deleteMany?: HistoriKursusScalarWhereInput | HistoriKursusScalarWhereInput[]
   }
 
-  export type AdminUncheckedUpdateOneWithoutUserNestedInput = {
-    create?: XOR<AdminCreateWithoutUserInput, AdminUncheckedCreateWithoutUserInput>
-    connectOrCreate?: AdminCreateOrConnectWithoutUserInput
-    upsert?: AdminUpsertWithoutUserInput
-    disconnect?: AdminWhereInput | boolean
-    delete?: AdminWhereInput | boolean
-    connect?: AdminWhereUniqueInput
-    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutUserInput, AdminUpdateWithoutUserInput>, AdminUncheckedUpdateWithoutUserInput>
-  }
-
-  export type InstrukturUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<InstrukturCreateWithoutUserInput, InstrukturUncheckedCreateWithoutUserInput> | InstrukturCreateWithoutUserInput[] | InstrukturUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: InstrukturCreateOrConnectWithoutUserInput | InstrukturCreateOrConnectWithoutUserInput[]
-    upsert?: InstrukturUpsertWithWhereUniqueWithoutUserInput | InstrukturUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: InstrukturCreateManyUserInputEnvelope
-    set?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    disconnect?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    delete?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    connect?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    update?: InstrukturUpdateWithWhereUniqueWithoutUserInput | InstrukturUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: InstrukturUpdateManyWithWhereWithoutUserInput | InstrukturUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: InstrukturScalarWhereInput | InstrukturScalarWhereInput[]
-  }
-
   export type UserCreateNestedOneWithoutKursusInput = {
     create?: XOR<UserCreateWithoutKursusInput, UserUncheckedCreateWithoutKursusInput>
     connectOrCreate?: UserCreateOrConnectWithoutKursusInput
@@ -15579,13 +12919,6 @@ export namespace Prisma {
     connect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
   }
 
-  export type InstrukturCreateNestedManyWithoutKursusInput = {
-    create?: XOR<InstrukturCreateWithoutKursusInput, InstrukturUncheckedCreateWithoutKursusInput> | InstrukturCreateWithoutKursusInput[] | InstrukturUncheckedCreateWithoutKursusInput[]
-    connectOrCreate?: InstrukturCreateOrConnectWithoutKursusInput | InstrukturCreateOrConnectWithoutKursusInput[]
-    createMany?: InstrukturCreateManyKursusInputEnvelope
-    connect?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-  }
-
   export type PendaftaranUncheckedCreateNestedManyWithoutKursusInput = {
     create?: XOR<PendaftaranCreateWithoutKursusInput, PendaftaranUncheckedCreateWithoutKursusInput> | PendaftaranCreateWithoutKursusInput[] | PendaftaranUncheckedCreateWithoutKursusInput[]
     connectOrCreate?: PendaftaranCreateOrConnectWithoutKursusInput | PendaftaranCreateOrConnectWithoutKursusInput[]
@@ -15598,13 +12931,6 @@ export namespace Prisma {
     connectOrCreate?: HistoriKursusCreateOrConnectWithoutKursusInput | HistoriKursusCreateOrConnectWithoutKursusInput[]
     createMany?: HistoriKursusCreateManyKursusInputEnvelope
     connect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-  }
-
-  export type InstrukturUncheckedCreateNestedManyWithoutKursusInput = {
-    create?: XOR<InstrukturCreateWithoutKursusInput, InstrukturUncheckedCreateWithoutKursusInput> | InstrukturCreateWithoutKursusInput[] | InstrukturUncheckedCreateWithoutKursusInput[]
-    connectOrCreate?: InstrukturCreateOrConnectWithoutKursusInput | InstrukturCreateOrConnectWithoutKursusInput[]
-    createMany?: InstrukturCreateManyKursusInputEnvelope
-    connect?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -15651,20 +12977,6 @@ export namespace Prisma {
     deleteMany?: HistoriKursusScalarWhereInput | HistoriKursusScalarWhereInput[]
   }
 
-  export type InstrukturUpdateManyWithoutKursusNestedInput = {
-    create?: XOR<InstrukturCreateWithoutKursusInput, InstrukturUncheckedCreateWithoutKursusInput> | InstrukturCreateWithoutKursusInput[] | InstrukturUncheckedCreateWithoutKursusInput[]
-    connectOrCreate?: InstrukturCreateOrConnectWithoutKursusInput | InstrukturCreateOrConnectWithoutKursusInput[]
-    upsert?: InstrukturUpsertWithWhereUniqueWithoutKursusInput | InstrukturUpsertWithWhereUniqueWithoutKursusInput[]
-    createMany?: InstrukturCreateManyKursusInputEnvelope
-    set?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    disconnect?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    delete?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    connect?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    update?: InstrukturUpdateWithWhereUniqueWithoutKursusInput | InstrukturUpdateWithWhereUniqueWithoutKursusInput[]
-    updateMany?: InstrukturUpdateManyWithWhereWithoutKursusInput | InstrukturUpdateManyWithWhereWithoutKursusInput[]
-    deleteMany?: InstrukturScalarWhereInput | InstrukturScalarWhereInput[]
-  }
-
   export type PendaftaranUncheckedUpdateManyWithoutKursusNestedInput = {
     create?: XOR<PendaftaranCreateWithoutKursusInput, PendaftaranUncheckedCreateWithoutKursusInput> | PendaftaranCreateWithoutKursusInput[] | PendaftaranUncheckedCreateWithoutKursusInput[]
     connectOrCreate?: PendaftaranCreateOrConnectWithoutKursusInput | PendaftaranCreateOrConnectWithoutKursusInput[]
@@ -15691,20 +13003,6 @@ export namespace Prisma {
     update?: HistoriKursusUpdateWithWhereUniqueWithoutKursusInput | HistoriKursusUpdateWithWhereUniqueWithoutKursusInput[]
     updateMany?: HistoriKursusUpdateManyWithWhereWithoutKursusInput | HistoriKursusUpdateManyWithWhereWithoutKursusInput[]
     deleteMany?: HistoriKursusScalarWhereInput | HistoriKursusScalarWhereInput[]
-  }
-
-  export type InstrukturUncheckedUpdateManyWithoutKursusNestedInput = {
-    create?: XOR<InstrukturCreateWithoutKursusInput, InstrukturUncheckedCreateWithoutKursusInput> | InstrukturCreateWithoutKursusInput[] | InstrukturUncheckedCreateWithoutKursusInput[]
-    connectOrCreate?: InstrukturCreateOrConnectWithoutKursusInput | InstrukturCreateOrConnectWithoutKursusInput[]
-    upsert?: InstrukturUpsertWithWhereUniqueWithoutKursusInput | InstrukturUpsertWithWhereUniqueWithoutKursusInput[]
-    createMany?: InstrukturCreateManyKursusInputEnvelope
-    set?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    disconnect?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    delete?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    connect?: InstrukturWhereUniqueInput | InstrukturWhereUniqueInput[]
-    update?: InstrukturUpdateWithWhereUniqueWithoutKursusInput | InstrukturUpdateWithWhereUniqueWithoutKursusInput[]
-    updateMany?: InstrukturUpdateManyWithWhereWithoutKursusInput | InstrukturUpdateManyWithWhereWithoutKursusInput[]
-    deleteMany?: InstrukturScalarWhereInput | InstrukturScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutPendaftaranInput = {
@@ -15779,48 +13077,6 @@ export namespace Prisma {
     upsert?: PendaftaranUpsertWithoutPembayaranInput
     connect?: PendaftaranWhereUniqueInput
     update?: XOR<XOR<PendaftaranUpdateToOneWithWhereWithoutPembayaranInput, PendaftaranUpdateWithoutPembayaranInput>, PendaftaranUncheckedUpdateWithoutPembayaranInput>
-  }
-
-  export type UserCreateNestedOneWithoutAdminInput = {
-    create?: XOR<UserCreateWithoutAdminInput, UserUncheckedCreateWithoutAdminInput>
-    connectOrCreate?: UserCreateOrConnectWithoutAdminInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutAdminNestedInput = {
-    create?: XOR<UserCreateWithoutAdminInput, UserUncheckedCreateWithoutAdminInput>
-    connectOrCreate?: UserCreateOrConnectWithoutAdminInput
-    upsert?: UserUpsertWithoutAdminInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAdminInput, UserUpdateWithoutAdminInput>, UserUncheckedUpdateWithoutAdminInput>
-  }
-
-  export type UserCreateNestedOneWithoutInstrukturInput = {
-    create?: XOR<UserCreateWithoutInstrukturInput, UserUncheckedCreateWithoutInstrukturInput>
-    connectOrCreate?: UserCreateOrConnectWithoutInstrukturInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type KursusCreateNestedOneWithoutInstrukturInput = {
-    create?: XOR<KursusCreateWithoutInstrukturInput, KursusUncheckedCreateWithoutInstrukturInput>
-    connectOrCreate?: KursusCreateOrConnectWithoutInstrukturInput
-    connect?: KursusWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutInstrukturNestedInput = {
-    create?: XOR<UserCreateWithoutInstrukturInput, UserUncheckedCreateWithoutInstrukturInput>
-    connectOrCreate?: UserCreateOrConnectWithoutInstrukturInput
-    upsert?: UserUpsertWithoutInstrukturInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutInstrukturInput, UserUpdateWithoutInstrukturInput>, UserUncheckedUpdateWithoutInstrukturInput>
-  }
-
-  export type KursusUpdateOneRequiredWithoutInstrukturNestedInput = {
-    create?: XOR<KursusCreateWithoutInstrukturInput, KursusUncheckedCreateWithoutInstrukturInput>
-    connectOrCreate?: KursusCreateOrConnectWithoutInstrukturInput
-    upsert?: KursusUpsertWithoutInstrukturInput
-    connect?: KursusWhereUniqueInput
-    update?: XOR<XOR<KursusUpdateToOneWithWhereWithoutInstrukturInput, KursusUpdateWithoutInstrukturInput>, KursusUncheckedUpdateWithoutInstrukturInput>
   }
 
   export type UserCreateNestedOneWithoutHistoriKursusInput = {
@@ -16042,18 +13298,20 @@ export namespace Prisma {
   export type UserCreateWithoutAccountInput = {
     id?: string
     nama: string
-    nik: string
+    nik?: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
     mediaSosial?: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
     password?: string | null
     role?: string
+    keahlian?: string | null
+    jabatan?: string | null
     image?: string | null
     emailVerified?: Date | string | null
     createdAt?: Date | string
@@ -16062,25 +13320,25 @@ export namespace Prisma {
     Session?: SessionCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
     HistoriKursus?: HistoriKursusCreateNestedManyWithoutUserInput
-    Admin?: AdminCreateNestedOneWithoutUserInput
-    Instruktur?: InstrukturCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountInput = {
     id?: string
     nama: string
-    nik: string
+    nik?: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
     mediaSosial?: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
     password?: string | null
     role?: string
+    keahlian?: string | null
+    jabatan?: string | null
     image?: string | null
     emailVerified?: Date | string | null
     createdAt?: Date | string
@@ -16089,8 +13347,6 @@ export namespace Prisma {
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
     HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutUserInput
-    Admin?: AdminUncheckedCreateNestedOneWithoutUserInput
-    Instruktur?: InstrukturUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountInput = {
@@ -16112,18 +13368,20 @@ export namespace Prisma {
   export type UserUpdateWithoutAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16132,25 +13390,25 @@ export namespace Prisma {
     Session?: SessionUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
     HistoriKursus?: HistoriKursusUpdateManyWithoutUserNestedInput
-    Admin?: AdminUpdateOneWithoutUserNestedInput
-    Instruktur?: InstrukturUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16159,25 +13417,25 @@ export namespace Prisma {
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
     HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutUserNestedInput
-    Admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
-    Instruktur?: InstrukturUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionInput = {
     id?: string
     nama: string
-    nik: string
+    nik?: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
     mediaSosial?: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
     password?: string | null
     role?: string
+    keahlian?: string | null
+    jabatan?: string | null
     image?: string | null
     emailVerified?: Date | string | null
     createdAt?: Date | string
@@ -16186,25 +13444,25 @@ export namespace Prisma {
     Account?: AccountCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
     HistoriKursus?: HistoriKursusCreateNestedManyWithoutUserInput
-    Admin?: AdminCreateNestedOneWithoutUserInput
-    Instruktur?: InstrukturCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionInput = {
     id?: string
     nama: string
-    nik: string
+    nik?: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
     mediaSosial?: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
     password?: string | null
     role?: string
+    keahlian?: string | null
+    jabatan?: string | null
     image?: string | null
     emailVerified?: Date | string | null
     createdAt?: Date | string
@@ -16213,8 +13471,6 @@ export namespace Prisma {
     Account?: AccountUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
     HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutUserInput
-    Admin?: AdminUncheckedCreateNestedOneWithoutUserInput
-    Instruktur?: InstrukturUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionInput = {
@@ -16236,18 +13492,20 @@ export namespace Prisma {
   export type UserUpdateWithoutSessionInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16256,25 +13514,25 @@ export namespace Prisma {
     Account?: AccountUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
     HistoriKursus?: HistoriKursusUpdateManyWithoutUserNestedInput
-    Admin?: AdminUpdateOneWithoutUserNestedInput
-    Instruktur?: InstrukturUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16283,8 +13541,6 @@ export namespace Prisma {
     Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
     HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutUserNestedInput
-    Admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
-    Instruktur?: InstrukturUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type KursusCreateWithoutUserInput = {
@@ -16293,9 +13549,9 @@ export namespace Prisma {
     harga: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    instrukturId: string
     Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
     HistoriKursus?: HistoriKursusCreateNestedManyWithoutKursusInput
-    Instruktur?: InstrukturCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateWithoutUserInput = {
@@ -16304,9 +13560,9 @@ export namespace Prisma {
     harga: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    instrukturId: string
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
     HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutKursusInput
-    Instruktur?: InstrukturUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusCreateOrConnectWithoutUserInput = {
@@ -16431,45 +13687,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type AdminCreateWithoutUserInput = {
-    id?: string
-    jabatan: string
-    createdAt?: Date | string
-  }
-
-  export type AdminUncheckedCreateWithoutUserInput = {
-    id?: string
-    jabatan: string
-    createdAt?: Date | string
-  }
-
-  export type AdminCreateOrConnectWithoutUserInput = {
-    where: AdminWhereUniqueInput
-    create: XOR<AdminCreateWithoutUserInput, AdminUncheckedCreateWithoutUserInput>
-  }
-
-  export type InstrukturCreateWithoutUserInput = {
-    id?: string
-    createdAt?: Date | string
-    kursus: KursusCreateNestedOneWithoutInstrukturInput
-  }
-
-  export type InstrukturUncheckedCreateWithoutUserInput = {
-    id?: string
-    kursusId: string
-    createdAt?: Date | string
-  }
-
-  export type InstrukturCreateOrConnectWithoutUserInput = {
-    where: InstrukturWhereUniqueInput
-    create: XOR<InstrukturCreateWithoutUserInput, InstrukturUncheckedCreateWithoutUserInput>
-  }
-
-  export type InstrukturCreateManyUserInputEnvelope = {
-    data: InstrukturCreateManyUserInput | InstrukturCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type KursusUpsertWithWhereUniqueWithoutUserInput = {
     where: KursusWhereUniqueInput
     update: XOR<KursusUpdateWithoutUserInput, KursusUncheckedUpdateWithoutUserInput>
@@ -16496,6 +13713,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Kursus"> | Date | string
     updatedAt?: DateTimeFilter<"Kursus"> | Date | string
     userId?: StringFilter<"Kursus"> | string
+    instrukturId?: StringFilter<"Kursus"> | string
   }
 
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
@@ -16613,70 +13831,23 @@ export namespace Prisma {
     keterangan?: StringNullableFilter<"HistoriKursus"> | string | null
   }
 
-  export type AdminUpsertWithoutUserInput = {
-    update: XOR<AdminUpdateWithoutUserInput, AdminUncheckedUpdateWithoutUserInput>
-    create: XOR<AdminCreateWithoutUserInput, AdminUncheckedCreateWithoutUserInput>
-    where?: AdminWhereInput
-  }
-
-  export type AdminUpdateToOneWithWhereWithoutUserInput = {
-    where?: AdminWhereInput
-    data: XOR<AdminUpdateWithoutUserInput, AdminUncheckedUpdateWithoutUserInput>
-  }
-
-  export type AdminUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    jabatan?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AdminUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    jabatan?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type InstrukturUpsertWithWhereUniqueWithoutUserInput = {
-    where: InstrukturWhereUniqueInput
-    update: XOR<InstrukturUpdateWithoutUserInput, InstrukturUncheckedUpdateWithoutUserInput>
-    create: XOR<InstrukturCreateWithoutUserInput, InstrukturUncheckedCreateWithoutUserInput>
-  }
-
-  export type InstrukturUpdateWithWhereUniqueWithoutUserInput = {
-    where: InstrukturWhereUniqueInput
-    data: XOR<InstrukturUpdateWithoutUserInput, InstrukturUncheckedUpdateWithoutUserInput>
-  }
-
-  export type InstrukturUpdateManyWithWhereWithoutUserInput = {
-    where: InstrukturScalarWhereInput
-    data: XOR<InstrukturUpdateManyMutationInput, InstrukturUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type InstrukturScalarWhereInput = {
-    AND?: InstrukturScalarWhereInput | InstrukturScalarWhereInput[]
-    OR?: InstrukturScalarWhereInput[]
-    NOT?: InstrukturScalarWhereInput | InstrukturScalarWhereInput[]
-    id?: StringFilter<"Instruktur"> | string
-    userId?: StringFilter<"Instruktur"> | string
-    kursusId?: StringFilter<"Instruktur"> | string
-    createdAt?: DateTimeFilter<"Instruktur"> | Date | string
-  }
-
   export type UserCreateWithoutKursusInput = {
     id?: string
     nama: string
-    nik: string
+    nik?: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
     mediaSosial?: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
     password?: string | null
     role?: string
+    keahlian?: string | null
+    jabatan?: string | null
     image?: string | null
     emailVerified?: Date | string | null
     createdAt?: Date | string
@@ -16685,25 +13856,25 @@ export namespace Prisma {
     Session?: SessionCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
     HistoriKursus?: HistoriKursusCreateNestedManyWithoutUserInput
-    Admin?: AdminCreateNestedOneWithoutUserInput
-    Instruktur?: InstrukturCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutKursusInput = {
     id?: string
     nama: string
-    nik: string
+    nik?: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
     mediaSosial?: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
     password?: string | null
     role?: string
+    keahlian?: string | null
+    jabatan?: string | null
     image?: string | null
     emailVerified?: Date | string | null
     createdAt?: Date | string
@@ -16712,8 +13883,6 @@ export namespace Prisma {
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
     HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutUserInput
-    Admin?: AdminUncheckedCreateNestedOneWithoutUserInput
-    Instruktur?: InstrukturUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutKursusInput = {
@@ -16773,28 +13942,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type InstrukturCreateWithoutKursusInput = {
-    id?: string
-    createdAt?: Date | string
-    user: UserCreateNestedOneWithoutInstrukturInput
-  }
-
-  export type InstrukturUncheckedCreateWithoutKursusInput = {
-    id?: string
-    userId: string
-    createdAt?: Date | string
-  }
-
-  export type InstrukturCreateOrConnectWithoutKursusInput = {
-    where: InstrukturWhereUniqueInput
-    create: XOR<InstrukturCreateWithoutKursusInput, InstrukturUncheckedCreateWithoutKursusInput>
-  }
-
-  export type InstrukturCreateManyKursusInputEnvelope = {
-    data: InstrukturCreateManyKursusInput | InstrukturCreateManyKursusInput[]
-    skipDuplicates?: boolean
-  }
-
   export type UserUpsertWithoutKursusInput = {
     update: XOR<UserUpdateWithoutKursusInput, UserUncheckedUpdateWithoutKursusInput>
     create: XOR<UserCreateWithoutKursusInput, UserUncheckedCreateWithoutKursusInput>
@@ -16809,18 +13956,20 @@ export namespace Prisma {
   export type UserUpdateWithoutKursusInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16829,25 +13978,25 @@ export namespace Prisma {
     Session?: SessionUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
     HistoriKursus?: HistoriKursusUpdateManyWithoutUserNestedInput
-    Admin?: AdminUpdateOneWithoutUserNestedInput
-    Instruktur?: InstrukturUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutKursusInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16856,8 +14005,6 @@ export namespace Prisma {
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
     HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutUserNestedInput
-    Admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
-    Instruktur?: InstrukturUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PendaftaranUpsertWithWhereUniqueWithoutKursusInput = {
@@ -16892,37 +14039,23 @@ export namespace Prisma {
     data: XOR<HistoriKursusUpdateManyMutationInput, HistoriKursusUncheckedUpdateManyWithoutKursusInput>
   }
 
-  export type InstrukturUpsertWithWhereUniqueWithoutKursusInput = {
-    where: InstrukturWhereUniqueInput
-    update: XOR<InstrukturUpdateWithoutKursusInput, InstrukturUncheckedUpdateWithoutKursusInput>
-    create: XOR<InstrukturCreateWithoutKursusInput, InstrukturUncheckedCreateWithoutKursusInput>
-  }
-
-  export type InstrukturUpdateWithWhereUniqueWithoutKursusInput = {
-    where: InstrukturWhereUniqueInput
-    data: XOR<InstrukturUpdateWithoutKursusInput, InstrukturUncheckedUpdateWithoutKursusInput>
-  }
-
-  export type InstrukturUpdateManyWithWhereWithoutKursusInput = {
-    where: InstrukturScalarWhereInput
-    data: XOR<InstrukturUpdateManyMutationInput, InstrukturUncheckedUpdateManyWithoutKursusInput>
-  }
-
   export type UserCreateWithoutPendaftaranInput = {
     id?: string
     nama: string
-    nik: string
+    nik?: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
     mediaSosial?: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
     password?: string | null
     role?: string
+    keahlian?: string | null
+    jabatan?: string | null
     image?: string | null
     emailVerified?: Date | string | null
     createdAt?: Date | string
@@ -16931,25 +14064,25 @@ export namespace Prisma {
     Account?: AccountCreateNestedManyWithoutUserInput
     Session?: SessionCreateNestedManyWithoutUserInput
     HistoriKursus?: HistoriKursusCreateNestedManyWithoutUserInput
-    Admin?: AdminCreateNestedOneWithoutUserInput
-    Instruktur?: InstrukturCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPendaftaranInput = {
     id?: string
     nama: string
-    nik: string
+    nik?: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
     mediaSosial?: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
     password?: string | null
     role?: string
+    keahlian?: string | null
+    jabatan?: string | null
     image?: string | null
     emailVerified?: Date | string | null
     createdAt?: Date | string
@@ -16958,8 +14091,6 @@ export namespace Prisma {
     Account?: AccountUncheckedCreateNestedManyWithoutUserInput
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
     HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutUserInput
-    Admin?: AdminUncheckedCreateNestedOneWithoutUserInput
-    Instruktur?: InstrukturUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPendaftaranInput = {
@@ -16973,9 +14104,9 @@ export namespace Prisma {
     harga: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    instrukturId: string
     user: UserCreateNestedOneWithoutKursusInput
     HistoriKursus?: HistoriKursusCreateNestedManyWithoutKursusInput
-    Instruktur?: InstrukturCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateWithoutPendaftaranInput = {
@@ -16985,8 +14116,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
+    instrukturId: string
     HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutKursusInput
-    Instruktur?: InstrukturUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusCreateOrConnectWithoutPendaftaranInput = {
@@ -17031,18 +14162,20 @@ export namespace Prisma {
   export type UserUpdateWithoutPendaftaranInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17051,25 +14184,25 @@ export namespace Prisma {
     Account?: AccountUpdateManyWithoutUserNestedInput
     Session?: SessionUpdateManyWithoutUserNestedInput
     HistoriKursus?: HistoriKursusUpdateManyWithoutUserNestedInput
-    Admin?: AdminUpdateOneWithoutUserNestedInput
-    Instruktur?: InstrukturUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPendaftaranInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17078,8 +14211,6 @@ export namespace Prisma {
     Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutUserNestedInput
-    Admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
-    Instruktur?: InstrukturUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type KursusUpsertWithoutPendaftaranInput = {
@@ -17099,9 +14230,9 @@ export namespace Prisma {
     harga?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    instrukturId?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutKursusNestedInput
     HistoriKursus?: HistoriKursusUpdateManyWithoutKursusNestedInput
-    Instruktur?: InstrukturUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateWithoutPendaftaranInput = {
@@ -17111,8 +14242,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+    instrukturId?: StringFieldUpdateOperationsInput | string
     HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutKursusNestedInput
-    Instruktur?: InstrukturUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type PembayaranUpsertWithoutPendaftaranInput = {
@@ -17192,329 +14323,23 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserCreateWithoutAdminInput = {
-    id?: string
-    nama: string
-    nik: string
-    jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
-    mediaSosial?: string | null
-    noHp: string
-    email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
-    password?: string | null
-    role?: string
-    image?: string | null
-    emailVerified?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    kursus?: KursusCreateNestedManyWithoutUserInput
-    Account?: AccountCreateNestedManyWithoutUserInput
-    Session?: SessionCreateNestedManyWithoutUserInput
-    Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusCreateNestedManyWithoutUserInput
-    Instruktur?: InstrukturCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutAdminInput = {
-    id?: string
-    nama: string
-    nik: string
-    jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
-    mediaSosial?: string | null
-    noHp: string
-    email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
-    password?: string | null
-    role?: string
-    image?: string | null
-    emailVerified?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    kursus?: KursusUncheckedCreateNestedManyWithoutUserInput
-    Account?: AccountUncheckedCreateNestedManyWithoutUserInput
-    Session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutUserInput
-    Instruktur?: InstrukturUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutAdminInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutAdminInput, UserUncheckedCreateWithoutAdminInput>
-  }
-
-  export type UserUpsertWithoutAdminInput = {
-    update: XOR<UserUpdateWithoutAdminInput, UserUncheckedUpdateWithoutAdminInput>
-    create: XOR<UserCreateWithoutAdminInput, UserUncheckedCreateWithoutAdminInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutAdminInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutAdminInput, UserUncheckedUpdateWithoutAdminInput>
-  }
-
-  export type UserUpdateWithoutAdminInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
-    jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
-    mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
-    noHp?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursus?: KursusUpdateManyWithoutUserNestedInput
-    Account?: AccountUpdateManyWithoutUserNestedInput
-    Session?: SessionUpdateManyWithoutUserNestedInput
-    Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUpdateManyWithoutUserNestedInput
-    Instruktur?: InstrukturUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutAdminInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
-    jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
-    mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
-    noHp?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursus?: KursusUncheckedUpdateManyWithoutUserNestedInput
-    Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutUserNestedInput
-    Instruktur?: InstrukturUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserCreateWithoutInstrukturInput = {
-    id?: string
-    nama: string
-    nik: string
-    jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
-    mediaSosial?: string | null
-    noHp: string
-    email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
-    password?: string | null
-    role?: string
-    image?: string | null
-    emailVerified?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    kursus?: KursusCreateNestedManyWithoutUserInput
-    Account?: AccountCreateNestedManyWithoutUserInput
-    Session?: SessionCreateNestedManyWithoutUserInput
-    Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusCreateNestedManyWithoutUserInput
-    Admin?: AdminCreateNestedOneWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutInstrukturInput = {
-    id?: string
-    nama: string
-    nik: string
-    jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
-    mediaSosial?: string | null
-    noHp: string
-    email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
-    password?: string | null
-    role?: string
-    image?: string | null
-    emailVerified?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    kursus?: KursusUncheckedCreateNestedManyWithoutUserInput
-    Account?: AccountUncheckedCreateNestedManyWithoutUserInput
-    Session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutUserInput
-    Admin?: AdminUncheckedCreateNestedOneWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutInstrukturInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutInstrukturInput, UserUncheckedCreateWithoutInstrukturInput>
-  }
-
-  export type KursusCreateWithoutInstrukturInput = {
-    id?: string
-    nama: string
-    harga: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutKursusInput
-    Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
-    HistoriKursus?: HistoriKursusCreateNestedManyWithoutKursusInput
-  }
-
-  export type KursusUncheckedCreateWithoutInstrukturInput = {
-    id?: string
-    nama: string
-    harga: number
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId: string
-    Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
-    HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutKursusInput
-  }
-
-  export type KursusCreateOrConnectWithoutInstrukturInput = {
-    where: KursusWhereUniqueInput
-    create: XOR<KursusCreateWithoutInstrukturInput, KursusUncheckedCreateWithoutInstrukturInput>
-  }
-
-  export type UserUpsertWithoutInstrukturInput = {
-    update: XOR<UserUpdateWithoutInstrukturInput, UserUncheckedUpdateWithoutInstrukturInput>
-    create: XOR<UserCreateWithoutInstrukturInput, UserUncheckedCreateWithoutInstrukturInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutInstrukturInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutInstrukturInput, UserUncheckedUpdateWithoutInstrukturInput>
-  }
-
-  export type UserUpdateWithoutInstrukturInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
-    jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
-    mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
-    noHp?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursus?: KursusUpdateManyWithoutUserNestedInput
-    Account?: AccountUpdateManyWithoutUserNestedInput
-    Session?: SessionUpdateManyWithoutUserNestedInput
-    Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUpdateManyWithoutUserNestedInput
-    Admin?: AdminUpdateOneWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutInstrukturInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
-    jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
-    mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
-    noHp?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursus?: KursusUncheckedUpdateManyWithoutUserNestedInput
-    Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutUserNestedInput
-    Admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
-  }
-
-  export type KursusUpsertWithoutInstrukturInput = {
-    update: XOR<KursusUpdateWithoutInstrukturInput, KursusUncheckedUpdateWithoutInstrukturInput>
-    create: XOR<KursusCreateWithoutInstrukturInput, KursusUncheckedCreateWithoutInstrukturInput>
-    where?: KursusWhereInput
-  }
-
-  export type KursusUpdateToOneWithWhereWithoutInstrukturInput = {
-    where?: KursusWhereInput
-    data: XOR<KursusUpdateWithoutInstrukturInput, KursusUncheckedUpdateWithoutInstrukturInput>
-  }
-
-  export type KursusUpdateWithoutInstrukturInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    harga?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutKursusNestedInput
-    Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
-    HistoriKursus?: HistoriKursusUpdateManyWithoutKursusNestedInput
-  }
-
-  export type KursusUncheckedUpdateWithoutInstrukturInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    harga?: IntFieldUpdateOperationsInput | number
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: StringFieldUpdateOperationsInput | string
-    Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
-    HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutKursusNestedInput
-  }
-
   export type UserCreateWithoutHistoriKursusInput = {
     id?: string
     nama: string
-    nik: string
+    nik?: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
     mediaSosial?: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
     password?: string | null
     role?: string
+    keahlian?: string | null
+    jabatan?: string | null
     image?: string | null
     emailVerified?: Date | string | null
     createdAt?: Date | string
@@ -17523,25 +14348,25 @@ export namespace Prisma {
     Account?: AccountCreateNestedManyWithoutUserInput
     Session?: SessionCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    Admin?: AdminCreateNestedOneWithoutUserInput
-    Instruktur?: InstrukturCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutHistoriKursusInput = {
     id?: string
     nama: string
-    nik: string
+    nik?: string | null
     jenisKelamin: string
-    tempatLahir: string
-    tanggalLahir: string
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
     mediaSosial?: string | null
     noHp: string
     email: string
-    agama: string
-    jurusan: string
-    tahunAkademik: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
     password?: string | null
     role?: string
+    keahlian?: string | null
+    jabatan?: string | null
     image?: string | null
     emailVerified?: Date | string | null
     createdAt?: Date | string
@@ -17550,8 +14375,6 @@ export namespace Prisma {
     Account?: AccountUncheckedCreateNestedManyWithoutUserInput
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    Admin?: AdminUncheckedCreateNestedOneWithoutUserInput
-    Instruktur?: InstrukturUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutHistoriKursusInput = {
@@ -17565,9 +14388,9 @@ export namespace Prisma {
     harga: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    instrukturId: string
     user: UserCreateNestedOneWithoutKursusInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
-    Instruktur?: InstrukturCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateWithoutHistoriKursusInput = {
@@ -17577,8 +14400,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: string
+    instrukturId: string
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
-    Instruktur?: InstrukturUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusCreateOrConnectWithoutHistoriKursusInput = {
@@ -17600,18 +14423,20 @@ export namespace Prisma {
   export type UserUpdateWithoutHistoriKursusInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17620,25 +14445,25 @@ export namespace Prisma {
     Account?: AccountUpdateManyWithoutUserNestedInput
     Session?: SessionUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    Admin?: AdminUpdateOneWithoutUserNestedInput
-    Instruktur?: InstrukturUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutHistoriKursusInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
-    nik?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: StringFieldUpdateOperationsInput | string
-    tempatLahir?: StringFieldUpdateOperationsInput | string
-    tanggalLahir?: StringFieldUpdateOperationsInput | string
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
     mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
     noHp?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
-    agama?: StringFieldUpdateOperationsInput | string
-    jurusan?: StringFieldUpdateOperationsInput | string
-    tahunAkademik?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
     image?: NullableStringFieldUpdateOperationsInput | string | null
     emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17647,8 +14472,6 @@ export namespace Prisma {
     Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    Admin?: AdminUncheckedUpdateOneWithoutUserNestedInput
-    Instruktur?: InstrukturUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type KursusUpsertWithoutHistoriKursusInput = {
@@ -17668,9 +14491,9 @@ export namespace Prisma {
     harga?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    instrukturId?: StringFieldUpdateOperationsInput | string
     user?: UserUpdateOneRequiredWithoutKursusNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
-    Instruktur?: InstrukturUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateWithoutHistoriKursusInput = {
@@ -17680,8 +14503,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: StringFieldUpdateOperationsInput | string
+    instrukturId?: StringFieldUpdateOperationsInput | string
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
-    Instruktur?: InstrukturUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusCreateManyUserInput = {
@@ -17690,6 +14513,7 @@ export namespace Prisma {
     harga: number
     createdAt?: Date | string
     updatedAt?: Date | string
+    instrukturId: string
   }
 
   export type AccountCreateManyUserInput = {
@@ -17727,21 +14551,15 @@ export namespace Prisma {
     keterangan?: string | null
   }
 
-  export type InstrukturCreateManyUserInput = {
-    id?: string
-    kursusId: string
-    createdAt?: Date | string
-  }
-
   export type KursusUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
     harga?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    instrukturId?: StringFieldUpdateOperationsInput | string
     Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
     HistoriKursus?: HistoriKursusUpdateManyWithoutKursusNestedInput
-    Instruktur?: InstrukturUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateWithoutUserInput = {
@@ -17750,9 +14568,9 @@ export namespace Prisma {
     harga?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    instrukturId?: StringFieldUpdateOperationsInput | string
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
     HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutKursusNestedInput
-    Instruktur?: InstrukturUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateManyWithoutUserInput = {
@@ -17761,6 +14579,7 @@ export namespace Prisma {
     harga?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    instrukturId?: StringFieldUpdateOperationsInput | string
   }
 
   export type AccountUpdateWithoutUserInput = {
@@ -17870,24 +14689,6 @@ export namespace Prisma {
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type InstrukturUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursus?: KursusUpdateOneRequiredWithoutInstrukturNestedInput
-  }
-
-  export type InstrukturUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    kursusId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type InstrukturUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    kursusId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type PendaftaranCreateManyKursusInput = {
     id?: string
     userId: string
@@ -17901,12 +14702,6 @@ export namespace Prisma {
     tanggalSelesai: string
     sertifikat?: string | null
     keterangan?: string | null
-  }
-
-  export type InstrukturCreateManyKursusInput = {
-    id?: string
-    userId: string
-    createdAt?: Date | string
   }
 
   export type PendaftaranUpdateWithoutKursusInput = {
@@ -17954,24 +14749,6 @@ export namespace Prisma {
     tanggalSelesai?: StringFieldUpdateOperationsInput | string
     sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type InstrukturUpdateWithoutKursusInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutInstrukturNestedInput
-  }
-
-  export type InstrukturUncheckedUpdateWithoutKursusInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type InstrukturUncheckedUpdateManyWithoutKursusInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

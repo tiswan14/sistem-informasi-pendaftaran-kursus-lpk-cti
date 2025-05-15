@@ -2,25 +2,23 @@
 import { useEffect, useState } from "react";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 
-interface Peserta {
-    id: string;
+interface Instruktur {
     nama: string;
-    email: string;
+    nik: string;
     jenisKelamin: string;
-    jurusan: string;
-    tahunAkademik: string;
+    noHp: string;
+    email: string;
+    keahlian: string;
+    jabatan: string;
+    password: string;
 }
 
-// Tooltip Component
 const Tooltip = ({ content, children }: { content: string; children: React.ReactNode }) => {
     const [isVisible, setIsVisible] = useState(false);
 
     return (
         <div className="relative inline-block">
-            <div
-                onMouseEnter={() => setIsVisible(true)}
-                onMouseLeave={() => setIsVisible(false)}
-            >
+            <div onMouseEnter={() => setIsVisible(true)} onMouseLeave={() => setIsVisible(false)}>
                 {children}
             </div>
             {isVisible && (
@@ -33,19 +31,19 @@ const Tooltip = ({ content, children }: { content: string; children: React.React
     );
 };
 
-const PesertaTable = () => {
-    const [pesertaData, setPesertaData] = useState<Peserta[]>([]);
+const InstrukturTable = () => {
+    const [instrukturData, setInstrukturData] = useState<Instruktur[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [deleteId, setDeleteId] = useState<string | null>(null);
-    const [editData, setEditData] = useState<Peserta | null>(null);
+    const [deleteNik, setDeleteNik] = useState<string | null>(null);
+    const [editData, setEditData] = useState<Instruktur | null>(null);
 
     useEffect(() => {
-        const fetchPeserta = async () => {
+        const fetchInstruktur = async () => {
             try {
-                const res = await fetch("/api/peserta");
-                if (!res.ok) throw new Error("Gagal memuat data peserta");
-                const data: Peserta[] = await res.json();
-                setPesertaData(data);
+                const res = await fetch("/api/instruktur");
+                if (!res.ok) throw new Error("Gagal memuat data instruktur");
+                const data: Instruktur[] = await res.json();
+                setInstrukturData(data);
             } catch (error) {
                 console.error("Error:", error);
             } finally {
@@ -53,30 +51,29 @@ const PesertaTable = () => {
             }
         };
 
-        fetchPeserta();
+        fetchInstruktur();
     }, []);
 
-    const handleEdit = (id: string) => {
-        const pesertaToEdit = pesertaData.find(peserta => peserta.id === id);
-        if (pesertaToEdit) {
-            setEditData(pesertaToEdit);
-            // Here you would typically open a modal or navigate to edit page
-            console.log("Editing:", pesertaToEdit);
+    const handleEdit = (nik: string) => {
+        const instrukturToEdit = instrukturData.find(instruktur => instruktur.nik === nik);
+        if (instrukturToEdit) {
+            setEditData(instrukturToEdit);
+            console.log("Editing:", instrukturToEdit);
         }
     };
 
     const handleDelete = async () => {
-        if (!deleteId) return;
+        if (!deleteNik) return;
 
         try {
-            const res = await fetch(`/api/peserta/${deleteId}`, {
+            const res = await fetch(`/api/instruktur/${deleteNik}`, {
                 method: "DELETE",
             });
 
-            if (!res.ok) throw new Error("Gagal menghapus peserta");
+            if (!res.ok) throw new Error("Gagal menghapus instruktur");
 
-            setPesertaData(pesertaData.filter(peserta => peserta.id !== deleteId));
-            setDeleteId(null);
+            setInstrukturData(instrukturData.filter(instruktur => instruktur.nik !== deleteNik));
+            setDeleteNik(null);
         } catch (error) {
             console.error("Error:", error);
         }
@@ -90,27 +87,24 @@ const PesertaTable = () => {
         );
     }
 
-
-
-    if (!pesertaData.length) {
+    if (!instrukturData.length) {
         return (
             <div className="bg-white p-6 mt-6 rounded-2xl shadow-md text-center text-gray-500">
-                Tidak ada data peserta
+                Tidak ada data instruktur
             </div>
         );
     }
 
     return (
         <div className="bg-white p-6 mt-6 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
-            {/* Delete Confirmation Modal */}
-            {deleteId && (
+            {deleteNik && (
                 <div className="fixed inset-0 bg-transparent bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-6 rounded-lg max-w-md w-full text-gray-800 shadow-lg">
                         <h3 className="text-lg font-medium mb-4">Konfirmasi Hapus</h3>
                         <p className="mb-6">Apakah Anda yakin ingin menghapus data ini?</p>
                         <div className="flex justify-end space-x-3">
                             <button
-                                onClick={() => setDeleteId(null)}
+                                onClick={() => setDeleteNik(null)}
                                 className="cursor-pointer px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
                             >
                                 Batal
@@ -123,76 +117,65 @@ const PesertaTable = () => {
                             </button>
                         </div>
                     </div>
-
                 </div>
-
-
             )}
 
             <table className="w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                     <tr>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            No
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Nama
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Email
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Jenis Kelamin
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Jurusan
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Tahun Akademik
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Aksi
-                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NIK</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis Kelamin</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No HP</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keahlian</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jabatan</th>
+                        <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {pesertaData.map((peserta, index) => (
+                    {instrukturData.map((instruktur, index) => (
                         <tr
-                            key={peserta.id}
+                            key={instruktur.nik}
                             className="hover:bg-gray-50 transition-colors duration-150 ease-in-out"
                         >
                             <td className="px-7 py-4 whitespace-nowrap">
-                                <div className="text-sm font-medium text-gray-900">
-                                    {index + 1}
-                                </div>
+                                <div className="text-sm font-medium text-gray-900">{index + 1}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm font-medium text-gray-900">
-                                    {peserta.nama}
-                                </div>
+                                <div className="text-sm font-medium text-gray-900">{instruktur.nama}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-500">{peserta.email}</div>
+                                <div className="text-sm text-gray-500">{instruktur.nik}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-          ${peserta.jenisKelamin === 'Laki-laki'
-                                        ? 'bg-blue-100 text-blue-800'
-                                        : 'bg-pink-100 text-pink-800'}`}>
-                                    {peserta.jenisKelamin}
+                                <span
+                                    className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${instruktur.jenisKelamin === "Laki-laki"
+                                        ? "bg-blue-100 text-blue-800"
+                                        : "bg-pink-100 text-pink-800"
+                                        }`}
+                                >
+                                    {instruktur.jenisKelamin}
                                 </span>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-500">{peserta.jurusan}</div>
+                                <div className="text-sm text-gray-500">{instruktur.noHp}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-500">{peserta.tahunAkademik}</div>
+                                <div className="text-sm text-gray-500">{instruktur.email}</div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="text-sm text-gray-500">{instruktur.keahlian}</div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="text-sm text-gray-500">{instruktur.jabatan}</div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <div className="flex justify-center space-x-3">
                                     <Tooltip content="Detail">
                                         <a
-                                            href={`/dashboard/data-peserta/${peserta.id}`}
+                                            href={`/dashboard/data-instruktur/${instruktur.nik}`}
                                             className="bg-green-600 hover:bg-green-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
                                             aria-label="Detail"
                                         >
@@ -202,7 +185,7 @@ const PesertaTable = () => {
 
                                     <Tooltip content="Edit">
                                         <button
-                                            onClick={() => handleEdit(peserta.id)}
+                                            onClick={() => handleEdit(instruktur.nik)}
                                             className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
                                             aria-label="Edit"
                                         >
@@ -212,7 +195,7 @@ const PesertaTable = () => {
 
                                     <Tooltip content="Hapus">
                                         <button
-                                            onClick={() => setDeleteId(peserta.id)}
+                                            onClick={() => setDeleteNik(instruktur.nik)}
                                             className="bg-red-600 hover:bg-red-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
                                             aria-label="Hapus"
                                         >
@@ -224,10 +207,9 @@ const PesertaTable = () => {
                         </tr>
                     ))}
                 </tbody>
-
             </table>
         </div>
     );
 };
 
-export default PesertaTable;
+export default InstrukturTable;

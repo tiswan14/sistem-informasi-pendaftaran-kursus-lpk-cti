@@ -51,18 +51,20 @@ model VerificationToken {
 model User {
   id            String    @id @default(cuid())
   nama          String
-  nik           String    @unique
+  nik           String?   @unique
   jenisKelamin  String
-  tempatLahir   String
-  tanggalLahir  String
+  tempatLahir   String?
+  tanggalLahir  String?
   mediaSosial   String?
   noHp          String
   email         String    @unique
-  agama         String
-  jurusan       String
-  tahunAkademik String
+  agama         String?
+  jurusan       String?
+  tahunAkademik String?
   password      String?
-  role          String    @default("peserta") // Bisa menjadi 'instruktur', 'admin', atau 'peserta'
+  role          String    @default("peserta")
+  keahlian      String?
+  jabatan       String?
   image         String?
   emailVerified DateTime? @map("email_verified")
   createdAt     DateTime  @default(now())
@@ -73,23 +75,22 @@ model User {
   Session       Session[]
   Pendaftaran   Pendaftaran[]
   HistoriKursus HistoriKursus[]
-  Admin         Admin?
-  Instruktur    Instruktur[]
 
   @@map("users")
 }
 
 model Kursus {
-  id            String          @id @default(cuid())
-  nama          String
-  harga         Int
-  createdAt     DateTime        @default(now())
-  updatedAt     DateTime        @updatedAt
-  userId        String
+  id           String   @id @default(cuid())
+  nama         String
+  harga        Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  userId       String
+  instrukturId String
+
   user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   Pendaftaran   Pendaftaran[]
   HistoriKursus HistoriKursus[]
-  Instruktur    Instruktur[]
 
   @@map("kursus")
 }
@@ -118,24 +119,6 @@ model Pembayaran {
   pendaftaran Pendaftaran @relation(fields: [pendaftaranId], references: [id], onDelete: Cascade)
 }
 
-model Admin {
-  id        String   @id @default(cuid())
-  userId    String   @unique
-  jabatan   String
-  createdAt DateTime @default(now())
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model Instruktur {
-  id        String   @id @default(cuid())
-  userId    String
-  kursusId  String
-  createdAt DateTime @default(now())
-
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  kursus Kursus @relation(fields: [kursusId], references: [id], onDelete: Cascade)
-}
 
 model HistoriKursus {
   id             String  @id @default(cuid())

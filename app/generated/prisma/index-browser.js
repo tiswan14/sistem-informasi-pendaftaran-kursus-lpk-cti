@@ -163,6 +163,8 @@ exports.Prisma.UserScalarFieldEnum = {
   tahunAkademik: 'tahunAkademik',
   password: 'password',
   role: 'role',
+  keahlian: 'keahlian',
+  jabatan: 'jabatan',
   image: 'image',
   emailVerified: 'emailVerified',
   createdAt: 'createdAt',
@@ -175,7 +177,8 @@ exports.Prisma.KursusScalarFieldEnum = {
   harga: 'harga',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId'
+  userId: 'userId',
+  instrukturId: 'instrukturId'
 };
 
 exports.Prisma.PendaftaranScalarFieldEnum = {
@@ -193,20 +196,6 @@ exports.Prisma.PembayaranScalarFieldEnum = {
   jumlah: 'jumlah',
   buktiBayar: 'buktiBayar',
   status: 'status',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.AdminScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  jabatan: 'jabatan',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.InstrukturScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  kursusId: 'kursusId',
   createdAt: 'createdAt'
 };
 
@@ -243,8 +232,6 @@ exports.Prisma.ModelName = {
   Kursus: 'Kursus',
   Pendaftaran: 'Pendaftaran',
   Pembayaran: 'Pembayaran',
-  Admin: 'Admin',
-  Instruktur: 'Instruktur',
   HistoriKursus: 'HistoriKursus'
 };
 

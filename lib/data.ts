@@ -1,7 +1,5 @@
 import { prisma } from "@/lib/prisma"
 
-
-
 export const getTotalPeserta = async () => {
     try {
         const total = await prisma.user.count({

@@ -1,5 +1,5 @@
 "use server"
-import { RegisterSchema, LoginSchema } from "./zod"
+import { RegisterSchema, LoginSchema, InstrukturSchema } from "./zod"
 import { hashSync } from "bcrypt-ts"
 import { prisma } from "@/lib/prisma"
 import { redirect } from "next/navigation"
@@ -91,3 +91,57 @@ export const LoginCredentials = async (prevState: unknown, formData: FormData) =
         throw error;
     }
 };
+
+export const AddInstruktur = async (formData: FormData) => {
+
+    const rawData = {
+        nama: formData.get("nama"),
+        nik: formData.get("nik"),
+        jenisKelamin: formData.get("jenisKelamin"),
+        noHp: formData.get("noHp"),
+        email: formData.get("email"),
+        keahlian: formData.get("keahlian"),
+        jabatan: formData.get("jabatan"),
+        password: formData.get("password"),
+    }
+
+
+    const validateFields = InstrukturSchema.safeParse(rawData);
+
+    if (!validateFields.success) {
+        return {
+            error: validateFields.error.flatten().fieldErrors,
+        };
+    }
+
+    const {
+        nama,
+        nik,
+        jenisKelamin,
+        noHp,
+        email,
+        keahlian,
+        jabatan,
+        password,
+    } = validateFields.data
+
+    try {
+        const hashedPassword = hashSync(password, 10)
+        await prisma.user.create({
+            data: {
+                nama,
+                nik,
+                jenisKelamin,
+                noHp,
+                email,
+                keahlian,
+                jabatan,
+                password: hashedPassword,
+                role: "instruktur"
+            },
+        })
+    } catch (error) {
+        console.log(error);
+    }
+    redirect("/dashboard/data-instruktur")
+}
