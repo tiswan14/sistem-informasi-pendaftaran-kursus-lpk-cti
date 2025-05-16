@@ -77,7 +77,7 @@ const Sidebar = () => {
                     </div>
                 </Link>
 
-                <Link href="/dashboard/courses">
+                <Link href="/dashboard/data-kursus">
                     <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-purple-50 hover:text-purple-600 transition-all group">
                         <div className="p-2 bg-purple-50 rounded-lg group-hover:bg-purple-100 transition">
                             <FaBookOpen className="text-purple-500 group-hover:text-purple-600" />
@@ -86,7 +86,7 @@ const Sidebar = () => {
                     </div>
                 </Link>
 
-                <Link href="/dashboard/pendaftaran">
+                <Link href="/dashboard/data-pendaftaran">
                     <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-red-50 hover:text-red-600 transition-all group">
                         <div className="p-2 bg-red-50 rounded-lg group-hover:bg-red-100 transition">
                             <FaClipboardList className="text-red-500 group-hover:text-red-600" />

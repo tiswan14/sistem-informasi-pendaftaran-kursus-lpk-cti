@@ -7378,6 +7378,7 @@ export namespace Prisma {
     kursusId: string | null
     status: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type PendaftaranMaxAggregateOutputType = {
@@ -7386,6 +7387,7 @@ export namespace Prisma {
     kursusId: string | null
     status: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type PendaftaranCountAggregateOutputType = {
@@ -7394,6 +7396,7 @@ export namespace Prisma {
     kursusId: number
     status: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -7404,6 +7407,7 @@ export namespace Prisma {
     kursusId?: true
     status?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type PendaftaranMaxAggregateInputType = {
@@ -7412,6 +7416,7 @@ export namespace Prisma {
     kursusId?: true
     status?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type PendaftaranCountAggregateInputType = {
@@ -7420,6 +7425,7 @@ export namespace Prisma {
     kursusId?: true
     status?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -7501,6 +7507,7 @@ export namespace Prisma {
     kursusId: string
     status: string
     createdAt: Date
+    updatedAt: Date
     _count: PendaftaranCountAggregateOutputType | null
     _min: PendaftaranMinAggregateOutputType | null
     _max: PendaftaranMaxAggregateOutputType | null
@@ -7526,6 +7533,7 @@ export namespace Prisma {
     kursusId?: boolean
     status?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     kursus?: boolean | KursusDefaultArgs<ExtArgs>
     Pembayaran?: boolean | Pendaftaran$PembayaranArgs<ExtArgs>
@@ -7537,6 +7545,7 @@ export namespace Prisma {
     kursusId?: boolean
     status?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     kursus?: boolean | KursusDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pendaftaran"]>
@@ -7547,6 +7556,7 @@ export namespace Prisma {
     kursusId?: boolean
     status?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     kursus?: boolean | KursusDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pendaftaran"]>
@@ -7557,9 +7567,10 @@ export namespace Prisma {
     kursusId?: boolean
     status?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type PendaftaranOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "kursusId" | "status" | "createdAt", ExtArgs["result"]["pendaftaran"]>
+  export type PendaftaranOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "kursusId" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["pendaftaran"]>
   export type PendaftaranInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     kursus?: boolean | KursusDefaultArgs<ExtArgs>
@@ -7587,6 +7598,7 @@ export namespace Prisma {
       kursusId: string
       status: string
       createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["pendaftaran"]>
     composites: {}
   }
@@ -8018,6 +8030,7 @@ export namespace Prisma {
     readonly kursusId: FieldRef<"Pendaftaran", 'String'>
     readonly status: FieldRef<"Pendaftaran", 'String'>
     readonly createdAt: FieldRef<"Pendaftaran", 'DateTime'>
+    readonly updatedAt: FieldRef<"Pendaftaran", 'DateTime'>
   }
     
 
@@ -8479,6 +8492,7 @@ export namespace Prisma {
     buktiBayar: string | null
     status: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type PembayaranMaxAggregateOutputType = {
@@ -8489,6 +8503,7 @@ export namespace Prisma {
     buktiBayar: string | null
     status: string | null
     createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type PembayaranCountAggregateOutputType = {
@@ -8499,6 +8514,7 @@ export namespace Prisma {
     buktiBayar: number
     status: number
     createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -8519,6 +8535,7 @@ export namespace Prisma {
     buktiBayar?: true
     status?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type PembayaranMaxAggregateInputType = {
@@ -8529,6 +8546,7 @@ export namespace Prisma {
     buktiBayar?: true
     status?: true
     createdAt?: true
+    updatedAt?: true
   }
 
   export type PembayaranCountAggregateInputType = {
@@ -8539,6 +8557,7 @@ export namespace Prisma {
     buktiBayar?: true
     status?: true
     createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -8636,6 +8655,7 @@ export namespace Prisma {
     buktiBayar: string
     status: string
     createdAt: Date
+    updatedAt: Date
     _count: PembayaranCountAggregateOutputType | null
     _avg: PembayaranAvgAggregateOutputType | null
     _sum: PembayaranSumAggregateOutputType | null
@@ -8665,6 +8685,7 @@ export namespace Prisma {
     buktiBayar?: boolean
     status?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pembayaran"]>
 
@@ -8676,6 +8697,7 @@ export namespace Prisma {
     buktiBayar?: boolean
     status?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pembayaran"]>
 
@@ -8687,6 +8709,7 @@ export namespace Prisma {
     buktiBayar?: boolean
     status?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pembayaran"]>
 
@@ -8698,9 +8721,10 @@ export namespace Prisma {
     buktiBayar?: boolean
     status?: boolean
     createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type PembayaranOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pendaftaranId" | "metode" | "jumlah" | "buktiBayar" | "status" | "createdAt", ExtArgs["result"]["pembayaran"]>
+  export type PembayaranOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pendaftaranId" | "metode" | "jumlah" | "buktiBayar" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["pembayaran"]>
   export type PembayaranInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
   }
@@ -8724,6 +8748,7 @@ export namespace Prisma {
       buktiBayar: string
       status: string
       createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["pembayaran"]>
     composites: {}
   }
@@ -9155,6 +9180,7 @@ export namespace Prisma {
     readonly buktiBayar: FieldRef<"Pembayaran", 'String'>
     readonly status: FieldRef<"Pembayaran", 'String'>
     readonly createdAt: FieldRef<"Pembayaran", 'DateTime'>
+    readonly updatedAt: FieldRef<"Pembayaran", 'DateTime'>
   }
     
 
@@ -9586,6 +9612,7 @@ export namespace Prisma {
     tanggalSelesai: string | null
     sertifikat: string | null
     keterangan: string | null
+    updatedAt: Date | null
   }
 
   export type HistoriKursusMaxAggregateOutputType = {
@@ -9595,6 +9622,7 @@ export namespace Prisma {
     tanggalSelesai: string | null
     sertifikat: string | null
     keterangan: string | null
+    updatedAt: Date | null
   }
 
   export type HistoriKursusCountAggregateOutputType = {
@@ -9604,6 +9632,7 @@ export namespace Prisma {
     tanggalSelesai: number
     sertifikat: number
     keterangan: number
+    updatedAt: number
     _all: number
   }
 
@@ -9615,6 +9644,7 @@ export namespace Prisma {
     tanggalSelesai?: true
     sertifikat?: true
     keterangan?: true
+    updatedAt?: true
   }
 
   export type HistoriKursusMaxAggregateInputType = {
@@ -9624,6 +9654,7 @@ export namespace Prisma {
     tanggalSelesai?: true
     sertifikat?: true
     keterangan?: true
+    updatedAt?: true
   }
 
   export type HistoriKursusCountAggregateInputType = {
@@ -9633,6 +9664,7 @@ export namespace Prisma {
     tanggalSelesai?: true
     sertifikat?: true
     keterangan?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -9715,6 +9747,7 @@ export namespace Prisma {
     tanggalSelesai: string
     sertifikat: string | null
     keterangan: string | null
+    updatedAt: Date
     _count: HistoriKursusCountAggregateOutputType | null
     _min: HistoriKursusMinAggregateOutputType | null
     _max: HistoriKursusMaxAggregateOutputType | null
@@ -9741,6 +9774,7 @@ export namespace Prisma {
     tanggalSelesai?: boolean
     sertifikat?: boolean
     keterangan?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     kursus?: boolean | KursusDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["historiKursus"]>
@@ -9752,6 +9786,7 @@ export namespace Prisma {
     tanggalSelesai?: boolean
     sertifikat?: boolean
     keterangan?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     kursus?: boolean | KursusDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["historiKursus"]>
@@ -9763,6 +9798,7 @@ export namespace Prisma {
     tanggalSelesai?: boolean
     sertifikat?: boolean
     keterangan?: boolean
+    updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     kursus?: boolean | KursusDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["historiKursus"]>
@@ -9774,9 +9810,10 @@ export namespace Prisma {
     tanggalSelesai?: boolean
     sertifikat?: boolean
     keterangan?: boolean
+    updatedAt?: boolean
   }
 
-  export type HistoriKursusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "kursusId" | "tanggalSelesai" | "sertifikat" | "keterangan", ExtArgs["result"]["historiKursus"]>
+  export type HistoriKursusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "kursusId" | "tanggalSelesai" | "sertifikat" | "keterangan" | "updatedAt", ExtArgs["result"]["historiKursus"]>
   export type HistoriKursusInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     kursus?: boolean | KursusDefaultArgs<ExtArgs>
@@ -9803,6 +9840,7 @@ export namespace Prisma {
       tanggalSelesai: string
       sertifikat: string | null
       keterangan: string | null
+      updatedAt: Date
     }, ExtArgs["result"]["historiKursus"]>
     composites: {}
   }
@@ -10234,6 +10272,7 @@ export namespace Prisma {
     readonly tanggalSelesai: FieldRef<"HistoriKursus", 'String'>
     readonly sertifikat: FieldRef<"HistoriKursus", 'String'>
     readonly keterangan: FieldRef<"HistoriKursus", 'String'>
+    readonly updatedAt: FieldRef<"HistoriKursus", 'DateTime'>
   }
     
 
@@ -10743,7 +10782,8 @@ export namespace Prisma {
     userId: 'userId',
     kursusId: 'kursusId',
     status: 'status',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type PendaftaranScalarFieldEnum = (typeof PendaftaranScalarFieldEnum)[keyof typeof PendaftaranScalarFieldEnum]
@@ -10756,7 +10796,8 @@ export namespace Prisma {
     jumlah: 'jumlah',
     buktiBayar: 'buktiBayar',
     status: 'status',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type PembayaranScalarFieldEnum = (typeof PembayaranScalarFieldEnum)[keyof typeof PembayaranScalarFieldEnum]
@@ -10768,7 +10809,8 @@ export namespace Prisma {
     kursusId: 'kursusId',
     tanggalSelesai: 'tanggalSelesai',
     sertifikat: 'sertifikat',
-    keterangan: 'keterangan'
+    keterangan: 'keterangan',
+    updatedAt: 'updatedAt'
   };
 
   export type HistoriKursusScalarFieldEnum = (typeof HistoriKursusScalarFieldEnum)[keyof typeof HistoriKursusScalarFieldEnum]
@@ -11272,6 +11314,7 @@ export namespace Prisma {
     kursusId?: StringFilter<"Pendaftaran"> | string
     status?: StringFilter<"Pendaftaran"> | string
     createdAt?: DateTimeFilter<"Pendaftaran"> | Date | string
+    updatedAt?: DateTimeFilter<"Pendaftaran"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
     Pembayaran?: XOR<PembayaranNullableScalarRelationFilter, PembayaranWhereInput> | null
@@ -11283,6 +11326,7 @@ export namespace Prisma {
     kursusId?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     kursus?: KursusOrderByWithRelationInput
     Pembayaran?: PembayaranOrderByWithRelationInput
@@ -11297,6 +11341,7 @@ export namespace Prisma {
     kursusId?: StringFilter<"Pendaftaran"> | string
     status?: StringFilter<"Pendaftaran"> | string
     createdAt?: DateTimeFilter<"Pendaftaran"> | Date | string
+    updatedAt?: DateTimeFilter<"Pendaftaran"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
     Pembayaran?: XOR<PembayaranNullableScalarRelationFilter, PembayaranWhereInput> | null
@@ -11308,6 +11353,7 @@ export namespace Prisma {
     kursusId?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: PendaftaranCountOrderByAggregateInput
     _max?: PendaftaranMaxOrderByAggregateInput
     _min?: PendaftaranMinOrderByAggregateInput
@@ -11322,6 +11368,7 @@ export namespace Prisma {
     kursusId?: StringWithAggregatesFilter<"Pendaftaran"> | string
     status?: StringWithAggregatesFilter<"Pendaftaran"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Pendaftaran"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Pendaftaran"> | Date | string
   }
 
   export type PembayaranWhereInput = {
@@ -11335,6 +11382,7 @@ export namespace Prisma {
     buktiBayar?: StringFilter<"Pembayaran"> | string
     status?: StringFilter<"Pembayaran"> | string
     createdAt?: DateTimeFilter<"Pembayaran"> | Date | string
+    updatedAt?: DateTimeFilter<"Pembayaran"> | Date | string
     pendaftaran?: XOR<PendaftaranScalarRelationFilter, PendaftaranWhereInput>
   }
 
@@ -11346,6 +11394,7 @@ export namespace Prisma {
     buktiBayar?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     pendaftaran?: PendaftaranOrderByWithRelationInput
   }
 
@@ -11360,6 +11409,7 @@ export namespace Prisma {
     buktiBayar?: StringFilter<"Pembayaran"> | string
     status?: StringFilter<"Pembayaran"> | string
     createdAt?: DateTimeFilter<"Pembayaran"> | Date | string
+    updatedAt?: DateTimeFilter<"Pembayaran"> | Date | string
     pendaftaran?: XOR<PendaftaranScalarRelationFilter, PendaftaranWhereInput>
   }, "id" | "pendaftaranId">
 
@@ -11371,6 +11421,7 @@ export namespace Prisma {
     buktiBayar?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: PembayaranCountOrderByAggregateInput
     _avg?: PembayaranAvgOrderByAggregateInput
     _max?: PembayaranMaxOrderByAggregateInput
@@ -11389,6 +11440,7 @@ export namespace Prisma {
     buktiBayar?: StringWithAggregatesFilter<"Pembayaran"> | string
     status?: StringWithAggregatesFilter<"Pembayaran"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Pembayaran"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Pembayaran"> | Date | string
   }
 
   export type HistoriKursusWhereInput = {
@@ -11401,6 +11453,7 @@ export namespace Prisma {
     tanggalSelesai?: StringFilter<"HistoriKursus"> | string
     sertifikat?: StringNullableFilter<"HistoriKursus"> | string | null
     keterangan?: StringNullableFilter<"HistoriKursus"> | string | null
+    updatedAt?: DateTimeFilter<"HistoriKursus"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
   }
@@ -11412,6 +11465,7 @@ export namespace Prisma {
     tanggalSelesai?: SortOrder
     sertifikat?: SortOrderInput | SortOrder
     keterangan?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     kursus?: KursusOrderByWithRelationInput
   }
@@ -11426,6 +11480,7 @@ export namespace Prisma {
     tanggalSelesai?: StringFilter<"HistoriKursus"> | string
     sertifikat?: StringNullableFilter<"HistoriKursus"> | string | null
     keterangan?: StringNullableFilter<"HistoriKursus"> | string | null
+    updatedAt?: DateTimeFilter<"HistoriKursus"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
   }, "id">
@@ -11437,6 +11492,7 @@ export namespace Prisma {
     tanggalSelesai?: SortOrder
     sertifikat?: SortOrderInput | SortOrder
     keterangan?: SortOrderInput | SortOrder
+    updatedAt?: SortOrder
     _count?: HistoriKursusCountOrderByAggregateInput
     _max?: HistoriKursusMaxOrderByAggregateInput
     _min?: HistoriKursusMinOrderByAggregateInput
@@ -11452,6 +11508,7 @@ export namespace Prisma {
     tanggalSelesai?: StringWithAggregatesFilter<"HistoriKursus"> | string
     sertifikat?: StringNullableWithAggregatesFilter<"HistoriKursus"> | string | null
     keterangan?: StringNullableWithAggregatesFilter<"HistoriKursus"> | string | null
+    updatedAt?: DateTimeWithAggregatesFilter<"HistoriKursus"> | Date | string
   }
 
   export type AccountCreateInput = {
@@ -11910,6 +11967,7 @@ export namespace Prisma {
     id?: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutPendaftaranInput
     kursus: KursusCreateNestedOneWithoutPendaftaranInput
     Pembayaran?: PembayaranCreateNestedOneWithoutPendaftaranInput
@@ -11921,6 +11979,7 @@ export namespace Prisma {
     kursusId: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     Pembayaran?: PembayaranUncheckedCreateNestedOneWithoutPendaftaranInput
   }
 
@@ -11928,6 +11987,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPendaftaranNestedInput
     kursus?: KursusUpdateOneRequiredWithoutPendaftaranNestedInput
     Pembayaran?: PembayaranUpdateOneWithoutPendaftaranNestedInput
@@ -11939,6 +11999,7 @@ export namespace Prisma {
     kursusId?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Pembayaran?: PembayaranUncheckedUpdateOneWithoutPendaftaranNestedInput
   }
 
@@ -11948,12 +12009,14 @@ export namespace Prisma {
     kursusId: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PendaftaranUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PendaftaranUncheckedUpdateManyInput = {
@@ -11962,6 +12025,7 @@ export namespace Prisma {
     kursusId?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PembayaranCreateInput = {
@@ -11971,6 +12035,7 @@ export namespace Prisma {
     buktiBayar: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     pendaftaran: PendaftaranCreateNestedOneWithoutPembayaranInput
   }
 
@@ -11982,6 +12047,7 @@ export namespace Prisma {
     buktiBayar: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PembayaranUpdateInput = {
@@ -11991,6 +12057,7 @@ export namespace Prisma {
     buktiBayar?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pendaftaran?: PendaftaranUpdateOneRequiredWithoutPembayaranNestedInput
   }
 
@@ -12002,6 +12069,7 @@ export namespace Prisma {
     buktiBayar?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PembayaranCreateManyInput = {
@@ -12012,6 +12080,7 @@ export namespace Prisma {
     buktiBayar: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PembayaranUpdateManyMutationInput = {
@@ -12021,6 +12090,7 @@ export namespace Prisma {
     buktiBayar?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PembayaranUncheckedUpdateManyInput = {
@@ -12031,6 +12101,7 @@ export namespace Prisma {
     buktiBayar?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type HistoriKursusCreateInput = {
@@ -12038,6 +12109,7 @@ export namespace Prisma {
     tanggalSelesai: string
     sertifikat?: string | null
     keterangan?: string | null
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutHistoriKursusInput
     kursus: KursusCreateNestedOneWithoutHistoriKursusInput
   }
@@ -12049,6 +12121,7 @@ export namespace Prisma {
     tanggalSelesai: string
     sertifikat?: string | null
     keterangan?: string | null
+    updatedAt?: Date | string
   }
 
   export type HistoriKursusUpdateInput = {
@@ -12056,6 +12129,7 @@ export namespace Prisma {
     tanggalSelesai?: StringFieldUpdateOperationsInput | string
     sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutHistoriKursusNestedInput
     kursus?: KursusUpdateOneRequiredWithoutHistoriKursusNestedInput
   }
@@ -12067,6 +12141,7 @@ export namespace Prisma {
     tanggalSelesai?: StringFieldUpdateOperationsInput | string
     sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type HistoriKursusCreateManyInput = {
@@ -12076,6 +12151,7 @@ export namespace Prisma {
     tanggalSelesai: string
     sertifikat?: string | null
     keterangan?: string | null
+    updatedAt?: Date | string
   }
 
   export type HistoriKursusUpdateManyMutationInput = {
@@ -12083,6 +12159,7 @@ export namespace Prisma {
     tanggalSelesai?: StringFieldUpdateOperationsInput | string
     sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type HistoriKursusUncheckedUpdateManyInput = {
@@ -12092,6 +12169,7 @@ export namespace Prisma {
     tanggalSelesai?: StringFieldUpdateOperationsInput | string
     sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -12549,6 +12627,7 @@ export namespace Prisma {
     kursusId?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PendaftaranMaxOrderByAggregateInput = {
@@ -12557,6 +12636,7 @@ export namespace Prisma {
     kursusId?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PendaftaranMinOrderByAggregateInput = {
@@ -12565,6 +12645,7 @@ export namespace Prisma {
     kursusId?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PendaftaranScalarRelationFilter = {
@@ -12580,6 +12661,7 @@ export namespace Prisma {
     buktiBayar?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PembayaranAvgOrderByAggregateInput = {
@@ -12594,6 +12676,7 @@ export namespace Prisma {
     buktiBayar?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PembayaranMinOrderByAggregateInput = {
@@ -12604,6 +12687,7 @@ export namespace Prisma {
     buktiBayar?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type PembayaranSumOrderByAggregateInput = {
@@ -12617,6 +12701,7 @@ export namespace Prisma {
     tanggalSelesai?: SortOrder
     sertifikat?: SortOrder
     keterangan?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type HistoriKursusMaxOrderByAggregateInput = {
@@ -12626,6 +12711,7 @@ export namespace Prisma {
     tanggalSelesai?: SortOrder
     sertifikat?: SortOrder
     keterangan?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type HistoriKursusMinOrderByAggregateInput = {
@@ -12635,6 +12721,7 @@ export namespace Prisma {
     tanggalSelesai?: SortOrder
     sertifikat?: SortOrder
     keterangan?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserCreateNestedOneWithoutAccountInput = {
@@ -13639,6 +13726,7 @@ export namespace Prisma {
     id?: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     kursus: KursusCreateNestedOneWithoutPendaftaranInput
     Pembayaran?: PembayaranCreateNestedOneWithoutPendaftaranInput
   }
@@ -13648,6 +13736,7 @@ export namespace Prisma {
     kursusId: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     Pembayaran?: PembayaranUncheckedCreateNestedOneWithoutPendaftaranInput
   }
 
@@ -13666,6 +13755,7 @@ export namespace Prisma {
     tanggalSelesai: string
     sertifikat?: string | null
     keterangan?: string | null
+    updatedAt?: Date | string
     kursus: KursusCreateNestedOneWithoutHistoriKursusInput
   }
 
@@ -13675,6 +13765,7 @@ export namespace Prisma {
     tanggalSelesai: string
     sertifikat?: string | null
     keterangan?: string | null
+    updatedAt?: Date | string
   }
 
   export type HistoriKursusCreateOrConnectWithoutUserInput = {
@@ -13801,6 +13892,7 @@ export namespace Prisma {
     kursusId?: StringFilter<"Pendaftaran"> | string
     status?: StringFilter<"Pendaftaran"> | string
     createdAt?: DateTimeFilter<"Pendaftaran"> | Date | string
+    updatedAt?: DateTimeFilter<"Pendaftaran"> | Date | string
   }
 
   export type HistoriKursusUpsertWithWhereUniqueWithoutUserInput = {
@@ -13829,6 +13921,7 @@ export namespace Prisma {
     tanggalSelesai?: StringFilter<"HistoriKursus"> | string
     sertifikat?: StringNullableFilter<"HistoriKursus"> | string | null
     keterangan?: StringNullableFilter<"HistoriKursus"> | string | null
+    updatedAt?: DateTimeFilter<"HistoriKursus"> | Date | string
   }
 
   export type UserCreateWithoutKursusInput = {
@@ -13894,6 +13987,7 @@ export namespace Prisma {
     id?: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutPendaftaranInput
     Pembayaran?: PembayaranCreateNestedOneWithoutPendaftaranInput
   }
@@ -13903,6 +13997,7 @@ export namespace Prisma {
     userId: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     Pembayaran?: PembayaranUncheckedCreateNestedOneWithoutPendaftaranInput
   }
 
@@ -13921,6 +14016,7 @@ export namespace Prisma {
     tanggalSelesai: string
     sertifikat?: string | null
     keterangan?: string | null
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutHistoriKursusInput
   }
 
@@ -13930,6 +14026,7 @@ export namespace Prisma {
     tanggalSelesai: string
     sertifikat?: string | null
     keterangan?: string | null
+    updatedAt?: Date | string
   }
 
   export type HistoriKursusCreateOrConnectWithoutKursusInput = {
@@ -14132,6 +14229,7 @@ export namespace Prisma {
     buktiBayar: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PembayaranUncheckedCreateWithoutPendaftaranInput = {
@@ -14141,6 +14239,7 @@ export namespace Prisma {
     buktiBayar: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PembayaranCreateOrConnectWithoutPendaftaranInput = {
@@ -14264,6 +14363,7 @@ export namespace Prisma {
     buktiBayar?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PembayaranUncheckedUpdateWithoutPendaftaranInput = {
@@ -14273,12 +14373,14 @@ export namespace Prisma {
     buktiBayar?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PendaftaranCreateWithoutPembayaranInput = {
     id?: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
     user: UserCreateNestedOneWithoutPendaftaranInput
     kursus: KursusCreateNestedOneWithoutPendaftaranInput
   }
@@ -14289,6 +14391,7 @@ export namespace Prisma {
     kursusId: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type PendaftaranCreateOrConnectWithoutPembayaranInput = {
@@ -14311,6 +14414,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPendaftaranNestedInput
     kursus?: KursusUpdateOneRequiredWithoutPendaftaranNestedInput
   }
@@ -14321,6 +14425,7 @@ export namespace Prisma {
     kursusId?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateWithoutHistoriKursusInput = {
@@ -14541,6 +14646,7 @@ export namespace Prisma {
     kursusId: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type HistoriKursusCreateManyUserInput = {
@@ -14549,6 +14655,7 @@ export namespace Prisma {
     tanggalSelesai: string
     sertifikat?: string | null
     keterangan?: string | null
+    updatedAt?: Date | string
   }
 
   export type KursusUpdateWithoutUserInput = {
@@ -14646,6 +14753,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     kursus?: KursusUpdateOneRequiredWithoutPendaftaranNestedInput
     Pembayaran?: PembayaranUpdateOneWithoutPendaftaranNestedInput
   }
@@ -14655,6 +14763,7 @@ export namespace Prisma {
     kursusId?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Pembayaran?: PembayaranUncheckedUpdateOneWithoutPendaftaranNestedInput
   }
 
@@ -14663,6 +14772,7 @@ export namespace Prisma {
     kursusId?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type HistoriKursusUpdateWithoutUserInput = {
@@ -14670,6 +14780,7 @@ export namespace Prisma {
     tanggalSelesai?: StringFieldUpdateOperationsInput | string
     sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     kursus?: KursusUpdateOneRequiredWithoutHistoriKursusNestedInput
   }
 
@@ -14679,6 +14790,7 @@ export namespace Prisma {
     tanggalSelesai?: StringFieldUpdateOperationsInput | string
     sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type HistoriKursusUncheckedUpdateManyWithoutUserInput = {
@@ -14687,6 +14799,7 @@ export namespace Prisma {
     tanggalSelesai?: StringFieldUpdateOperationsInput | string
     sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PendaftaranCreateManyKursusInput = {
@@ -14694,6 +14807,7 @@ export namespace Prisma {
     userId: string
     status?: string
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type HistoriKursusCreateManyKursusInput = {
@@ -14702,12 +14816,14 @@ export namespace Prisma {
     tanggalSelesai: string
     sertifikat?: string | null
     keterangan?: string | null
+    updatedAt?: Date | string
   }
 
   export type PendaftaranUpdateWithoutKursusInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPendaftaranNestedInput
     Pembayaran?: PembayaranUpdateOneWithoutPendaftaranNestedInput
   }
@@ -14717,6 +14833,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Pembayaran?: PembayaranUncheckedUpdateOneWithoutPendaftaranNestedInput
   }
 
@@ -14725,6 +14842,7 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type HistoriKursusUpdateWithoutKursusInput = {
@@ -14732,6 +14850,7 @@ export namespace Prisma {
     tanggalSelesai?: StringFieldUpdateOperationsInput | string
     sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutHistoriKursusNestedInput
   }
 
@@ -14741,6 +14860,7 @@ export namespace Prisma {
     tanggalSelesai?: StringFieldUpdateOperationsInput | string
     sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type HistoriKursusUncheckedUpdateManyWithoutKursusInput = {
@@ -14749,6 +14869,7 @@ export namespace Prisma {
     tanggalSelesai?: StringFieldUpdateOperationsInput | string
     sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 
