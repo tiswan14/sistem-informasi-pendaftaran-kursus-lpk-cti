@@ -9,7 +9,7 @@ const PesertaPage = () => {
     return (
         <div className="max-w-screen-xl px-4">
             <div className="px-3 flex items-center justify-between">
-                <h1 className="text-2xl font-bold text-gray-800">Daftar Peserta</h1>
+                <h1 className="text-2xl font-bold text-gray-800">Data Peserta Kursus</h1>
             </div>
             <PesertaTable />
         </div>

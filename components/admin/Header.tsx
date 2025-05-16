@@ -1,15 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaSignOutAlt, FaUserEdit } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
 import { signOut } from "next-auth/react";
 
-const Header = () => {
+const Header = ({ userName = "Tiswan", userRole = "Admin" }) => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef(null);
 
-    // Tutup dropdown kalau klik di luar
+    // Close dropdown when clicking outside
     useEffect(() => {
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -23,60 +23,69 @@ const Header = () => {
     }, []);
 
     return (
-        <header className="bg-white shadow flex items-center justify-between px-6 py-[1.1rem]">
-            <h1 className="text-xl font-semibold">Dashboard</h1>
-            <div className="relative" ref={dropdownRef}>
-                <button
-                    className="flex items-center focus:outline-none"
-                    onClick={() => setDropdownOpen((prev) => !prev)}
-                    aria-haspopup="true"
-                    aria-expanded={isDropdownOpen}
-                    aria-label="User menu"
-                >
-                    <Image
-                        src="/profile.png"
-                        alt="Profil"
-                        width={40}
-                        height={40}
-                        className="rounded-full"
-                    />
-                    <span className="ml-2 text-gray-700 font-normal">Tiswan</span>
-                    <svg
-                        className={`ml-1 w-4 h-4 text-gray-600 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : "rotate-0"
-                            }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
+        <header className="bg-white shadow-sm flex items-center justify-between px-10 py-4">
+            <h1 className="text-xl font-semibold text-gray-800">Dashboard</h1>
 
-                {isDropdownOpen && (
-                    <div className="absolute right-0 mt-3 w-48 bg-white border border-gray-200 rounded shadow-lg z-10">
-                        <a
-                            href="#"
-                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                            onClick={() => setDropdownOpen(false)}
-                        >
-                            Edit Profile
-                        </a>
-                        <button
-                            onClick={() => {
-                                setDropdownOpen(false);
-                                // Tambahkan fungsi logout di sini
-                                signOut()
-                                alert("Logout clicked!");
-                            }}
-                            className="w-full flex items-center justify-center gap-2 p-2 bg-red-600 text-white font-semibold rounded-b-md hover:bg-red-700 transition"
-                            type="button"
-                        >
-                            <FaSignOutAlt />
-                            Logout
-                        </button>
-                    </div>
-                )}
+            {/* Profile Section */}
+            <div className="flex items-center gap-4">
+                <div className="text-right hidden sm:block">
+                    <p className="text-sm font-medium text-gray-800">{userName}</p>
+                    <p className="text-xs text-gray-500">{userRole}</p>
+                </div>
+
+                {/* Profile Dropdown Trigger */}
+                <div className="relative" ref={dropdownRef}>
+                    <button
+                        className="focus:outline-none hover:opacity-80 transition"
+                        onClick={() => setDropdownOpen((prev) => !prev)}
+                        aria-haspopup="true"
+                        aria-expanded={isDropdownOpen}
+                        aria-label="User menu"
+                    >
+                        <Image
+                            src="/profile.png"
+                            alt="Profile"
+                            width={40}
+                            height={40}
+                            className="rounded-full border border-gray-200"
+                        />
+                    </button>
+
+                    {/* Dropdown Menu */}
+                    {isDropdownOpen && (
+                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-gray-200 z-50 py-1">
+                            <div className="px-4 py-3 border-b border-gray-100">
+                                <p className="text-sm font-medium text-gray-900 truncate">{userName}</p>
+                                <p className="text-xs text-gray-500">{userRole}</p>
+                            </div>
+
+                            <div className="py-1">
+                                <a
+                                    href="#"
+                                    className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                                    onClick={() => setDropdownOpen(false)}
+                                >
+                                    <FaUserEdit className="mr-2 text-gray-500" />
+                                    Edit Profile
+                                </a>
+                            </div>
+
+                            <div className="py-1 border-t border-gray-100">
+                                <button
+                                    onClick={() => {
+                                        setDropdownOpen(false);
+                                        signOut();
+                                    }}
+                                    className="w-full flex items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                                    type="button"
+                                >
+                                    <FaSignOutAlt className="mr-2" />
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
         </header>
     );

@@ -87,13 +87,7 @@ const InstrukturTable = () => {
         );
     }
 
-    if (!instrukturData.length) {
-        return (
-            <div className="bg-white p-6 mt-6 rounded-2xl shadow-md text-center text-gray-500">
-                Tidak ada data instruktur
-            </div>
-        );
-    }
+
 
     return (
         <div className="bg-white p-6 mt-6 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
@@ -135,78 +129,103 @@ const InstrukturTable = () => {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {instrukturData.map((instruktur, index) => (
-                        <tr
-                            key={instruktur.nik}
-                            className="hover:bg-gray-50 transition-colors duration-150 ease-in-out"
-                        >
-                            <td className="px-7 py-4 whitespace-nowrap">
-                                <div className="text-sm font-medium text-gray-900">{index + 1}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm font-medium text-gray-900">{instruktur.nama}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-500">{instruktur.nik}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <span
-                                    className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${instruktur.jenisKelamin === "Laki-laki"
-                                        ? "bg-blue-100 text-blue-800"
-                                        : "bg-pink-100 text-pink-800"
-                                        }`}
-                                >
-                                    {instruktur.jenisKelamin}
-                                </span>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-500">{instruktur.noHp}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-500">{instruktur.email}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-500">{instruktur.keahlian}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-500">{instruktur.jabatan}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <div className="flex justify-center space-x-3">
-                                    <Tooltip content="Detail">
-                                        <a
-                                            href={`/dashboard/data-instruktur/${instruktur.nik}`}
-                                            className="bg-green-600 hover:bg-green-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
-                                            aria-label="Detail"
-                                        >
-                                            <FaEye className="h-4 w-4 text-white" />
-                                        </a>
-                                    </Tooltip>
-
-                                    <Tooltip content="Edit">
-                                        <button
-                                            onClick={() => handleEdit(instruktur.nik)}
-                                            className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
-                                            aria-label="Edit"
-                                        >
-                                            <FaEdit className="h-4 w-4 text-white" />
-                                        </button>
-                                    </Tooltip>
-
-                                    <Tooltip content="Hapus">
-                                        <button
-                                            onClick={() => setDeleteNik(instruktur.nik)}
-                                            className="bg-red-600 hover:bg-red-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
-                                            aria-label="Hapus"
-                                        >
-                                            <FaTrash className="h-4 w-4 text-white" />
-                                        </button>
-                                    </Tooltip>
+                    {!instrukturData.length ? (
+                        <tr>
+                            <td colSpan={9} className="text-center py-10 text-gray-400 italic">
+                                <div className="flex flex-col items-center space-y-2">
+                                    <svg
+                                        className="w-10 h-10 text-gray-300"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M9 17v-6h13v6M9 17H3v-6h6v6zm0 0V7a2 2 0 012-2h10a2 2 0 012 2v10M9 17h6"
+                                        />
+                                    </svg>
+                                    <span>Tidak ada data instruktur</span>
                                 </div>
                             </td>
                         </tr>
-                    ))}
+
+                    ) : (
+                        instrukturData.map((instruktur, index) => (
+                            <tr
+                                key={instruktur.nik}
+                                className="hover:bg-gray-50 transition-colors duration-150 ease-in-out"
+                            >
+                                <td className="px-7 py-4 whitespace-nowrap">
+                                    <div className="text-sm font-medium text-gray-900">{index + 1}</div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="text-sm font-medium text-gray-900">{instruktur.nama}</div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="text-sm text-gray-500">{instruktur.nik}</div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${instruktur.jenisKelamin === "Laki-laki"
+                                            ? "bg-blue-100 text-blue-800"
+                                            : "bg-pink-100 text-pink-800"
+                                            }`}
+                                    >
+                                        {instruktur.jenisKelamin}
+                                    </span>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="text-sm text-gray-500">{instruktur.noHp}</div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="text-sm text-gray-500">{instruktur.email}</div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="text-sm text-gray-500">{instruktur.keahlian}</div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="text-sm text-gray-500">{instruktur.jabatan}</div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <div className="flex justify-center space-x-3">
+                                        <Tooltip content="Detail">
+                                            <a
+                                                href={`/dashboard/data-instruktur/${instruktur.nik}`}
+                                                className="bg-green-600 hover:bg-green-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                aria-label="Detail"
+                                            >
+                                                <FaEye className="h-4 w-4 text-white" />
+                                            </a>
+                                        </Tooltip>
+
+                                        <Tooltip content="Edit">
+                                            <button
+                                                onClick={() => handleEdit(instruktur.nik)}
+                                                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                aria-label="Edit"
+                                            >
+                                                <FaEdit className="h-4 w-4 text-white" />
+                                            </button>
+                                        </Tooltip>
+
+                                        <Tooltip content="Hapus">
+                                            <button
+                                                onClick={() => setDeleteNik(instruktur.nik)}
+                                                className="bg-red-600 hover:bg-red-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                aria-label="Hapus"
+                                            >
+                                                <FaTrash className="h-4 w-4 text-white" />
+                                            </button>
+                                        </Tooltip>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))
+                    )}
                 </tbody>
+
             </table>
         </div>
     );

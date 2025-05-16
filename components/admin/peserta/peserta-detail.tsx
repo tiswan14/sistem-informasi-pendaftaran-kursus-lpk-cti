@@ -98,7 +98,7 @@ const PesertaDetail: React.FC<PesertaDetailProps> = ({ pesertaId }) => {
     ];
 
     return (
-        <div className="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
+        <div className="max-w-4xl mx-auto p-6 bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
             <h1 className="text-2xl font-bold mb-6 text-gray-800 text-center">Detail Peserta Kursus</h1>
             <div className="flex justify-between mb-6">
                 <button
