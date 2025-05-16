@@ -20,13 +20,34 @@ export const LoginSchema = object({
     password: string().min(6, "Password tidak boleh kosong"),
 })
 
+
 export const InstrukturSchema = object({
-    nama: string().min(3, "Nama tidak boleh kosong atau kurang dari 3 karakter").max(50, "Nama tidak boleh lebih dari 50 karakter"),
-    nik: string().min(2, "NIK harus terdiri dari 16 digit").max(16, "NIK harus terdiri dari 16 digit"),
-    jenisKelamin: string().min(1, "Jenis kelamin harus dipilih"),
-    noHp: string().min(3, "Nomor HP harus terdiri dari minimal 10 digit").max(15, "Nomor HP tidak boleh lebih dari 15 digit"),
-    email: string().email("Format email tidak valid"),
-    keahlian: string().min(1, "Keahlian harus di pilih!"),
-    jabatan: string().min(1, "Jabatan harus di pilih!"),
-    password: string().min(6, "Password harus terdiri dari minimal 6 karakter").max(50, "Password tidak boleh lebih dari 50 karakter"),
-})
+    nama: string()
+        .min(3, "Nama minimal 3 karakter")
+        .max(50, "Nama maksimal 50 karakter"),
+
+    nik: string()
+        .length(16, "NIK harus 16 digit")
+        .regex(/^\d+$/, "NIK hanya boleh angka"),
+
+    jenisKelamin: string()
+        .min(1, "Jenis kelamin harus dipilih"),
+
+    noHp: string()
+        .min(10, "Nomor HP minimal 10 digit")
+        .max(15, "Nomor HP maksimal 15 digit")
+        .regex(/^\d+$/, "Nomor HP hanya boleh angka"),
+
+    email: string()
+        .email("Format email tidak valid"),
+
+    keahlian: string()
+        .min(1, "Keahlian harus dipilih"),
+
+    jabatan: string()
+        .min(1, "Jabatan harus dipilih"),
+
+    password: string()
+        .min(6, "Password minimal 6 karakter")
+        .max(50, "Password maksimal 50 karakter"),
+});

@@ -93,18 +93,16 @@ export const LoginCredentials = async (prevState: unknown, formData: FormData) =
 };
 
 export const AddInstruktur = async (formData: FormData) => {
-
     const rawData = {
-        nama: formData.get("nama"),
-        nik: formData.get("nik"),
-        jenisKelamin: formData.get("jenisKelamin"),
-        noHp: formData.get("noHp"),
-        email: formData.get("email"),
-        keahlian: formData.get("keahlian"),
-        jabatan: formData.get("jabatan"),
-        password: formData.get("password"),
+        nama: formData.get("nama") ?? "",
+        nik: formData.get("nik") ?? "",
+        jenisKelamin: formData.get("jenisKelamin") ?? "",
+        noHp: formData.get("noHp") ?? "",
+        email: formData.get("email") ?? "",
+        keahlian: formData.get("keahlian") ?? "",
+        jabatan: formData.get("jabatan") ?? "",
+        password: formData.get("password") ?? "",
     }
-
 
     const validateFields = InstrukturSchema.safeParse(rawData);
 
@@ -114,34 +112,19 @@ export const AddInstruktur = async (formData: FormData) => {
         };
     }
 
-    const {
-        nama,
-        nik,
-        jenisKelamin,
-        noHp,
-        email,
-        keahlian,
-        jabatan,
-        password,
-    } = validateFields.data
-
     try {
-        const hashedPassword = hashSync(password, 10)
+        const hashedPassword = hashSync(validateFields.data.password, 10)
         await prisma.user.create({
             data: {
-                nama,
-                nik,
-                jenisKelamin,
-                noHp,
-                email,
-                keahlian,
-                jabatan,
+                ...validateFields.data,
                 password: hashedPassword,
                 role: "instruktur"
             },
         })
     } catch (error) {
-        console.log(error);
+        console.error(error);
+        return { message: "Terjadi kesalahan saat menyimpan data instruktur." };
     }
+
     redirect("/dashboard/data-instruktur")
 }

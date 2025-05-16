@@ -1,6 +1,8 @@
 "use client";
+import axios from "axios";
 import { useEffect, useState } from "react";
-import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import { toast } from 'react-hot-toast';
 
 interface Instruktur {
     nama: string;
@@ -15,6 +17,7 @@ interface Instruktur {
 
 const Tooltip = ({ content, children }: { content: string; children: React.ReactNode }) => {
     const [isVisible, setIsVisible] = useState(false);
+
 
     return (
         <div className="relative inline-block">
@@ -31,11 +34,13 @@ const Tooltip = ({ content, children }: { content: string; children: React.React
     );
 };
 
+
+
 const InstrukturTable = () => {
     const [instrukturData, setInstrukturData] = useState<Instruktur[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [deleteNik, setDeleteNik] = useState<string | null>(null);
-    const [editData, setEditData] = useState<Instruktur | null>(null);
+    const [deleteId, setDeleteId] = useState<number | null>(null);
+    // const [editData, setEditData] = useState<Instruktur | null>(null);
 
     useEffect(() => {
         const fetchInstruktur = async () => {
@@ -54,30 +59,34 @@ const InstrukturTable = () => {
         fetchInstruktur();
     }, []);
 
+
+
     const handleEdit = (nik: string) => {
         const instrukturToEdit = instrukturData.find(instruktur => instruktur.nik === nik);
         if (instrukturToEdit) {
-            setEditData(instrukturToEdit);
+            // setEditData(instrukturToEdit);
             console.log("Editing:", instrukturToEdit);
         }
     };
 
-    const handleDelete = async () => {
-        if (!deleteNik) return;
-
+    const handleDelete = async (id: number) => {
         try {
-            const res = await fetch(`/api/instruktur/${deleteNik}`, {
-                method: "DELETE",
-            });
+            await axios.delete(`/api/instruktur/${id}`);
+            toast.success("Instruktur berhasil dihapus");
 
-            if (!res.ok) throw new Error("Gagal menghapus instruktur");
+            setTimeout(() => {
+                window.location.reload();
+            }, 1400);
 
-            setInstrukturData(instrukturData.filter(instruktur => instruktur.nik !== deleteNik));
-            setDeleteNik(null);
         } catch (error) {
-            console.error("Error:", error);
+            console.error("Gagal menghapus instruktur:", error);
+            toast.error("Gagal menghapus instruktur");
         }
     };
+
+
+
+
 
     if (loading) {
         return (
@@ -91,20 +100,25 @@ const InstrukturTable = () => {
 
     return (
         <div className="bg-white p-6 mt-6 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
-            {deleteNik && (
+            {deleteId !== null && (
                 <div className="fixed inset-0 bg-transparent bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-6 rounded-lg max-w-md w-full text-gray-800 shadow-lg">
                         <h3 className="text-lg font-medium mb-4">Konfirmasi Hapus</h3>
                         <p className="mb-6">Apakah Anda yakin ingin menghapus data ini?</p>
                         <div className="flex justify-end space-x-3">
                             <button
-                                onClick={() => setDeleteNik(null)}
+                                onClick={() => setDeleteId(null)}
                                 className="cursor-pointer px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
                             >
                                 Batal
                             </button>
                             <button
-                                onClick={handleDelete}
+                                onClick={() => {
+                                    if (deleteId !== null) {
+                                        handleDelete(deleteId);
+                                        setDeleteId(null);
+                                    }
+                                }}
                                 className="cursor-pointer px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
                             >
                                 Hapus
@@ -114,20 +128,22 @@ const InstrukturTable = () => {
                 </div>
             )}
 
+
             <table className="w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+                <thead className="bg-gray-50 sticky top-0 z-10">
                     <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">NIK</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jenis Kelamin</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider whitespace-nowrap">Jenis Kelamin</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No HP</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Keahlian</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jabatan</th>
+                        {/* <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Jabatan</th> */}
                         <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
+
                 <tbody className="bg-white divide-y divide-gray-200">
                     {!instrukturData.length ? (
                         <tr>
@@ -185,24 +201,15 @@ const InstrukturTable = () => {
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     <div className="text-sm text-gray-500">{instruktur.keahlian}</div>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
+                                {/* <td className="px-6 py-4 whitespace-nowrap">
                                     <div className="text-sm text-gray-500">{instruktur.jabatan}</div>
-                                </td>
+                                </td> */}
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <div className="flex justify-center space-x-3">
-                                        <Tooltip content="Detail">
-                                            <a
-                                                href={`/dashboard/data-instruktur/${instruktur.nik}`}
-                                                className="bg-green-600 hover:bg-green-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
-                                                aria-label="Detail"
-                                            >
-                                                <FaEye className="h-4 w-4 text-white" />
-                                            </a>
-                                        </Tooltip>
 
                                         <Tooltip content="Edit">
                                             <button
-                                                onClick={() => handleEdit(instruktur.nik)}
+                                                onClick={() => handleEdit(instruktur.id)}
                                                 className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
                                                 aria-label="Edit"
                                             >
@@ -212,7 +219,7 @@ const InstrukturTable = () => {
 
                                         <Tooltip content="Hapus">
                                             <button
-                                                onClick={() => setDeleteNik(instruktur.nik)}
+                                                onClick={() => setDeleteId(instruktur.id)}
                                                 className="bg-red-600 hover:bg-red-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
                                                 aria-label="Hapus"
                                             >
