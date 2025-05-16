@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
-
+import axios from "axios";
+import toast from "react-hot-toast";
 interface Peserta {
     id: string;
     nama: string;
@@ -37,7 +38,7 @@ const PesertaTable = () => {
     const [pesertaData, setPesertaData] = useState<Peserta[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [deleteId, setDeleteId] = useState<string | null>(null);
-    const [editData, setEditData] = useState<Peserta | null>(null);
+    // const [editData, setEditData] = useState<Peserta | null>(null);
 
     useEffect(() => {
         const fetchPeserta = async () => {
@@ -59,28 +60,27 @@ const PesertaTable = () => {
     const handleEdit = (id: string) => {
         const pesertaToEdit = pesertaData.find(peserta => peserta.id === id);
         if (pesertaToEdit) {
-            setEditData(pesertaToEdit);
+            // setEditData(pesertaToEdit);
             // Here you would typically open a modal or navigate to edit page
             console.log("Editing:", pesertaToEdit);
         }
     };
 
-    const handleDelete = async () => {
-        if (!deleteId) return;
-
+    const handleDelete = async (id: number) => {
         try {
-            const res = await fetch(`/api/peserta/${deleteId}`, {
-                method: "DELETE",
-            });
+            await axios.delete(`/api/peserta/${id}`);
+            toast.success("Peserta berhasil dihapus");
 
-            if (!res.ok) throw new Error("Gagal menghapus peserta");
+            setTimeout(() => {
+                window.location.reload();
+            }, 1400);
 
-            setPesertaData(pesertaData.filter(peserta => peserta.id !== deleteId));
-            setDeleteId(null);
         } catch (error) {
-            console.error("Error:", error);
+            console.error("Gagal menghapus Peserta:", error);
+            toast.error("Gagal menghapus Peserta");
         }
     };
+
 
     if (loading) {
         return (
@@ -103,11 +103,11 @@ const PesertaTable = () => {
     return (
         <div className="bg-white p-6 mt-6 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
             {/* Delete Confirmation Modal */}
-            {deleteId && (
+            {deleteId !== null && (
                 <div className="fixed inset-0 bg-transparent bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-6 rounded-lg max-w-md w-full text-gray-800 shadow-lg">
                         <h3 className="text-lg font-medium mb-4">Konfirmasi Hapus</h3>
-                        <p className="mb-6">Apakah Anda yakin ingin menghapus data peserta ini?</p>
+                        <p className="mb-6">Apakah Anda yakin ingin menghapus data ini?</p>
                         <div className="flex justify-end space-x-3">
                             <button
                                 onClick={() => setDeleteId(null)}
@@ -116,17 +116,19 @@ const PesertaTable = () => {
                                 Batal
                             </button>
                             <button
-                                onClick={handleDelete}
+                                onClick={() => {
+                                    if (deleteId !== null) {
+                                        handleDelete(deleteId);
+                                        setDeleteId(null);
+                                    }
+                                }}
                                 className="cursor-pointer px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
                             >
                                 Hapus
                             </button>
                         </div>
                     </div>
-
                 </div>
-
-
             )}
 
             <table className="w-full divide-y divide-gray-200">
