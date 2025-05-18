@@ -1,7 +1,7 @@
-import { Metadata } from "next";
 import KursusTable from "@/components/admin/kursus/kursus-table";
 import { FiUserPlus } from "react-icons/fi";
 import Link from "next/link";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "Daftar Data Kursus - LPK CTI Ciamis",

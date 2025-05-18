@@ -23,6 +23,7 @@ export const POST = async (request: Request) => {
     }
 }
 
+
 export async function GET() {
     try {
         const instruktur = await prisma.user.findMany({

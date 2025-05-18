@@ -6,6 +6,7 @@ import { FaUsers, FaClipboardList, FaChalkboardTeacher, FaCertificate } from "re
 const DashboardPage = () => {
     const [loading, setLoading] = useState(true);
     const [totalPeserta, setTotalPeserta] = useState(0);
+    const [totalInstruktur, setTotalInstruktur] = useState(0);
     const [hoveredCard, setHoveredCard] = useState(null);
 
     const kursusAktif = 5;
@@ -26,6 +27,21 @@ const DashboardPage = () => {
         }
         fetchTotalPeserta();
     }, []);
+
+    useEffect(() => {
+        async function fetchTotalInstruktur() {
+            setLoading(true);
+            try {
+                const response = await fetch("/api/instruktur/total-instruktur");
+                const data = await response.json();
+                setTotalInstruktur(data.total);
+            } catch (error) {
+                console.error("Gagal mengambil total instruktur:", error);
+            }
+            setLoading(false);
+        }
+        fetchTotalInstruktur();
+    }, [])
 
     if (loading) {
         return (
@@ -54,6 +70,20 @@ const DashboardPage = () => {
                         </div>
                     </div>
                 </div>
+                <div
+                    className="bg-yellow-50 p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200 border border-yellow-100"
+                    onMouseLeave={() => setHoveredCard(null)}
+                >
+                    <div className="flex items-center gap-3">
+                        <div className={`p-2 bg-yellow-100 rounded-lg transition ${hoveredCard === 'instruktur' ? 'bg-yellow-200' : ''}`}>
+                            <FaChalkboardTeacher className="text-2xl text-yellow-600" />
+                        </div>
+                        <div>
+                            <h2 className="text-md font-medium text-gray-700">Instruktur Terdaftar</h2>
+                            <p className="text-xl font-semibold text-gray-900">{totalInstruktur}</p>
+                        </div>
+                    </div>
+                </div>
 
                 <div
                     className="bg-green-50 p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200 border border-green-100"
@@ -70,20 +100,7 @@ const DashboardPage = () => {
                     </div>
                 </div>
 
-                <div
-                    className="bg-yellow-50 p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200 border border-yellow-100"
-                    onMouseLeave={() => setHoveredCard(null)}
-                >
-                    <div className="flex items-center gap-3">
-                        <div className={`p-2 bg-yellow-100 rounded-lg transition ${hoveredCard === 'instruktur' ? 'bg-yellow-200' : ''}`}>
-                            <FaChalkboardTeacher className="text-2xl text-yellow-600" />
-                        </div>
-                        <div>
-                            <h2 className="text-md font-medium text-gray-700">Instruktur Terdaftar</h2>
-                            <p className="text-xl font-semibold text-gray-900">{instrukturTerdaftar}</p>
-                        </div>
-                    </div>
-                </div>
+
 
                 <div
                     className="bg-purple-50 p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200 border border-purple-100"

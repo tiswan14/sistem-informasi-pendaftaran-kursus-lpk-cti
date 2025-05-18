@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 interface Kursus {
     id: string;
@@ -104,8 +104,8 @@ const KursusTable = () => {
                     <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Kursus</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Instruktur</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Buat</th>
                         <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
@@ -136,18 +136,10 @@ const KursusTable = () => {
                             <tr key={kursus.id} className="hover:bg-gray-50 transition-colors duration-150 ease-in-out">
                                 <td className="px-7 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index + 1}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{kursus.nama}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{kursus.user.nama}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Rp {kursus.harga.toLocaleString()}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(kursus.createdAt).toLocaleDateString()}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <div className="flex justify-center space-x-3">
-                                        <Tooltip content="Detail">
-                                            <a
-                                                href={`/dashboard/data-kursus/${kursus.id}`}
-                                                className="bg-green-600 hover:bg-green-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
-                                            >
-                                                <FaEye className="h-4 w-4 text-white" />
-                                            </a>
-                                        </Tooltip>
                                         <Tooltip content="Edit">
                                             <button
                                                 onClick={() => alert(`Edit Kursus ID: ${kursus.id}`)}

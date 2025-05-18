@@ -94,15 +94,15 @@ export const LoginCredentials = async (prevState: unknown, formData: FormData) =
 
 export const AddInstruktur = async (formData: FormData) => {
     const rawData = {
-        nama: formData.get("nama") ?? "",
-        nik: formData.get("nik") ?? "",
-        jenisKelamin: formData.get("jenisKelamin") ?? "",
-        noHp: formData.get("noHp") ?? "",
-        email: formData.get("email") ?? "",
-        keahlian: formData.get("keahlian") ?? "",
-        jabatan: formData.get("jabatan") ?? "",
-        password: formData.get("password") ?? "",
-    }
+        nama: formData.get("nama")?.toString().trim() ?? "",
+        nik: formData.get("nik")?.toString().trim() ?? "",
+        jenisKelamin: formData.get("jenisKelamin")?.toString().trim() ?? "",
+        noHp: formData.get("noHp")?.toString().trim() ?? "",
+        email: formData.get("email")?.toString().trim() ?? "",
+        keahlian: formData.get("keahlian")?.toString().trim() ?? "",
+        jabatan: formData.get("jabatan")?.toString().trim() ?? "",
+        password: formData.get("password")?.toString() ?? "",
+    };
 
     const validateFields = InstrukturSchema.safeParse(rawData);
 

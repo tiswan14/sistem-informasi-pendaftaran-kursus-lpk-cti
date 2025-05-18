@@ -29,7 +29,7 @@ const FormRegister = () => {
             {/* NIK */}
             <div>
                 <label htmlFor="nik" className="block mb-2 text-sm font-medium text-gray-900">NIK</label>
-                <input type="text" name="nik" placeholder="Masukkan NIK"
+                <input type="number" name="nik" placeholder="Masukkan NIK"
                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5" />
                 <div aria-live="polite" aria-atomic="true">
                     <span className="text-sm text-red-500">{state?.error?.nik}</span>
@@ -37,21 +37,50 @@ const FormRegister = () => {
             </div>
 
             {/* Jenis Kelamin */}
-            <div>
-                <label className="block mb-2 text-sm font-medium text-gray-900">Jenis Kelamin</label>
-                <div className="flex gap-4">
-                    <label className="flex items-center">
-                        <input type="radio" name="jenisKelamin" value="Laki-laki" className="mr-2" />
-                        Laki-laki
-                    </label>
-                    <label className="flex items-center">
-                        <input type="radio" name="jenisKelamin" value="Perempuan" className="mr-2" />
-                        Perempuan
-                    </label>
+            <div className="mb-4">
+                <legend className="block text-sm font-medium text-gray-700 mb-2">
+                    Jenis Kelamin
+                </legend>
+
+                <div className="flex gap-6">
+                    <div className="flex items-center">
+                        <input
+                            id="jenisKelamin-laki"
+                            name="jenisKelamin"
+                            type="radio"
+                            value="Laki-laki"
+                            className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                        />
+                        <label
+                            htmlFor="jenisKelamin-laki"
+                            className="ml-2 block text-sm text-gray-700"
+                        >
+                            Laki-laki
+                        </label>
+                    </div>
+
+                    <div className="flex items-center">
+                        <input
+                            id="jenisKelamin-perempuan"
+                            name="jenisKelamin"
+                            type="radio"
+                            value="Perempuan"
+                            className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                        />
+                        <label
+                            htmlFor="jenisKelamin-perempuan"
+                            className="ml-2 block text-sm text-gray-700"
+                        >
+                            Perempuan
+                        </label>
+                    </div>
                 </div>
-                <div aria-live="polite" aria-atomic="true">
-                    <span className="text-sm text-red-500">{state?.error?.jenisKelamin}</span>
-                </div>
+
+                {state?.error?.jenisKelamin && (
+                    <p className="mt-1 text-sm text-red-600" id="jenisKelamin-error">
+                        {state.error.jenisKelamin}
+                    </p>
+                )}
             </div>
 
             {/* Tempat Lahir */}
@@ -116,13 +145,28 @@ const FormRegister = () => {
 
             {/* Agama */}
             <div>
-                <label htmlFor="agama" className="block mb-2 text-sm font-medium text-gray-900">Agama</label>
-                <input type="text" name="agama" placeholder="Contoh: Islam, Kristen, Hindu, dll"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5" />
+                <label htmlFor="agama" className="block mb-2 text-sm font-medium text-gray-900">
+                    Agama
+                </label>
+                <select
+                    name="agama"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5"
+                >
+                    <option value="">-- Pilih Agama --</option>
+                    <option value="Islam">Islam</option>
+                    <option value="Kristen">Kristen</option>
+                    <option value="Katolik">Katolik</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Buddha">Buddha</option>
+                    <option value="Konghucu">Konghucu</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
                 <div aria-live="polite" aria-atomic="true">
                     <span className="text-sm text-red-500">{state?.error?.agama}</span>
                 </div>
             </div>
+
+
 
             {/* Jurusan */}
             <div>

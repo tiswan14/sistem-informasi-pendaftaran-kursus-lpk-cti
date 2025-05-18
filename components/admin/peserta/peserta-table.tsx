@@ -107,7 +107,7 @@ const PesertaTable = () => {
                 <div className="fixed inset-0 bg-transparent bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-6 rounded-lg max-w-md w-full text-gray-800 shadow-lg">
                         <h3 className="text-lg font-medium mb-4">Konfirmasi Hapus</h3>
-                        <p className="mb-6">Apakah Anda yakin ingin menghapus data ini?</p>
+                        <p className="mb-6">Apakah Anda yakin ingin menghapus data peserta ini?</p>
                         <div className="flex justify-end space-x-3">
                             <button
                                 onClick={() => setDeleteId(null)}

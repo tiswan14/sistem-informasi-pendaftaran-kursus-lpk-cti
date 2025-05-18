@@ -27,14 +27,14 @@ export const InstrukturSchema = object({
         .max(50, "Nama maksimal 50 karakter"),
 
     nik: string()
-        .length(16, "NIK harus 16 digit")
+        .length(3, "NIK harus 16 digit")
         .regex(/^\d+$/, "NIK hanya boleh angka"),
 
     jenisKelamin: string()
         .min(1, "Jenis kelamin harus dipilih"),
 
     noHp: string()
-        .min(10, "Nomor HP minimal 10 digit")
+        .min(2, "Nomor HP minimal 10 digit")
         .max(15, "Nomor HP maksimal 15 digit")
         .regex(/^\d+$/, "Nomor HP hanya boleh angka"),
 

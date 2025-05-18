@@ -2,7 +2,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { toast } from 'react-hot-toast';
+import { toast } from 'react-toastify';
+import { redirect } from "next/navigation";
 
 interface Instruktur {
     nama: string;
@@ -59,21 +60,9 @@ const InstrukturTable = () => {
         fetchInstruktur();
     }, []);
 
-
-
-    const handleEdit = (nik: string) => {
-        const instrukturToEdit = instrukturData.find(instruktur => instruktur.nik === nik);
-        if (instrukturToEdit) {
-            // setEditData(instrukturToEdit);
-            console.log("Editing:", instrukturToEdit);
-        }
-    };
-
     const handleDelete = async (id: number) => {
         try {
             await axios.delete(`/api/instruktur/${id}`);
-            toast.success("Instruktur berhasil dihapus");
-
             setTimeout(() => {
                 window.location.reload();
             }, 1400);
@@ -82,6 +71,7 @@ const InstrukturTable = () => {
             console.error("Gagal menghapus instruktur:", error);
             toast.error("Gagal menghapus instruktur");
         }
+        toast.success("Instruktur berhasil dihapus");
     };
 
 
@@ -104,7 +94,7 @@ const InstrukturTable = () => {
                 <div className="fixed inset-0 bg-transparent bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-6 rounded-lg max-w-md w-full text-gray-800 shadow-lg">
                         <h3 className="text-lg font-medium mb-4">Konfirmasi Hapus</h3>
-                        <p className="mb-6">Apakah Anda yakin ingin menghapus data ini?</p>
+                        <p className="mb-6">Apakah Anda yakin ingin menghapus data instruktur ini?</p>
                         <div className="flex justify-end space-x-3">
                             <button
                                 onClick={() => setDeleteId(null)}
@@ -209,13 +199,14 @@ const InstrukturTable = () => {
 
                                         <Tooltip content="Edit">
                                             <button
-                                                onClick={() => handleEdit(instruktur.id)}
+                                                onClick={() => redirect(`/dashboard/data-instruktur/edit/${instruktur.id}`)}
                                                 className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
                                                 aria-label="Edit"
                                             >
                                                 <FaEdit className="h-4 w-4 text-white" />
                                             </button>
                                         </Tooltip>
+
 
                                         <Tooltip content="Hapus">
                                             <button

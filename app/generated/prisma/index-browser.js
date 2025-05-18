@@ -177,8 +177,7 @@ exports.Prisma.KursusScalarFieldEnum = {
   harga: 'harga',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  userId: 'userId',
-  instrukturId: 'instrukturId'
+  userId: 'userId'
 };
 
 exports.Prisma.PendaftaranScalarFieldEnum = {

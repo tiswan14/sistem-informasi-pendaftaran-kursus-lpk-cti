@@ -6,4 +6,5 @@ export type InstrukturInput = {
     email: string;
     keahlian: string;
     jabatan: string;
+    password: string;
 };
