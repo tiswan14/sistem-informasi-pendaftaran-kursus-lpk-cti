@@ -1,94 +1,87 @@
-"use client"
+"use client";
 
-import {
-    BookOpen,
-    DollarSign,
-    Save,
-    UserSquare2,
-    RefreshCw,
-    Info,
-} from "lucide-react"
-import { useState, useEffect, SyntheticEvent } from "react"
-import axios from "axios"
-import { toast } from "react-toastify"
-import { redirect } from "next/navigation"
-import Select from "react-select"
+import axios from "axios";
+import { BookOpen, DollarSign, UserSquare2, RefreshCw, Save } from "lucide-react";
+import { redirect } from "next/navigation";
+import { useState, FormEvent, useEffect } from "react";
+import { toast } from "react-toastify";
+import Select from "react-select";
 
-interface Instruktur {
-    id: string
-    nama: string
+interface Kursus {
+    id: string;
+    nama: string;
+    harga: number;
+    instrukturId: string;
 }
 
+interface InstrukturOption {
+    value: string;
+    label: string;
+}
 
-const TambahKursus = () => {
-    const [nama, setNama] = useState('')
-    const [harga, setHarga] = useState('')
-    const [instrukturId, setInstrukturId] = useState('')
-    const [instrukturs, setInstrukturs] = useState<Instruktur[]>([])
-    const [isPending, setIsPending] = useState(false)
+interface EditKursusFormProps {
+    initialData: Kursus;
+    instrukturOptions: InstrukturOption[];
+}
 
-    const instrukturOptions = instrukturs.map((i) => ({
-        value: i.id,
-        label: i.nama,
-    }));
+const EditKursusForm = ({ initialData, instrukturOptions }: EditKursusFormProps) => {
+    const [nama, setNama] = useState('');
+    const [harga, setHarga] = useState('');
+    const [instrukturId, setInstrukturId] = useState('');
+    const [isPending, setIsPending] = useState(false);
 
-
+    // Set initial state based on initialData
     useEffect(() => {
-        const fetchInstrukturs = async () => {
-            try {
-                const res = await fetch("/api/instruktur/all")
-                const data = await res.json()
-                setInstrukturs(data)
-            } catch (err) {
-                console.error("Gagal fetch instruktur:", err)
-            }
+        if (initialData) {
+            setNama(initialData.nama);
+            setHarga(initialData.harga.toString());
+            setInstrukturId(initialData.instrukturId);
         }
-        fetchInstrukturs()
-    }, [])
-
-    const handleSubmit = async (e: SyntheticEvent) => {
-        e.preventDefault()
-        setIsPending(true)
-        try {
-            const response = await axios.post("/api/kursus", {
-                nama,
-                harga: Number(harga),
-                userId: instrukturId,
-            });
-
-            if (response.status === 201) {
-                toast.success("Kursus berhasil ditambahkan");
-            } else {
-                toast.error("Terjadi kesalahan saat menambahkan kursus");
-            }
-        } catch (error) {
-            console.error("Error menambahkan kursus:", error);
-            toast.error("Gagal menambahkan kursus");
-        } finally {
-            setIsPending(false);
-            redirect("/dashboard/data-kursus");
-        }
-
-    }
+    }, [initialData]);
 
     const handleReset = () => {
-        setNama('')
-        setHarga('')
-        setInstrukturId('')
-    }
+        if (initialData) {
+            setNama(initialData.nama);
+            setHarga(initialData.harga.toString());
+            setInstrukturId(initialData.instrukturId);
+        }
+    };
 
+    const handleSubmit = async (e: FormEvent) => {
+        e.preventDefault();
+        setIsPending(true);
+
+        try {
+            const payload = {
+                nama,
+                harga: Number(harga),
+                instrukturId
+            };
+
+            const response = await axios.put(`/api/kursus/${initialData.id}`, payload);
+
+            if (response.status === 200) {
+                toast.success("Kursus berhasil diperbarui");
+            } else {
+                throw new Error(response.data.message || "Gagal memperbarui kursus");
+            }
+        } catch (error) {
+            console.error("Update error:", error);
+            toast.error("Gagal memperbarui kursus");
+        } finally {
+            setIsPending(false);
+        }
+        redirect("/dashboard/data-kursus");
+    };
 
     return (
-        <div className="bg-white rounded-lg shadow-md p-5 max-w-2xl mx-auto">
-            <div className="mb-5">
-                <h1 className="font-bold text-xl text-gray-800">Tambah Kursus Baru</h1>
-                <p className="text-sm text-gray-500 mt-2 bg-blue-50 px-3 py-2 rounded-lg inline-flex items-center">
-                    <Info className="h-4 w-4 mr-2 text-blue-500" />
-                    Isi detail lengkap kursus yang akan ditambahkan ke sistem
-                </p>
-            </div>
+        <div className="bg-white p-6 rounded-lg shadow-md">
+            <form onSubmit={handleSubmit} className="space-y-6">
+                <h2 className="text-xl font-semibold mb-5 text-gray-700 flex items-center">
+                    <BookOpen className="h-5 w-5 mr-2" />
+                    Edit Kursus
+                </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Nama Kursus */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -141,17 +134,20 @@ const TambahKursus = () => {
                         <div className="pl-10">
                             <Select
                                 options={instrukturOptions}
-                                onChange={(selectedOption) => setInstrukturId(selectedOption.value)}
+                                value={instrukturOptions.find(option => option.value === instrukturId)}
+                                onChange={(selectedOption) => setInstrukturId(selectedOption?.value || '')}
                                 placeholder="Pilih Instruktur"
                                 isSearchable
                                 classNamePrefix="react-select"
+                                className="react-select-container"
+                                className="react-select__control"
                             />
                         </div>
                     </div>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex space-x-3 pt-4">
+                <div className="flex justify-end space-x-3 pt-4">
                     <button
                         type="button"
                         onClick={handleReset}
@@ -171,7 +167,7 @@ const TambahKursus = () => {
                 </div>
             </form>
         </div>
-    )
-}
+    );
+};
 
-export default TambahKursus
+export default EditKursusForm;

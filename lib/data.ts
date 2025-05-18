@@ -52,3 +52,17 @@ export const getInstrukturById = async (id: string) => {
         }
     })
 }
+
+export const getKursusById = async (id: string) => {
+    return await prisma.kursus.findUnique({
+        where: { id },
+        include: {
+            user: {
+                select: {
+                    id: true,
+                    nama: true,
+                },
+            },
+        },
+    });
+};

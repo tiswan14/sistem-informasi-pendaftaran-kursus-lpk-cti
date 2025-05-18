@@ -5,7 +5,7 @@ export async function GET() {
     try {
         const peserta = await prisma.user.findMany({
             where: { role: "peserta" },
-            orderBy: { createdAt: "desc" },
+            orderBy: { nama: "asc" },
         });
 
         return NextResponse.json(peserta);

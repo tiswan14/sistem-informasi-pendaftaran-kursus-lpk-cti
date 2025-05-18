@@ -1,6 +1,8 @@
 "use client";
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 interface Kursus {
     id: string;
@@ -58,6 +60,7 @@ const KursusTable = () => {
             });
 
             if (!res.ok) throw new Error("Gagal menghapus kursus");
+            toast.success("Kursus berhasil dihapus");
 
             setKursusData(kursusData.filter(kursus => kursus.id !== deleteId));
             setDeleteId(null);
@@ -142,8 +145,9 @@ const KursusTable = () => {
                                     <div className="flex justify-center space-x-3">
                                         <Tooltip content="Edit">
                                             <button
-                                                onClick={() => alert(`Edit Kursus ID: ${kursus.id}`)}
+                                                onClick={() => redirect(`/dashboard/data-kursus/edit/${kursus.id}`)}
                                                 className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                aria-label="Edit"
                                             >
                                                 <FaEdit className="h-4 w-4 text-white" />
                                             </button>

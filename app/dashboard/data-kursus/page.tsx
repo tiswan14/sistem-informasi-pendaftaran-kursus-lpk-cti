@@ -4,10 +4,10 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Daftar Data Kursus - LPK CTI Ciamis",
+    title: "Daftar Kursus - LPK CTI Ciamis",
 };
 
-const PendaftaranPage = () => {
+const DaftarKursusPage = () => {
     return (
         <div className="max-w-screen-xl px-4">
             <div className="px-3 flex items-center justify-between mb-6">
@@ -28,4 +28,4 @@ const PendaftaranPage = () => {
     );
 };
 
-export default PendaftaranPage;
+export default DaftarKursusPage;
