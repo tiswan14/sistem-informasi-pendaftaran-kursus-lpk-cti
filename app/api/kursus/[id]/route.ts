@@ -1,53 +1,60 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@/app/generated/prisma";
-import { KursusInput } from "../route";
 
 const prisma = new PrismaClient();
 
-
-export const PUT = async (
+export async function GET(
     request: Request,
     { params }: { params: { id: string } }
-) => {
+) {
     try {
-        if (!params.id) {
-            return NextResponse.json(
-                { error: "ID kursus tidak valid" },
-                { status: 400 }
-            );
-        }
-
-        const body: Partial<KursusInput> = await request.json();
-
-        if (!body || Object.keys(body).length === 0) {
-            return NextResponse.json(
-                { error: "Data update tidak boleh kosong" },
-                { status: 400 }
-            );
-        }
-
-        const updateKursus = await prisma.kursus.update({
+        const kursus = await prisma.kursus.findUnique({
             where: { id: params.id },
-            data: body,
-        });
+            include: { user: true }
+        })
 
+        if (!kursus) {
+            return NextResponse.json(
+                { error: "Kursus tidak ditemukan" },
+                { status: 404 }
+            )
+        }
 
-        return NextResponse.json(updateKursus, { status: 200 });
-
-    } catch (error: unknown) {
-        console.error("Update error:", error);
-        const message = error instanceof Error
-            ? error.message
-            : "Internal server error";
-
+        return NextResponse.json(kursus)
+    } catch (error) {
+        console.error("Error fetching kursus:", error)
         return NextResponse.json(
-            { error: message },
+            { error: "Gagal mengambil data kursus" },
             { status: 500 }
-        );
-    } finally {
-        await prisma.$disconnect();
+        )
     }
-};
+}
+
+export async function PUT(
+    request: Request,
+    { params }: { params: { id: string } }
+) {
+    try {
+        const body = await request.json()
+
+        const updatedKursus = await prisma.kursus.update({
+            where: { id: params.id },
+            data: {
+                nama: body.nama,
+                harga: Number(body.harga),
+                userId: body.userId
+            }
+        })
+
+        return NextResponse.json(updatedKursus)
+    } catch (error) {
+        console.error("Error updating kursus:", error)
+        return NextResponse.json(
+            { error: "Gagal memperbarui kursus" },
+            { status: 500 }
+        )
+    }
+}
 
 
 export const DELETE = async (

@@ -7,10 +7,9 @@ const DashboardPage = () => {
     const [loading, setLoading] = useState(true);
     const [totalPeserta, setTotalPeserta] = useState(0);
     const [totalInstruktur, setTotalInstruktur] = useState(0);
+    const [totalKursus, setTotalKursus] = useState(0);
     const [hoveredCard, setHoveredCard] = useState(null);
 
-    const kursusAktif = 5;
-    const instrukturTerdaftar = 8;
     const sertifikatDiberikan = 50;
 
     useEffect(() => {
@@ -41,6 +40,21 @@ const DashboardPage = () => {
             setLoading(false);
         }
         fetchTotalInstruktur();
+    }, [])
+
+    useEffect(() => {
+        async function fetchTotalKursus() {
+            setLoading(true);
+            try {
+                const response = await fetch("/api/kursus/total-kursus");
+                const data = await response.json();
+                setTotalKursus(data.total);
+            } catch (error) {
+                console.error("Gagal mengambil total kursus:", error);
+            }
+            setLoading(false);
+        }
+        fetchTotalKursus();
     }, [])
 
     if (loading) {
@@ -95,7 +109,7 @@ const DashboardPage = () => {
                         </div>
                         <div>
                             <h2 className="text-md font-medium text-gray-700">Kursus Aktif</h2>
-                            <p className="text-xl font-semibold text-gray-900">{kursusAktif}</p>
+                            <p className="text-xl font-semibold text-gray-900">{totalKursus}</p>
                         </div>
                     </div>
                 </div>

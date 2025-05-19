@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FaSignOutAlt, FaUserEdit } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
 import { signOut } from "next-auth/react";
 
@@ -59,17 +59,6 @@ const Header = ({ userName = "Tiswan", userRole = "Admin" }) => {
                             <div className="px-4 py-3 border-b border-gray-100">
                                 <p className="text-sm font-medium text-gray-900 truncate">{userName}</p>
                                 <p className="text-xs text-gray-500">{userRole}</p>
-                            </div>
-
-                            <div className="py-1">
-                                <a
-                                    href="#"
-                                    className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
-                                    onClick={() => setDropdownOpen(false)}
-                                >
-                                    <FaUserEdit className="mr-2 text-gray-500" />
-                                    Edit Profile
-                                </a>
                             </div>
 
                             <div className="py-1 border-t border-gray-100">

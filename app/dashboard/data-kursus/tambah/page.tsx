@@ -23,7 +23,7 @@ interface Instruktur {
 const TambahKursus = () => {
     const [nama, setNama] = useState('')
     const [harga, setHarga] = useState('')
-    const [instrukturId, setInstrukturId] = useState('')
+    const [instrukturId, setInstrukturId] = useState<string | null>(null);
     const [instrukturs, setInstrukturs] = useState<Instruktur[]>([])
     const [isPending, setIsPending] = useState(false)
 
@@ -141,11 +141,18 @@ const TambahKursus = () => {
                         <div className="pl-10">
                             <Select
                                 options={instrukturOptions}
-                                onChange={(selectedOption) => setInstrukturId(selectedOption.value)}
+                                onChange={(selectedOption) => {
+                                    if (selectedOption) {
+                                        setInstrukturId(selectedOption.value);
+                                    } else {
+                                        setInstrukturId(null);
+                                    }
+                                }}
                                 placeholder="Pilih Instruktur"
                                 isSearchable
                                 classNamePrefix="react-select"
                             />
+
                         </div>
                     </div>
                 </div>
