@@ -76,10 +76,10 @@ const Navlink = () => {
 
                         <li>
                             <Link
-                                href="/dashboard"
+                                href="/"
                                 className="block py-2 px-4 text-gray-800 hover:bg-gray-200 rounded-md transition duration-300 ease-in-out md:hover:bg-transparent md:p-0"
                             >
-                                Dashboard
+                                Beranda
                             </Link>
                         </li>
                         <li>
@@ -87,7 +87,7 @@ const Navlink = () => {
                                 href="/kursus"
                                 className="block py-2 px-4 text-gray-800 hover:bg-gray-200 rounded-md transition duration-300 ease-in-out md:hover:bg-transparent md:p-0"
                             >
-                                Kursus
+                                Daftar Kursus
                             </Link>
                         </li>
                         <li>

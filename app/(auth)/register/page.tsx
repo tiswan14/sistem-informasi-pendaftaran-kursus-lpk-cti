@@ -19,7 +19,7 @@ const RegisterPage = () => {
                             height={150}
                             className="mx-auto"
                         />
-                        <h1 className="text-2xl text-center font-bold text-gray-900 mb-4">
+                        <h1 className="text-2xl text-center font-bold text-gray-900 py-4">
                             Daftar ke Akun
                         </h1>
                         <FormRegister />

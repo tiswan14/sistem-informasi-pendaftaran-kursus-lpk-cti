@@ -1,8 +1,10 @@
 "use client";
+import { formatRupiah } from "@/utils/formatRupiah";
 import { useEffect, useState } from "react";
-import { FaEye, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 
 interface Pendaftar {
+    createdAt: string | number | Date;
     id: string;
     userId: string;
     kursusId: string;
@@ -111,9 +113,9 @@ const PendaftarTable = () => {
                 <thead className="bg-gray-50">
                     <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">No</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Kursus</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Pendaftar</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Kursus</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Harga</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal Daftar</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
                         <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Aksi</th>
@@ -146,9 +148,9 @@ const PendaftarTable = () => {
                             <tr key={pendaftar.id}>
                                 <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pendaftar.user?.nama || "-"}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{pendaftar.user?.email || "-"}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{pendaftar.kursus?.judul || "-"}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{new Date(pendaftar.tanggalDaftar).toLocaleDateString()}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">{pendaftar.kursus?.nama || "-"}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">{formatRupiah(pendaftar.kursus?.harga) || "-"}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">{new Date(pendaftar.createdAt).toLocaleDateString()}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
                                         {pendaftar.status}
@@ -156,7 +158,7 @@ const PendaftarTable = () => {
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-center">
                                     <div className="flex justify-center space-x-3">
-                                        <Tooltip content="Lihat Detail">
+                                        {/* <Tooltip content="Lihat Detail">
                                             <a
                                                 href={`/dashboard/pendaftar/${pendaftar.id}`}
                                                 className="bg-green-600 hover:bg-green-700 p-2 rounded-md"
@@ -164,7 +166,7 @@ const PendaftarTable = () => {
                                             >
                                                 <FaEye className="h-4 w-4 text-white" />
                                             </a>
-                                        </Tooltip>
+                                        </Tooltip> */}
 
                                         <Tooltip content="Hapus">
                                             <button

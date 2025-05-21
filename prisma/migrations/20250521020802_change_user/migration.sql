@@ -1,0 +1,6 @@
+-- AlterTable
+ALTER TABLE "HistoriKursus" ADD COLUMN     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+-- AlterTable
+ALTER TABLE "users" ALTER COLUMN "jenisKelamin" DROP NOT NULL,
+ALTER COLUMN "noHp" DROP NOT NULL;

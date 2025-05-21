@@ -3,8 +3,12 @@ import { NextResponse } from 'next/server';
 
 export type KursusInput = {
     nama: string;
+    deskripsi?: string;
     harga: number;
-    userId: string
+    lamaKursus?: number;
+    tanggalMulai?: string | Date;
+    tanggalSelesai?: string | Date;
+    userId?: string;
 }
 
 export async function GET() {
@@ -31,10 +35,21 @@ export async function POST(request: Request) {
     try {
         const body: KursusInput = await request.json();
 
+        if (!body.nama || !body.harga) {
+            return NextResponse.json(
+                { error: "Nama dan harga kursus harus diisi" },
+                { status: 400 }
+            );
+        }
+
+        const data = {
+            ...body,
+            tanggalMulai: body.tanggalMulai ? new Date(body.tanggalMulai) : null,
+            tanggalSelesai: body.tanggalSelesai ? new Date(body.tanggalSelesai) : null,
+        };
+
         const newKursus = await prisma.kursus.create({
-            data: {
-                ...body,
-            },
+            data,
             include: {
                 user: {
                     select: {
@@ -54,5 +69,4 @@ export async function POST(request: Request) {
 
         return NextResponse.json({ error: message }, { status: 500 });
     }
-
 }

@@ -4,10 +4,14 @@ import Image from "next/image";
 import { FaSignOutAlt } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
 import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
-const Header = ({ userName = "Tiswan", userRole = "Admin" }) => {
+const Header = () => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
+
+    const { data: session } = useSession()
+    console.log(session)
 
 
     // Close dropdown when clicking outside
@@ -31,8 +35,8 @@ const Header = ({ userName = "Tiswan", userRole = "Admin" }) => {
             {/* Profile Section */}
             <div className="flex items-center gap-4">
                 <div className="text-right hidden sm:block">
-                    <p className="text-sm font-medium text-gray-800">{userName}</p>
-                    <p className="text-xs text-gray-500">{userRole}</p>
+                    <p className="text-sm font-medium text-gray-800">{session?.user?.name}</p>
+                    <p className="text-xs text-gray-500">{session?.user?.role}</p>
                 </div>
 
                 {/* Profile Dropdown Trigger */}
@@ -57,8 +61,8 @@ const Header = ({ userName = "Tiswan", userRole = "Admin" }) => {
                     {isDropdownOpen && (
                         <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-gray-200 z-50 py-1">
                             <div className="px-4 py-3 border-b border-gray-100">
-                                <p className="text-sm font-medium text-gray-900 truncate">{userName}</p>
-                                <p className="text-xs text-gray-500">{userRole}</p>
+                                <p className="text-sm font-medium text-gray-900 truncate">{session?.user?.name}</p>
+                                <p className="text-xs text-gray-500">{session?.user?.role}</p>
                             </div>
 
                             <div className="py-1 border-t border-gray-100">

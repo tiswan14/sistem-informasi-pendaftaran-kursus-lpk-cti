@@ -18,17 +18,8 @@ export const RegisterCredentials = async (_prevState: unknown, formData: FormDat
 
     const {
         nama,
-        nik,
-        jenisKelamin,
-        tempatLahir,
-        tanggalLahir,
-        mediaSosial,
-        noHp,
         email,
         password,
-        agama,
-        jurusan,
-        tahunAkademik,
     } = validateFields.data
 
     const existingUser = await prisma.user.findUnique({ where: { email } })
@@ -42,17 +33,8 @@ export const RegisterCredentials = async (_prevState: unknown, formData: FormDat
         await prisma.user.create({
             data: {
                 nama,
-                nik,
-                jenisKelamin,
-                tempatLahir,
-                tanggalLahir,
-                mediaSosial,
-                noHp,
                 email,
                 password: hashedPassword,
-                agama,
-                jurusan,
-                tahunAkademik,
             },
         })
     } catch (error: unknown) {

@@ -3,12 +3,16 @@ import ButtonAuth from "../button"
 import Link from "next/link"
 import { useActionState } from "react"
 import { RegisterCredentials } from "@/lib/action"
+import { Eye, EyeOff } from "lucide-react"
+import { useState } from "react"
 
 const FormRegister = () => {
-    const [state, formAction] = useActionState(RegisterCredentials, null)
+    const [state, formAction] = useActionState(RegisterCredentials, null);
+    const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
     return (
         <form action={formAction} className="space-y-6">
-
             {/* Pesan umum */}
             {state?.message ? (
                 <div className="p-4 mt-4 text-sm text-red-800 rounded-lg bg-red-100" role="alert">
@@ -26,108 +30,11 @@ const FormRegister = () => {
                 </div>
             </div>
 
-            {/* NIK */}
-            <div>
-                <label htmlFor="nik" className="block mb-2 text-sm font-medium text-gray-900">NIK</label>
-                <input type="number" name="nik" placeholder="Masukkan NIK"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5" />
-                <div aria-live="polite" aria-atomic="true">
-                    <span className="text-sm text-red-500">{state?.error?.nik}</span>
-                </div>
-            </div>
-
-            {/* Jenis Kelamin */}
-            <div className="mb-4">
-                <legend className="block text-sm font-medium text-gray-700 mb-2">
-                    Jenis Kelamin
-                </legend>
-
-                <div className="flex gap-6">
-                    <div className="flex items-center">
-                        <input
-                            id="jenisKelamin-laki"
-                            name="jenisKelamin"
-                            type="radio"
-                            value="Laki-laki"
-                            className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                        />
-                        <label
-                            htmlFor="jenisKelamin-laki"
-                            className="ml-2 block text-sm text-gray-700"
-                        >
-                            Laki-laki
-                        </label>
-                    </div>
-
-                    <div className="flex items-center">
-                        <input
-                            id="jenisKelamin-perempuan"
-                            name="jenisKelamin"
-                            type="radio"
-                            value="Perempuan"
-                            className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                        />
-                        <label
-                            htmlFor="jenisKelamin-perempuan"
-                            className="ml-2 block text-sm text-gray-700"
-                        >
-                            Perempuan
-                        </label>
-                    </div>
-                </div>
-
-                {state?.error?.jenisKelamin && (
-                    <p className="mt-1 text-sm text-red-600" id="jenisKelamin-error">
-                        {state.error.jenisKelamin}
-                    </p>
-                )}
-            </div>
-
-            {/* Tempat Lahir */}
-            <div>
-                <label htmlFor="tempatLahir" className="block mb-2 text-sm font-medium text-gray-900">Tempat Lahir</label>
-                <input type="text" name="tempatLahir" placeholder="Contoh: Tasikmalaya"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5" />
-                <div aria-live="polite" aria-atomic="true">
-                    <span className="text-sm text-red-500">{state?.error?.tempatLahir}</span>
-                </div>
-            </div>
-
-            {/* Tanggal Lahir */}
-            <div>
-                <label htmlFor="tanggalLahir" className="block mb-2 text-sm font-medium text-gray-900">Tanggal Lahir</label>
-                <input type="date" name="tanggalLahir"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5" />
-                <div aria-live="polite" aria-atomic="true">
-                    <span className="text-sm text-red-500">{state?.error?.tanggalLahir}</span>
-                </div>
-            </div>
-
-            {/* Media Sosial */}
-            <div>
-                <label htmlFor="mediaSosial" className="block mb-2 text-sm font-medium text-gray-900">Media Sosial</label>
-                <input type="text" name="mediaSosial" placeholder="Contoh: IG @nama / FB Nama Lengkap"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5" />
-                <div aria-live="polite" aria-atomic="true">
-                    <span className="text-sm text-red-500">{state?.error?.mediaSosial}</span>
-                </div>
-            </div>
-
-            {/* No HP / WA */}
-            <div>
-                <label htmlFor="noHp" className="block mb-2 text-sm font-medium text-gray-900">No Handphone / WA</label>
-                <input type="text" name="noHp" placeholder="08xxxxxxxxxx"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5" />
-                <div aria-live="polite" aria-atomic="true">
-                    <span className="text-sm text-red-500">{state?.error?.noHp}</span>
-                </div>
-            </div>
-
             {/* Email */}
             <div>
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Email</label>
                 <input type="email" name="email" placeholder="contoh@email.com"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5" />
+                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-blue-500" />
                 <div aria-live="polite" aria-atomic="true">
                     <span className="text-sm text-red-500">{state?.error?.email}</span>
                 </div>
@@ -136,65 +43,48 @@ const FormRegister = () => {
             {/* Password */}
             <div>
                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Password</label>
-                <input type="password" name="password" placeholder="Buat password"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5" />
+                <div className="relative">
+                    <input
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        placeholder="Buat password"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    />
+                    <button
+                        type="button"
+                        className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700"
+                        onClick={() => setShowPassword(!showPassword)}
+                    >
+                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                </div>
                 <div aria-live="polite" aria-atomic="true">
                     <span className="text-sm text-red-500">{state?.error?.password}</span>
                 </div>
             </div>
 
-            {/* Agama */}
+            {/* Konfirmasi Password */}
             <div>
-                <label htmlFor="agama" className="block mb-2 text-sm font-medium text-gray-900">
-                    Agama
+                <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-gray-900">
+                    Konfirmasi Password
                 </label>
-                <select
-                    name="agama"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5"
-                >
-                    <option value="">-- Pilih Agama --</option>
-                    <option value="Islam">Islam</option>
-                    <option value="Kristen">Kristen</option>
-                    <option value="Katolik">Katolik</option>
-                    <option value="Hindu">Hindu</option>
-                    <option value="Buddha">Buddha</option>
-                    <option value="Konghucu">Konghucu</option>
-                    <option value="Lainnya">Lainnya</option>
-                </select>
-                <div aria-live="polite" aria-atomic="true">
-                    <span className="text-sm text-red-500">{state?.error?.agama}</span>
+                <div className="relative">
+                    <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        name="confirmPassword"
+                        placeholder="Ulangi password"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    />
+                    <button
+                        type="button"
+                        className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-gray-700"
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    >
+                        {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
                 </div>
-            </div>
-
-
-
-            {/* Jurusan */}
-            <div>
-                <label htmlFor="jurusan" className="block mb-2 text-sm font-medium text-gray-900">Jurusan</label>
-                <select name="jurusan"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5">
-                    <option value="">-- Pilih Jurusan --</option>
-                    <option value="Networking">Networking</option>
-                    <option value="Pemrograman">Pemrograman</option>
-                    <option value="Multimedia">Multimedia</option>
-                    <option value="GraphicDesign">Graphic Design</option>
-                    <option value="AdministrasiPerkantoran">Administrasi Perkantoran</option>
-                    <option value="DigitalMarketing">Digital Marketing</option>
-                    <option value="Akuntansi">Akuntansi</option>
-                    <option value="AutoCAD">AutoCAD</option>
-                </select>
                 <div aria-live="polite" aria-atomic="true">
-                    <span className="text-sm text-red-500">{state?.error?.jurusan}</span>
-                </div>
-            </div>
-
-            {/* Tahun Akademik */}
-            <div>
-                <label htmlFor="tahunAkademik" className="block mb-2 text-sm font-medium text-gray-900">Tahun Akademik</label>
-                <input type="text" name="tahunAkademik" placeholder="Contoh: 2024/2025"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg w-full p-2.5" />
-                <div aria-live="polite" aria-atomic="true">
-                    <span className="text-sm text-red-500">{state?.error?.tahunAkademik}</span>
+                    <span className="text-sm text-red-500">{state?.error?.confirmPassword}</span>
                 </div>
             </div>
 

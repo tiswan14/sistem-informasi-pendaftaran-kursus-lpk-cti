@@ -174,7 +174,11 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.KursusScalarFieldEnum = {
   id: 'id',
   nama: 'nama',
+  deskripsi: 'deskripsi',
   harga: 'harga',
+  lamaKursus: 'lamaKursus',
+  tanggalMulai: 'tanggalMulai',
+  tanggalSelesai: 'tanggalSelesai',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   userId: 'userId'
@@ -185,6 +189,7 @@ exports.Prisma.PendaftaranScalarFieldEnum = {
   userId: 'userId',
   kursusId: 'kursusId',
   status: 'status',
+  keterangan: 'keterangan',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -207,6 +212,7 @@ exports.Prisma.HistoriKursusScalarFieldEnum = {
   tanggalSelesai: 'tanggalSelesai',
   sertifikat: 'sertifikat',
   keterangan: 'keterangan',
+  createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
 

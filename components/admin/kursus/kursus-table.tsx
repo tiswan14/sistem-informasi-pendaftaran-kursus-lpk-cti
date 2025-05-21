@@ -1,10 +1,14 @@
 "use client";
+import { formatRupiah } from "@/utils/formatRupiah";
+import { formatTanggalIndonesia } from "@/utils/formatTanggal";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 interface Kursus {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [x: string]: any;
     id: string;
     nama: string;
     harga: number;
@@ -107,6 +111,9 @@ const KursusTable = () => {
                     <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Kursus</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Durasi(bulan)</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Mulai</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Selesai</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Instruktur</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga</th>
                         <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
@@ -139,8 +146,11 @@ const KursusTable = () => {
                             <tr key={kursus.id} className="hover:bg-gray-50 transition-colors duration-150 ease-in-out">
                                 <td className="px-7 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index + 1}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{kursus.nama}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{kursus.lamaKursus}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatTanggalIndonesia(kursus.tanggalMulai)}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatTanggalIndonesia(kursus.tanggalSelesai)}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{kursus.user.nama}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Rp {kursus.harga.toLocaleString()}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatRupiah(kursus.harga)}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <div className="flex justify-center space-x-3">
                                         <Tooltip content="Edit">

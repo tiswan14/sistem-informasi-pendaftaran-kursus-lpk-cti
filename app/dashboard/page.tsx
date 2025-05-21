@@ -28,6 +28,7 @@ const DashboardPage = () => {
     }, []);
 
     useEffect(() => {
+
         async function fetchTotalInstruktur() {
             setLoading(true);
             try {

@@ -52,11 +52,11 @@ model User {
   id            String    @id @default(cuid())
   nama          String
   nik           String?   @unique
-  jenisKelamin  String
+  jenisKelamin  String?
   tempatLahir   String?
   tanggalLahir  String?
   mediaSosial   String?
-  noHp          String
+  noHp          String?
   email         String    @unique
   agama         String?
   jurusan       String?
@@ -81,12 +81,16 @@ model User {
 }
 
 model Kursus {
-  id        String   @id @default(cuid())
-  nama      String
-  harga     Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  userId    String?
+  id             String    @id @default(cuid())
+  nama           String
+  deskripsi      String?
+  harga          Int
+  lamaKursus     Int?
+  tanggalMulai   DateTime?
+  tanggalSelesai DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  userId         String?
 
   user User? @relation("InstrukturKursus", fields: [userId], references: [id], onDelete: Cascade)
 
@@ -97,12 +101,13 @@ model Kursus {
 }
 
 model Pendaftaran {
-  id        String   @id @default(cuid())
-  userId    String
-  kursusId  String
-  status    String   @default("Belum diverifikasi")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String   @id @default(cuid())
+  userId     String
+  kursusId   String
+  status     String   @default("Belum diverifikasi")
+  keterangan String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   user       User        @relation(fields: [userId], references: [id])
   kursus     Kursus      @relation(fields: [kursusId], references: [id])
@@ -117,7 +122,7 @@ model Pembayaran {
   buktiBayar    String
   status        String   @default("Menunggu")
   createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt // ✅ Tambahkan ini
+  updatedAt     DateTime @updatedAt
 
   pendaftaran Pendaftaran @relation(fields: [pendaftaranId], references: [id], onDelete: Cascade)
 }
@@ -129,7 +134,8 @@ model HistoriKursus {
   tanggalSelesai String
   sertifikat     String?
   keterangan     String?
-  updatedAt      DateTime @updatedAt // ✅ Tambahkan ini
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   user   User   @relation(fields: [userId], references: [id])
   kursus Kursus @relation(fields: [kursusId], references: [id])
