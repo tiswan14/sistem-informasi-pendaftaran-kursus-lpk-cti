@@ -60,8 +60,6 @@ export async function PUT(
 }
 
 
-
-
 export const DELETE = async (
     request: Request,
     { params }: { params: { id: string } }

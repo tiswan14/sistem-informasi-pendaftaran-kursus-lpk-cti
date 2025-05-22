@@ -63,15 +63,23 @@ const KursusTable = () => {
                 method: "DELETE",
             });
 
-            if (!res.ok) throw new Error("Gagal menghapus kursus");
-            toast.success("Kursus berhasil dihapus");
+            const result = await res.json();
 
+            if (!res.ok) {
+                throw new Error(result.message || "Gagal menghapus kursus");
+            }
+
+
+
+            toast.success("Kursus berhasil dihapus");
             setKursusData(kursusData.filter(kursus => kursus.id !== deleteId));
             setDeleteId(null);
         } catch (error) {
+            toast.error(`Gagal menghapus kursus`);
             console.error("Error:", error);
         }
     };
+
 
     if (loading) {
         return (
