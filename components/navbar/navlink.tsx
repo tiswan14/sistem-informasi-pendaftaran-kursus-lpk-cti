@@ -12,7 +12,6 @@ import { signOut, useSession } from "next-auth/react";
 const Navlink = () => {
     const [open, setOpen] = useState(false);
     const { data: session } = useSession();
-    console.log(session)
     return (
         <>
             <div className="flex items-center">
@@ -92,18 +91,10 @@ const Navlink = () => {
                         </li>
                         <li>
                             <Link
-                                href="/pendaftaran"
+                                href="/riwayat-pendaftaran"
                                 className="block py-2 px-4 text-gray-800 hover:bg-gray-200 rounded-md transition duration-300 ease-in-out md:hover:bg-transparent md:p-0"
                             >
-                                Pendaftaran
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/histori"
-                                className="block py-2 px-4 text-gray-800 hover:bg-gray-200 rounded-md transition duration-300 ease-in-out md:hover:bg-transparent md:p-0"
-                            >
-                                Histori
+                                Riwayat Pendaftaran
                             </Link>
                         </li>
                         <li className="block md:hidden">

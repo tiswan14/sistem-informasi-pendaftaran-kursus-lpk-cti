@@ -1,5 +1,5 @@
 import NextAuth from "next-auth"
-import { PrismaAdapter } from '@auth/prisma-adapter' // ✅ harus cocok
+import { PrismaAdapter } from '@auth/prisma-adapter'
 import { prisma } from "@/lib/prisma"
 import Credentials from "next-auth/providers/credentials"
 import { LoginSchema } from "@/lib/zod"
@@ -41,8 +41,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             }
         })
     ],
-    // Tambahkan secret di sini
-    secret: process.env.JWT_SECRET,  // Pastikan JWT_SECRET ada di file .env
+    secret: process.env.JWT_SECRET,
     callbacks: {
         authorized({ auth, request: { nextUrl } }) {
             const isLoggedIn = !!auth?.user
