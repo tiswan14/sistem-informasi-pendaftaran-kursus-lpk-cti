@@ -3,7 +3,7 @@ import Footer from "@/components/footer/footer";
 import Navbar from "@/components/navbar/navbar";
 import Card from "@/components/user/card";
 import { useEffect, useState } from "react";
-import { BookOpen, UserCircle2, ClipboardCheck, Building2, Lightbulb, Zap } from 'lucide-react';
+import { BookOpen, UserCircle2, ClipboardCheck, Building2, Zap } from 'lucide-react';
 
 interface Kursus {
     id: string;

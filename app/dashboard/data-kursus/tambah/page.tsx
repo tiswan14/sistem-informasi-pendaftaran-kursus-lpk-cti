@@ -95,15 +95,17 @@ const TambahKursus = () => {
                 toast.success("Kursus berhasil ditambahkan")
                 router.push("/dashboard/data-kursus")
             }
-        } catch (error: any) {
-            console.error("Error menambahkan kursus:", error)
+        } catch (error: unknown) {
+            console.error("Error menambahkan kursus:", error);
 
-            if (error.response?.data?.error) {
-                toast.error(error.response.data.error)
-            } else if (error.message.includes('Network Error')) {
-                toast.error("Koneksi jaringan bermasalah")
+            if (error instanceof Error) {
+                if (error.message.includes('Network Error')) {
+                    toast.error("Koneksi jaringan bermasalah");
+                } else {
+                    toast.error(error.message || "Gagal menambahkan kursus");
+                }
             } else {
-                toast.error("Gagal menambahkan kursus")
+                toast.error("Gagal menambahkan kursus");
             }
         } finally {
             setIsPending(false)

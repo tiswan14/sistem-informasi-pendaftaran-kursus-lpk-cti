@@ -68,6 +68,7 @@ export const getKursusDetailById = async (kursusId: string) => {
                 lamaKursus: true,
                 tanggalMulai: true,
                 tanggalSelesai: true,
+                userId: true,
                 user: {
                     select: {
                         id: true,
@@ -123,6 +124,30 @@ export interface KursusWithUser {
         id: string;
         nama: string;
     } | null;
+}
+
+export const getKursusByIdTest = async (id: string) => {
+    return await prisma.kursus.findUnique({
+        where: {
+            id,
+        },
+        select: {
+            id: true,
+            nama: true,
+            deskripsi: true,
+            harga: true,
+            lamaKursus: true,
+            tanggalMulai: true,
+            tanggalSelesai: true,
+            userId: true,
+            user: {
+                select: {
+                    id: true,
+                    nama: true
+                }
+            }
+        },
+    })
 }
 
 export const getKursusById = async (id: string): Promise<KursusWithUser> => {

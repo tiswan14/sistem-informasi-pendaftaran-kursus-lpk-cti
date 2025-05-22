@@ -39,8 +39,12 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
 
                 const data = await res.json();
                 setKursus(data.kursus);
-            } catch (err: any) {
-                setError(err.message || "Terjadi kesalahan saat mengambil data peserta");
+            } catch (err: unknown) {
+                if (err instanceof Error) {
+                    setError(err.message || "Terjadi kesalahan saat mengambil data peserta");
+                } else {
+                    setError("Terjadi kesalahan saat mengambil data peserta");
+                }
             } finally {
                 setLoading(false);
             }

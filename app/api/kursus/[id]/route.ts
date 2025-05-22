@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 
 export async function GET(req: Request, { params }: { params: { id: string } }) {
     try {
-        const kursus = await getKursusDetailById(params.id);
+        const kursus = await getKursusDetailById(params.id)
         if (!kursus) {
             return NextResponse.json({ error: 'Kursus tidak ditemukan' }, { status: 404 });
         }
@@ -23,26 +23,43 @@ export async function PUT(
     { params }: { params: { id: string } }
 ) {
     try {
-        const body = await request.json()
+        const body = await request.json();
+
+        const {
+            nama,
+            deskripsi,
+            harga,
+            lamaKursus,
+            tanggalMulai,
+            tanggalSelesai,
+            userId,
+        } = body;
+
 
         const updatedKursus = await prisma.kursus.update({
             where: { id: params.id },
             data: {
-                nama: body.nama,
-                harga: Number(body.harga),
-                userId: body.userId
-            }
-        })
+                nama,
+                deskripsi: deskripsi || null,
+                harga: Number(harga),
+                lamaKursus: lamaKursus ? Number(lamaKursus) : null,
+                tanggalMulai: tanggalMulai ? new Date(tanggalMulai) : null,
+                tanggalSelesai: tanggalSelesai ? new Date(tanggalSelesai) : null,
+                userId: userId || null,
+            },
+        });
 
-        return NextResponse.json(updatedKursus)
+        return NextResponse.json(updatedKursus, { status: 200 });
     } catch (error) {
-        console.error("Error updating kursus:", error)
+        console.error("Gagal memperbarui kursus:", error);
         return NextResponse.json(
-            { error: "Gagal memperbarui kursus" },
+            { error: "Terjadi kesalahan saat memperbarui kursus." },
             { status: 500 }
-        )
+        );
     }
 }
+
+
 
 
 export const DELETE = async (

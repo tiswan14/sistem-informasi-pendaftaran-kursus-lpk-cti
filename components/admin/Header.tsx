@@ -11,7 +11,6 @@ const Header = () => {
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     const { data: session } = useSession()
-    console.log(session)
 
 
     // Close dropdown when clicking outside
