@@ -54,6 +54,36 @@ export const getPesertaDetailById = async (pesertaId: string) => {
     }
 }
 
+export const getKursusDetailById = async (kursusId: string) => {
+    try {
+        const result = await prisma.kursus.findUnique({
+            where: {
+                id: kursusId
+            },
+            select: {
+                id: true,
+                nama: true,
+                harga: true,
+                deskripsi: true,
+                lamaKursus: true,
+                tanggalMulai: true,
+                tanggalSelesai: true,
+                user: {
+                    select: {
+                        id: true,
+                        nama: true
+                    }
+                }
+            }
+
+        })
+        return result
+    } catch (error) {
+        console.log(error);
+        throw new Error("Terjadi kesalahan server")
+    }
+}
+
 
 export const getInstrukturById = async (id: string) => {
     return await prisma.user.findUnique({

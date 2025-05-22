@@ -21,13 +21,16 @@ export async function GET() {
                         nama: true
                     }
                 }
+            },
+            orderBy: {
+                nama: "asc"
             }
         });
         return NextResponse.json(allKursus);
 
     } catch (error) {
-        console.error("Gagal fetch instruktur:", error);
-        return NextResponse.json({ error: "Gagal mengambil data instruktur" }, { status: 500 });
+        console.error("Gagal fetch kursus:", error);
+        return NextResponse.json({ error: "Gagal mengambil data kursus" }, { status: 500 });
     }
 }
 

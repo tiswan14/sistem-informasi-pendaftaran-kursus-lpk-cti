@@ -44,7 +44,7 @@ export const RegisterCredentials = async (_prevState: unknown, formData: FormDat
         return { message: "Terjadi kesalahan saat menyimpan data" }
     }
 
-    return redirect("/login")
+    return redirect("/login?registered=success")
 }
 
 export const LoginCredentials = async (prevState: unknown, formData: FormData) => {
