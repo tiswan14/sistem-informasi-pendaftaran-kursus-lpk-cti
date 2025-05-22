@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { BookOpen, User, BookmarkPlus, MessageCircleMore, CalendarDays, Clock3, IndianRupee, CalendarCheck2 } from 'lucide-react';
 import { useSession } from "next-auth/react";
 import axios from "axios";
+import { toast } from "react-toastify";
 interface Kursus {
     id: string;
     nama: string;
@@ -58,21 +59,27 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
 
     const handleDaftar = async () => {
         if (!session?.user?.id) {
-            alert("Silahkan login terlebih dahulu");
+            toast.error("Silahkan login terlebih dahulu");
             return;
         }
         try {
             const response = await axios.post("/api/pendaftaran", {
                 userId: session.user.id,
                 kursusId: kursus?.id,
-            })
-            alert(response.data);
-        } catch (error) {
-            console.log(error);
-            alert("Terjadi kesalahan saat mendaftar kursus");
+            });
+            console.log(response.data);
 
+            toast.success("Berhasil daftar kursus");
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error: any) {
+            if (error.response?.data?.message) {
+                toast.error(error.response.data.message);
+            } else {
+                toast.error("Gagal daftar kursus");
+            }
         }
-    }
+    };
+
 
 
 

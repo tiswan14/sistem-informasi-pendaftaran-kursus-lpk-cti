@@ -42,6 +42,39 @@ export async function POST(request: Request) {
             );
         }
 
+        // ✅ Cek apakah user sudah mendaftar ke kursus ini sebelumnya
+        const sudahTerdaftar = await prisma.pendaftaran.findFirst({
+            where: {
+                userId,
+                kursusId
+            }
+        });
+
+        if (sudahTerdaftar) {
+            return NextResponse.json(
+                { message: "Anda sudah mendaftar pada kursus ini." },
+                { status: 400 }
+            );
+        }
+
+        // ✅ Cek apakah user sedang menjalani kursus yang belum selesai
+        const kursusBelumSelesai = await prisma.pendaftaran.findFirst({
+            where: {
+                userId,
+                status: {
+                    not: "Selesai"
+                }
+            }
+        });
+
+        if (kursusBelumSelesai) {
+            return NextResponse.json(
+                { message: "Anda harus menyelesaikan kursus sebelumnya terlebih dahulu." },
+                { status: 400 }
+            );
+        }
+
+        // ✅ Buat pendaftaran
         const pendaftaran = await prisma.pendaftaran.create({
             data: {
                 user: { connect: { id: userId } },
@@ -76,3 +109,4 @@ export async function POST(request: Request) {
         );
     }
 }
+
