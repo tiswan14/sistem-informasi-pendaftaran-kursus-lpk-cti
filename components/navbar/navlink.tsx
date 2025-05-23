@@ -97,6 +97,15 @@ const Navlink = () => {
                                 Riwayat Pendaftaran
                             </Link>
                         </li>
+
+                        <li>
+                            <Link
+                                href="/pembayaran"
+                                className="block py-2 px-4 text-gray-800 hover:bg-gray-200 rounded-md transition duration-300 ease-in-out md:hover:bg-transparent md:p-0"
+                            >
+                                Pembayaran
+                            </Link>
+                        </li>
                         <li className="block md:hidden">
                             <Link
                                 href="/profil"

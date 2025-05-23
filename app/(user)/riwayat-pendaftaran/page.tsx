@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/navbar/navbar";
-import { History, FileSearch, BookOpen, CalendarDays, BadgeAlert, ChevronRight, Download, PlusCircle, Info } from 'lucide-react';
+import { History, FileSearch, BookOpen, CalendarDays, BadgeAlert, ChevronRight, Download, PlusCircle, Info, ArrowRightCircle } from 'lucide-react';
+import Link from "next/link";
 
 const RiwayatPendaftaranPage = () => {
     const [riwayatPendaftaran, setRiwayatPendaftaran] = useState([]);
@@ -89,12 +90,23 @@ const RiwayatPendaftaranPage = () => {
                                         </button>
                                     </div>
 
-                                    {pendaftaran.status === 'Diterima' && (
+                                    {pendaftaran.status === 'Lulus' && (
                                         <div className="mt-4 pt-3 border-t border-gray-100">
                                             <button className="flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm font-medium">
                                                 <Download className="w-4 h-4" />
                                                 Unduh Sertifikat
                                             </button>
+                                        </div>
+                                    )}
+
+                                    {pendaftaran.status === 'Diterima' && (
+                                        <div className="mt-4 pt-4 border-t border-gray-100 flex justify-end">
+                                            <Link href={`/pembayaran`}>
+                                                <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg flex items-center gap-2 transition-colors shadow-sm hover:shadow-md">
+                                                    <ArrowRightCircle className="w-4 h-4" />
+                                                    Lanjut ke Pembayaran
+                                                </button>
+                                            </Link>
                                         </div>
                                     )}
                                     <div className="mt-4 flex items-start gap-2 p-2 bg-blue-50 rounded-lg">

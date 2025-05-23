@@ -1,7 +1,8 @@
 "use client";
 import { formatRupiah } from "@/utils/formatRupiah";
 import { useEffect, useState } from "react";
-import { FaTrash } from "react-icons/fa";
+import { FaEye, FaTrash } from "react-icons/fa";
+import { toast } from "react-toastify";
 
 interface Pendaftar {
     createdAt: string | number | Date;
@@ -36,6 +37,8 @@ const Tooltip = ({ content, children }: { content: string; children: React.React
         </div>
     );
 };
+
+
 
 const PendaftarTable = () => {
     const [pendaftarData, setPendaftarData] = useState<Pendaftar[]>([]);
@@ -73,6 +76,32 @@ const PendaftarTable = () => {
             setDeleteId(null);
         } catch (error) {
             console.error("Error:", error);
+        }
+    };
+
+
+    const handleStatusChange = async (id: string, newStatus: string) => {
+        try {
+            const response = await fetch(`/api/pendaftaran/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: newStatus }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Gagal memperbarui status');
+            }
+
+            // Update local state
+            setPendaftarData(pendaftarData.map(pendaftar =>
+                pendaftar.id === id ? { ...pendaftar, status: newStatus } : pendaftar
+            ));
+
+        } catch (error) {
+            console.error('Error:', error);
+            toast.error('Gagal memperbarui status');
         }
     };
 
@@ -152,21 +181,25 @@ const PendaftarTable = () => {
                                 <td className="px-6 py-4 whitespace-nowrap">{formatRupiah(pendaftar.kursus?.harga) || "-"}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{new Date(pendaftar.createdAt).toLocaleDateString()}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
-                                        {pendaftar.status}
-                                    </span>
+                                    <select
+                                        value={pendaftar.status}
+                                        onChange={(e) => handleStatusChange(pendaftar.id, e.target.value)}
+                                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full appearance-none focus:outline-none focus:ring-1 focus:ring-opacity-50
+                                        ${pendaftar.status === 'Belum verifikasi' ? 'bg-gray-100 text-gray-800 focus:ring-gray-500' :
+                                                pendaftar.status === 'Diterima' ? 'bg-green-100 text-green-800 focus:ring-green-500' :
+                                                    pendaftar.status === 'Ditolak' ? 'bg-red-100 text-red-800 focus:ring-red-500' :
+                                                        pendaftar.status === 'Lulus' ? 'bg-indigo-100 text-indigo-800 focus:ring-indigo-500' :
+                                                            'bg-yellow-100 text-yellow-800 focus:ring-yellow-500'}`}
+                                    >
+                                        <option value="Belum verifikasi">Belum verifikasi</option>
+                                        <option value="Diterima">Diterima</option>
+                                        <option value="Ditolak">Ditolak</option>
+                                        <option value="Lulus">Lulus</option>
+                                    </select>
                                 </td>
+
                                 <td className="px-6 py-4 whitespace-nowrap text-center">
                                     <div className="flex justify-center space-x-3">
-                                        {/* <Tooltip content="Lihat Detail">
-                                            <a
-                                                href={`/dashboard/pendaftar/${pendaftar.id}`}
-                                                className="bg-green-600 hover:bg-green-700 p-2 rounded-md"
-                                                aria-label="Detail"
-                                            >
-                                                <FaEye className="h-4 w-4 text-white" />
-                                            </a>
-                                        </Tooltip> */}
 
                                         <Tooltip content="Hapus">
                                             <button
