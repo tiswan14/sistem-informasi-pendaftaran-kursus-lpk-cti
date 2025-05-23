@@ -1,7 +1,7 @@
 "use client";
 import { formatRupiah } from "@/utils/formatRupiah";
 import { useEffect, useState } from "react";
-import { FaEye, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 interface Pendaftar {

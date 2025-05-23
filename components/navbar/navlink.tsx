@@ -38,10 +38,12 @@ const Navlink = () => {
 
                     {/* Dropdown */}
                     <div className="absolute top-10 right-0 w-40 bg-white shadow-lg rounded-lg flex-col z-50 hidden group-hover:flex">
-                        <button className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-200">
-                            <FaUser className="w-4 h-4" />
-                            Profil
-                        </button>
+                        <Link href="/peserta/profile">
+                            <button className="cursor-pointer flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 border-b border-gray-200">
+                                <FaUser className="w-4 h-4" />
+                                Profil
+                            </button>
+                        </Link>
                         <button
                             onClick={() => signOut()}
 
