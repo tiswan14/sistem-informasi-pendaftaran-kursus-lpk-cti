@@ -6,24 +6,8 @@ import { BookOpen, User, BookmarkPlus, MessageCircleMore, CalendarDays, Clock3, 
 import { useSession } from "next-auth/react";
 import axios from "axios";
 import { toast } from "react-toastify";
-interface Kursus {
-    id: string;
-    nama: string;
-    deskripsi: string;
-    harga: number;
-    lamaKursus: number;
-    tanggalMulai: Date;
-    tanggalSelesai: Date;
-    userId: string;
-    user: {
-        id: string;
-        nama: string;
-    }
-}
+import { Kursus, KursusDetailProps } from '@/types/kursus';
 
-interface KursusDetailProps {
-    kursusId: string;
-}
 
 const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
     const [kursus, setKursus] = useState<Kursus | null>(null);

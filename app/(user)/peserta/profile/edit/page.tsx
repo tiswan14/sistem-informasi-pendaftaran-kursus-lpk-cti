@@ -358,7 +358,7 @@ const EditProfilePage = () => {
                 ) : (
                     <div className="p-4 bg-yellow-50 rounded-lg text-amber-600 flex items-center gap-2">
                         <AlertTriangle className="w-5 h-5" />
-                        Data profil tidak ditemukan
+                        Data profil tidakk ditemukan
                     </div>
                 )}
             </main>
