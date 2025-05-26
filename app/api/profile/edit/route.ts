@@ -27,12 +27,13 @@ export async function PATCH(request: Request) {
             "tahunAkademik", "keahlian"
         ];
 
-        const dataToUpdate: any = {};
+        const dataToUpdate: { [key: string]: any } = {};
         for (const key of allowedFields) {
             if (body[key] !== undefined) {
                 dataToUpdate[key] = body[key];
             }
         }
+
 
         if (Object.keys(dataToUpdate).length === 0) {
             return NextResponse.json(

@@ -18,8 +18,6 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { toast } from "react-toastify";
-import { redirect } from "next/navigation";
 
 interface Profile {
     nama: string;
