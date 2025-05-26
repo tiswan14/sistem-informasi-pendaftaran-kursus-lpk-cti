@@ -27,6 +27,7 @@ export async function PATCH(request: Request) {
             "tahunAkademik", "keahlian"
         ];
 
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const dataToUpdate: { [key: string]: any } = {};
         for (const key of allowedFields) {
             if (body[key] !== undefined) {
