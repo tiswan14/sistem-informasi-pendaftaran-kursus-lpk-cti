@@ -18,27 +18,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import clsx from 'clsx';
-
-
-// Definisikan tipe data profil
-interface Profile {
-    nama: string;
-    email: string;
-    image?: string;
-    role: string;
-    nik?: string;
-    jenisKelamin?: string;
-    tempatLahir?: string;
-    tanggalLahir?: string;
-    agama?: string;
-    noHp?: string;
-    mediaSosial?: string;
-    jurusan?: string;
-    tahunAkademik?: string;
-    keahlian?: string;
-    createdAt: string;
-}
-
+import { Profile } from '@/types/profile';
 
 const ProfilePage = () => {
     const [profile, setProfile] = useState<Profile | null>(null);
