@@ -8,17 +8,16 @@ import Footer from '@/components/footer/footer';
 import ProfileField from '@/components/ProfileField';
 import {
     User, Mail, Calendar, BookOpen,
-    Phone, Globe, GraduationCap, Award,
+    Phone, Globe, GraduationCap,
     Cake, Bookmark, Clock,
     AlertCircle,
     AlertTriangle,
     VenusAndMars,
     Edit2,
-    Badge,
-    ShieldUser,
     ClipboardList
 } from 'lucide-react';
-import { HiIdentification } from 'react-icons/hi';
+import Link from 'next/link';
+import clsx from 'clsx';
 
 
 // Definisikan tipe data profil
@@ -45,6 +44,7 @@ const ProfilePage = () => {
     const [profile, setProfile] = useState<Profile | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const [isLoading] = useState(false);
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -74,13 +74,13 @@ const ProfilePage = () => {
                     <div className="flex items-center gap-5">
                         {/* Icon with modern gradient circle */}
                         <div className="flex items-center justify-center h-16 w-16 rounded-full bg-gradient-to-tr from-indigo-500 to-blue-600 shadow-lg">
-                            <ClipboardList className="h-7 w-7 text-white" />
+                            <ClipboardList className="h-5 w-5 text-white" />
                         </div>
 
                         {/* Text container */}
                         <div>
                             {/* Main title with subtle tracking */}
-                            <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 tracking-tight">
+                            <h1 className="text-xl sm:text-3xl font-bold text-gray-800 tracking-tight">
                                 Profil Peserta
                             </h1>
 
@@ -120,10 +120,10 @@ const ProfilePage = () => {
                                                 src={profile.image}
                                                 alt="Profile"
                                                 className="w-full h-full object-cover"
-                                                onError={(e) => {
-                                                    e.target.onerror = null;
-                                                    e.target.src = '';
-                                                }}
+                                            // onError={(e) => {
+                                            //     e.target.onerror = null;
+                                            //     e.target.src = '';
+                                            // }}
                                             />
                                         ) : (
                                             <User className="w-12 h-12 md:w-16 md:h-16 text-gray-400" />
@@ -165,13 +165,34 @@ const ProfilePage = () => {
 
                         {/* Edit button */}
                         <div className="flex justify-end px-6 pt-4 pb-2 sm:pt-6">
-                            <button
-                                className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 text-sm md:text-base"
-                                onClick={() => {/* Handle edit profile */ }}
-                            >
-                                <Edit2 className="w-4 h-4" />
-                                <span>Edit Profil</span>
-                            </button>
+                            <Link href="/peserta/profile/edit">
+                                <button
+                                    className={clsx(
+                                        "cursor-pointer flex items-center gap-2 text-white px-4 py-2 rounded-lg transition-colors duration-200 text-sm md:text-base",
+                                        {
+                                            "bg-blue-600 hover:bg-blue-700": !isLoading,
+                                            "bg-blue-400 cursor-not-allowed": isLoading
+                                        }
+                                    )}
+                                    onClick={() => {/* Handle edit profile */ }}
+                                    disabled={isLoading}
+                                >
+                                    {isLoading ? (
+                                        <>
+                                            <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                            </svg>
+                                            <span>Memproses...</span>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Edit2 className="w-4 h-4" />
+                                            <span>Edit Profil</span>
+                                        </>
+                                    )}
+                                </button>
+                            </Link>
                         </div>
 
                         {/* Profile Details */}
@@ -228,13 +249,6 @@ const ProfilePage = () => {
                                 label="Tahun Akademik"
                                 value={profile.tahunAkademik || 'Belum diisi'}
                             />
-                            <div className="md:col-span-2">
-                                <ProfileField
-                                    icon={<Award className="w-5 h-5 text-yellow-500" />}
-                                    label="Keahlian"
-                                    value={profile.keahlian || 'Belum diisi'}
-                                />
-                            </div>
                         </div>
 
                         <div className="px-6 py-3 bg-gray-50 border-t border-gray-100 text-xs md:text-sm text-gray-500 flex items-center gap-2">

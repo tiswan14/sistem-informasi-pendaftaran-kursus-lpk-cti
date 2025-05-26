@@ -37,7 +37,7 @@ const KursusPage = () => {
         <>
             <Navbar />
             <div className="px-4 py-32">
-                <div className="text-center mb-16 px-4 py-8 bg-gradient-to-b from-blue-50 to-white rounded-xl">
+                {/* <div className="text-center mb-16 px-4 py-8 bg-gradient-to-b from-blue-50 to-white rounded-xl">
                     <div className="inline-flex items-center mb-6 px-4 py-2 bg-blue-100 rounded-full">
                         <BookOpen className="w-5 h-5 mr-2 text-blue-600" />
                         <span className="font-medium text-blue-700">KURSUS & PKL PROFESIONAL</span>
@@ -72,7 +72,8 @@ const KursusPage = () => {
                             <span>Program <span className="font-semibold text-blue-600">Kursus + PKL</span> dengan jaminan sertifikasi kompetensi</span>
                         </p>
                     </div>
-                </div>
+                </div> */}
+                <h1 className="text-2xl font-bold text-gray-800 text-center mb-8">Daftar Kursus</h1>
 
 
                 <div className="grid place-items-center grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">

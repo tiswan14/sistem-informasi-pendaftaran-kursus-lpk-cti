@@ -37,13 +37,17 @@ const RiwayatPendaftaranPage = () => {
                         <div className="flex flex-col items-center justify-center p-12 bg-white rounded-lg shadow-sm border border-gray-200 text-center">
                             <FileSearch className="w-12 h-12 text-gray-400 mb-4" />
                             <p className="text-gray-600 mb-2">Tidak ada riwayat pendaftaran</p>
-                            <button
-                                className="text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1"
-                                onClick={() => {/* Add navigation to courses */ }}
-                            >
-                                <PlusCircle className="w-4 h-4" />
-                                Daftar Kursus Sekarang
-                            </button>
+                            <Link href={"/kursus"}>
+                                <button
+                                    className="cursor-pointer text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1"
+                                    onClick={() => {
+                                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                                    }}
+                                >
+                                    <PlusCircle className="w-4 h-4" />
+                                    Daftar Kursus Sekarang
+                                </button>
+                            </Link>
                         </div>
                     ) : (
                         <ul className="space-y-4">
@@ -120,7 +124,7 @@ const RiwayatPendaftaranPage = () => {
                         </ul>
                     )}
                 </div>
-            </div>
+            </div >
             <Footer />
         </>
     );
