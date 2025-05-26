@@ -18,24 +18,8 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { Profile } from "@/types/profile";
 
-interface Profile {
-    nama: string;
-    email: string;
-    image?: string;
-    role: string;
-    nik?: string;
-    jenisKelamin?: string;
-    tempatLahir?: string;
-    tanggalLahir?: string;
-    agama?: string;
-    noHp?: string;
-    mediaSosial?: string;
-    jurusan?: string;
-    tahunAkademik?: string;
-    keahlian?: string;
-    createdAt: string;
-}
 
 const EditProfilePage = () => {
     const { register, handleSubmit, formState: { errors, isDirty, dirtyFields }, reset } = useForm<Profile>();
