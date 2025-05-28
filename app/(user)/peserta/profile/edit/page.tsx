@@ -19,9 +19,13 @@ import {
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { Profile } from "@/types/profile";
+import { toast } from "react-toastify";
+import { redirect } from "next/navigation";
+
 
 
 const EditProfilePage = () => {
+
     const { register, handleSubmit, formState: { errors, isDirty, dirtyFields }, reset } = useForm<Profile>();
 
     const [profile, setProfile] = useState<Profile | null>(null);
@@ -52,6 +56,9 @@ const EditProfilePage = () => {
         fetchProfile();
     }, [reset]);
 
+
+
+
     const onSubmit = async (data: Profile) => {
         setIsSubmitting(true);
         setSubmitError(null);
@@ -68,6 +75,10 @@ const EditProfilePage = () => {
             setProfile(response.data);
             setSubmitSuccess(true);
             reset(response.data, { keepValues: true });
+            toast.success('Profil berhasil diperbarui');
+            setTimeout(() => {
+                redirect('/peserta/profile');
+            }, 500);
 
 
         } catch (err) {
@@ -256,12 +267,20 @@ const EditProfilePage = () => {
                                         <BookOpen className="w-5 h-5 text-green-500" />
                                         Agama
                                     </label>
-                                    <input
-                                        type="text"
-                                        {...register("agama")}
+                                    <select
+                                        {...register("agama", { required: "Agama wajib dipilih" })}
                                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                        placeholder="Masukkan agama"
-                                    />
+                                    >
+                                        <option value="">-- Pilih Agama --</option>
+                                        <option value="Islam">Islam</option>
+                                        <option value="Kristen">Kristen</option>
+                                        <option value="Katolik">Katolik</option>
+                                        <option value="Hindu">Hindu</option>
+                                        <option value="Buddha">Buddha</option>
+                                        <option value="Konghucu">Konghucu</option>
+                                        <option value="Lainnya">Lainnya</option>
+                                    </select>
+
                                 </div>
 
                                 <div className="space-y-1">
@@ -328,7 +347,7 @@ const EditProfilePage = () => {
                                 <Link href="/peserta/profile">
                                     <button
                                         type="button"
-                                        className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
+                                        className="cursor-pointer flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-gray-800 transition-colors"
                                     >
                                         <ArrowLeft className="w-4 h-4" />
                                         <span>Kembali</span>
@@ -337,7 +356,7 @@ const EditProfilePage = () => {
 
                                 <button
                                     type="submit"
-                                    className="flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="cursor-pointer flex items-center gap-2 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                     disabled={isSubmitting || !isDirty}
                                 >
                                     {isSubmitting ? (

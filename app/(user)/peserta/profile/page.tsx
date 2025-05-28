@@ -3,8 +3,6 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navbar from '@/components/navbar/navbar';
-import Footer from '@/components/footer/footer';
 import ProfileField from '@/components/ProfileField';
 import {
     User, Mail, Calendar, BookOpen,
@@ -47,8 +45,7 @@ const ProfilePage = () => {
     }, []);
 
     return (
-        <div className="min-h-screen flex flex-col bg-gray-50 py-24">
-            <Navbar />
+        <div className="min-h-screen flex flex-col bg-gray-50 py-18">
             <main className="flex-1 max-w-4xl mx-auto w-full p-4 py-8 md:py-12">
                 <div className="px-4 sm:px-0">
                     <div className="flex items-center gap-5">
@@ -250,7 +247,6 @@ const ProfilePage = () => {
                 )}
             </main>
 
-            <Footer />
         </div>
     );
 };
