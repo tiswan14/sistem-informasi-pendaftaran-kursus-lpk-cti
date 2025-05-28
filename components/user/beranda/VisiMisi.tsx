@@ -12,7 +12,7 @@ import {
 
 const VisiMisi = () => {
     return (
-        <section className="py-16 px-4 bg-gradient-to-b from-blue-50 to-white">
+        <section className="py-16 px-4 bg-gradient-to-b from-blue-50 to-white" id='visi-misi'>
             <div className="max-w-6xl mx-auto">
                 {/* Header with decorative elements */}
                 <div className="text-center mb-16 relative">

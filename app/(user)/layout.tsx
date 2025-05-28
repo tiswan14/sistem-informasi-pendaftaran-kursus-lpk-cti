@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function UserLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen scroll-smooth">
             <Navbar />
 
             <main className="flex-1 bg-white">

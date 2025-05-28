@@ -15,7 +15,7 @@ import {
 
 const Akreditasi = () => {
     return (
-        <section className="py-16 px-4 bg-gray-50">
+        <section className="py-16 px-4 bg-gray-50" id='akreditasi'>
             <div className="max-w-6xl mx-auto">
                 {/* Header with decorative element */}
                 <div className="text-center mb-12">

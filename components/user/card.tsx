@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
-import { Bookmark, UserCircle, IndianRupee, Users, ArrowRight } from 'lucide-react';
+import { UserCircle, Users, ArrowRight } from 'lucide-react';
 
 interface Kursus {
+    [x: string]: any;
     id: string;
     nama: string;
     harga: number;
     createdAt: string;
-    kapasitas?: number; // misal kalau ada data kapasitas
+    kapasitas?: number;
 }
 
 interface CardProps {

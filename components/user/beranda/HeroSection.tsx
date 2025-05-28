@@ -5,7 +5,7 @@ const HeroSection = () => {
         <section className="text-center mb-16 px-4 py-40 bg-gradient-to-b from-blue-50 to-white rounded-xl">
             <div className="inline-flex items-center mb-6 px-4 py-2 bg-blue-100 rounded-full">
                 <BookOpen className="w-5 h-5 mr-2 text-blue-600" />
-                <span className="font-medium text-blue-700">LPK CIPTA TUNGGAL INDONESIA CIAMIS</span>
+                <span className="font-medium text-blue-700">LPK CIPTA TUNGGA INDONESIA CIAMIS</span>
             </div>
 
             <h1 className="text-4xl font-bold text-gray-800 mb-6 leading-tight">
