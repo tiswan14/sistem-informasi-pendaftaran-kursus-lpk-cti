@@ -1,8 +1,8 @@
 // file: components/user/kursus/KursusDetail.tsx
 "use client";
 import { formatTanggalIndonesia } from "@/utils/formatTanggal";
-import React, { useEffect, useState } from "react";
-import { BookOpen, User, BookmarkPlus, MessageCircleMore, CalendarDays, Clock3, IndianRupee, CalendarCheck2 } from 'lucide-react';
+import { useEffect, useState } from "react";
+import { BookOpen, User, MessageCircleMore, CalendarDays, Clock3, CalendarCheck2, Banknote, Lightbulb, Laptop2 } from 'lucide-react';
 import { useSession } from "next-auth/react";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -98,7 +98,7 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                 <div className="space-y-2">
                     <div className="flex items-center gap-2 text-blue-600">
                         <BookOpen className="w-5 h-5" />
-                        <span className="text-sm font-medium">Kursus</span>
+                        <span className="text-sm font-medium">Detail Kursus</span>
                     </div>
                     <h1 className="text-2xl font-bold text-gray-900">{kursus.nama}</h1>
                 </div>
@@ -115,7 +115,7 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
             {/* Description */}
             <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-sm">
                 <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                    <BookOpen className="w-5 h-5 text-indigo-600" />
+                    <Lightbulb className="w-5 h-5 text-indigo-600" />
                     Tentang Kursus
                 </h3>
                 <p className="text-gray-700 leading-relaxed">{kursus.deskripsi}</p>
@@ -123,18 +123,20 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
 
             {/* Stats Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                {/* Harga */}
                 <div className="p-5 border rounded-xl bg-white hover:shadow-md transition-shadow duration-300 group">
                     <div className="flex items-center gap-4">
                         <div className="p-3 rounded-full bg-blue-100 group-hover:bg-blue-200 transition-colors">
-                            <IndianRupee className="w-6 h-6 text-blue-600" />
+                            <Banknote className="w-6 h-6 text-blue-600" />
                         </div>
                         <div>
                             <p className="text-sm text-gray-500">Harga</p>
-                            <p className="font-bold text-lg">Rp{kursus.harga.toLocaleString()}</p>
+                            <p className="font-bold">Rp {kursus.harga.toLocaleString()}</p>
                         </div>
                     </div>
                 </div>
 
+                {/* Durasi Belajar */}
                 <div className="p-5 border rounded-xl bg-white hover:shadow-md transition-shadow duration-300 group">
                     <div className="flex items-center gap-4">
                         <div className="p-3 rounded-full bg-green-100 group-hover:bg-green-200 transition-colors">
@@ -142,11 +144,12 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                         </div>
                         <div>
                             <p className="text-sm text-gray-500">Durasi Belajar</p>
-                            <p className="font-bold text-lg">{kursus.lamaKursus} bulan</p>
+                            <p className="font-bold">{kursus.lamaKursus} bulan</p>
                         </div>
                     </div>
                 </div>
 
+                {/* Mulai Belajar */}
                 <div className="p-5 border rounded-xl bg-white hover:shadow-md transition-shadow duration-300 group">
                     <div className="flex items-center gap-4">
                         <div className="p-3 rounded-full bg-purple-100 group-hover:bg-purple-200 transition-colors">
@@ -154,11 +157,12 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                         </div>
                         <div>
                             <p className="text-sm text-gray-500">Mulai Belajar</p>
-                            <p className="font-bold text-lg">{formatTanggalIndonesia(kursus.tanggalMulai)}</p>
+                            <p className="font-bold">{formatTanggalIndonesia(kursus.tanggalMulai)}</p>
                         </div>
                     </div>
                 </div>
 
+                {/* Selesai Pada */}
                 <div className="p-5 border rounded-xl bg-white hover:shadow-md transition-shadow duration-300 group">
                     <div className="flex items-center gap-4">
                         <div className="p-3 rounded-full bg-pink-100 group-hover:bg-pink-200 transition-colors">
@@ -166,7 +170,7 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                         </div>
                         <div>
                             <p className="text-sm text-gray-500">Selesai Pada</p>
-                            <p className="font-bold text-lg">{formatTanggalIndonesia(kursus.tanggalSelesai)}</p>
+                            <p className="font-bold">{formatTanggalIndonesia(kursus.tanggalSelesai)}</p>
                         </div>
                     </div>
                 </div>
@@ -174,12 +178,14 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-                <button onClick={handleDaftar}
-                    className="flex-1 py-4 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-3 transform hover:-translate-y-1"
+                <button
+                    onClick={handleDaftar}
+                    className="cursor-pointer flex-1 py-4 px-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-xl hover:from-blue-600 hover:to-blue-500 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 transform hover:-translate-y-1"
                 >
-                    <BookmarkPlus className="w-5 h-5" />
-                    <span>Daftar Sekarang</span>
+                    <Laptop2 className="w-5 h-5" />
+                    <span>Daftar Kursus</span>
                 </button>
+
 
                 <button
                     className="flex-1 py-4 px-6 bg-white text-gray-800 font-medium rounded-xl border border-gray-200 hover:border-indigo-300 hover:text-indigo-700 transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-3"

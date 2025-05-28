@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Footer from "@/components/footer/footer";
 import Navbar from "@/components/navbar/navbar";
-import { History, FileSearch, BookOpen, CalendarDays, BadgeAlert, ChevronRight, Download, PlusCircle, Info, ArrowRightCircle } from 'lucide-react';
+import { History, FileSearch, BookOpen, CalendarDays, BadgeAlert, ChevronRight, PlusCircle, Info, ArrowRightCircle, FileText } from 'lucide-react';
 import Link from "next/link";
 
 const RiwayatPendaftaranPage = () => {
@@ -96,19 +97,27 @@ const RiwayatPendaftaranPage = () => {
 
                                     {pendaftaran.status === 'Lulus' && (
                                         <div className="mt-4 pt-3 border-t border-gray-100">
-                                            <button className="flex items-center gap-2 text-blue-600 hover:text-blue-800 text-sm font-medium">
-                                                <Download className="w-4 h-4" />
-                                                Unduh Sertifikat
-                                            </button>
+                                            <Link href={`/sertifikat`}>
+                                                <button className="flex items-center gap-3 px-4 py-2 rounded-lg 
+                  bg-gradient-to-r from-blue-50 to-blue-100
+                  hover:from-blue-100 hover:to-blue-200
+                  border border-blue-200
+                  transition-all duration-300">
+                                                    <FileText className="w-5 h-5 text-blue-700" />
+                                                    <span className="text-blue-700 font-medium text-sm">
+                                                        Lihat Sertifikat
+                                                    </span>
+                                                </button>
+                                            </Link>
                                         </div>
                                     )}
 
                                     {pendaftaran.status === 'Diterima' && (
-                                        <div className="mt-4 pt-4 border-t border-gray-100 flex justify-end">
-                                            <Link href={`/pembayaran`}>
+                                        <div className="mt-4 pt-4 border-t border-gray-100 flex justify-start">
+                                            <Link href={`/pembayaran/${pendaftaran.id}`}>
                                                 <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg flex items-center gap-2 transition-colors shadow-sm hover:shadow-md">
                                                     <ArrowRightCircle className="w-4 h-4" />
-                                                    Lanjut ke Pembayaran
+                                                    Lanjut Pembayaran
                                                 </button>
                                             </Link>
                                         </div>

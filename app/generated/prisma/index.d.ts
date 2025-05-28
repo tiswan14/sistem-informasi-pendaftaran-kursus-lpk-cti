@@ -48,11 +48,6 @@ export type Pendaftaran = $Result.DefaultSelection<Prisma.$PendaftaranPayload>
  * 
  */
 export type Pembayaran = $Result.DefaultSelection<Prisma.$PembayaranPayload>
-/**
- * Model HistoriKursus
- * 
- */
-export type HistoriKursus = $Result.DefaultSelection<Prisma.$HistoriKursusPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -248,16 +243,6 @@ export class PrismaClient<
     * ```
     */
   get pembayaran(): Prisma.PembayaranDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.historiKursus`: Exposes CRUD operations for the **HistoriKursus** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more HistoriKursuses
-    * const historiKursuses = await prisma.historiKursus.findMany()
-    * ```
-    */
-  get historiKursus(): Prisma.HistoriKursusDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -704,8 +689,7 @@ export namespace Prisma {
     User: 'User',
     Kursus: 'Kursus',
     Pendaftaran: 'Pendaftaran',
-    Pembayaran: 'Pembayaran',
-    HistoriKursus: 'HistoriKursus'
+    Pembayaran: 'Pembayaran'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -724,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "account" | "session" | "verificationToken" | "user" | "kursus" | "pendaftaran" | "pembayaran" | "historiKursus"
+      modelProps: "account" | "session" | "verificationToken" | "user" | "kursus" | "pendaftaran" | "pembayaran"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1246,80 +1230,6 @@ export namespace Prisma {
           }
         }
       }
-      HistoriKursus: {
-        payload: Prisma.$HistoriKursusPayload<ExtArgs>
-        fields: Prisma.HistoriKursusFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.HistoriKursusFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HistoriKursusPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.HistoriKursusFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HistoriKursusPayload>
-          }
-          findFirst: {
-            args: Prisma.HistoriKursusFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HistoriKursusPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.HistoriKursusFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HistoriKursusPayload>
-          }
-          findMany: {
-            args: Prisma.HistoriKursusFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HistoriKursusPayload>[]
-          }
-          create: {
-            args: Prisma.HistoriKursusCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HistoriKursusPayload>
-          }
-          createMany: {
-            args: Prisma.HistoriKursusCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.HistoriKursusCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HistoriKursusPayload>[]
-          }
-          delete: {
-            args: Prisma.HistoriKursusDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HistoriKursusPayload>
-          }
-          update: {
-            args: Prisma.HistoriKursusUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HistoriKursusPayload>
-          }
-          deleteMany: {
-            args: Prisma.HistoriKursusDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.HistoriKursusUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.HistoriKursusUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HistoriKursusPayload>[]
-          }
-          upsert: {
-            args: Prisma.HistoriKursusUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$HistoriKursusPayload>
-          }
-          aggregate: {
-            args: Prisma.HistoriKursusAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateHistoriKursus>
-          }
-          groupBy: {
-            args: Prisma.HistoriKursusGroupByArgs<ExtArgs>
-            result: $Utils.Optional<HistoriKursusGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.HistoriKursusCountArgs<ExtArgs>
-            result: $Utils.Optional<HistoriKursusCountAggregateOutputType> | number
-          }
-        }
-      }
     }
   } & {
     other: {
@@ -1411,7 +1321,6 @@ export namespace Prisma {
     kursus?: KursusOmit
     pendaftaran?: PendaftaranOmit
     pembayaran?: PembayaranOmit
-    historiKursus?: HistoriKursusOmit
   }
 
   /* Types for Logging */
@@ -1510,7 +1419,6 @@ export namespace Prisma {
     Account: number
     Session: number
     Pendaftaran: number
-    HistoriKursus: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1518,7 +1426,6 @@ export namespace Prisma {
     Account?: boolean | UserCountOutputTypeCountAccountArgs
     Session?: boolean | UserCountOutputTypeCountSessionArgs
     Pendaftaran?: boolean | UserCountOutputTypeCountPendaftaranArgs
-    HistoriKursus?: boolean | UserCountOutputTypeCountHistoriKursusArgs
   }
 
   // Custom InputTypes
@@ -1560,13 +1467,6 @@ export namespace Prisma {
     where?: PendaftaranWhereInput
   }
 
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountHistoriKursusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HistoriKursusWhereInput
-  }
-
 
   /**
    * Count Type KursusCountOutputType
@@ -1574,12 +1474,10 @@ export namespace Prisma {
 
   export type KursusCountOutputType = {
     Pendaftaran: number
-    HistoriKursus: number
   }
 
   export type KursusCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Pendaftaran?: boolean | KursusCountOutputTypeCountPendaftaranArgs
-    HistoriKursus?: boolean | KursusCountOutputTypeCountHistoriKursusArgs
   }
 
   // Custom InputTypes
@@ -1598,13 +1496,6 @@ export namespace Prisma {
    */
   export type KursusCountOutputTypeCountPendaftaranArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PendaftaranWhereInput
-  }
-
-  /**
-   * KursusCountOutputType without action
-   */
-  export type KursusCountOutputTypeCountHistoriKursusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HistoriKursusWhereInput
   }
 
 
@@ -5097,7 +4988,6 @@ export namespace Prisma {
     Account?: boolean | User$AccountArgs<ExtArgs>
     Session?: boolean | User$SessionArgs<ExtArgs>
     Pendaftaran?: boolean | User$PendaftaranArgs<ExtArgs>
-    HistoriKursus?: boolean | User$HistoriKursusArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -5176,7 +5066,6 @@ export namespace Prisma {
     Account?: boolean | User$AccountArgs<ExtArgs>
     Session?: boolean | User$SessionArgs<ExtArgs>
     Pendaftaran?: boolean | User$PendaftaranArgs<ExtArgs>
-    HistoriKursus?: boolean | User$HistoriKursusArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5189,7 +5078,6 @@ export namespace Prisma {
       Account: Prisma.$AccountPayload<ExtArgs>[]
       Session: Prisma.$SessionPayload<ExtArgs>[]
       Pendaftaran: Prisma.$PendaftaranPayload<ExtArgs>[]
-      HistoriKursus: Prisma.$HistoriKursusPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5610,7 +5498,6 @@ export namespace Prisma {
     Account<T extends User$AccountArgs<ExtArgs> = {}>(args?: Subset<T, User$AccountArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Session<T extends User$SessionArgs<ExtArgs> = {}>(args?: Subset<T, User$SessionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Pendaftaran<T extends User$PendaftaranArgs<ExtArgs> = {}>(args?: Subset<T, User$PendaftaranArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendaftaranPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    HistoriKursus<T extends User$HistoriKursusArgs<ExtArgs> = {}>(args?: Subset<T, User$HistoriKursusArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6144,30 +6031,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.HistoriKursus
-   */
-  export type User$HistoriKursusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusInclude<ExtArgs> | null
-    where?: HistoriKursusWhereInput
-    orderBy?: HistoriKursusOrderByWithRelationInput | HistoriKursusOrderByWithRelationInput[]
-    cursor?: HistoriKursusWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HistoriKursusScalarFieldEnum | HistoriKursusScalarFieldEnum[]
-  }
-
-  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6430,7 +6293,6 @@ export namespace Prisma {
     userId?: boolean
     user?: boolean | Kursus$userArgs<ExtArgs>
     Pendaftaran?: boolean | Kursus$PendaftaranArgs<ExtArgs>
-    HistoriKursus?: boolean | Kursus$HistoriKursusArgs<ExtArgs>
     _count?: boolean | KursusCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["kursus"]>
 
@@ -6479,7 +6341,6 @@ export namespace Prisma {
   export type KursusInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | Kursus$userArgs<ExtArgs>
     Pendaftaran?: boolean | Kursus$PendaftaranArgs<ExtArgs>
-    HistoriKursus?: boolean | Kursus$HistoriKursusArgs<ExtArgs>
     _count?: boolean | KursusCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type KursusIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6494,7 +6355,6 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs> | null
       Pendaftaran: Prisma.$PendaftaranPayload<ExtArgs>[]
-      HistoriKursus: Prisma.$HistoriKursusPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6903,7 +6763,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends Kursus$userArgs<ExtArgs> = {}>(args?: Subset<T, Kursus$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Pendaftaran<T extends Kursus$PendaftaranArgs<ExtArgs> = {}>(args?: Subset<T, Kursus$PendaftaranArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendaftaranPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    HistoriKursus<T extends Kursus$HistoriKursusArgs<ExtArgs> = {}>(args?: Subset<T, Kursus$HistoriKursusArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7379,30 +7238,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: PendaftaranScalarFieldEnum | PendaftaranScalarFieldEnum[]
-  }
-
-  /**
-   * Kursus.HistoriKursus
-   */
-  export type Kursus$HistoriKursusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusInclude<ExtArgs> | null
-    where?: HistoriKursusWhereInput
-    orderBy?: HistoriKursusOrderByWithRelationInput | HistoriKursusOrderByWithRelationInput[]
-    cursor?: HistoriKursusWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: HistoriKursusScalarFieldEnum | HistoriKursusScalarFieldEnum[]
   }
 
   /**
@@ -8565,6 +8400,9 @@ export namespace Prisma {
     metode: string | null
     jumlah: number | null
     buktiBayar: string | null
+    snapToken: string | null
+    redirectUrl: string | null
+    waktuBayar: Date | null
     status: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8576,6 +8414,9 @@ export namespace Prisma {
     metode: string | null
     jumlah: number | null
     buktiBayar: string | null
+    snapToken: string | null
+    redirectUrl: string | null
+    waktuBayar: Date | null
     status: string | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -8587,6 +8428,9 @@ export namespace Prisma {
     metode: number
     jumlah: number
     buktiBayar: number
+    snapToken: number
+    redirectUrl: number
+    waktuBayar: number
     status: number
     createdAt: number
     updatedAt: number
@@ -8608,6 +8452,9 @@ export namespace Prisma {
     metode?: true
     jumlah?: true
     buktiBayar?: true
+    snapToken?: true
+    redirectUrl?: true
+    waktuBayar?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -8619,6 +8466,9 @@ export namespace Prisma {
     metode?: true
     jumlah?: true
     buktiBayar?: true
+    snapToken?: true
+    redirectUrl?: true
+    waktuBayar?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -8630,6 +8480,9 @@ export namespace Prisma {
     metode?: true
     jumlah?: true
     buktiBayar?: true
+    snapToken?: true
+    redirectUrl?: true
+    waktuBayar?: true
     status?: true
     createdAt?: true
     updatedAt?: true
@@ -8727,7 +8580,10 @@ export namespace Prisma {
     pendaftaranId: string
     metode: string
     jumlah: number
-    buktiBayar: string
+    buktiBayar: string | null
+    snapToken: string | null
+    redirectUrl: string | null
+    waktuBayar: Date | null
     status: string
     createdAt: Date
     updatedAt: Date
@@ -8758,6 +8614,9 @@ export namespace Prisma {
     metode?: boolean
     jumlah?: boolean
     buktiBayar?: boolean
+    snapToken?: boolean
+    redirectUrl?: boolean
+    waktuBayar?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8770,6 +8629,9 @@ export namespace Prisma {
     metode?: boolean
     jumlah?: boolean
     buktiBayar?: boolean
+    snapToken?: boolean
+    redirectUrl?: boolean
+    waktuBayar?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8782,6 +8644,9 @@ export namespace Prisma {
     metode?: boolean
     jumlah?: boolean
     buktiBayar?: boolean
+    snapToken?: boolean
+    redirectUrl?: boolean
+    waktuBayar?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -8794,12 +8659,15 @@ export namespace Prisma {
     metode?: boolean
     jumlah?: boolean
     buktiBayar?: boolean
+    snapToken?: boolean
+    redirectUrl?: boolean
+    waktuBayar?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type PembayaranOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pendaftaranId" | "metode" | "jumlah" | "buktiBayar" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["pembayaran"]>
+  export type PembayaranOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pendaftaranId" | "metode" | "jumlah" | "buktiBayar" | "snapToken" | "redirectUrl" | "waktuBayar" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["pembayaran"]>
   export type PembayaranInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
   }
@@ -8820,7 +8688,10 @@ export namespace Prisma {
       pendaftaranId: string
       metode: string
       jumlah: number
-      buktiBayar: string
+      buktiBayar: string | null
+      snapToken: string | null
+      redirectUrl: string | null
+      waktuBayar: Date | null
       status: string
       createdAt: Date
       updatedAt: Date
@@ -9253,6 +9124,9 @@ export namespace Prisma {
     readonly metode: FieldRef<"Pembayaran", 'String'>
     readonly jumlah: FieldRef<"Pembayaran", 'Int'>
     readonly buktiBayar: FieldRef<"Pembayaran", 'String'>
+    readonly snapToken: FieldRef<"Pembayaran", 'String'>
+    readonly redirectUrl: FieldRef<"Pembayaran", 'String'>
+    readonly waktuBayar: FieldRef<"Pembayaran", 'DateTime'>
     readonly status: FieldRef<"Pembayaran", 'String'>
     readonly createdAt: FieldRef<"Pembayaran", 'DateTime'>
     readonly updatedAt: FieldRef<"Pembayaran", 'DateTime'>
@@ -9671,1111 +9545,6 @@ export namespace Prisma {
 
 
   /**
-   * Model HistoriKursus
-   */
-
-  export type AggregateHistoriKursus = {
-    _count: HistoriKursusCountAggregateOutputType | null
-    _min: HistoriKursusMinAggregateOutputType | null
-    _max: HistoriKursusMaxAggregateOutputType | null
-  }
-
-  export type HistoriKursusMinAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    kursusId: string | null
-    tanggalSelesai: string | null
-    sertifikat: string | null
-    keterangan: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type HistoriKursusMaxAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    kursusId: string | null
-    tanggalSelesai: string | null
-    sertifikat: string | null
-    keterangan: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type HistoriKursusCountAggregateOutputType = {
-    id: number
-    userId: number
-    kursusId: number
-    tanggalSelesai: number
-    sertifikat: number
-    keterangan: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type HistoriKursusMinAggregateInputType = {
-    id?: true
-    userId?: true
-    kursusId?: true
-    tanggalSelesai?: true
-    sertifikat?: true
-    keterangan?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type HistoriKursusMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    kursusId?: true
-    tanggalSelesai?: true
-    sertifikat?: true
-    keterangan?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type HistoriKursusCountAggregateInputType = {
-    id?: true
-    userId?: true
-    kursusId?: true
-    tanggalSelesai?: true
-    sertifikat?: true
-    keterangan?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type HistoriKursusAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which HistoriKursus to aggregate.
-     */
-    where?: HistoriKursusWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HistoriKursuses to fetch.
-     */
-    orderBy?: HistoriKursusOrderByWithRelationInput | HistoriKursusOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: HistoriKursusWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HistoriKursuses from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HistoriKursuses.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned HistoriKursuses
-    **/
-    _count?: true | HistoriKursusCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: HistoriKursusMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: HistoriKursusMaxAggregateInputType
-  }
-
-  export type GetHistoriKursusAggregateType<T extends HistoriKursusAggregateArgs> = {
-        [P in keyof T & keyof AggregateHistoriKursus]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateHistoriKursus[P]>
-      : GetScalarType<T[P], AggregateHistoriKursus[P]>
-  }
-
-
-
-
-  export type HistoriKursusGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: HistoriKursusWhereInput
-    orderBy?: HistoriKursusOrderByWithAggregationInput | HistoriKursusOrderByWithAggregationInput[]
-    by: HistoriKursusScalarFieldEnum[] | HistoriKursusScalarFieldEnum
-    having?: HistoriKursusScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: HistoriKursusCountAggregateInputType | true
-    _min?: HistoriKursusMinAggregateInputType
-    _max?: HistoriKursusMaxAggregateInputType
-  }
-
-  export type HistoriKursusGroupByOutputType = {
-    id: string
-    userId: string
-    kursusId: string
-    tanggalSelesai: string
-    sertifikat: string | null
-    keterangan: string | null
-    createdAt: Date
-    updatedAt: Date
-    _count: HistoriKursusCountAggregateOutputType | null
-    _min: HistoriKursusMinAggregateOutputType | null
-    _max: HistoriKursusMaxAggregateOutputType | null
-  }
-
-  type GetHistoriKursusGroupByPayload<T extends HistoriKursusGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<HistoriKursusGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof HistoriKursusGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], HistoriKursusGroupByOutputType[P]>
-            : GetScalarType<T[P], HistoriKursusGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type HistoriKursusSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    kursusId?: boolean
-    tanggalSelesai?: boolean
-    sertifikat?: boolean
-    keterangan?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["historiKursus"]>
-
-  export type HistoriKursusSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    kursusId?: boolean
-    tanggalSelesai?: boolean
-    sertifikat?: boolean
-    keterangan?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["historiKursus"]>
-
-  export type HistoriKursusSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    kursusId?: boolean
-    tanggalSelesai?: boolean
-    sertifikat?: boolean
-    keterangan?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["historiKursus"]>
-
-  export type HistoriKursusSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    kursusId?: boolean
-    tanggalSelesai?: boolean
-    sertifikat?: boolean
-    keterangan?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type HistoriKursusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "kursusId" | "tanggalSelesai" | "sertifikat" | "keterangan" | "createdAt" | "updatedAt", ExtArgs["result"]["historiKursus"]>
-  export type HistoriKursusInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }
-  export type HistoriKursusIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }
-  export type HistoriKursusIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }
-
-  export type $HistoriKursusPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "HistoriKursus"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-      kursus: Prisma.$KursusPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      userId: string
-      kursusId: string
-      tanggalSelesai: string
-      sertifikat: string | null
-      keterangan: string | null
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["historiKursus"]>
-    composites: {}
-  }
-
-  type HistoriKursusGetPayload<S extends boolean | null | undefined | HistoriKursusDefaultArgs> = $Result.GetResult<Prisma.$HistoriKursusPayload, S>
-
-  type HistoriKursusCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<HistoriKursusFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: HistoriKursusCountAggregateInputType | true
-    }
-
-  export interface HistoriKursusDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['HistoriKursus'], meta: { name: 'HistoriKursus' } }
-    /**
-     * Find zero or one HistoriKursus that matches the filter.
-     * @param {HistoriKursusFindUniqueArgs} args - Arguments to find a HistoriKursus
-     * @example
-     * // Get one HistoriKursus
-     * const historiKursus = await prisma.historiKursus.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends HistoriKursusFindUniqueArgs>(args: SelectSubset<T, HistoriKursusFindUniqueArgs<ExtArgs>>): Prisma__HistoriKursusClient<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one HistoriKursus that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {HistoriKursusFindUniqueOrThrowArgs} args - Arguments to find a HistoriKursus
-     * @example
-     * // Get one HistoriKursus
-     * const historiKursus = await prisma.historiKursus.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends HistoriKursusFindUniqueOrThrowArgs>(args: SelectSubset<T, HistoriKursusFindUniqueOrThrowArgs<ExtArgs>>): Prisma__HistoriKursusClient<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first HistoriKursus that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HistoriKursusFindFirstArgs} args - Arguments to find a HistoriKursus
-     * @example
-     * // Get one HistoriKursus
-     * const historiKursus = await prisma.historiKursus.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends HistoriKursusFindFirstArgs>(args?: SelectSubset<T, HistoriKursusFindFirstArgs<ExtArgs>>): Prisma__HistoriKursusClient<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first HistoriKursus that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HistoriKursusFindFirstOrThrowArgs} args - Arguments to find a HistoriKursus
-     * @example
-     * // Get one HistoriKursus
-     * const historiKursus = await prisma.historiKursus.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends HistoriKursusFindFirstOrThrowArgs>(args?: SelectSubset<T, HistoriKursusFindFirstOrThrowArgs<ExtArgs>>): Prisma__HistoriKursusClient<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more HistoriKursuses that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HistoriKursusFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all HistoriKursuses
-     * const historiKursuses = await prisma.historiKursus.findMany()
-     * 
-     * // Get first 10 HistoriKursuses
-     * const historiKursuses = await prisma.historiKursus.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const historiKursusWithIdOnly = await prisma.historiKursus.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends HistoriKursusFindManyArgs>(args?: SelectSubset<T, HistoriKursusFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a HistoriKursus.
-     * @param {HistoriKursusCreateArgs} args - Arguments to create a HistoriKursus.
-     * @example
-     * // Create one HistoriKursus
-     * const HistoriKursus = await prisma.historiKursus.create({
-     *   data: {
-     *     // ... data to create a HistoriKursus
-     *   }
-     * })
-     * 
-     */
-    create<T extends HistoriKursusCreateArgs>(args: SelectSubset<T, HistoriKursusCreateArgs<ExtArgs>>): Prisma__HistoriKursusClient<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many HistoriKursuses.
-     * @param {HistoriKursusCreateManyArgs} args - Arguments to create many HistoriKursuses.
-     * @example
-     * // Create many HistoriKursuses
-     * const historiKursus = await prisma.historiKursus.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends HistoriKursusCreateManyArgs>(args?: SelectSubset<T, HistoriKursusCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many HistoriKursuses and returns the data saved in the database.
-     * @param {HistoriKursusCreateManyAndReturnArgs} args - Arguments to create many HistoriKursuses.
-     * @example
-     * // Create many HistoriKursuses
-     * const historiKursus = await prisma.historiKursus.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many HistoriKursuses and only return the `id`
-     * const historiKursusWithIdOnly = await prisma.historiKursus.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends HistoriKursusCreateManyAndReturnArgs>(args?: SelectSubset<T, HistoriKursusCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a HistoriKursus.
-     * @param {HistoriKursusDeleteArgs} args - Arguments to delete one HistoriKursus.
-     * @example
-     * // Delete one HistoriKursus
-     * const HistoriKursus = await prisma.historiKursus.delete({
-     *   where: {
-     *     // ... filter to delete one HistoriKursus
-     *   }
-     * })
-     * 
-     */
-    delete<T extends HistoriKursusDeleteArgs>(args: SelectSubset<T, HistoriKursusDeleteArgs<ExtArgs>>): Prisma__HistoriKursusClient<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one HistoriKursus.
-     * @param {HistoriKursusUpdateArgs} args - Arguments to update one HistoriKursus.
-     * @example
-     * // Update one HistoriKursus
-     * const historiKursus = await prisma.historiKursus.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends HistoriKursusUpdateArgs>(args: SelectSubset<T, HistoriKursusUpdateArgs<ExtArgs>>): Prisma__HistoriKursusClient<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more HistoriKursuses.
-     * @param {HistoriKursusDeleteManyArgs} args - Arguments to filter HistoriKursuses to delete.
-     * @example
-     * // Delete a few HistoriKursuses
-     * const { count } = await prisma.historiKursus.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends HistoriKursusDeleteManyArgs>(args?: SelectSubset<T, HistoriKursusDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more HistoriKursuses.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HistoriKursusUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many HistoriKursuses
-     * const historiKursus = await prisma.historiKursus.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends HistoriKursusUpdateManyArgs>(args: SelectSubset<T, HistoriKursusUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more HistoriKursuses and returns the data updated in the database.
-     * @param {HistoriKursusUpdateManyAndReturnArgs} args - Arguments to update many HistoriKursuses.
-     * @example
-     * // Update many HistoriKursuses
-     * const historiKursus = await prisma.historiKursus.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more HistoriKursuses and only return the `id`
-     * const historiKursusWithIdOnly = await prisma.historiKursus.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends HistoriKursusUpdateManyAndReturnArgs>(args: SelectSubset<T, HistoriKursusUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one HistoriKursus.
-     * @param {HistoriKursusUpsertArgs} args - Arguments to update or create a HistoriKursus.
-     * @example
-     * // Update or create a HistoriKursus
-     * const historiKursus = await prisma.historiKursus.upsert({
-     *   create: {
-     *     // ... data to create a HistoriKursus
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the HistoriKursus we want to update
-     *   }
-     * })
-     */
-    upsert<T extends HistoriKursusUpsertArgs>(args: SelectSubset<T, HistoriKursusUpsertArgs<ExtArgs>>): Prisma__HistoriKursusClient<$Result.GetResult<Prisma.$HistoriKursusPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of HistoriKursuses.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HistoriKursusCountArgs} args - Arguments to filter HistoriKursuses to count.
-     * @example
-     * // Count the number of HistoriKursuses
-     * const count = await prisma.historiKursus.count({
-     *   where: {
-     *     // ... the filter for the HistoriKursuses we want to count
-     *   }
-     * })
-    **/
-    count<T extends HistoriKursusCountArgs>(
-      args?: Subset<T, HistoriKursusCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], HistoriKursusCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a HistoriKursus.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HistoriKursusAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends HistoriKursusAggregateArgs>(args: Subset<T, HistoriKursusAggregateArgs>): Prisma.PrismaPromise<GetHistoriKursusAggregateType<T>>
-
-    /**
-     * Group by HistoriKursus.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {HistoriKursusGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends HistoriKursusGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: HistoriKursusGroupByArgs['orderBy'] }
-        : { orderBy?: HistoriKursusGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, HistoriKursusGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetHistoriKursusGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the HistoriKursus model
-   */
-  readonly fields: HistoriKursusFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for HistoriKursus.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__HistoriKursusClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    kursus<T extends KursusDefaultArgs<ExtArgs> = {}>(args?: Subset<T, KursusDefaultArgs<ExtArgs>>): Prisma__KursusClient<$Result.GetResult<Prisma.$KursusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the HistoriKursus model
-   */
-  interface HistoriKursusFieldRefs {
-    readonly id: FieldRef<"HistoriKursus", 'String'>
-    readonly userId: FieldRef<"HistoriKursus", 'String'>
-    readonly kursusId: FieldRef<"HistoriKursus", 'String'>
-    readonly tanggalSelesai: FieldRef<"HistoriKursus", 'String'>
-    readonly sertifikat: FieldRef<"HistoriKursus", 'String'>
-    readonly keterangan: FieldRef<"HistoriKursus", 'String'>
-    readonly createdAt: FieldRef<"HistoriKursus", 'DateTime'>
-    readonly updatedAt: FieldRef<"HistoriKursus", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * HistoriKursus findUnique
-   */
-  export type HistoriKursusFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusInclude<ExtArgs> | null
-    /**
-     * Filter, which HistoriKursus to fetch.
-     */
-    where: HistoriKursusWhereUniqueInput
-  }
-
-  /**
-   * HistoriKursus findUniqueOrThrow
-   */
-  export type HistoriKursusFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusInclude<ExtArgs> | null
-    /**
-     * Filter, which HistoriKursus to fetch.
-     */
-    where: HistoriKursusWhereUniqueInput
-  }
-
-  /**
-   * HistoriKursus findFirst
-   */
-  export type HistoriKursusFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusInclude<ExtArgs> | null
-    /**
-     * Filter, which HistoriKursus to fetch.
-     */
-    where?: HistoriKursusWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HistoriKursuses to fetch.
-     */
-    orderBy?: HistoriKursusOrderByWithRelationInput | HistoriKursusOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for HistoriKursuses.
-     */
-    cursor?: HistoriKursusWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HistoriKursuses from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HistoriKursuses.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of HistoriKursuses.
-     */
-    distinct?: HistoriKursusScalarFieldEnum | HistoriKursusScalarFieldEnum[]
-  }
-
-  /**
-   * HistoriKursus findFirstOrThrow
-   */
-  export type HistoriKursusFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusInclude<ExtArgs> | null
-    /**
-     * Filter, which HistoriKursus to fetch.
-     */
-    where?: HistoriKursusWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HistoriKursuses to fetch.
-     */
-    orderBy?: HistoriKursusOrderByWithRelationInput | HistoriKursusOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for HistoriKursuses.
-     */
-    cursor?: HistoriKursusWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HistoriKursuses from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HistoriKursuses.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of HistoriKursuses.
-     */
-    distinct?: HistoriKursusScalarFieldEnum | HistoriKursusScalarFieldEnum[]
-  }
-
-  /**
-   * HistoriKursus findMany
-   */
-  export type HistoriKursusFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusInclude<ExtArgs> | null
-    /**
-     * Filter, which HistoriKursuses to fetch.
-     */
-    where?: HistoriKursusWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of HistoriKursuses to fetch.
-     */
-    orderBy?: HistoriKursusOrderByWithRelationInput | HistoriKursusOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing HistoriKursuses.
-     */
-    cursor?: HistoriKursusWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` HistoriKursuses from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` HistoriKursuses.
-     */
-    skip?: number
-    distinct?: HistoriKursusScalarFieldEnum | HistoriKursusScalarFieldEnum[]
-  }
-
-  /**
-   * HistoriKursus create
-   */
-  export type HistoriKursusCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusInclude<ExtArgs> | null
-    /**
-     * The data needed to create a HistoriKursus.
-     */
-    data: XOR<HistoriKursusCreateInput, HistoriKursusUncheckedCreateInput>
-  }
-
-  /**
-   * HistoriKursus createMany
-   */
-  export type HistoriKursusCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many HistoriKursuses.
-     */
-    data: HistoriKursusCreateManyInput | HistoriKursusCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * HistoriKursus createManyAndReturn
-   */
-  export type HistoriKursusCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * The data used to create many HistoriKursuses.
-     */
-    data: HistoriKursusCreateManyInput | HistoriKursusCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * HistoriKursus update
-   */
-  export type HistoriKursusUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusInclude<ExtArgs> | null
-    /**
-     * The data needed to update a HistoriKursus.
-     */
-    data: XOR<HistoriKursusUpdateInput, HistoriKursusUncheckedUpdateInput>
-    /**
-     * Choose, which HistoriKursus to update.
-     */
-    where: HistoriKursusWhereUniqueInput
-  }
-
-  /**
-   * HistoriKursus updateMany
-   */
-  export type HistoriKursusUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update HistoriKursuses.
-     */
-    data: XOR<HistoriKursusUpdateManyMutationInput, HistoriKursusUncheckedUpdateManyInput>
-    /**
-     * Filter which HistoriKursuses to update
-     */
-    where?: HistoriKursusWhereInput
-    /**
-     * Limit how many HistoriKursuses to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * HistoriKursus updateManyAndReturn
-   */
-  export type HistoriKursusUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * The data used to update HistoriKursuses.
-     */
-    data: XOR<HistoriKursusUpdateManyMutationInput, HistoriKursusUncheckedUpdateManyInput>
-    /**
-     * Filter which HistoriKursuses to update
-     */
-    where?: HistoriKursusWhereInput
-    /**
-     * Limit how many HistoriKursuses to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * HistoriKursus upsert
-   */
-  export type HistoriKursusUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusInclude<ExtArgs> | null
-    /**
-     * The filter to search for the HistoriKursus to update in case it exists.
-     */
-    where: HistoriKursusWhereUniqueInput
-    /**
-     * In case the HistoriKursus found by the `where` argument doesn't exist, create a new HistoriKursus with this data.
-     */
-    create: XOR<HistoriKursusCreateInput, HistoriKursusUncheckedCreateInput>
-    /**
-     * In case the HistoriKursus was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<HistoriKursusUpdateInput, HistoriKursusUncheckedUpdateInput>
-  }
-
-  /**
-   * HistoriKursus delete
-   */
-  export type HistoriKursusDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusInclude<ExtArgs> | null
-    /**
-     * Filter which HistoriKursus to delete.
-     */
-    where: HistoriKursusWhereUniqueInput
-  }
-
-  /**
-   * HistoriKursus deleteMany
-   */
-  export type HistoriKursusDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which HistoriKursuses to delete
-     */
-    where?: HistoriKursusWhereInput
-    /**
-     * Limit how many HistoriKursuses to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * HistoriKursus without action
-   */
-  export type HistoriKursusDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the HistoriKursus
-     */
-    select?: HistoriKursusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the HistoriKursus
-     */
-    omit?: HistoriKursusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: HistoriKursusInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Enums
    */
 
@@ -10887,26 +9656,15 @@ export namespace Prisma {
     metode: 'metode',
     jumlah: 'jumlah',
     buktiBayar: 'buktiBayar',
+    snapToken: 'snapToken',
+    redirectUrl: 'redirectUrl',
+    waktuBayar: 'waktuBayar',
     status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
   export type PembayaranScalarFieldEnum = (typeof PembayaranScalarFieldEnum)[keyof typeof PembayaranScalarFieldEnum]
-
-
-  export const HistoriKursusScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    kursusId: 'kursusId',
-    tanggalSelesai: 'tanggalSelesai',
-    sertifikat: 'sertifikat',
-    keterangan: 'keterangan',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type HistoriKursusScalarFieldEnum = (typeof HistoriKursusScalarFieldEnum)[keyof typeof HistoriKursusScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -11211,7 +9969,6 @@ export namespace Prisma {
     Account?: AccountListRelationFilter
     Session?: SessionListRelationFilter
     Pendaftaran?: PendaftaranListRelationFilter
-    HistoriKursus?: HistoriKursusListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -11239,7 +9996,6 @@ export namespace Prisma {
     Account?: AccountOrderByRelationAggregateInput
     Session?: SessionOrderByRelationAggregateInput
     Pendaftaran?: PendaftaranOrderByRelationAggregateInput
-    HistoriKursus?: HistoriKursusOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -11270,7 +10026,6 @@ export namespace Prisma {
     Account?: AccountListRelationFilter
     Session?: SessionListRelationFilter
     Pendaftaran?: PendaftaranListRelationFilter
-    HistoriKursus?: HistoriKursusListRelationFilter
   }, "id" | "nik" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -11341,7 +10096,6 @@ export namespace Prisma {
     userId?: StringNullableFilter<"Kursus"> | string | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     Pendaftaran?: PendaftaranListRelationFilter
-    HistoriKursus?: HistoriKursusListRelationFilter
   }
 
   export type KursusOrderByWithRelationInput = {
@@ -11357,7 +10111,6 @@ export namespace Prisma {
     userId?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
     Pendaftaran?: PendaftaranOrderByRelationAggregateInput
-    HistoriKursus?: HistoriKursusOrderByRelationAggregateInput
   }
 
   export type KursusWhereUniqueInput = Prisma.AtLeast<{
@@ -11376,7 +10129,6 @@ export namespace Prisma {
     userId?: StringNullableFilter<"Kursus"> | string | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     Pendaftaran?: PendaftaranListRelationFilter
-    HistoriKursus?: HistoriKursusListRelationFilter
   }, "id">
 
   export type KursusOrderByWithAggregationInput = {
@@ -11492,7 +10244,10 @@ export namespace Prisma {
     pendaftaranId?: StringFilter<"Pembayaran"> | string
     metode?: StringFilter<"Pembayaran"> | string
     jumlah?: IntFilter<"Pembayaran"> | number
-    buktiBayar?: StringFilter<"Pembayaran"> | string
+    buktiBayar?: StringNullableFilter<"Pembayaran"> | string | null
+    snapToken?: StringNullableFilter<"Pembayaran"> | string | null
+    redirectUrl?: StringNullableFilter<"Pembayaran"> | string | null
+    waktuBayar?: DateTimeNullableFilter<"Pembayaran"> | Date | string | null
     status?: StringFilter<"Pembayaran"> | string
     createdAt?: DateTimeFilter<"Pembayaran"> | Date | string
     updatedAt?: DateTimeFilter<"Pembayaran"> | Date | string
@@ -11504,7 +10259,10 @@ export namespace Prisma {
     pendaftaranId?: SortOrder
     metode?: SortOrder
     jumlah?: SortOrder
-    buktiBayar?: SortOrder
+    buktiBayar?: SortOrderInput | SortOrder
+    snapToken?: SortOrderInput | SortOrder
+    redirectUrl?: SortOrderInput | SortOrder
+    waktuBayar?: SortOrderInput | SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11519,7 +10277,10 @@ export namespace Prisma {
     NOT?: PembayaranWhereInput | PembayaranWhereInput[]
     metode?: StringFilter<"Pembayaran"> | string
     jumlah?: IntFilter<"Pembayaran"> | number
-    buktiBayar?: StringFilter<"Pembayaran"> | string
+    buktiBayar?: StringNullableFilter<"Pembayaran"> | string | null
+    snapToken?: StringNullableFilter<"Pembayaran"> | string | null
+    redirectUrl?: StringNullableFilter<"Pembayaran"> | string | null
+    waktuBayar?: DateTimeNullableFilter<"Pembayaran"> | Date | string | null
     status?: StringFilter<"Pembayaran"> | string
     createdAt?: DateTimeFilter<"Pembayaran"> | Date | string
     updatedAt?: DateTimeFilter<"Pembayaran"> | Date | string
@@ -11531,7 +10292,10 @@ export namespace Prisma {
     pendaftaranId?: SortOrder
     metode?: SortOrder
     jumlah?: SortOrder
-    buktiBayar?: SortOrder
+    buktiBayar?: SortOrderInput | SortOrder
+    snapToken?: SortOrderInput | SortOrder
+    redirectUrl?: SortOrderInput | SortOrder
+    waktuBayar?: SortOrderInput | SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -11550,83 +10314,13 @@ export namespace Prisma {
     pendaftaranId?: StringWithAggregatesFilter<"Pembayaran"> | string
     metode?: StringWithAggregatesFilter<"Pembayaran"> | string
     jumlah?: IntWithAggregatesFilter<"Pembayaran"> | number
-    buktiBayar?: StringWithAggregatesFilter<"Pembayaran"> | string
+    buktiBayar?: StringNullableWithAggregatesFilter<"Pembayaran"> | string | null
+    snapToken?: StringNullableWithAggregatesFilter<"Pembayaran"> | string | null
+    redirectUrl?: StringNullableWithAggregatesFilter<"Pembayaran"> | string | null
+    waktuBayar?: DateTimeNullableWithAggregatesFilter<"Pembayaran"> | Date | string | null
     status?: StringWithAggregatesFilter<"Pembayaran"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Pembayaran"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Pembayaran"> | Date | string
-  }
-
-  export type HistoriKursusWhereInput = {
-    AND?: HistoriKursusWhereInput | HistoriKursusWhereInput[]
-    OR?: HistoriKursusWhereInput[]
-    NOT?: HistoriKursusWhereInput | HistoriKursusWhereInput[]
-    id?: StringFilter<"HistoriKursus"> | string
-    userId?: StringFilter<"HistoriKursus"> | string
-    kursusId?: StringFilter<"HistoriKursus"> | string
-    tanggalSelesai?: StringFilter<"HistoriKursus"> | string
-    sertifikat?: StringNullableFilter<"HistoriKursus"> | string | null
-    keterangan?: StringNullableFilter<"HistoriKursus"> | string | null
-    createdAt?: DateTimeFilter<"HistoriKursus"> | Date | string
-    updatedAt?: DateTimeFilter<"HistoriKursus"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
-  }
-
-  export type HistoriKursusOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    tanggalSelesai?: SortOrder
-    sertifikat?: SortOrderInput | SortOrder
-    keterangan?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
-    kursus?: KursusOrderByWithRelationInput
-  }
-
-  export type HistoriKursusWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: HistoriKursusWhereInput | HistoriKursusWhereInput[]
-    OR?: HistoriKursusWhereInput[]
-    NOT?: HistoriKursusWhereInput | HistoriKursusWhereInput[]
-    userId?: StringFilter<"HistoriKursus"> | string
-    kursusId?: StringFilter<"HistoriKursus"> | string
-    tanggalSelesai?: StringFilter<"HistoriKursus"> | string
-    sertifikat?: StringNullableFilter<"HistoriKursus"> | string | null
-    keterangan?: StringNullableFilter<"HistoriKursus"> | string | null
-    createdAt?: DateTimeFilter<"HistoriKursus"> | Date | string
-    updatedAt?: DateTimeFilter<"HistoriKursus"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
-  }, "id">
-
-  export type HistoriKursusOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    tanggalSelesai?: SortOrder
-    sertifikat?: SortOrderInput | SortOrder
-    keterangan?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: HistoriKursusCountOrderByAggregateInput
-    _max?: HistoriKursusMaxOrderByAggregateInput
-    _min?: HistoriKursusMinOrderByAggregateInput
-  }
-
-  export type HistoriKursusScalarWhereWithAggregatesInput = {
-    AND?: HistoriKursusScalarWhereWithAggregatesInput | HistoriKursusScalarWhereWithAggregatesInput[]
-    OR?: HistoriKursusScalarWhereWithAggregatesInput[]
-    NOT?: HistoriKursusScalarWhereWithAggregatesInput | HistoriKursusScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"HistoriKursus"> | string
-    userId?: StringWithAggregatesFilter<"HistoriKursus"> | string
-    kursusId?: StringWithAggregatesFilter<"HistoriKursus"> | string
-    tanggalSelesai?: StringWithAggregatesFilter<"HistoriKursus"> | string
-    sertifikat?: StringNullableWithAggregatesFilter<"HistoriKursus"> | string | null
-    keterangan?: StringNullableWithAggregatesFilter<"HistoriKursus"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"HistoriKursus"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"HistoriKursus"> | Date | string
   }
 
   export type AccountCreateInput = {
@@ -11848,7 +10542,6 @@ export namespace Prisma {
     Account?: AccountCreateNestedManyWithoutUserInput
     Session?: SessionCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -11876,7 +10569,6 @@ export namespace Prisma {
     Account?: AccountUncheckedCreateNestedManyWithoutUserInput
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -11904,7 +10596,6 @@ export namespace Prisma {
     Account?: AccountUpdateManyWithoutUserNestedInput
     Session?: SessionUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -11932,7 +10623,6 @@ export namespace Prisma {
     Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -12016,7 +10706,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     user?: UserCreateNestedOneWithoutKursusInstrukturInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
-    HistoriKursus?: HistoriKursusCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateInput = {
@@ -12031,7 +10720,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId?: string | null
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
-    HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUpdateInput = {
@@ -12046,7 +10734,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutKursusInstrukturNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
-    HistoriKursus?: HistoriKursusUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateInput = {
@@ -12061,7 +10748,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
-    HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusCreateManyInput = {
@@ -12178,7 +10864,10 @@ export namespace Prisma {
     id?: string
     metode: string
     jumlah: number
-    buktiBayar: string
+    buktiBayar?: string | null
+    snapToken?: string | null
+    redirectUrl?: string | null
+    waktuBayar?: Date | string | null
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12190,7 +10879,10 @@ export namespace Prisma {
     pendaftaranId: string
     metode: string
     jumlah: number
-    buktiBayar: string
+    buktiBayar?: string | null
+    snapToken?: string | null
+    redirectUrl?: string | null
+    waktuBayar?: Date | string | null
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12200,7 +10892,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     metode?: StringFieldUpdateOperationsInput | string
     jumlah?: IntFieldUpdateOperationsInput | number
-    buktiBayar?: StringFieldUpdateOperationsInput | string
+    buktiBayar?: NullableStringFieldUpdateOperationsInput | string | null
+    snapToken?: NullableStringFieldUpdateOperationsInput | string | null
+    redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12212,7 +10907,10 @@ export namespace Prisma {
     pendaftaranId?: StringFieldUpdateOperationsInput | string
     metode?: StringFieldUpdateOperationsInput | string
     jumlah?: IntFieldUpdateOperationsInput | number
-    buktiBayar?: StringFieldUpdateOperationsInput | string
+    buktiBayar?: NullableStringFieldUpdateOperationsInput | string | null
+    snapToken?: NullableStringFieldUpdateOperationsInput | string | null
+    redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12223,7 +10921,10 @@ export namespace Prisma {
     pendaftaranId: string
     metode: string
     jumlah: number
-    buktiBayar: string
+    buktiBayar?: string | null
+    snapToken?: string | null
+    redirectUrl?: string | null
+    waktuBayar?: Date | string | null
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -12233,7 +10934,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     metode?: StringFieldUpdateOperationsInput | string
     jumlah?: IntFieldUpdateOperationsInput | number
-    buktiBayar?: StringFieldUpdateOperationsInput | string
+    buktiBayar?: NullableStringFieldUpdateOperationsInput | string | null
+    snapToken?: NullableStringFieldUpdateOperationsInput | string | null
+    redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12244,83 +10948,11 @@ export namespace Prisma {
     pendaftaranId?: StringFieldUpdateOperationsInput | string
     metode?: StringFieldUpdateOperationsInput | string
     jumlah?: IntFieldUpdateOperationsInput | number
-    buktiBayar?: StringFieldUpdateOperationsInput | string
+    buktiBayar?: NullableStringFieldUpdateOperationsInput | string | null
+    snapToken?: NullableStringFieldUpdateOperationsInput | string | null
+    redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HistoriKursusCreateInput = {
-    id?: string
-    tanggalSelesai: string
-    sertifikat?: string | null
-    keterangan?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutHistoriKursusInput
-    kursus: KursusCreateNestedOneWithoutHistoriKursusInput
-  }
-
-  export type HistoriKursusUncheckedCreateInput = {
-    id?: string
-    userId: string
-    kursusId: string
-    tanggalSelesai: string
-    sertifikat?: string | null
-    keterangan?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HistoriKursusUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    tanggalSelesai?: StringFieldUpdateOperationsInput | string
-    sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
-    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutHistoriKursusNestedInput
-    kursus?: KursusUpdateOneRequiredWithoutHistoriKursusNestedInput
-  }
-
-  export type HistoriKursusUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    kursusId?: StringFieldUpdateOperationsInput | string
-    tanggalSelesai?: StringFieldUpdateOperationsInput | string
-    sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
-    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HistoriKursusCreateManyInput = {
-    id?: string
-    userId: string
-    kursusId: string
-    tanggalSelesai: string
-    sertifikat?: string | null
-    keterangan?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HistoriKursusUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    tanggalSelesai?: StringFieldUpdateOperationsInput | string
-    sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
-    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HistoriKursusUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    kursusId?: StringFieldUpdateOperationsInput | string
-    tanggalSelesai?: StringFieldUpdateOperationsInput | string
-    sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
-    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12590,12 +11222,6 @@ export namespace Prisma {
     none?: PendaftaranWhereInput
   }
 
-  export type HistoriKursusListRelationFilter = {
-    every?: HistoriKursusWhereInput
-    some?: HistoriKursusWhereInput
-    none?: HistoriKursusWhereInput
-  }
-
   export type KursusOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -12609,10 +11235,6 @@ export namespace Prisma {
   }
 
   export type PendaftaranOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type HistoriKursusOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -12831,6 +11453,9 @@ export namespace Prisma {
     metode?: SortOrder
     jumlah?: SortOrder
     buktiBayar?: SortOrder
+    snapToken?: SortOrder
+    redirectUrl?: SortOrder
+    waktuBayar?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12846,6 +11471,9 @@ export namespace Prisma {
     metode?: SortOrder
     jumlah?: SortOrder
     buktiBayar?: SortOrder
+    snapToken?: SortOrder
+    redirectUrl?: SortOrder
+    waktuBayar?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12857,6 +11485,9 @@ export namespace Prisma {
     metode?: SortOrder
     jumlah?: SortOrder
     buktiBayar?: SortOrder
+    snapToken?: SortOrder
+    redirectUrl?: SortOrder
+    waktuBayar?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -12864,39 +11495,6 @@ export namespace Prisma {
 
   export type PembayaranSumOrderByAggregateInput = {
     jumlah?: SortOrder
-  }
-
-  export type HistoriKursusCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    tanggalSelesai?: SortOrder
-    sertifikat?: SortOrder
-    keterangan?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type HistoriKursusMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    tanggalSelesai?: SortOrder
-    sertifikat?: SortOrder
-    keterangan?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type HistoriKursusMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    tanggalSelesai?: SortOrder
-    sertifikat?: SortOrder
-    keterangan?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
   export type UserCreateNestedOneWithoutAccountInput = {
@@ -12975,13 +11573,6 @@ export namespace Prisma {
     connect?: PendaftaranWhereUniqueInput | PendaftaranWhereUniqueInput[]
   }
 
-  export type HistoriKursusCreateNestedManyWithoutUserInput = {
-    create?: XOR<HistoriKursusCreateWithoutUserInput, HistoriKursusUncheckedCreateWithoutUserInput> | HistoriKursusCreateWithoutUserInput[] | HistoriKursusUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HistoriKursusCreateOrConnectWithoutUserInput | HistoriKursusCreateOrConnectWithoutUserInput[]
-    createMany?: HistoriKursusCreateManyUserInputEnvelope
-    connect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-  }
-
   export type KursusUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<KursusCreateWithoutUserInput, KursusUncheckedCreateWithoutUserInput> | KursusCreateWithoutUserInput[] | KursusUncheckedCreateWithoutUserInput[]
     connectOrCreate?: KursusCreateOrConnectWithoutUserInput | KursusCreateOrConnectWithoutUserInput[]
@@ -13008,13 +11599,6 @@ export namespace Prisma {
     connectOrCreate?: PendaftaranCreateOrConnectWithoutUserInput | PendaftaranCreateOrConnectWithoutUserInput[]
     createMany?: PendaftaranCreateManyUserInputEnvelope
     connect?: PendaftaranWhereUniqueInput | PendaftaranWhereUniqueInput[]
-  }
-
-  export type HistoriKursusUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<HistoriKursusCreateWithoutUserInput, HistoriKursusUncheckedCreateWithoutUserInput> | HistoriKursusCreateWithoutUserInput[] | HistoriKursusUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HistoriKursusCreateOrConnectWithoutUserInput | HistoriKursusCreateOrConnectWithoutUserInput[]
-    createMany?: HistoriKursusCreateManyUserInputEnvelope
-    connect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -13077,20 +11661,6 @@ export namespace Prisma {
     deleteMany?: PendaftaranScalarWhereInput | PendaftaranScalarWhereInput[]
   }
 
-  export type HistoriKursusUpdateManyWithoutUserNestedInput = {
-    create?: XOR<HistoriKursusCreateWithoutUserInput, HistoriKursusUncheckedCreateWithoutUserInput> | HistoriKursusCreateWithoutUserInput[] | HistoriKursusUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HistoriKursusCreateOrConnectWithoutUserInput | HistoriKursusCreateOrConnectWithoutUserInput[]
-    upsert?: HistoriKursusUpsertWithWhereUniqueWithoutUserInput | HistoriKursusUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: HistoriKursusCreateManyUserInputEnvelope
-    set?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    disconnect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    delete?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    connect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    update?: HistoriKursusUpdateWithWhereUniqueWithoutUserInput | HistoriKursusUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: HistoriKursusUpdateManyWithWhereWithoutUserInput | HistoriKursusUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: HistoriKursusScalarWhereInput | HistoriKursusScalarWhereInput[]
-  }
-
   export type KursusUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<KursusCreateWithoutUserInput, KursusUncheckedCreateWithoutUserInput> | KursusCreateWithoutUserInput[] | KursusUncheckedCreateWithoutUserInput[]
     connectOrCreate?: KursusCreateOrConnectWithoutUserInput | KursusCreateOrConnectWithoutUserInput[]
@@ -13147,20 +11717,6 @@ export namespace Prisma {
     deleteMany?: PendaftaranScalarWhereInput | PendaftaranScalarWhereInput[]
   }
 
-  export type HistoriKursusUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<HistoriKursusCreateWithoutUserInput, HistoriKursusUncheckedCreateWithoutUserInput> | HistoriKursusCreateWithoutUserInput[] | HistoriKursusUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: HistoriKursusCreateOrConnectWithoutUserInput | HistoriKursusCreateOrConnectWithoutUserInput[]
-    upsert?: HistoriKursusUpsertWithWhereUniqueWithoutUserInput | HistoriKursusUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: HistoriKursusCreateManyUserInputEnvelope
-    set?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    disconnect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    delete?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    connect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    update?: HistoriKursusUpdateWithWhereUniqueWithoutUserInput | HistoriKursusUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: HistoriKursusUpdateManyWithWhereWithoutUserInput | HistoriKursusUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: HistoriKursusScalarWhereInput | HistoriKursusScalarWhereInput[]
-  }
-
   export type UserCreateNestedOneWithoutKursusInstrukturInput = {
     create?: XOR<UserCreateWithoutKursusInstrukturInput, UserUncheckedCreateWithoutKursusInstrukturInput>
     connectOrCreate?: UserCreateOrConnectWithoutKursusInstrukturInput
@@ -13174,25 +11730,11 @@ export namespace Prisma {
     connect?: PendaftaranWhereUniqueInput | PendaftaranWhereUniqueInput[]
   }
 
-  export type HistoriKursusCreateNestedManyWithoutKursusInput = {
-    create?: XOR<HistoriKursusCreateWithoutKursusInput, HistoriKursusUncheckedCreateWithoutKursusInput> | HistoriKursusCreateWithoutKursusInput[] | HistoriKursusUncheckedCreateWithoutKursusInput[]
-    connectOrCreate?: HistoriKursusCreateOrConnectWithoutKursusInput | HistoriKursusCreateOrConnectWithoutKursusInput[]
-    createMany?: HistoriKursusCreateManyKursusInputEnvelope
-    connect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-  }
-
   export type PendaftaranUncheckedCreateNestedManyWithoutKursusInput = {
     create?: XOR<PendaftaranCreateWithoutKursusInput, PendaftaranUncheckedCreateWithoutKursusInput> | PendaftaranCreateWithoutKursusInput[] | PendaftaranUncheckedCreateWithoutKursusInput[]
     connectOrCreate?: PendaftaranCreateOrConnectWithoutKursusInput | PendaftaranCreateOrConnectWithoutKursusInput[]
     createMany?: PendaftaranCreateManyKursusInputEnvelope
     connect?: PendaftaranWhereUniqueInput | PendaftaranWhereUniqueInput[]
-  }
-
-  export type HistoriKursusUncheckedCreateNestedManyWithoutKursusInput = {
-    create?: XOR<HistoriKursusCreateWithoutKursusInput, HistoriKursusUncheckedCreateWithoutKursusInput> | HistoriKursusCreateWithoutKursusInput[] | HistoriKursusUncheckedCreateWithoutKursusInput[]
-    connectOrCreate?: HistoriKursusCreateOrConnectWithoutKursusInput | HistoriKursusCreateOrConnectWithoutKursusInput[]
-    createMany?: HistoriKursusCreateManyKursusInputEnvelope
-    connect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -13227,20 +11769,6 @@ export namespace Prisma {
     deleteMany?: PendaftaranScalarWhereInput | PendaftaranScalarWhereInput[]
   }
 
-  export type HistoriKursusUpdateManyWithoutKursusNestedInput = {
-    create?: XOR<HistoriKursusCreateWithoutKursusInput, HistoriKursusUncheckedCreateWithoutKursusInput> | HistoriKursusCreateWithoutKursusInput[] | HistoriKursusUncheckedCreateWithoutKursusInput[]
-    connectOrCreate?: HistoriKursusCreateOrConnectWithoutKursusInput | HistoriKursusCreateOrConnectWithoutKursusInput[]
-    upsert?: HistoriKursusUpsertWithWhereUniqueWithoutKursusInput | HistoriKursusUpsertWithWhereUniqueWithoutKursusInput[]
-    createMany?: HistoriKursusCreateManyKursusInputEnvelope
-    set?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    disconnect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    delete?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    connect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    update?: HistoriKursusUpdateWithWhereUniqueWithoutKursusInput | HistoriKursusUpdateWithWhereUniqueWithoutKursusInput[]
-    updateMany?: HistoriKursusUpdateManyWithWhereWithoutKursusInput | HistoriKursusUpdateManyWithWhereWithoutKursusInput[]
-    deleteMany?: HistoriKursusScalarWhereInput | HistoriKursusScalarWhereInput[]
-  }
-
   export type PendaftaranUncheckedUpdateManyWithoutKursusNestedInput = {
     create?: XOR<PendaftaranCreateWithoutKursusInput, PendaftaranUncheckedCreateWithoutKursusInput> | PendaftaranCreateWithoutKursusInput[] | PendaftaranUncheckedCreateWithoutKursusInput[]
     connectOrCreate?: PendaftaranCreateOrConnectWithoutKursusInput | PendaftaranCreateOrConnectWithoutKursusInput[]
@@ -13253,20 +11781,6 @@ export namespace Prisma {
     update?: PendaftaranUpdateWithWhereUniqueWithoutKursusInput | PendaftaranUpdateWithWhereUniqueWithoutKursusInput[]
     updateMany?: PendaftaranUpdateManyWithWhereWithoutKursusInput | PendaftaranUpdateManyWithWhereWithoutKursusInput[]
     deleteMany?: PendaftaranScalarWhereInput | PendaftaranScalarWhereInput[]
-  }
-
-  export type HistoriKursusUncheckedUpdateManyWithoutKursusNestedInput = {
-    create?: XOR<HistoriKursusCreateWithoutKursusInput, HistoriKursusUncheckedCreateWithoutKursusInput> | HistoriKursusCreateWithoutKursusInput[] | HistoriKursusUncheckedCreateWithoutKursusInput[]
-    connectOrCreate?: HistoriKursusCreateOrConnectWithoutKursusInput | HistoriKursusCreateOrConnectWithoutKursusInput[]
-    upsert?: HistoriKursusUpsertWithWhereUniqueWithoutKursusInput | HistoriKursusUpsertWithWhereUniqueWithoutKursusInput[]
-    createMany?: HistoriKursusCreateManyKursusInputEnvelope
-    set?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    disconnect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    delete?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    connect?: HistoriKursusWhereUniqueInput | HistoriKursusWhereUniqueInput[]
-    update?: HistoriKursusUpdateWithWhereUniqueWithoutKursusInput | HistoriKursusUpdateWithWhereUniqueWithoutKursusInput[]
-    updateMany?: HistoriKursusUpdateManyWithWhereWithoutKursusInput | HistoriKursusUpdateManyWithWhereWithoutKursusInput[]
-    deleteMany?: HistoriKursusScalarWhereInput | HistoriKursusScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutPendaftaranInput = {
@@ -13341,34 +11855,6 @@ export namespace Prisma {
     upsert?: PendaftaranUpsertWithoutPembayaranInput
     connect?: PendaftaranWhereUniqueInput
     update?: XOR<XOR<PendaftaranUpdateToOneWithWhereWithoutPembayaranInput, PendaftaranUpdateWithoutPembayaranInput>, PendaftaranUncheckedUpdateWithoutPembayaranInput>
-  }
-
-  export type UserCreateNestedOneWithoutHistoriKursusInput = {
-    create?: XOR<UserCreateWithoutHistoriKursusInput, UserUncheckedCreateWithoutHistoriKursusInput>
-    connectOrCreate?: UserCreateOrConnectWithoutHistoriKursusInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type KursusCreateNestedOneWithoutHistoriKursusInput = {
-    create?: XOR<KursusCreateWithoutHistoriKursusInput, KursusUncheckedCreateWithoutHistoriKursusInput>
-    connectOrCreate?: KursusCreateOrConnectWithoutHistoriKursusInput
-    connect?: KursusWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutHistoriKursusNestedInput = {
-    create?: XOR<UserCreateWithoutHistoriKursusInput, UserUncheckedCreateWithoutHistoriKursusInput>
-    connectOrCreate?: UserCreateOrConnectWithoutHistoriKursusInput
-    upsert?: UserUpsertWithoutHistoriKursusInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutHistoriKursusInput, UserUpdateWithoutHistoriKursusInput>, UserUncheckedUpdateWithoutHistoriKursusInput>
-  }
-
-  export type KursusUpdateOneRequiredWithoutHistoriKursusNestedInput = {
-    create?: XOR<KursusCreateWithoutHistoriKursusInput, KursusUncheckedCreateWithoutHistoriKursusInput>
-    connectOrCreate?: KursusCreateOrConnectWithoutHistoriKursusInput
-    upsert?: KursusUpsertWithoutHistoriKursusInput
-    connect?: KursusWhereUniqueInput
-    update?: XOR<XOR<KursusUpdateToOneWithWhereWithoutHistoriKursusInput, KursusUpdateWithoutHistoriKursusInput>, KursusUncheckedUpdateWithoutHistoriKursusInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -13583,7 +12069,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusCreateNestedManyWithoutUserInput
     Session?: SessionCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountInput = {
@@ -13610,7 +12095,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUncheckedCreateNestedManyWithoutUserInput
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountInput = {
@@ -13653,7 +12137,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUpdateManyWithoutUserNestedInput
     Session?: SessionUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountInput = {
@@ -13680,7 +12163,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUncheckedUpdateManyWithoutUserNestedInput
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionInput = {
@@ -13707,7 +12189,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusCreateNestedManyWithoutUserInput
     Account?: AccountCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionInput = {
@@ -13734,7 +12215,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUncheckedCreateNestedManyWithoutUserInput
     Account?: AccountUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionInput = {
@@ -13777,7 +12257,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUpdateManyWithoutUserNestedInput
     Account?: AccountUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionInput = {
@@ -13804,7 +12283,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUncheckedUpdateManyWithoutUserNestedInput
     Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type KursusCreateWithoutUserInput = {
@@ -13818,7 +12296,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
-    HistoriKursus?: HistoriKursusCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateWithoutUserInput = {
@@ -13832,7 +12309,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
-    HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusCreateOrConnectWithoutUserInput = {
@@ -13932,36 +12408,6 @@ export namespace Prisma {
 
   export type PendaftaranCreateManyUserInputEnvelope = {
     data: PendaftaranCreateManyUserInput | PendaftaranCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type HistoriKursusCreateWithoutUserInput = {
-    id?: string
-    tanggalSelesai: string
-    sertifikat?: string | null
-    keterangan?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    kursus: KursusCreateNestedOneWithoutHistoriKursusInput
-  }
-
-  export type HistoriKursusUncheckedCreateWithoutUserInput = {
-    id?: string
-    kursusId: string
-    tanggalSelesai: string
-    sertifikat?: string | null
-    keterangan?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HistoriKursusCreateOrConnectWithoutUserInput = {
-    where: HistoriKursusWhereUniqueInput
-    create: XOR<HistoriKursusCreateWithoutUserInput, HistoriKursusUncheckedCreateWithoutUserInput>
-  }
-
-  export type HistoriKursusCreateManyUserInputEnvelope = {
-    data: HistoriKursusCreateManyUserInput | HistoriKursusCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -14086,36 +12532,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Pendaftaran"> | Date | string
   }
 
-  export type HistoriKursusUpsertWithWhereUniqueWithoutUserInput = {
-    where: HistoriKursusWhereUniqueInput
-    update: XOR<HistoriKursusUpdateWithoutUserInput, HistoriKursusUncheckedUpdateWithoutUserInput>
-    create: XOR<HistoriKursusCreateWithoutUserInput, HistoriKursusUncheckedCreateWithoutUserInput>
-  }
-
-  export type HistoriKursusUpdateWithWhereUniqueWithoutUserInput = {
-    where: HistoriKursusWhereUniqueInput
-    data: XOR<HistoriKursusUpdateWithoutUserInput, HistoriKursusUncheckedUpdateWithoutUserInput>
-  }
-
-  export type HistoriKursusUpdateManyWithWhereWithoutUserInput = {
-    where: HistoriKursusScalarWhereInput
-    data: XOR<HistoriKursusUpdateManyMutationInput, HistoriKursusUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type HistoriKursusScalarWhereInput = {
-    AND?: HistoriKursusScalarWhereInput | HistoriKursusScalarWhereInput[]
-    OR?: HistoriKursusScalarWhereInput[]
-    NOT?: HistoriKursusScalarWhereInput | HistoriKursusScalarWhereInput[]
-    id?: StringFilter<"HistoriKursus"> | string
-    userId?: StringFilter<"HistoriKursus"> | string
-    kursusId?: StringFilter<"HistoriKursus"> | string
-    tanggalSelesai?: StringFilter<"HistoriKursus"> | string
-    sertifikat?: StringNullableFilter<"HistoriKursus"> | string | null
-    keterangan?: StringNullableFilter<"HistoriKursus"> | string | null
-    createdAt?: DateTimeFilter<"HistoriKursus"> | Date | string
-    updatedAt?: DateTimeFilter<"HistoriKursus"> | Date | string
-  }
-
   export type UserCreateWithoutKursusInstrukturInput = {
     id?: string
     nama: string
@@ -14140,7 +12556,6 @@ export namespace Prisma {
     Account?: AccountCreateNestedManyWithoutUserInput
     Session?: SessionCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutKursusInstrukturInput = {
@@ -14167,7 +12582,6 @@ export namespace Prisma {
     Account?: AccountUncheckedCreateNestedManyWithoutUserInput
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutKursusInstrukturInput = {
@@ -14202,36 +12616,6 @@ export namespace Prisma {
 
   export type PendaftaranCreateManyKursusInputEnvelope = {
     data: PendaftaranCreateManyKursusInput | PendaftaranCreateManyKursusInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type HistoriKursusCreateWithoutKursusInput = {
-    id?: string
-    tanggalSelesai: string
-    sertifikat?: string | null
-    keterangan?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutHistoriKursusInput
-  }
-
-  export type HistoriKursusUncheckedCreateWithoutKursusInput = {
-    id?: string
-    userId: string
-    tanggalSelesai: string
-    sertifikat?: string | null
-    keterangan?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HistoriKursusCreateOrConnectWithoutKursusInput = {
-    where: HistoriKursusWhereUniqueInput
-    create: XOR<HistoriKursusCreateWithoutKursusInput, HistoriKursusUncheckedCreateWithoutKursusInput>
-  }
-
-  export type HistoriKursusCreateManyKursusInputEnvelope = {
-    data: HistoriKursusCreateManyKursusInput | HistoriKursusCreateManyKursusInput[]
     skipDuplicates?: boolean
   }
 
@@ -14270,7 +12654,6 @@ export namespace Prisma {
     Account?: AccountUpdateManyWithoutUserNestedInput
     Session?: SessionUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutKursusInstrukturInput = {
@@ -14297,7 +12680,6 @@ export namespace Prisma {
     Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type PendaftaranUpsertWithWhereUniqueWithoutKursusInput = {
@@ -14314,22 +12696,6 @@ export namespace Prisma {
   export type PendaftaranUpdateManyWithWhereWithoutKursusInput = {
     where: PendaftaranScalarWhereInput
     data: XOR<PendaftaranUpdateManyMutationInput, PendaftaranUncheckedUpdateManyWithoutKursusInput>
-  }
-
-  export type HistoriKursusUpsertWithWhereUniqueWithoutKursusInput = {
-    where: HistoriKursusWhereUniqueInput
-    update: XOR<HistoriKursusUpdateWithoutKursusInput, HistoriKursusUncheckedUpdateWithoutKursusInput>
-    create: XOR<HistoriKursusCreateWithoutKursusInput, HistoriKursusUncheckedCreateWithoutKursusInput>
-  }
-
-  export type HistoriKursusUpdateWithWhereUniqueWithoutKursusInput = {
-    where: HistoriKursusWhereUniqueInput
-    data: XOR<HistoriKursusUpdateWithoutKursusInput, HistoriKursusUncheckedUpdateWithoutKursusInput>
-  }
-
-  export type HistoriKursusUpdateManyWithWhereWithoutKursusInput = {
-    where: HistoriKursusScalarWhereInput
-    data: XOR<HistoriKursusUpdateManyMutationInput, HistoriKursusUncheckedUpdateManyWithoutKursusInput>
   }
 
   export type UserCreateWithoutPendaftaranInput = {
@@ -14356,7 +12722,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusCreateNestedManyWithoutUserInput
     Account?: AccountCreateNestedManyWithoutUserInput
     Session?: SessionCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutPendaftaranInput = {
@@ -14383,7 +12748,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUncheckedCreateNestedManyWithoutUserInput
     Account?: AccountUncheckedCreateNestedManyWithoutUserInput
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutPendaftaranInput = {
@@ -14402,7 +12766,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user?: UserCreateNestedOneWithoutKursusInstrukturInput
-    HistoriKursus?: HistoriKursusCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateWithoutPendaftaranInput = {
@@ -14416,7 +12779,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId?: string | null
-    HistoriKursus?: HistoriKursusUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusCreateOrConnectWithoutPendaftaranInput = {
@@ -14428,7 +12790,10 @@ export namespace Prisma {
     id?: string
     metode: string
     jumlah: number
-    buktiBayar: string
+    buktiBayar?: string | null
+    snapToken?: string | null
+    redirectUrl?: string | null
+    waktuBayar?: Date | string | null
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14438,7 +12803,10 @@ export namespace Prisma {
     id?: string
     metode: string
     jumlah: number
-    buktiBayar: string
+    buktiBayar?: string | null
+    snapToken?: string | null
+    redirectUrl?: string | null
+    waktuBayar?: Date | string | null
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -14484,7 +12852,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUpdateManyWithoutUserNestedInput
     Account?: AccountUpdateManyWithoutUserNestedInput
     Session?: SessionUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutPendaftaranInput = {
@@ -14511,7 +12878,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUncheckedUpdateManyWithoutUserNestedInput
     Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type KursusUpsertWithoutPendaftaranInput = {
@@ -14536,7 +12902,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutKursusInstrukturNestedInput
-    HistoriKursus?: HistoriKursusUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateWithoutPendaftaranInput = {
@@ -14550,7 +12915,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
-    HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type PembayaranUpsertWithoutPendaftaranInput = {
@@ -14568,7 +12932,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     metode?: StringFieldUpdateOperationsInput | string
     jumlah?: IntFieldUpdateOperationsInput | number
-    buktiBayar?: StringFieldUpdateOperationsInput | string
+    buktiBayar?: NullableStringFieldUpdateOperationsInput | string | null
+    snapToken?: NullableStringFieldUpdateOperationsInput | string | null
+    redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14578,7 +12945,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     metode?: StringFieldUpdateOperationsInput | string
     jumlah?: IntFieldUpdateOperationsInput | number
-    buktiBayar?: StringFieldUpdateOperationsInput | string
+    buktiBayar?: NullableStringFieldUpdateOperationsInput | string | null
+    snapToken?: NullableStringFieldUpdateOperationsInput | string | null
+    redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14640,202 +13010,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserCreateWithoutHistoriKursusInput = {
-    id?: string
-    nama: string
-    nik?: string | null
-    jenisKelamin?: string | null
-    tempatLahir?: string | null
-    tanggalLahir?: string | null
-    mediaSosial?: string | null
-    noHp?: string | null
-    email: string
-    agama?: string | null
-    jurusan?: string | null
-    tahunAkademik?: string | null
-    password?: string | null
-    role?: string
-    keahlian?: string | null
-    jabatan?: string | null
-    image?: string | null
-    emailVerified?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    kursusInstruktur?: KursusCreateNestedManyWithoutUserInput
-    Account?: AccountCreateNestedManyWithoutUserInput
-    Session?: SessionCreateNestedManyWithoutUserInput
-    Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutHistoriKursusInput = {
-    id?: string
-    nama: string
-    nik?: string | null
-    jenisKelamin?: string | null
-    tempatLahir?: string | null
-    tanggalLahir?: string | null
-    mediaSosial?: string | null
-    noHp?: string | null
-    email: string
-    agama?: string | null
-    jurusan?: string | null
-    tahunAkademik?: string | null
-    password?: string | null
-    role?: string
-    keahlian?: string | null
-    jabatan?: string | null
-    image?: string | null
-    emailVerified?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    kursusInstruktur?: KursusUncheckedCreateNestedManyWithoutUserInput
-    Account?: AccountUncheckedCreateNestedManyWithoutUserInput
-    Session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutHistoriKursusInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutHistoriKursusInput, UserUncheckedCreateWithoutHistoriKursusInput>
-  }
-
-  export type KursusCreateWithoutHistoriKursusInput = {
-    id?: string
-    nama: string
-    deskripsi?: string | null
-    harga: number
-    lamaKursus?: number | null
-    tanggalMulai?: Date | string | null
-    tanggalSelesai?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user?: UserCreateNestedOneWithoutKursusInstrukturInput
-    Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
-  }
-
-  export type KursusUncheckedCreateWithoutHistoriKursusInput = {
-    id?: string
-    nama: string
-    deskripsi?: string | null
-    harga: number
-    lamaKursus?: number | null
-    tanggalMulai?: Date | string | null
-    tanggalSelesai?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId?: string | null
-    Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
-  }
-
-  export type KursusCreateOrConnectWithoutHistoriKursusInput = {
-    where: KursusWhereUniqueInput
-    create: XOR<KursusCreateWithoutHistoriKursusInput, KursusUncheckedCreateWithoutHistoriKursusInput>
-  }
-
-  export type UserUpsertWithoutHistoriKursusInput = {
-    update: XOR<UserUpdateWithoutHistoriKursusInput, UserUncheckedUpdateWithoutHistoriKursusInput>
-    create: XOR<UserCreateWithoutHistoriKursusInput, UserUncheckedCreateWithoutHistoriKursusInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutHistoriKursusInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutHistoriKursusInput, UserUncheckedUpdateWithoutHistoriKursusInput>
-  }
-
-  export type UserUpdateWithoutHistoriKursusInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
-    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
-    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
-    mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
-    noHp?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    agama?: NullableStringFieldUpdateOperationsInput | string | null
-    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
-    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
-    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
-    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursusInstruktur?: KursusUpdateManyWithoutUserNestedInput
-    Account?: AccountUpdateManyWithoutUserNestedInput
-    Session?: SessionUpdateManyWithoutUserNestedInput
-    Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutHistoriKursusInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
-    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
-    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
-    mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
-    noHp?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    agama?: NullableStringFieldUpdateOperationsInput | string | null
-    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
-    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
-    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
-    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursusInstruktur?: KursusUncheckedUpdateManyWithoutUserNestedInput
-    Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type KursusUpsertWithoutHistoriKursusInput = {
-    update: XOR<KursusUpdateWithoutHistoriKursusInput, KursusUncheckedUpdateWithoutHistoriKursusInput>
-    create: XOR<KursusCreateWithoutHistoriKursusInput, KursusUncheckedCreateWithoutHistoriKursusInput>
-    where?: KursusWhereInput
-  }
-
-  export type KursusUpdateToOneWithWhereWithoutHistoriKursusInput = {
-    where?: KursusWhereInput
-    data: XOR<KursusUpdateWithoutHistoriKursusInput, KursusUncheckedUpdateWithoutHistoriKursusInput>
-  }
-
-  export type KursusUpdateWithoutHistoriKursusInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
-    harga?: IntFieldUpdateOperationsInput | number
-    lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutKursusInstrukturNestedInput
-    Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
-  }
-
-  export type KursusUncheckedUpdateWithoutHistoriKursusInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
-    harga?: IntFieldUpdateOperationsInput | number
-    lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
-  }
-
   export type KursusCreateManyUserInput = {
     id?: string
     nama: string
@@ -14877,16 +13051,6 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type HistoriKursusCreateManyUserInput = {
-    id?: string
-    kursusId: string
-    tanggalSelesai: string
-    sertifikat?: string | null
-    keterangan?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
   export type KursusUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     nama?: StringFieldUpdateOperationsInput | string
@@ -14898,7 +13062,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
-    HistoriKursus?: HistoriKursusUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateWithoutUserInput = {
@@ -14912,7 +13075,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
-    HistoriKursus?: HistoriKursusUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateManyWithoutUserInput = {
@@ -15016,50 +13178,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type HistoriKursusUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    tanggalSelesai?: StringFieldUpdateOperationsInput | string
-    sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
-    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursus?: KursusUpdateOneRequiredWithoutHistoriKursusNestedInput
-  }
-
-  export type HistoriKursusUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    kursusId?: StringFieldUpdateOperationsInput | string
-    tanggalSelesai?: StringFieldUpdateOperationsInput | string
-    sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
-    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HistoriKursusUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    kursusId?: StringFieldUpdateOperationsInput | string
-    tanggalSelesai?: StringFieldUpdateOperationsInput | string
-    sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
-    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type PendaftaranCreateManyKursusInput = {
     id?: string
     userId: string
     status?: string
-    keterangan?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type HistoriKursusCreateManyKursusInput = {
-    id?: string
-    userId: string
-    tanggalSelesai: string
-    sertifikat?: string | null
     keterangan?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -15089,36 +13211,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
-    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HistoriKursusUpdateWithoutKursusInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    tanggalSelesai?: StringFieldUpdateOperationsInput | string
-    sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
-    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutHistoriKursusNestedInput
-  }
-
-  export type HistoriKursusUncheckedUpdateWithoutKursusInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    tanggalSelesai?: StringFieldUpdateOperationsInput | string
-    sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
-    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type HistoriKursusUncheckedUpdateManyWithoutKursusInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    tanggalSelesai?: StringFieldUpdateOperationsInput | string
-    sertifikat?: NullableStringFieldUpdateOperationsInput | string | null
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

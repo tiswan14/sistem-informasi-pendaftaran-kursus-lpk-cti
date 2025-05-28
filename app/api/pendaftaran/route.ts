@@ -30,6 +30,7 @@ export async function GET() {
     }
 }
 
+
 export async function POST(request: Request) {
     try {
         const body = await request.json();
@@ -42,7 +43,6 @@ export async function POST(request: Request) {
             );
         }
 
-        // ✅ Cek apakah user sudah mendaftar ke kursus ini sebelumnya
         const sudahTerdaftar = await prisma.pendaftaran.findFirst({
             where: {
                 userId,
@@ -57,12 +57,11 @@ export async function POST(request: Request) {
             );
         }
 
-        // ✅ Cek apakah user sedang menjalani kursus yang belum selesai
         const kursusBelumSelesai = await prisma.pendaftaran.findFirst({
             where: {
                 userId,
                 status: {
-                    not: "Selesai"
+                    not: "Lulus"
                 }
             }
         });

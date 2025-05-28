@@ -200,18 +200,10 @@ exports.Prisma.PembayaranScalarFieldEnum = {
   metode: 'metode',
   jumlah: 'jumlah',
   buktiBayar: 'buktiBayar',
+  snapToken: 'snapToken',
+  redirectUrl: 'redirectUrl',
+  waktuBayar: 'waktuBayar',
   status: 'status',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.HistoriKursusScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  kursusId: 'kursusId',
-  tanggalSelesai: 'tanggalSelesai',
-  sertifikat: 'sertifikat',
-  keterangan: 'keterangan',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -239,8 +231,7 @@ exports.Prisma.ModelName = {
   User: 'User',
   Kursus: 'Kursus',
   Pendaftaran: 'Pendaftaran',
-  Pembayaran: 'Pembayaran',
-  HistoriKursus: 'HistoriKursus'
+  Pembayaran: 'Pembayaran'
 };
 
 /**

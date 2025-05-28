@@ -72,10 +72,9 @@ model User {
 
   kursusInstruktur Kursus[] @relation("InstrukturKursus")
 
-  Account       Account[]
-  Session       Session[]
-  Pendaftaran   Pendaftaran[]
-  HistoriKursus HistoriKursus[]
+  Account     Account[]
+  Session     Session[]
+  Pendaftaran Pendaftaran[]
 
   @@map("users")
 }
@@ -94,8 +93,7 @@ model Kursus {
 
   user User? @relation("InstrukturKursus", fields: [userId], references: [id], onDelete: Cascade)
 
-  Pendaftaran   Pendaftaran[]
-  HistoriKursus HistoriKursus[]
+  Pendaftaran Pendaftaran[]
 
   @@map("kursus")
 }
@@ -115,28 +113,17 @@ model Pendaftaran {
 }
 
 model Pembayaran {
-  id            String   @id @default(cuid())
-  pendaftaranId String   @unique
+  id            String    @id @default(cuid())
+  pendaftaranId String    @unique
   metode        String
   jumlah        Int
-  buktiBayar    String
-  status        String   @default("Menunggu")
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  buktiBayar    String?
+  snapToken     String?
+  redirectUrl   String?
+  waktuBayar    DateTime?
+  status        String    @default("Menunggu") // Menunggu, Diproses, Berhasil, Gagal, Kadaluarsa
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 
   pendaftaran Pendaftaran @relation(fields: [pendaftaranId], references: [id], onDelete: Cascade)
-}
-
-model HistoriKursus {
-  id             String   @id @default(cuid())
-  userId         String
-  kursusId       String
-  tanggalSelesai String
-  sertifikat     String?
-  keterangan     String?
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-
-  user   User   @relation(fields: [userId], references: [id])
-  kursus Kursus @relation(fields: [kursusId], references: [id], onDelete: Cascade)
 }

@@ -3,6 +3,47 @@ import { PrismaClient } from '@/app/generated/prisma';
 
 const prisma = new PrismaClient();
 
+
+
+export async function GET(
+    req: Request,
+    { params }: { params: { id: string } }
+) {
+    try {
+        const { id } = params
+
+        const pendaftaran = await prisma.pendaftaran.findUnique({
+            where: { id },
+            include: {
+                user: true,
+                kursus: {
+                    select: {
+                        id: true,
+                        nama: true,
+                        harga: true,
+                        user: {
+                            select: {
+                                id: true,
+                                nama: true,
+                            },
+                        },
+                    },
+                },
+                Pembayaran: true,
+            },
+        })
+
+        if (!pendaftaran) {
+            return NextResponse.json({ error: 'Data tidak ditemukan' }, { status: 404 })
+        }
+
+        return NextResponse.json(pendaftaran)
+    } catch (error) {
+        console.error('Gagal fetch pendaftaran by ID:', error)
+        return NextResponse.json({ error: 'Gagal mengambil data pendaftaran' }, { status: 500 })
+    }
+}
+
 // Handler untuk PATCH
 export async function PATCH(
     request: Request,
@@ -27,6 +68,7 @@ export async function PATCH(
         });
 
         return NextResponse.json(updatedPendaftaran);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
         console.error('Error:', error);
         return NextResponse.json(
@@ -42,3 +84,5 @@ export async function PATCH(
 export async function OPTIONS() {
     return NextResponse.json({}, { status: 200 });
 }
+
+
