@@ -15,6 +15,7 @@ const RiwayatPendaftaranPage = () => {
             try {
                 const response = await axios.get("/api/pendaftaran/riwayat");
                 setRiwayatPendaftaran(response.data);
+                console.log(response.data);
             } catch (error) {
                 console.error("Gagal mengambil data riwayat:", error);
             } finally {
@@ -24,6 +25,8 @@ const RiwayatPendaftaranPage = () => {
 
         fetchRiwayat();
     }, []);
+
+
 
     return (
         <div className="min-h-screen p-4 md:p-8 bg-gray-50 mt-20">

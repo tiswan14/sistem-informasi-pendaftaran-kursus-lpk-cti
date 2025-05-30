@@ -15,7 +15,14 @@ export async function GET(
         const pendaftaran = await prisma.pendaftaran.findUnique({
             where: { id },
             include: {
-                user: true,
+                user: {
+                    select: {
+                        id: true,
+                        nama: true,
+                        email: true,
+                        noHp: true,
+                    }
+                },
                 kursus: {
                     select: {
                         id: true,
@@ -29,7 +36,7 @@ export async function GET(
                         },
                     },
                 },
-                Pembayaran: true,
+                Payment: true,
             },
         })
 

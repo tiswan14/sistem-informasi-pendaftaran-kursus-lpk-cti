@@ -1,12 +1,16 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@/app/generated/prisma";
 import { getKursusDetailById } from "@/lib/data";
 
 const prisma = new PrismaClient();
 
-export async function GET(req: Request, { params }: { params: { id: string } }) {
+export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
+    // Tunggu dulu sampai params selesai (await)
+    const params = await context.params;
+    const id = params.id;
+
     try {
-        const kursus = await getKursusDetailById(params.id)
+        const kursus = await getKursusDetailById(id);
         if (!kursus) {
             return NextResponse.json({ error: 'Kursus tidak ditemukan' }, { status: 404 });
         }

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { SearchX } from "lucide-react";
 interface Peserta {
     id: string;
     nama: string;
@@ -34,7 +35,11 @@ const Tooltip = ({ content, children }: { content: string; children: React.React
     );
 };
 
-const PesertaTable = () => {
+type PesertaTableProps = {
+    searchQuery: string;
+};
+
+const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
     const [pesertaData, setPesertaData] = useState<Peserta[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -81,6 +86,11 @@ const PesertaTable = () => {
         }
     };
 
+    // Misalnya ada props searchQuery dari komponen induk
+    const filteredPeserta = pesertaData.filter((peserta) =>
+        peserta.nama.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
 
     if (loading) {
         return (
@@ -89,7 +99,6 @@ const PesertaTable = () => {
             </div>
         );
     }
-
 
 
     if (!pesertaData.length) {
@@ -158,74 +167,87 @@ const PesertaTable = () => {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {pesertaData.map((peserta, index) => (
-                        <tr
-                            key={peserta.id}
-                            className="hover:bg-gray-50 transition-colors duration-150 ease-in-out"
-                        >
-                            <td className="px-7 py-4 whitespace-nowrap">
-                                <div className="text-sm font-medium text-gray-900">
-                                    {index + 1}
-                                </div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm font-medium text-gray-900">
-                                    {peserta.nama}
-                                </div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-500">{peserta.email}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-          ${peserta.jenisKelamin === 'Laki-laki'
-                                        ? 'bg-blue-100 text-blue-800'
-                                        : 'bg-pink-100 text-pink-800'}`}>
-                                    {peserta.jenisKelamin}
-                                </span>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-500">{peserta.jurusan}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap">
-                                <div className="text-sm text-gray-500">{peserta.tahunAkademik}</div>
-                            </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <div className="flex justify-center space-x-3">
-                                    <Tooltip content="Detail">
-                                        <a
-                                            href={`/dashboard/data-peserta/${peserta.id}`}
-                                            className="bg-green-600 hover:bg-green-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
-                                            aria-label="Detail"
-                                        >
-                                            <FaEye className="h-4 w-4 text-white" />
-                                        </a>
-                                    </Tooltip>
-
-                                    <Tooltip content="Edit">
-                                        <button
-                                            onClick={() => handleEdit(peserta.id)}
-                                            className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
-                                            aria-label="Edit"
-                                        >
-                                            <FaEdit className="h-4 w-4 text-white" />
-                                        </button>
-                                    </Tooltip>
-
-                                    <Tooltip content="Hapus">
-                                        <button
-                                            onClick={() => setDeleteId(peserta.id)}
-                                            className="bg-red-600 hover:bg-red-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
-                                            aria-label="Hapus"
-                                        >
-                                            <FaTrash className="h-4 w-4 text-white" />
-                                        </button>
-                                    </Tooltip>
+                    {filteredPeserta.length === 0 ? (
+                        <tr>
+                            <td colSpan={7} className="py-10 text-center">
+                                <div className="flex flex-col items-center justify-center gap-2">
+                                    <SearchX className="w-10 h-10 text-gray-400" />
+                                    <h3 className="text-md font-medium text-gray-500">
+                                        Tidak ada data peserta yang sesuai dengan pencarian
+                                    </h3>
                                 </div>
                             </td>
                         </tr>
-                    ))}
+                    ) : (
+
+                        filteredPeserta.map((peserta, index) => (
+                            <tr
+                                key={peserta.id}
+                                className="hover:bg-gray-50 transition-colors duration-150 ease-in-out"
+                            >
+                                <td className="px-7 py-4 whitespace-nowrap">
+                                    <div className="text-sm font-medium text-gray-900">{index + 1}</div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="text-sm font-medium text-gray-900">{peserta.nama}</div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="text-sm text-gray-500">{peserta.email}</div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <span
+                                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${peserta.jenisKelamin === "Laki-laki"
+                                            ? "bg-blue-100 text-blue-800"
+                                            : "bg-pink-100 text-pink-800"
+                                            }`}
+                                    >
+                                        {peserta.jenisKelamin}
+                                    </span>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="text-sm text-gray-500">{peserta.jurusan}</div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    <div className="text-sm text-gray-500">{peserta.tahunAkademik}</div>
+                                </td>
+                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <div className="flex justify-center space-x-3">
+                                        <Tooltip content="Detail">
+                                            <a
+                                                href={`/dashboard/data-peserta/${peserta.id}`}
+                                                className="bg-green-600 hover:bg-green-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                aria-label="Detail"
+                                            >
+                                                <FaEye className="h-4 w-4 text-white" />
+                                            </a>
+                                        </Tooltip>
+
+                                        <Tooltip content="Edit">
+                                            <button
+                                                onClick={() => handleEdit(peserta.id)}
+                                                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                aria-label="Edit"
+                                            >
+                                                <FaEdit className="h-4 w-4 text-white" />
+                                            </button>
+                                        </Tooltip>
+
+                                        <Tooltip content="Hapus">
+                                            <button
+                                                onClick={() => setDeleteId(peserta.id)}
+                                                className="bg-red-600 hover:bg-red-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                aria-label="Hapus"
+                                            >
+                                                <FaTrash className="h-4 w-4 text-white" />
+                                            </button>
+                                        </Tooltip>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))
+                    )}
                 </tbody>
+
 
             </table>
         </div>

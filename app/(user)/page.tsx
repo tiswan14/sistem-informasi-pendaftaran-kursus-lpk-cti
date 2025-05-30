@@ -14,9 +14,10 @@ export default function Home() {
 
             <MengapaLPKCTI />
 
+            <Akreditasi />
+
             <VisiMisi />
 
-            <Akreditasi />
 
         </>
     );

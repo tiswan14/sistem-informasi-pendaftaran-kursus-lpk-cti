@@ -3,16 +3,21 @@ import { FaUniversity, FaBriefcase, FaChalkboardTeacher, FaHome, FaTools, FaGlob
 
 const MengapaLPKCTI = () => {
     return (
-        <section className='py-12 px-4 bg-gray-50'>
+        <section className='py-12 px-4 bg-gray-50' data-aos="fade-up" data-aos-duration="1000">
             <div className='max-w-6xl mx-auto'>
-                <h2 className='text-3xl font-bold text-center mb-12'>
+                <h2 className='text-3xl font-bold text-center mb-12' data-aos="zoom-in" data-aos-delay="100" data-aos-duration="800">
                     Mengapa LPK{' '}
                     <span className='text-blue-800'>CTI Ciamis</span>?
                 </h2>
 
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                     {/* Item 1 */}
-                    <div className='group bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-blue-100'>
+                    <div
+                        className='group bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-blue-100'
+                        data-aos="fade-up"
+                        data-aos-delay="200"
+                        data-aos-duration="800"
+                    >
                         <div className='text-blue-600 text-4xl mb-4'>
                             <FaUniversity />
                         </div>
@@ -20,13 +25,17 @@ const MengapaLPKCTI = () => {
                             Akreditasi & Sertifikasi
                         </h3>
                         <p className='text-gray-600'>
-                            Terakreditasi untuk 4 jurusan TI oleh LA-LPK Jawa
-                            Barat, dengan sertifikat BNSP dan MTCNA/CCNA.
+                            Terakreditasi untuk 4 jurusan TI oleh LA-LPK Jawa Barat, dengan sertifikat BNSP dan MTCNA/CCNA.
                         </p>
                     </div>
 
                     {/* Item 2 */}
-                    <div className='group bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-blue-100'>
+                    <div
+                        className='group bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-blue-100'
+                        data-aos="fade-up"
+                        data-aos-delay="300"
+                        data-aos-duration="800"
+                    >
                         <div className='text-blue-600 text-4xl mb-4'>
                             <FaBriefcase />
                         </div>
@@ -34,13 +43,17 @@ const MengapaLPKCTI = () => {
                             Penyaluran Kerja
                         </h3>
                         <p className='text-gray-600'>
-                            Kerjasama dengan 50+ SMK dan perusahaan untuk
-                            penempatan kerja lulusan.
+                            Kerjasama dengan 50+ SMK dan perusahaan untuk penempatan kerja lulusan.
                         </p>
                     </div>
 
                     {/* Item 3 */}
-                    <div className='group bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-blue-100'>
+                    <div
+                        className='group bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-blue-100'
+                        data-aos="fade-up"
+                        data-aos-delay="400"
+                        data-aos-duration="800"
+                    >
                         <div className='text-blue-600 text-4xl mb-4'>
                             <FaChalkboardTeacher />
                         </div>
@@ -48,13 +61,17 @@ const MengapaLPKCTI = () => {
                             Instruktur Kompeten
                         </h3>
                         <p className='text-gray-600'>
-                            Dibimbing oleh instruktur bersertifikat metodologi
-                            dan teknis.
+                            Dibimbing oleh instruktur bersertifikat metodologi dan teknis.
                         </p>
                     </div>
 
                     {/* Item 4 */}
-                    <div className='group bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-blue-100'>
+                    <div
+                        className='group bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-blue-100'
+                        data-aos="fade-up"
+                        data-aos-delay="500"
+                        data-aos-duration="800"
+                    >
                         <div className='text-blue-600 text-4xl mb-4'>
                             <FaHome />
                         </div>
@@ -67,7 +84,12 @@ const MengapaLPKCTI = () => {
                     </div>
 
                     {/* Item 5 */}
-                    <div className='group bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-blue-100'>
+                    <div
+                        className='group bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-blue-100'
+                        data-aos="fade-up"
+                        data-aos-delay="600"
+                        data-aos-duration="800"
+                    >
                         <div className='text-blue-600 text-4xl mb-4'>
                             <FaTools />
                         </div>
@@ -75,13 +97,17 @@ const MengapaLPKCTI = () => {
                             Kurikulum OJT
                         </h3>
                         <p className='text-gray-600'>
-                            Pembelajaran berbasis On-Job Training untuk
-                            pengalaman praktik langsung.
+                            Pembelajaran berbasis On-Job Training untuk pengalaman praktik langsung.
                         </p>
                     </div>
 
                     {/* Item 6 */}
-                    <div className='group bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-blue-100'>
+                    <div
+                        className='group bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 hover:border-blue-100'
+                        data-aos="fade-up"
+                        data-aos-delay="700"
+                        data-aos-duration="800"
+                    >
                         <div className='text-blue-600 text-4xl mb-4'>
                             <FaGlobe />
                         </div>
@@ -95,6 +121,7 @@ const MengapaLPKCTI = () => {
                 </div>
             </div>
         </section>
+
     )
 }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { FaUsers, FaClipboardList, FaChalkboardTeacher, FaCertificate } from "react-icons/fa";
+import { FaUsers, FaClipboardList, FaChalkboardTeacher, FaCertificate, FaCalendarAlt, FaMoneyBillWave } from "react-icons/fa";
 
 const DashboardPage = () => {
     const [loading, setLoading] = useState(true);
@@ -70,64 +70,105 @@ const DashboardPage = () => {
         <div className="p-6 bg-white rounded-lg shadow-md">
             <h1 className="text-2xl font-semibold mb-6 text-gray-800">Dashboard</h1>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                {/* Card 1 - Peserta Kursus */}
                 <div
-                    className="bg-blue-50 p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200 border border-blue-100"
+                    className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-l-4 border-blue-500 hover:border-blue-600"
+                    onMouseEnter={() => setHoveredCard('peserta')}
                     onMouseLeave={() => setHoveredCard(null)}
                 >
-                    <div className="flex items-center gap-3">
-                        <div className={`p-2 bg-blue-100 rounded-lg transition ${hoveredCard === 'peserta' ? 'bg-blue-200' : ''}`}>
-                            <FaUsers className="text-2xl text-blue-600" />
+                    <div className="flex items-center space-x-4">
+                        <div className={`p-3 rounded-lg ${hoveredCard === 'peserta' ? 'bg-blue-100' : 'bg-blue-50'}`}>
+                            <FaUsers className="text-xl text-blue-600" />
                         </div>
                         <div>
-                            <h2 className="text-md font-medium text-gray-700">Peserta Kursus</h2>
-                            <p className="text-xl font-semibold text-gray-900">{totalPeserta}</p>
-                        </div>
-                    </div>
-                </div>
-                <div
-                    className="bg-yellow-50 p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200 border border-yellow-100"
-                    onMouseLeave={() => setHoveredCard(null)}
-                >
-                    <div className="flex items-center gap-3">
-                        <div className={`p-2 bg-yellow-100 rounded-lg transition ${hoveredCard === 'instruktur' ? 'bg-yellow-200' : ''}`}>
-                            <FaChalkboardTeacher className="text-2xl text-yellow-600" />
-                        </div>
-                        <div>
-                            <h2 className="text-md font-medium text-gray-700">Instruktur Terdaftar</h2>
-                            <p className="text-xl font-semibold text-gray-900">{totalInstruktur}</p>
+                            <p className="text-sm font-medium text-gray-500">Peserta Kursus</p>
+                            <h3 className="text-2xl font-bold text-gray-800">{totalPeserta}</h3>
                         </div>
                     </div>
                 </div>
 
+                {/* Card 2 - Instruktur Terdaftar */}
                 <div
-                    className="bg-green-50 p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200 border border-green-100"
+                    className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-l-4 border-amber-500 hover:border-amber-600"
+                    onMouseEnter={() => setHoveredCard('instruktur')}
                     onMouseLeave={() => setHoveredCard(null)}
                 >
-                    <div className="flex items-center gap-3">
-                        <div className={`p-2 bg-green-100 rounded-lg transition ${hoveredCard === 'kursus' ? 'bg-green-200' : ''}`}>
-                            <FaClipboardList className="text-2xl text-green-600" />
+                    <div className="flex items-center space-x-4">
+                        <div className={`p-3 rounded-lg ${hoveredCard === 'instruktur' ? 'bg-amber-100' : 'bg-amber-50'}`}>
+                            <FaChalkboardTeacher className="text-xl text-amber-600" />
                         </div>
                         <div>
-                            <h2 className="text-md font-medium text-gray-700">Kursus Aktif</h2>
-                            <p className="text-xl font-semibold text-gray-900">{totalKursus}</p>
+                            <p className="text-sm font-medium text-gray-500">Instruktur Terdaftar</p>
+                            <h3 className="text-2xl font-bold text-gray-800">{totalInstruktur}</h3>
                         </div>
                     </div>
                 </div>
 
-
-
+                {/* Card 3 - Kursus Aktif */}
                 <div
-                    className="bg-purple-50 p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200 border border-purple-100"
+                    className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-l-4 border-green-500 hover:border-green-600"
+                    onMouseEnter={() => setHoveredCard('kursus')}
                     onMouseLeave={() => setHoveredCard(null)}
                 >
-                    <div className="flex items-center gap-3">
-                        <div className={`p-2 bg-purple-100 rounded-lg transition ${hoveredCard === 'sertifikat' ? 'bg-purple-200' : ''}`}>
-                            <FaCertificate className="text-2xl text-purple-600" />
+                    <div className="flex items-center space-x-4">
+                        <div className={`p-3 rounded-lg ${hoveredCard === 'kursus' ? 'bg-green-100' : 'bg-green-50'}`}>
+                            <FaClipboardList className="text-xl text-green-600" />
                         </div>
                         <div>
-                            <h2 className="text-md font-medium text-gray-700">Sertifikat Diberikan</h2>
-                            <p className="text-xl font-semibold text-gray-900">{sertifikatDiberikan}</p>
+                            <p className="text-sm font-medium text-gray-500">Kursus Aktif</p>
+                            <h3 className="text-2xl font-bold text-gray-800">{totalKursus}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Card 4 - Sertifikat Diberikan */}
+                <div
+                    className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-l-4 border-purple-500 hover:border-purple-600"
+                    onMouseEnter={() => setHoveredCard('sertifikat')}
+                    onMouseLeave={() => setHoveredCard(null)}
+                >
+                    <div className="flex items-center space-x-4">
+                        <div className={`p-3 rounded-lg ${hoveredCard === 'sertifikat' ? 'bg-purple-100' : 'bg-purple-50'}`}>
+                            <FaCertificate className="text-xl text-purple-600" />
+                        </div>
+                        <div>
+                            <p className="text-sm font-medium text-gray-500">Sertifikat Diberikan</p>
+                            <h3 className="text-2xl font-bold text-gray-800">{sertifikatDiberikan}</h3>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Card 5 - Pembayaran Pendaftar */}
+                <div
+                    className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-l-4 border-red-500 hover:border-red-600"
+                    onMouseEnter={() => setHoveredCard('pembayaran')}
+                    onMouseLeave={() => setHoveredCard(null)}
+                >
+                    <div className="flex items-center space-x-4">
+                        <div className={`p-3 rounded-lg ${hoveredCard === 'pembayaran' ? 'bg-red-100' : 'bg-red-50'}`}>
+                            <FaMoneyBillWave className="text-xl text-red-600" />
+                        </div>
+                        <div>
+                            <p className="text-sm font-medium text-gray-500">Pembayaran Pendaftar</p>
+                            <h3 className="text-2xl font-bold text-gray-800">12</h3>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Card 6 - Jadwal Aktif */}
+                <div
+                    className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border-l-4 border-indigo-500 hover:border-indigo-600"
+                    onMouseEnter={() => setHoveredCard('jadwal')}
+                    onMouseLeave={() => setHoveredCard(null)}
+                >
+                    <div className="flex items-center space-x-4">
+                        <div className={`p-3 rounded-lg ${hoveredCard === 'jadwal' ? 'bg-indigo-100' : 'bg-indigo-50'}`}>
+                            <FaCalendarAlt className="text-xl text-indigo-600" />
+                        </div>
+                        <div>
+                            <p className="text-sm font-medium text-gray-500">Jadwal Aktif</p>
+                            <h3 className="text-2xl font-bold text-gray-800">23</h3>
                         </div>
                     </div>
                 </div>

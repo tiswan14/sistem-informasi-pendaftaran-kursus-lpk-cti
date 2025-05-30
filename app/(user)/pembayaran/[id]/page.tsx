@@ -1,15 +1,17 @@
-"use client"
+import PembayaranDetailComponent from "@/components/user/pembayaran/PembayaranDetailComponent"
+import { Metadata } from "next"
 
-import { useEffect } from "react"
+export const metadata: Metadata = {
+    title: "Pembayaran Detail - LPK CTI Ciamis",
+}
 
-const PembayaranDetailPage = () => {
-    useEffect(() => {
-
-    })
+const PembayaranDetailPage = ({ params: { id } }: { params: { id: string } }) => {
     return (
-        <div>
-            <h1>Pembayaran detail</h1>
-        </div>
+        <>
+            <div className="py-32 px-16">
+                <PembayaranDetailComponent id={id} />
+            </div>
+        </>
     )
 }
 

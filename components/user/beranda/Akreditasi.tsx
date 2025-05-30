@@ -15,10 +15,14 @@ import {
 
 const Akreditasi = () => {
     return (
-        <section className="py-16 px-4 bg-gray-50" id='akreditasi'>
+        <section className="py-16 px-4 bg-gray-50" id="akreditasi">
             <div className="max-w-6xl mx-auto">
                 {/* Header with decorative element */}
-                <div className="text-center mb-12">
+                <div
+                    className="text-center mb-12"
+                    data-aos="fade-up"
+                    data-aos-delay="100"
+                >
                     <h2 className="text-3xl md:text-4xl font-bold text-blue-800 mb-4 relative inline-block">
                         <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-blue-500 rounded-full"></div>
                         <FaAward className="inline mr-3 text-yellow-500" />
@@ -33,7 +37,11 @@ const Akreditasi = () => {
                 {/* Content Grid */}
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                     {/* Accreditation Description */}
-                    <div className="bg-white p-8 rounded-xl shadow-md border-t-4 border-blue-500">
+                    <div
+                        className="bg-white p-8 rounded-xl shadow-md border-t-4 border-blue-500"
+                        data-aos="fade-right"
+                        data-aos-delay="200"
+                    >
                         <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
                             <FaCertificate className="text-blue-500 mr-3" />
                             Sertifikasi Resmi
@@ -54,7 +62,11 @@ const Akreditasi = () => {
                     </div>
 
                     {/* Jurusan List */}
-                    <div className="bg-white p-8 rounded-xl shadow-md border-t-4 border-green-500">
+                    <div
+                        className="bg-white p-8 rounded-xl shadow-md border-t-4 border-green-500"
+                        data-aos="fade-left"
+                        data-aos-delay="300"
+                    >
                         <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                             <FaGraduationCap className="text-green-500 mr-3" />
                             4 Jurusan Terakreditasi
@@ -66,7 +78,12 @@ const Akreditasi = () => {
                                 { name: "Operator Komputer", icon: <FaDesktop className="text-red-400" /> },
                                 { name: "Komputer", icon: <FaLaptopCode className="text-orange-400" /> }
                             ].map((jurusan, index) => (
-                                <div key={index} className="flex items-center p-3 bg-gray-50 rounded-lg">
+                                <div
+                                    key={index}
+                                    className="flex items-center p-3 bg-gray-50 rounded-lg"
+                                    data-aos="zoom-in"
+                                    data-aos-delay={400 + index * 100}
+                                >
                                     <span className="text-2xl mr-3">{jurusan.icon}</span>
                                     <span className="font-medium text-gray-800">{jurusan.name}</span>
                                 </div>
@@ -76,7 +93,11 @@ const Akreditasi = () => {
                 </div>
 
                 {/* Badge Section */}
-                <div className="mt-12 flex flex-wrap justify-center gap-6">
+                <div
+                    className="mt-12 flex flex-wrap justify-center gap-6"
+                    data-aos="fade-up"
+                    data-aos-delay="600"
+                >
                     <div className="bg-white p-6 rounded-lg shadow-sm border flex items-center">
                         <FaShieldAlt className="text-4xl text-blue-500 mr-4" />
                         <div>
@@ -94,6 +115,7 @@ const Akreditasi = () => {
                 </div>
             </div>
         </section>
+
     )
 }
 

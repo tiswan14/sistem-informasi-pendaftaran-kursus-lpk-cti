@@ -24,6 +24,10 @@ interface Pagination {
     itemsPerPage: number;
 }
 
+type InstrukturTableProps = {
+    searchQuery: string;
+};
+
 const Tooltip = ({ content, children }: { content: string; children: React.ReactNode }) => {
     const [isVisible, setIsVisible] = useState(false);
 
@@ -122,8 +126,8 @@ const Pagination = ({ pagination, onPageChange }: {
                                 key={index}
                                 onClick={() => typeof page === 'number' ? onPageChange(page) : null}
                                 className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${page === currentPage
-                                        ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
-                                        : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+                                    ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
+                                    : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
                                     } ${typeof page !== 'number' ? 'cursor-default' : ''}`}
                                 disabled={typeof page !== 'number'}
                             >
@@ -147,7 +151,7 @@ const Pagination = ({ pagination, onPageChange }: {
     );
 };
 
-const InstrukturTable = () => {
+const InstrukturTable = ({ searchQuery }: InstrukturTableProps) => {
     const [instrukturData, setInstrukturData] = useState<Instruktur[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [deleteId, setDeleteId] = useState<number | null>(null);
@@ -202,9 +206,14 @@ const InstrukturTable = () => {
         setPagination(prev => ({ ...prev, currentPage: page }));
     };
 
+    const filteredInstruktur = instrukturData.filter((instruktur) =>
+        instruktur.nama.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+
     if (loading) {
         return (
-            <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
+            <div className="flex justify-center items-center min-h-[calc(100vh-350px)]">
                 <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
             </div>
         );
@@ -253,7 +262,7 @@ const InstrukturTable = () => {
                 </thead>
 
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {!instrukturData.length ? (
+                    {!filteredInstruktur.length ? (
                         <tr>
                             <td colSpan={7} className="text-center py-10 text-gray-400 italic">
                                 <div className="flex flex-col items-center space-y-2">
@@ -275,7 +284,7 @@ const InstrukturTable = () => {
                             </td>
                         </tr>
                     ) : (
-                        instrukturData.map((instruktur, index) => (
+                        filteredInstruktur.map((instruktur, index) => (
                             <tr
                                 key={instruktur.id}
                                 className="hover:bg-gray-50 transition-colors duration-150 ease-in-out"
@@ -291,8 +300,8 @@ const InstrukturTable = () => {
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     <span
                                         className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${instruktur.jenisKelamin === "Laki-laki"
-                                            ? "bg-blue-100 text-blue-800"
-                                            : "bg-pink-100 text-pink-800"
+                                                ? "bg-blue-100 text-blue-800"
+                                                : "bg-pink-100 text-pink-800"
                                             }`}
                                     >
                                         {instruktur.jenisKelamin}
@@ -333,6 +342,7 @@ const InstrukturTable = () => {
                         ))
                     )}
                 </tbody>
+
             </table>
 
             {pagination.totalPages > 1 && (

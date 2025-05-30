@@ -12,7 +12,9 @@ import {
     FaCalendarAlt,
     FaCertificate,
     FaChevronLeft,
-    FaChevronRight
+    FaChevronRight,
+    FaMoneyBillAlt,
+    FaChartBar
 } from "react-icons/fa";
 
 const Sidebar = () => {
@@ -95,6 +97,15 @@ const Sidebar = () => {
                     </div>
                 </Link>
 
+                <Link href="/dashboard/data-pembayaran">
+                    <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-green-50 hover:text-green-600 transition-all group">
+                        <div className="p-2 bg-green-50 rounded-lg group-hover:bg-green-100 transition">
+                            <FaMoneyBillAlt className="text-green-500 group-hover:text-green-600" />
+                        </div>
+                        {!collapsed && <span className="font-medium">Pembayaran</span>}
+                    </div>
+                </Link>
+
                 <Link href="/dashboard/jadwal">
                     <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-all group">
                         <div className="p-2 bg-indigo-50 rounded-lg group-hover:bg-indigo-100 transition">
@@ -110,6 +121,15 @@ const Sidebar = () => {
                             <FaCertificate className="text-cyan-500 group-hover:text-cyan-600" />
                         </div>
                         {!collapsed && <span className="font-medium">Sertifikat</span>}
+                    </div>
+                </Link>
+
+                <Link href="/dashboard/laporan">
+                    <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 hover:text-gray-600 transition-all group">
+                        <div className="p-2 bg-gray-50 rounded-lg group-hover:bg-gray-100 transition">
+                            <FaChartBar className="text-gray-500 group-hover:text-gray-600" />
+                        </div>
+                        {!collapsed && <span className="font-medium">Laporan</span>}
                     </div>
                 </Link>
 

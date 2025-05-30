@@ -44,10 +44,15 @@ export type Kursus = $Result.DefaultSelection<Prisma.$KursusPayload>
  */
 export type Pendaftaran = $Result.DefaultSelection<Prisma.$PendaftaranPayload>
 /**
- * Model Pembayaran
+ * Model Payment
  * 
  */
-export type Pembayaran = $Result.DefaultSelection<Prisma.$PembayaranPayload>
+export type Payment = $Result.DefaultSelection<Prisma.$PaymentPayload>
+/**
+ * Model Jadwal
+ * 
+ */
+export type Jadwal = $Result.DefaultSelection<Prisma.$JadwalPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -235,14 +240,24 @@ export class PrismaClient<
   get pendaftaran(): Prisma.PendaftaranDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.pembayaran`: Exposes CRUD operations for the **Pembayaran** model.
+   * `prisma.payment`: Exposes CRUD operations for the **Payment** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more Pembayarans
-    * const pembayarans = await prisma.pembayaran.findMany()
+    * // Fetch zero or more Payments
+    * const payments = await prisma.payment.findMany()
     * ```
     */
-  get pembayaran(): Prisma.PembayaranDelegate<ExtArgs, ClientOptions>;
+  get payment(): Prisma.PaymentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.jadwal`: Exposes CRUD operations for the **Jadwal** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Jadwals
+    * const jadwals = await prisma.jadwal.findMany()
+    * ```
+    */
+  get jadwal(): Prisma.JadwalDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -689,7 +704,8 @@ export namespace Prisma {
     User: 'User',
     Kursus: 'Kursus',
     Pendaftaran: 'Pendaftaran',
-    Pembayaran: 'Pembayaran'
+    Payment: 'Payment',
+    Jadwal: 'Jadwal'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -708,7 +724,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "account" | "session" | "verificationToken" | "user" | "kursus" | "pendaftaran" | "pembayaran"
+      modelProps: "account" | "session" | "verificationToken" | "user" | "kursus" | "pendaftaran" | "payment" | "jadwal"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1156,77 +1172,151 @@ export namespace Prisma {
           }
         }
       }
-      Pembayaran: {
-        payload: Prisma.$PembayaranPayload<ExtArgs>
-        fields: Prisma.PembayaranFieldRefs
+      Payment: {
+        payload: Prisma.$PaymentPayload<ExtArgs>
+        fields: Prisma.PaymentFieldRefs
         operations: {
           findUnique: {
-            args: Prisma.PembayaranFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PembayaranPayload> | null
+            args: Prisma.PaymentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentPayload> | null
           }
           findUniqueOrThrow: {
-            args: Prisma.PembayaranFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PembayaranPayload>
+            args: Prisma.PaymentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentPayload>
           }
           findFirst: {
-            args: Prisma.PembayaranFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PembayaranPayload> | null
+            args: Prisma.PaymentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentPayload> | null
           }
           findFirstOrThrow: {
-            args: Prisma.PembayaranFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PembayaranPayload>
+            args: Prisma.PaymentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentPayload>
           }
           findMany: {
-            args: Prisma.PembayaranFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PembayaranPayload>[]
+            args: Prisma.PaymentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentPayload>[]
           }
           create: {
-            args: Prisma.PembayaranCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PembayaranPayload>
+            args: Prisma.PaymentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentPayload>
           }
           createMany: {
-            args: Prisma.PembayaranCreateManyArgs<ExtArgs>
+            args: Prisma.PaymentCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
           createManyAndReturn: {
-            args: Prisma.PembayaranCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PembayaranPayload>[]
+            args: Prisma.PaymentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentPayload>[]
           }
           delete: {
-            args: Prisma.PembayaranDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PembayaranPayload>
+            args: Prisma.PaymentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentPayload>
           }
           update: {
-            args: Prisma.PembayaranUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PembayaranPayload>
+            args: Prisma.PaymentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentPayload>
           }
           deleteMany: {
-            args: Prisma.PembayaranDeleteManyArgs<ExtArgs>
+            args: Prisma.PaymentDeleteManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateMany: {
-            args: Prisma.PembayaranUpdateManyArgs<ExtArgs>
+            args: Prisma.PaymentUpdateManyArgs<ExtArgs>
             result: BatchPayload
           }
           updateManyAndReturn: {
-            args: Prisma.PembayaranUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PembayaranPayload>[]
+            args: Prisma.PaymentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentPayload>[]
           }
           upsert: {
-            args: Prisma.PembayaranUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PembayaranPayload>
+            args: Prisma.PaymentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PaymentPayload>
           }
           aggregate: {
-            args: Prisma.PembayaranAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePembayaran>
+            args: Prisma.PaymentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePayment>
           }
           groupBy: {
-            args: Prisma.PembayaranGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PembayaranGroupByOutputType>[]
+            args: Prisma.PaymentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PaymentGroupByOutputType>[]
           }
           count: {
-            args: Prisma.PembayaranCountArgs<ExtArgs>
-            result: $Utils.Optional<PembayaranCountAggregateOutputType> | number
+            args: Prisma.PaymentCountArgs<ExtArgs>
+            result: $Utils.Optional<PaymentCountAggregateOutputType> | number
+          }
+        }
+      }
+      Jadwal: {
+        payload: Prisma.$JadwalPayload<ExtArgs>
+        fields: Prisma.JadwalFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.JadwalFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JadwalPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.JadwalFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JadwalPayload>
+          }
+          findFirst: {
+            args: Prisma.JadwalFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JadwalPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.JadwalFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JadwalPayload>
+          }
+          findMany: {
+            args: Prisma.JadwalFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JadwalPayload>[]
+          }
+          create: {
+            args: Prisma.JadwalCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JadwalPayload>
+          }
+          createMany: {
+            args: Prisma.JadwalCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.JadwalCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JadwalPayload>[]
+          }
+          delete: {
+            args: Prisma.JadwalDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JadwalPayload>
+          }
+          update: {
+            args: Prisma.JadwalUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JadwalPayload>
+          }
+          deleteMany: {
+            args: Prisma.JadwalDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.JadwalUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.JadwalUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JadwalPayload>[]
+          }
+          upsert: {
+            args: Prisma.JadwalUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$JadwalPayload>
+          }
+          aggregate: {
+            args: Prisma.JadwalAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateJadwal>
+          }
+          groupBy: {
+            args: Prisma.JadwalGroupByArgs<ExtArgs>
+            result: $Utils.Optional<JadwalGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.JadwalCountArgs<ExtArgs>
+            result: $Utils.Optional<JadwalCountAggregateOutputType> | number
           }
         }
       }
@@ -1320,7 +1410,8 @@ export namespace Prisma {
     user?: UserOmit
     kursus?: KursusOmit
     pendaftaran?: PendaftaranOmit
-    pembayaran?: PembayaranOmit
+    payment?: PaymentOmit
+    jadwal?: JadwalOmit
   }
 
   /* Types for Logging */
@@ -1474,10 +1565,12 @@ export namespace Prisma {
 
   export type KursusCountOutputType = {
     Pendaftaran: number
+    Jadwal: number
   }
 
   export type KursusCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Pendaftaran?: boolean | KursusCountOutputTypeCountPendaftaranArgs
+    Jadwal?: boolean | KursusCountOutputTypeCountJadwalArgs
   }
 
   // Custom InputTypes
@@ -1496,6 +1589,13 @@ export namespace Prisma {
    */
   export type KursusCountOutputTypeCountPendaftaranArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PendaftaranWhereInput
+  }
+
+  /**
+   * KursusCountOutputType without action
+   */
+  export type KursusCountOutputTypeCountJadwalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JadwalWhereInput
   }
 
 
@@ -6293,6 +6393,7 @@ export namespace Prisma {
     userId?: boolean
     user?: boolean | Kursus$userArgs<ExtArgs>
     Pendaftaran?: boolean | Kursus$PendaftaranArgs<ExtArgs>
+    Jadwal?: boolean | Kursus$JadwalArgs<ExtArgs>
     _count?: boolean | KursusCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["kursus"]>
 
@@ -6341,6 +6442,7 @@ export namespace Prisma {
   export type KursusInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | Kursus$userArgs<ExtArgs>
     Pendaftaran?: boolean | Kursus$PendaftaranArgs<ExtArgs>
+    Jadwal?: boolean | Kursus$JadwalArgs<ExtArgs>
     _count?: boolean | KursusCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type KursusIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6355,6 +6457,7 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs> | null
       Pendaftaran: Prisma.$PendaftaranPayload<ExtArgs>[]
+      Jadwal: Prisma.$JadwalPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6763,6 +6866,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends Kursus$userArgs<ExtArgs> = {}>(args?: Subset<T, Kursus$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Pendaftaran<T extends Kursus$PendaftaranArgs<ExtArgs> = {}>(args?: Subset<T, Kursus$PendaftaranArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendaftaranPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Jadwal<T extends Kursus$JadwalArgs<ExtArgs> = {}>(args?: Subset<T, Kursus$JadwalArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7241,6 +7345,30 @@ export namespace Prisma {
   }
 
   /**
+   * Kursus.Jadwal
+   */
+  export type Kursus$JadwalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal
+     */
+    select?: JadwalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal
+     */
+    omit?: JadwalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JadwalInclude<ExtArgs> | null
+    where?: JadwalWhereInput
+    orderBy?: JadwalOrderByWithRelationInput | JadwalOrderByWithRelationInput[]
+    cursor?: JadwalWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: JadwalScalarFieldEnum | JadwalScalarFieldEnum[]
+  }
+
+  /**
    * Kursus without action
    */
   export type KursusDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7441,7 +7569,7 @@ export namespace Prisma {
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     kursus?: boolean | KursusDefaultArgs<ExtArgs>
-    Pembayaran?: boolean | Pendaftaran$PembayaranArgs<ExtArgs>
+    Payment?: boolean | Pendaftaran$PaymentArgs<ExtArgs>
   }, ExtArgs["result"]["pendaftaran"]>
 
   export type PendaftaranSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7482,7 +7610,7 @@ export namespace Prisma {
   export type PendaftaranInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     kursus?: boolean | KursusDefaultArgs<ExtArgs>
-    Pembayaran?: boolean | Pendaftaran$PembayaranArgs<ExtArgs>
+    Payment?: boolean | Pendaftaran$PaymentArgs<ExtArgs>
   }
   export type PendaftaranIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -7498,7 +7626,7 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
       kursus: Prisma.$KursusPayload<ExtArgs>
-      Pembayaran: Prisma.$PembayaranPayload<ExtArgs> | null
+      Payment: Prisma.$PaymentPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7904,7 +8032,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     kursus<T extends KursusDefaultArgs<ExtArgs> = {}>(args?: Subset<T, KursusDefaultArgs<ExtArgs>>): Prisma__KursusClient<$Result.GetResult<Prisma.$KursusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Pembayaran<T extends Pendaftaran$PembayaranArgs<ExtArgs> = {}>(args?: Subset<T, Pendaftaran$PembayaranArgs<ExtArgs>>): Prisma__PembayaranClient<$Result.GetResult<Prisma.$PembayaranPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Payment<T extends Pendaftaran$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, Pendaftaran$PaymentArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8337,22 +8465,22 @@ export namespace Prisma {
   }
 
   /**
-   * Pendaftaran.Pembayaran
+   * Pendaftaran.Payment
    */
-  export type Pendaftaran$PembayaranArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Pendaftaran$PaymentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pembayaran
+     * Select specific fields to fetch from the Payment
      */
-    select?: PembayaranSelect<ExtArgs> | null
+    select?: PaymentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pembayaran
+     * Omit specific fields from the Payment
      */
-    omit?: PembayaranOmit<ExtArgs> | null
+    omit?: PaymentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PembayaranInclude<ExtArgs> | null
-    where?: PembayaranWhereInput
+    include?: PaymentInclude<ExtArgs> | null
+    where?: PaymentWhereInput
   }
 
   /**
@@ -8375,456 +8503,444 @@ export namespace Prisma {
 
 
   /**
-   * Model Pembayaran
+   * Model Payment
    */
 
-  export type AggregatePembayaran = {
-    _count: PembayaranCountAggregateOutputType | null
-    _avg: PembayaranAvgAggregateOutputType | null
-    _sum: PembayaranSumAggregateOutputType | null
-    _min: PembayaranMinAggregateOutputType | null
-    _max: PembayaranMaxAggregateOutputType | null
+  export type AggregatePayment = {
+    _count: PaymentCountAggregateOutputType | null
+    _avg: PaymentAvgAggregateOutputType | null
+    _sum: PaymentSumAggregateOutputType | null
+    _min: PaymentMinAggregateOutputType | null
+    _max: PaymentMaxAggregateOutputType | null
   }
 
-  export type PembayaranAvgAggregateOutputType = {
-    jumlah: number | null
+  export type PaymentAvgAggregateOutputType = {
+    amount: number | null
   }
 
-  export type PembayaranSumAggregateOutputType = {
-    jumlah: number | null
+  export type PaymentSumAggregateOutputType = {
+    amount: number | null
   }
 
-  export type PembayaranMinAggregateOutputType = {
+  export type PaymentMinAggregateOutputType = {
     id: string | null
-    pendaftaranId: string | null
-    metode: string | null
-    jumlah: number | null
-    buktiBayar: string | null
+    method: string | null
+    amount: number | null
     snapToken: string | null
     redirectUrl: string | null
     waktuBayar: Date | null
     status: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    pendaftaranId: string | null
   }
 
-  export type PembayaranMaxAggregateOutputType = {
+  export type PaymentMaxAggregateOutputType = {
     id: string | null
-    pendaftaranId: string | null
-    metode: string | null
-    jumlah: number | null
-    buktiBayar: string | null
+    method: string | null
+    amount: number | null
     snapToken: string | null
     redirectUrl: string | null
     waktuBayar: Date | null
     status: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    pendaftaranId: string | null
   }
 
-  export type PembayaranCountAggregateOutputType = {
+  export type PaymentCountAggregateOutputType = {
     id: number
-    pendaftaranId: number
-    metode: number
-    jumlah: number
-    buktiBayar: number
+    method: number
+    amount: number
     snapToken: number
     redirectUrl: number
     waktuBayar: number
     status: number
     createdAt: number
     updatedAt: number
+    pendaftaranId: number
     _all: number
   }
 
 
-  export type PembayaranAvgAggregateInputType = {
-    jumlah?: true
+  export type PaymentAvgAggregateInputType = {
+    amount?: true
   }
 
-  export type PembayaranSumAggregateInputType = {
-    jumlah?: true
+  export type PaymentSumAggregateInputType = {
+    amount?: true
   }
 
-  export type PembayaranMinAggregateInputType = {
+  export type PaymentMinAggregateInputType = {
     id?: true
-    pendaftaranId?: true
-    metode?: true
-    jumlah?: true
-    buktiBayar?: true
+    method?: true
+    amount?: true
     snapToken?: true
     redirectUrl?: true
     waktuBayar?: true
     status?: true
     createdAt?: true
     updatedAt?: true
+    pendaftaranId?: true
   }
 
-  export type PembayaranMaxAggregateInputType = {
+  export type PaymentMaxAggregateInputType = {
     id?: true
-    pendaftaranId?: true
-    metode?: true
-    jumlah?: true
-    buktiBayar?: true
+    method?: true
+    amount?: true
     snapToken?: true
     redirectUrl?: true
     waktuBayar?: true
     status?: true
     createdAt?: true
     updatedAt?: true
+    pendaftaranId?: true
   }
 
-  export type PembayaranCountAggregateInputType = {
+  export type PaymentCountAggregateInputType = {
     id?: true
-    pendaftaranId?: true
-    metode?: true
-    jumlah?: true
-    buktiBayar?: true
+    method?: true
+    amount?: true
     snapToken?: true
     redirectUrl?: true
     waktuBayar?: true
     status?: true
     createdAt?: true
     updatedAt?: true
+    pendaftaranId?: true
     _all?: true
   }
 
-  export type PembayaranAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Pembayaran to aggregate.
+     * Filter which Payment to aggregate.
      */
-    where?: PembayaranWhereInput
+    where?: PaymentWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Pembayarans to fetch.
+     * Determine the order of Payments to fetch.
      */
-    orderBy?: PembayaranOrderByWithRelationInput | PembayaranOrderByWithRelationInput[]
+    orderBy?: PaymentOrderByWithRelationInput | PaymentOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
      * Sets the start position
      */
-    cursor?: PembayaranWhereUniqueInput
+    cursor?: PaymentWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Pembayarans from the position of the cursor.
+     * Take `±n` Payments from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Pembayarans.
+     * Skip the first `n` Payments.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
-     * Count returned Pembayarans
+     * Count returned Payments
     **/
-    _count?: true | PembayaranCountAggregateInputType
+    _count?: true | PaymentCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to average
     **/
-    _avg?: PembayaranAvgAggregateInputType
+    _avg?: PaymentAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to sum
     **/
-    _sum?: PembayaranSumAggregateInputType
+    _sum?: PaymentSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the minimum value
     **/
-    _min?: PembayaranMinAggregateInputType
+    _min?: PaymentMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
      * Select which fields to find the maximum value
     **/
-    _max?: PembayaranMaxAggregateInputType
+    _max?: PaymentMaxAggregateInputType
   }
 
-  export type GetPembayaranAggregateType<T extends PembayaranAggregateArgs> = {
-        [P in keyof T & keyof AggregatePembayaran]: P extends '_count' | 'count'
+  export type GetPaymentAggregateType<T extends PaymentAggregateArgs> = {
+        [P in keyof T & keyof AggregatePayment]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
-        : GetScalarType<T[P], AggregatePembayaran[P]>
-      : GetScalarType<T[P], AggregatePembayaran[P]>
+        : GetScalarType<T[P], AggregatePayment[P]>
+      : GetScalarType<T[P], AggregatePayment[P]>
   }
 
 
 
 
-  export type PembayaranGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PembayaranWhereInput
-    orderBy?: PembayaranOrderByWithAggregationInput | PembayaranOrderByWithAggregationInput[]
-    by: PembayaranScalarFieldEnum[] | PembayaranScalarFieldEnum
-    having?: PembayaranScalarWhereWithAggregatesInput
+  export type PaymentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PaymentWhereInput
+    orderBy?: PaymentOrderByWithAggregationInput | PaymentOrderByWithAggregationInput[]
+    by: PaymentScalarFieldEnum[] | PaymentScalarFieldEnum
+    having?: PaymentScalarWhereWithAggregatesInput
     take?: number
     skip?: number
-    _count?: PembayaranCountAggregateInputType | true
-    _avg?: PembayaranAvgAggregateInputType
-    _sum?: PembayaranSumAggregateInputType
-    _min?: PembayaranMinAggregateInputType
-    _max?: PembayaranMaxAggregateInputType
+    _count?: PaymentCountAggregateInputType | true
+    _avg?: PaymentAvgAggregateInputType
+    _sum?: PaymentSumAggregateInputType
+    _min?: PaymentMinAggregateInputType
+    _max?: PaymentMaxAggregateInputType
   }
 
-  export type PembayaranGroupByOutputType = {
+  export type PaymentGroupByOutputType = {
     id: string
-    pendaftaranId: string
-    metode: string
-    jumlah: number
-    buktiBayar: string | null
+    method: string | null
+    amount: number
     snapToken: string | null
     redirectUrl: string | null
     waktuBayar: Date | null
     status: string
     createdAt: Date
     updatedAt: Date
-    _count: PembayaranCountAggregateOutputType | null
-    _avg: PembayaranAvgAggregateOutputType | null
-    _sum: PembayaranSumAggregateOutputType | null
-    _min: PembayaranMinAggregateOutputType | null
-    _max: PembayaranMaxAggregateOutputType | null
+    pendaftaranId: string
+    _count: PaymentCountAggregateOutputType | null
+    _avg: PaymentAvgAggregateOutputType | null
+    _sum: PaymentSumAggregateOutputType | null
+    _min: PaymentMinAggregateOutputType | null
+    _max: PaymentMaxAggregateOutputType | null
   }
 
-  type GetPembayaranGroupByPayload<T extends PembayaranGroupByArgs> = Prisma.PrismaPromise<
+  type GetPaymentGroupByPayload<T extends PaymentGroupByArgs> = Prisma.PrismaPromise<
     Array<
-      PickEnumerable<PembayaranGroupByOutputType, T['by']> &
+      PickEnumerable<PaymentGroupByOutputType, T['by']> &
         {
-          [P in ((keyof T) & (keyof PembayaranGroupByOutputType))]: P extends '_count'
+          [P in ((keyof T) & (keyof PaymentGroupByOutputType))]: P extends '_count'
             ? T[P] extends boolean
               ? number
-              : GetScalarType<T[P], PembayaranGroupByOutputType[P]>
-            : GetScalarType<T[P], PembayaranGroupByOutputType[P]>
+              : GetScalarType<T[P], PaymentGroupByOutputType[P]>
+            : GetScalarType<T[P], PaymentGroupByOutputType[P]>
         }
       >
     >
 
 
-  export type PembayaranSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+  export type PaymentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    pendaftaranId?: boolean
-    metode?: boolean
-    jumlah?: boolean
-    buktiBayar?: boolean
+    method?: boolean
+    amount?: boolean
     snapToken?: boolean
     redirectUrl?: boolean
     waktuBayar?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["pembayaran"]>
-
-  export type PembayaranSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
     pendaftaranId?: boolean
-    metode?: boolean
-    jumlah?: boolean
-    buktiBayar?: boolean
+    pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["payment"]>
+
+  export type PaymentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    method?: boolean
+    amount?: boolean
     snapToken?: boolean
     redirectUrl?: boolean
     waktuBayar?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["pembayaran"]>
-
-  export type PembayaranSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
     pendaftaranId?: boolean
-    metode?: boolean
-    jumlah?: boolean
-    buktiBayar?: boolean
+    pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["payment"]>
+
+  export type PaymentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    method?: boolean
+    amount?: boolean
     snapToken?: boolean
     redirectUrl?: boolean
     waktuBayar?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["pembayaran"]>
-
-  export type PembayaranSelectScalar = {
-    id?: boolean
     pendaftaranId?: boolean
-    metode?: boolean
-    jumlah?: boolean
-    buktiBayar?: boolean
+    pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["payment"]>
+
+  export type PaymentSelectScalar = {
+    id?: boolean
+    method?: boolean
+    amount?: boolean
     snapToken?: boolean
     redirectUrl?: boolean
     waktuBayar?: boolean
     status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    pendaftaranId?: boolean
   }
 
-  export type PembayaranOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pendaftaranId" | "metode" | "jumlah" | "buktiBayar" | "snapToken" | "redirectUrl" | "waktuBayar" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["pembayaran"]>
-  export type PembayaranInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "method" | "amount" | "snapToken" | "redirectUrl" | "waktuBayar" | "status" | "createdAt" | "updatedAt" | "pendaftaranId", ExtArgs["result"]["payment"]>
+  export type PaymentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
   }
-  export type PembayaranIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
   }
-  export type PembayaranIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
   }
 
-  export type $PembayaranPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Pembayaran"
+  export type $PaymentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Payment"
     objects: {
       pendaftaran: Prisma.$PendaftaranPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      pendaftaranId: string
-      metode: string
-      jumlah: number
-      buktiBayar: string | null
+      method: string | null
+      amount: number
       snapToken: string | null
       redirectUrl: string | null
       waktuBayar: Date | null
       status: string
       createdAt: Date
       updatedAt: Date
-    }, ExtArgs["result"]["pembayaran"]>
+      pendaftaranId: string
+    }, ExtArgs["result"]["payment"]>
     composites: {}
   }
 
-  type PembayaranGetPayload<S extends boolean | null | undefined | PembayaranDefaultArgs> = $Result.GetResult<Prisma.$PembayaranPayload, S>
+  type PaymentGetPayload<S extends boolean | null | undefined | PaymentDefaultArgs> = $Result.GetResult<Prisma.$PaymentPayload, S>
 
-  type PembayaranCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PembayaranFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PembayaranCountAggregateInputType | true
+  type PaymentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PaymentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PaymentCountAggregateInputType | true
     }
 
-  export interface PembayaranDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Pembayaran'], meta: { name: 'Pembayaran' } }
+  export interface PaymentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Payment'], meta: { name: 'Payment' } }
     /**
-     * Find zero or one Pembayaran that matches the filter.
-     * @param {PembayaranFindUniqueArgs} args - Arguments to find a Pembayaran
+     * Find zero or one Payment that matches the filter.
+     * @param {PaymentFindUniqueArgs} args - Arguments to find a Payment
      * @example
-     * // Get one Pembayaran
-     * const pembayaran = await prisma.pembayaran.findUnique({
+     * // Get one Payment
+     * const payment = await prisma.payment.findUnique({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUnique<T extends PembayaranFindUniqueArgs>(args: SelectSubset<T, PembayaranFindUniqueArgs<ExtArgs>>): Prisma__PembayaranClient<$Result.GetResult<Prisma.$PembayaranPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends PaymentFindUniqueArgs>(args: SelectSubset<T, PaymentFindUniqueArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find one Pembayaran that matches the filter or throw an error with `error.code='P2025'`
+     * Find one Payment that matches the filter or throw an error with `error.code='P2025'`
      * if no matches were found.
-     * @param {PembayaranFindUniqueOrThrowArgs} args - Arguments to find a Pembayaran
+     * @param {PaymentFindUniqueOrThrowArgs} args - Arguments to find a Payment
      * @example
-     * // Get one Pembayaran
-     * const pembayaran = await prisma.pembayaran.findUniqueOrThrow({
+     * // Get one Payment
+     * const payment = await prisma.payment.findUniqueOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findUniqueOrThrow<T extends PembayaranFindUniqueOrThrowArgs>(args: SelectSubset<T, PembayaranFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PembayaranClient<$Result.GetResult<Prisma.$PembayaranPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends PaymentFindUniqueOrThrowArgs>(args: SelectSubset<T, PaymentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Pembayaran that matches the filter.
+     * Find the first Payment that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PembayaranFindFirstArgs} args - Arguments to find a Pembayaran
+     * @param {PaymentFindFirstArgs} args - Arguments to find a Payment
      * @example
-     * // Get one Pembayaran
-     * const pembayaran = await prisma.pembayaran.findFirst({
+     * // Get one Payment
+     * const payment = await prisma.payment.findFirst({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirst<T extends PembayaranFindFirstArgs>(args?: SelectSubset<T, PembayaranFindFirstArgs<ExtArgs>>): Prisma__PembayaranClient<$Result.GetResult<Prisma.$PembayaranPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends PaymentFindFirstArgs>(args?: SelectSubset<T, PaymentFindFirstArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find the first Pembayaran that matches the filter or
+     * Find the first Payment that matches the filter or
      * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PembayaranFindFirstOrThrowArgs} args - Arguments to find a Pembayaran
+     * @param {PaymentFindFirstOrThrowArgs} args - Arguments to find a Payment
      * @example
-     * // Get one Pembayaran
-     * const pembayaran = await prisma.pembayaran.findFirstOrThrow({
+     * // Get one Payment
+     * const payment = await prisma.payment.findFirstOrThrow({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      */
-    findFirstOrThrow<T extends PembayaranFindFirstOrThrowArgs>(args?: SelectSubset<T, PembayaranFindFirstOrThrowArgs<ExtArgs>>): Prisma__PembayaranClient<$Result.GetResult<Prisma.$PembayaranPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends PaymentFindFirstOrThrowArgs>(args?: SelectSubset<T, PaymentFindFirstOrThrowArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Find zero or more Pembayarans that matches the filter.
+     * Find zero or more Payments that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PembayaranFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @param {PaymentFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
-     * // Get all Pembayarans
-     * const pembayarans = await prisma.pembayaran.findMany()
+     * // Get all Payments
+     * const payments = await prisma.payment.findMany()
      * 
-     * // Get first 10 Pembayarans
-     * const pembayarans = await prisma.pembayaran.findMany({ take: 10 })
+     * // Get first 10 Payments
+     * const payments = await prisma.payment.findMany({ take: 10 })
      * 
      * // Only select the `id`
-     * const pembayaranWithIdOnly = await prisma.pembayaran.findMany({ select: { id: true } })
+     * const paymentWithIdOnly = await prisma.payment.findMany({ select: { id: true } })
      * 
      */
-    findMany<T extends PembayaranFindManyArgs>(args?: SelectSubset<T, PembayaranFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PembayaranPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends PaymentFindManyArgs>(args?: SelectSubset<T, PaymentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
 
     /**
-     * Create a Pembayaran.
-     * @param {PembayaranCreateArgs} args - Arguments to create a Pembayaran.
+     * Create a Payment.
+     * @param {PaymentCreateArgs} args - Arguments to create a Payment.
      * @example
-     * // Create one Pembayaran
-     * const Pembayaran = await prisma.pembayaran.create({
+     * // Create one Payment
+     * const Payment = await prisma.payment.create({
      *   data: {
-     *     // ... data to create a Pembayaran
+     *     // ... data to create a Payment
      *   }
      * })
      * 
      */
-    create<T extends PembayaranCreateArgs>(args: SelectSubset<T, PembayaranCreateArgs<ExtArgs>>): Prisma__PembayaranClient<$Result.GetResult<Prisma.$PembayaranPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends PaymentCreateArgs>(args: SelectSubset<T, PaymentCreateArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Create many Pembayarans.
-     * @param {PembayaranCreateManyArgs} args - Arguments to create many Pembayarans.
+     * Create many Payments.
+     * @param {PaymentCreateManyArgs} args - Arguments to create many Payments.
      * @example
-     * // Create many Pembayarans
-     * const pembayaran = await prisma.pembayaran.createMany({
+     * // Create many Payments
+     * const payment = await prisma.payment.createMany({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      *     
      */
-    createMany<T extends PembayaranCreateManyArgs>(args?: SelectSubset<T, PembayaranCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends PaymentCreateManyArgs>(args?: SelectSubset<T, PaymentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Create many Pembayarans and returns the data saved in the database.
-     * @param {PembayaranCreateManyAndReturnArgs} args - Arguments to create many Pembayarans.
+     * Create many Payments and returns the data saved in the database.
+     * @param {PaymentCreateManyAndReturnArgs} args - Arguments to create many Payments.
      * @example
-     * // Create many Pembayarans
-     * const pembayaran = await prisma.pembayaran.createManyAndReturn({
+     * // Create many Payments
+     * const payment = await prisma.payment.createManyAndReturn({
      *   data: [
      *     // ... provide data here
      *   ]
      * })
      * 
-     * // Create many Pembayarans and only return the `id`
-     * const pembayaranWithIdOnly = await prisma.pembayaran.createManyAndReturn({
+     * // Create many Payments and only return the `id`
+     * const paymentWithIdOnly = await prisma.payment.createManyAndReturn({
      *   select: { id: true },
      *   data: [
      *     // ... provide data here
@@ -8834,28 +8950,28 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    createManyAndReturn<T extends PembayaranCreateManyAndReturnArgs>(args?: SelectSubset<T, PembayaranCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PembayaranPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends PaymentCreateManyAndReturnArgs>(args?: SelectSubset<T, PaymentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Delete a Pembayaran.
-     * @param {PembayaranDeleteArgs} args - Arguments to delete one Pembayaran.
+     * Delete a Payment.
+     * @param {PaymentDeleteArgs} args - Arguments to delete one Payment.
      * @example
-     * // Delete one Pembayaran
-     * const Pembayaran = await prisma.pembayaran.delete({
+     * // Delete one Payment
+     * const Payment = await prisma.payment.delete({
      *   where: {
-     *     // ... filter to delete one Pembayaran
+     *     // ... filter to delete one Payment
      *   }
      * })
      * 
      */
-    delete<T extends PembayaranDeleteArgs>(args: SelectSubset<T, PembayaranDeleteArgs<ExtArgs>>): Prisma__PembayaranClient<$Result.GetResult<Prisma.$PembayaranPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends PaymentDeleteArgs>(args: SelectSubset<T, PaymentDeleteArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Update one Pembayaran.
-     * @param {PembayaranUpdateArgs} args - Arguments to update one Pembayaran.
+     * Update one Payment.
+     * @param {PaymentUpdateArgs} args - Arguments to update one Payment.
      * @example
-     * // Update one Pembayaran
-     * const pembayaran = await prisma.pembayaran.update({
+     * // Update one Payment
+     * const payment = await prisma.payment.update({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -8865,30 +8981,30 @@ export namespace Prisma {
      * })
      * 
      */
-    update<T extends PembayaranUpdateArgs>(args: SelectSubset<T, PembayaranUpdateArgs<ExtArgs>>): Prisma__PembayaranClient<$Result.GetResult<Prisma.$PembayaranPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends PaymentUpdateArgs>(args: SelectSubset<T, PaymentUpdateArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
     /**
-     * Delete zero or more Pembayarans.
-     * @param {PembayaranDeleteManyArgs} args - Arguments to filter Pembayarans to delete.
+     * Delete zero or more Payments.
+     * @param {PaymentDeleteManyArgs} args - Arguments to filter Payments to delete.
      * @example
-     * // Delete a few Pembayarans
-     * const { count } = await prisma.pembayaran.deleteMany({
+     * // Delete a few Payments
+     * const { count } = await prisma.payment.deleteMany({
      *   where: {
      *     // ... provide filter here
      *   }
      * })
      * 
      */
-    deleteMany<T extends PembayaranDeleteManyArgs>(args?: SelectSubset<T, PembayaranDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends PaymentDeleteManyArgs>(args?: SelectSubset<T, PaymentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Pembayarans.
+     * Update zero or more Payments.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PembayaranUpdateManyArgs} args - Arguments to update one or more rows.
+     * @param {PaymentUpdateManyArgs} args - Arguments to update one or more rows.
      * @example
-     * // Update many Pembayarans
-     * const pembayaran = await prisma.pembayaran.updateMany({
+     * // Update many Payments
+     * const payment = await prisma.payment.updateMany({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -8898,14 +9014,14 @@ export namespace Prisma {
      * })
      * 
      */
-    updateMany<T extends PembayaranUpdateManyArgs>(args: SelectSubset<T, PembayaranUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends PaymentUpdateManyArgs>(args: SelectSubset<T, PaymentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
-     * Update zero or more Pembayarans and returns the data updated in the database.
-     * @param {PembayaranUpdateManyAndReturnArgs} args - Arguments to update many Pembayarans.
+     * Update zero or more Payments and returns the data updated in the database.
+     * @param {PaymentUpdateManyAndReturnArgs} args - Arguments to update many Payments.
      * @example
-     * // Update many Pembayarans
-     * const pembayaran = await prisma.pembayaran.updateManyAndReturn({
+     * // Update many Payments
+     * const payment = await prisma.payment.updateManyAndReturn({
      *   where: {
      *     // ... provide filter here
      *   },
@@ -8914,8 +9030,8 @@ export namespace Prisma {
      *   ]
      * })
      * 
-     * // Update zero or more Pembayarans and only return the `id`
-     * const pembayaranWithIdOnly = await prisma.pembayaran.updateManyAndReturn({
+     * // Update zero or more Payments and only return the `id`
+     * const paymentWithIdOnly = await prisma.payment.updateManyAndReturn({
      *   select: { id: true },
      *   where: {
      *     // ... provide filter here
@@ -8928,56 +9044,56 @@ export namespace Prisma {
      * Read more here: https://pris.ly/d/null-undefined
      * 
      */
-    updateManyAndReturn<T extends PembayaranUpdateManyAndReturnArgs>(args: SelectSubset<T, PembayaranUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PembayaranPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends PaymentUpdateManyAndReturnArgs>(args: SelectSubset<T, PaymentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
-     * Create or update one Pembayaran.
-     * @param {PembayaranUpsertArgs} args - Arguments to update or create a Pembayaran.
+     * Create or update one Payment.
+     * @param {PaymentUpsertArgs} args - Arguments to update or create a Payment.
      * @example
-     * // Update or create a Pembayaran
-     * const pembayaran = await prisma.pembayaran.upsert({
+     * // Update or create a Payment
+     * const payment = await prisma.payment.upsert({
      *   create: {
-     *     // ... data to create a Pembayaran
+     *     // ... data to create a Payment
      *   },
      *   update: {
      *     // ... in case it already exists, update
      *   },
      *   where: {
-     *     // ... the filter for the Pembayaran we want to update
+     *     // ... the filter for the Payment we want to update
      *   }
      * })
      */
-    upsert<T extends PembayaranUpsertArgs>(args: SelectSubset<T, PembayaranUpsertArgs<ExtArgs>>): Prisma__PembayaranClient<$Result.GetResult<Prisma.$PembayaranPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    upsert<T extends PaymentUpsertArgs>(args: SelectSubset<T, PaymentUpsertArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
 
 
     /**
-     * Count the number of Pembayarans.
+     * Count the number of Payments.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PembayaranCountArgs} args - Arguments to filter Pembayarans to count.
+     * @param {PaymentCountArgs} args - Arguments to filter Payments to count.
      * @example
-     * // Count the number of Pembayarans
-     * const count = await prisma.pembayaran.count({
+     * // Count the number of Payments
+     * const count = await prisma.payment.count({
      *   where: {
-     *     // ... the filter for the Pembayarans we want to count
+     *     // ... the filter for the Payments we want to count
      *   }
      * })
     **/
-    count<T extends PembayaranCountArgs>(
-      args?: Subset<T, PembayaranCountArgs>,
+    count<T extends PaymentCountArgs>(
+      args?: Subset<T, PaymentCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
         ? T['select'] extends true
           ? number
-          : GetScalarType<T['select'], PembayaranCountAggregateOutputType>
+          : GetScalarType<T['select'], PaymentCountAggregateOutputType>
         : number
     >
 
     /**
-     * Allows you to perform aggregations operations on a Pembayaran.
+     * Allows you to perform aggregations operations on a Payment.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PembayaranAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @param {PaymentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
      * @example
      * // Ordered by age ascending
      * // Where email contains prisma.io
@@ -8997,13 +9113,13 @@ export namespace Prisma {
      *   take: 10,
      * })
     **/
-    aggregate<T extends PembayaranAggregateArgs>(args: Subset<T, PembayaranAggregateArgs>): Prisma.PrismaPromise<GetPembayaranAggregateType<T>>
+    aggregate<T extends PaymentAggregateArgs>(args: Subset<T, PaymentAggregateArgs>): Prisma.PrismaPromise<GetPaymentAggregateType<T>>
 
     /**
-     * Group by Pembayaran.
+     * Group by Payment.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {PembayaranGroupByArgs} args - Group by arguments.
+     * @param {PaymentGroupByArgs} args - Group by arguments.
      * @example
      * // Group by city, order by createdAt, get count
      * const result = await prisma.user.groupBy({
@@ -9018,14 +9134,14 @@ export namespace Prisma {
      * 
     **/
     groupBy<
-      T extends PembayaranGroupByArgs,
+      T extends PaymentGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
         Extends<'take', Keys<T>>
       >,
       OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PembayaranGroupByArgs['orderBy'] }
-        : { orderBy?: PembayaranGroupByArgs['orderBy'] },
+        ? { orderBy: PaymentGroupByArgs['orderBy'] }
+        : { orderBy?: PaymentGroupByArgs['orderBy'] },
       OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
@@ -9074,20 +9190,20 @@ export namespace Prisma {
             ? never
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
-    >(args: SubsetIntersection<T, PembayaranGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPembayaranGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+    >(args: SubsetIntersection<T, PaymentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPaymentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
   /**
-   * Fields of the Pembayaran model
+   * Fields of the Payment model
    */
-  readonly fields: PembayaranFieldRefs;
+  readonly fields: PaymentFieldRefs;
   }
 
   /**
-   * The delegate class that acts as a "Promise-like" for Pembayaran.
+   * The delegate class that acts as a "Promise-like" for Payment.
    * Why is this prefixed with `Prisma__`?
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__PembayaranClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+  export interface Prisma__PaymentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     pendaftaran<T extends PendaftaranDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PendaftaranDefaultArgs<ExtArgs>>): Prisma__PendaftaranClient<$Result.GetResult<Prisma.$PendaftaranPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
@@ -9116,431 +9232,1514 @@ export namespace Prisma {
 
 
   /**
-   * Fields of the Pembayaran model
+   * Fields of the Payment model
    */
-  interface PembayaranFieldRefs {
-    readonly id: FieldRef<"Pembayaran", 'String'>
-    readonly pendaftaranId: FieldRef<"Pembayaran", 'String'>
-    readonly metode: FieldRef<"Pembayaran", 'String'>
-    readonly jumlah: FieldRef<"Pembayaran", 'Int'>
-    readonly buktiBayar: FieldRef<"Pembayaran", 'String'>
-    readonly snapToken: FieldRef<"Pembayaran", 'String'>
-    readonly redirectUrl: FieldRef<"Pembayaran", 'String'>
-    readonly waktuBayar: FieldRef<"Pembayaran", 'DateTime'>
-    readonly status: FieldRef<"Pembayaran", 'String'>
-    readonly createdAt: FieldRef<"Pembayaran", 'DateTime'>
-    readonly updatedAt: FieldRef<"Pembayaran", 'DateTime'>
+  interface PaymentFieldRefs {
+    readonly id: FieldRef<"Payment", 'String'>
+    readonly method: FieldRef<"Payment", 'String'>
+    readonly amount: FieldRef<"Payment", 'Int'>
+    readonly snapToken: FieldRef<"Payment", 'String'>
+    readonly redirectUrl: FieldRef<"Payment", 'String'>
+    readonly waktuBayar: FieldRef<"Payment", 'DateTime'>
+    readonly status: FieldRef<"Payment", 'String'>
+    readonly createdAt: FieldRef<"Payment", 'DateTime'>
+    readonly updatedAt: FieldRef<"Payment", 'DateTime'>
+    readonly pendaftaranId: FieldRef<"Payment", 'String'>
   }
     
 
   // Custom InputTypes
   /**
-   * Pembayaran findUnique
+   * Payment findUnique
    */
-  export type PembayaranFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pembayaran
+     * Select specific fields to fetch from the Payment
      */
-    select?: PembayaranSelect<ExtArgs> | null
+    select?: PaymentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pembayaran
+     * Omit specific fields from the Payment
      */
-    omit?: PembayaranOmit<ExtArgs> | null
+    omit?: PaymentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PembayaranInclude<ExtArgs> | null
+    include?: PaymentInclude<ExtArgs> | null
     /**
-     * Filter, which Pembayaran to fetch.
+     * Filter, which Payment to fetch.
      */
-    where: PembayaranWhereUniqueInput
+    where: PaymentWhereUniqueInput
   }
 
   /**
-   * Pembayaran findUniqueOrThrow
+   * Payment findUniqueOrThrow
    */
-  export type PembayaranFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pembayaran
+     * Select specific fields to fetch from the Payment
      */
-    select?: PembayaranSelect<ExtArgs> | null
+    select?: PaymentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pembayaran
+     * Omit specific fields from the Payment
      */
-    omit?: PembayaranOmit<ExtArgs> | null
+    omit?: PaymentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PembayaranInclude<ExtArgs> | null
+    include?: PaymentInclude<ExtArgs> | null
     /**
-     * Filter, which Pembayaran to fetch.
+     * Filter, which Payment to fetch.
      */
-    where: PembayaranWhereUniqueInput
+    where: PaymentWhereUniqueInput
   }
 
   /**
-   * Pembayaran findFirst
+   * Payment findFirst
    */
-  export type PembayaranFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pembayaran
+     * Select specific fields to fetch from the Payment
      */
-    select?: PembayaranSelect<ExtArgs> | null
+    select?: PaymentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pembayaran
+     * Omit specific fields from the Payment
      */
-    omit?: PembayaranOmit<ExtArgs> | null
+    omit?: PaymentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PembayaranInclude<ExtArgs> | null
+    include?: PaymentInclude<ExtArgs> | null
     /**
-     * Filter, which Pembayaran to fetch.
+     * Filter, which Payment to fetch.
      */
-    where?: PembayaranWhereInput
+    where?: PaymentWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Pembayarans to fetch.
+     * Determine the order of Payments to fetch.
      */
-    orderBy?: PembayaranOrderByWithRelationInput | PembayaranOrderByWithRelationInput[]
+    orderBy?: PaymentOrderByWithRelationInput | PaymentOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Pembayarans.
+     * Sets the position for searching for Payments.
      */
-    cursor?: PembayaranWhereUniqueInput
+    cursor?: PaymentWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Pembayarans from the position of the cursor.
+     * Take `±n` Payments from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Pembayarans.
+     * Skip the first `n` Payments.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Pembayarans.
+     * Filter by unique combinations of Payments.
      */
-    distinct?: PembayaranScalarFieldEnum | PembayaranScalarFieldEnum[]
+    distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
   }
 
   /**
-   * Pembayaran findFirstOrThrow
+   * Payment findFirstOrThrow
    */
-  export type PembayaranFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pembayaran
+     * Select specific fields to fetch from the Payment
      */
-    select?: PembayaranSelect<ExtArgs> | null
+    select?: PaymentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pembayaran
+     * Omit specific fields from the Payment
      */
-    omit?: PembayaranOmit<ExtArgs> | null
+    omit?: PaymentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PembayaranInclude<ExtArgs> | null
+    include?: PaymentInclude<ExtArgs> | null
     /**
-     * Filter, which Pembayaran to fetch.
+     * Filter, which Payment to fetch.
      */
-    where?: PembayaranWhereInput
+    where?: PaymentWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Pembayarans to fetch.
+     * Determine the order of Payments to fetch.
      */
-    orderBy?: PembayaranOrderByWithRelationInput | PembayaranOrderByWithRelationInput[]
+    orderBy?: PaymentOrderByWithRelationInput | PaymentOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for searching for Pembayarans.
+     * Sets the position for searching for Payments.
      */
-    cursor?: PembayaranWhereUniqueInput
+    cursor?: PaymentWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Pembayarans from the position of the cursor.
+     * Take `±n` Payments from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Pembayarans.
+     * Skip the first `n` Payments.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
      * 
-     * Filter by unique combinations of Pembayarans.
+     * Filter by unique combinations of Payments.
      */
-    distinct?: PembayaranScalarFieldEnum | PembayaranScalarFieldEnum[]
+    distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
   }
 
   /**
-   * Pembayaran findMany
+   * Payment findMany
    */
-  export type PembayaranFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pembayaran
+     * Select specific fields to fetch from the Payment
      */
-    select?: PembayaranSelect<ExtArgs> | null
+    select?: PaymentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pembayaran
+     * Omit specific fields from the Payment
      */
-    omit?: PembayaranOmit<ExtArgs> | null
+    omit?: PaymentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PembayaranInclude<ExtArgs> | null
+    include?: PaymentInclude<ExtArgs> | null
     /**
-     * Filter, which Pembayarans to fetch.
+     * Filter, which Payments to fetch.
      */
-    where?: PembayaranWhereInput
+    where?: PaymentWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
      * 
-     * Determine the order of Pembayarans to fetch.
+     * Determine the order of Payments to fetch.
      */
-    orderBy?: PembayaranOrderByWithRelationInput | PembayaranOrderByWithRelationInput[]
+    orderBy?: PaymentOrderByWithRelationInput | PaymentOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
-     * Sets the position for listing Pembayarans.
+     * Sets the position for listing Payments.
      */
-    cursor?: PembayaranWhereUniqueInput
+    cursor?: PaymentWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Take `±n` Pembayarans from the position of the cursor.
+     * Take `±n` Payments from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
      * 
-     * Skip the first `n` Pembayarans.
+     * Skip the first `n` Payments.
      */
     skip?: number
-    distinct?: PembayaranScalarFieldEnum | PembayaranScalarFieldEnum[]
+    distinct?: PaymentScalarFieldEnum | PaymentScalarFieldEnum[]
   }
 
   /**
-   * Pembayaran create
+   * Payment create
    */
-  export type PembayaranCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pembayaran
+     * Select specific fields to fetch from the Payment
      */
-    select?: PembayaranSelect<ExtArgs> | null
+    select?: PaymentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pembayaran
+     * Omit specific fields from the Payment
      */
-    omit?: PembayaranOmit<ExtArgs> | null
+    omit?: PaymentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PembayaranInclude<ExtArgs> | null
+    include?: PaymentInclude<ExtArgs> | null
     /**
-     * The data needed to create a Pembayaran.
+     * The data needed to create a Payment.
      */
-    data: XOR<PembayaranCreateInput, PembayaranUncheckedCreateInput>
+    data: XOR<PaymentCreateInput, PaymentUncheckedCreateInput>
   }
 
   /**
-   * Pembayaran createMany
+   * Payment createMany
    */
-  export type PembayaranCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to create many Pembayarans.
+     * The data used to create many Payments.
      */
-    data: PembayaranCreateManyInput | PembayaranCreateManyInput[]
+    data: PaymentCreateManyInput | PaymentCreateManyInput[]
     skipDuplicates?: boolean
   }
 
   /**
-   * Pembayaran createManyAndReturn
+   * Payment createManyAndReturn
    */
-  export type PembayaranCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pembayaran
+     * Select specific fields to fetch from the Payment
      */
-    select?: PembayaranSelectCreateManyAndReturn<ExtArgs> | null
+    select?: PaymentSelectCreateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Pembayaran
+     * Omit specific fields from the Payment
      */
-    omit?: PembayaranOmit<ExtArgs> | null
+    omit?: PaymentOmit<ExtArgs> | null
     /**
-     * The data used to create many Pembayarans.
+     * The data used to create many Payments.
      */
-    data: PembayaranCreateManyInput | PembayaranCreateManyInput[]
+    data: PaymentCreateManyInput | PaymentCreateManyInput[]
     skipDuplicates?: boolean
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PembayaranIncludeCreateManyAndReturn<ExtArgs> | null
+    include?: PaymentIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Pembayaran update
+   * Payment update
    */
-  export type PembayaranUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pembayaran
+     * Select specific fields to fetch from the Payment
      */
-    select?: PembayaranSelect<ExtArgs> | null
+    select?: PaymentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pembayaran
+     * Omit specific fields from the Payment
      */
-    omit?: PembayaranOmit<ExtArgs> | null
+    omit?: PaymentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PembayaranInclude<ExtArgs> | null
+    include?: PaymentInclude<ExtArgs> | null
     /**
-     * The data needed to update a Pembayaran.
+     * The data needed to update a Payment.
      */
-    data: XOR<PembayaranUpdateInput, PembayaranUncheckedUpdateInput>
+    data: XOR<PaymentUpdateInput, PaymentUncheckedUpdateInput>
     /**
-     * Choose, which Pembayaran to update.
+     * Choose, which Payment to update.
      */
-    where: PembayaranWhereUniqueInput
+    where: PaymentWhereUniqueInput
   }
 
   /**
-   * Pembayaran updateMany
+   * Payment updateMany
    */
-  export type PembayaranUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * The data used to update Pembayarans.
+     * The data used to update Payments.
      */
-    data: XOR<PembayaranUpdateManyMutationInput, PembayaranUncheckedUpdateManyInput>
+    data: XOR<PaymentUpdateManyMutationInput, PaymentUncheckedUpdateManyInput>
     /**
-     * Filter which Pembayarans to update
+     * Filter which Payments to update
      */
-    where?: PembayaranWhereInput
+    where?: PaymentWhereInput
     /**
-     * Limit how many Pembayarans to update.
+     * Limit how many Payments to update.
      */
     limit?: number
   }
 
   /**
-   * Pembayaran updateManyAndReturn
+   * Payment updateManyAndReturn
    */
-  export type PembayaranUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pembayaran
+     * Select specific fields to fetch from the Payment
      */
-    select?: PembayaranSelectUpdateManyAndReturn<ExtArgs> | null
+    select?: PaymentSelectUpdateManyAndReturn<ExtArgs> | null
     /**
-     * Omit specific fields from the Pembayaran
+     * Omit specific fields from the Payment
      */
-    omit?: PembayaranOmit<ExtArgs> | null
+    omit?: PaymentOmit<ExtArgs> | null
     /**
-     * The data used to update Pembayarans.
+     * The data used to update Payments.
      */
-    data: XOR<PembayaranUpdateManyMutationInput, PembayaranUncheckedUpdateManyInput>
+    data: XOR<PaymentUpdateManyMutationInput, PaymentUncheckedUpdateManyInput>
     /**
-     * Filter which Pembayarans to update
+     * Filter which Payments to update
      */
-    where?: PembayaranWhereInput
+    where?: PaymentWhereInput
     /**
-     * Limit how many Pembayarans to update.
+     * Limit how many Payments to update.
      */
     limit?: number
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PembayaranIncludeUpdateManyAndReturn<ExtArgs> | null
+    include?: PaymentIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
-   * Pembayaran upsert
+   * Payment upsert
    */
-  export type PembayaranUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pembayaran
+     * Select specific fields to fetch from the Payment
      */
-    select?: PembayaranSelect<ExtArgs> | null
+    select?: PaymentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pembayaran
+     * Omit specific fields from the Payment
      */
-    omit?: PembayaranOmit<ExtArgs> | null
+    omit?: PaymentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PembayaranInclude<ExtArgs> | null
+    include?: PaymentInclude<ExtArgs> | null
     /**
-     * The filter to search for the Pembayaran to update in case it exists.
+     * The filter to search for the Payment to update in case it exists.
      */
-    where: PembayaranWhereUniqueInput
+    where: PaymentWhereUniqueInput
     /**
-     * In case the Pembayaran found by the `where` argument doesn't exist, create a new Pembayaran with this data.
+     * In case the Payment found by the `where` argument doesn't exist, create a new Payment with this data.
      */
-    create: XOR<PembayaranCreateInput, PembayaranUncheckedCreateInput>
+    create: XOR<PaymentCreateInput, PaymentUncheckedCreateInput>
     /**
-     * In case the Pembayaran was found with the provided `where` argument, update it with this data.
+     * In case the Payment was found with the provided `where` argument, update it with this data.
      */
-    update: XOR<PembayaranUpdateInput, PembayaranUncheckedUpdateInput>
+    update: XOR<PaymentUpdateInput, PaymentUncheckedUpdateInput>
   }
 
   /**
-   * Pembayaran delete
+   * Payment delete
    */
-  export type PembayaranDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pembayaran
+     * Select specific fields to fetch from the Payment
      */
-    select?: PembayaranSelect<ExtArgs> | null
+    select?: PaymentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pembayaran
+     * Omit specific fields from the Payment
      */
-    omit?: PembayaranOmit<ExtArgs> | null
+    omit?: PaymentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PembayaranInclude<ExtArgs> | null
+    include?: PaymentInclude<ExtArgs> | null
     /**
-     * Filter which Pembayaran to delete.
+     * Filter which Payment to delete.
      */
-    where: PembayaranWhereUniqueInput
+    where: PaymentWhereUniqueInput
   }
 
   /**
-   * Pembayaran deleteMany
+   * Payment deleteMany
    */
-  export type PembayaranDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Filter which Pembayarans to delete
+     * Filter which Payments to delete
      */
-    where?: PembayaranWhereInput
+    where?: PaymentWhereInput
     /**
-     * Limit how many Pembayarans to delete.
+     * Limit how many Payments to delete.
      */
     limit?: number
   }
 
   /**
-   * Pembayaran without action
+   * Payment without action
    */
-  export type PembayaranDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PaymentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Pembayaran
+     * Select specific fields to fetch from the Payment
      */
-    select?: PembayaranSelect<ExtArgs> | null
+    select?: PaymentSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Pembayaran
+     * Omit specific fields from the Payment
      */
-    omit?: PembayaranOmit<ExtArgs> | null
+    omit?: PaymentOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PembayaranInclude<ExtArgs> | null
+    include?: PaymentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Jadwal
+   */
+
+  export type AggregateJadwal = {
+    _count: JadwalCountAggregateOutputType | null
+    _min: JadwalMinAggregateOutputType | null
+    _max: JadwalMaxAggregateOutputType | null
+  }
+
+  export type JadwalMinAggregateOutputType = {
+    id: string | null
+    kursusId: string | null
+    hari: string | null
+    jamMulai: string | null
+    jamSelesai: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type JadwalMaxAggregateOutputType = {
+    id: string | null
+    kursusId: string | null
+    hari: string | null
+    jamMulai: string | null
+    jamSelesai: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type JadwalCountAggregateOutputType = {
+    id: number
+    kursusId: number
+    hari: number
+    jamMulai: number
+    jamSelesai: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type JadwalMinAggregateInputType = {
+    id?: true
+    kursusId?: true
+    hari?: true
+    jamMulai?: true
+    jamSelesai?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type JadwalMaxAggregateInputType = {
+    id?: true
+    kursusId?: true
+    hari?: true
+    jamMulai?: true
+    jamSelesai?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type JadwalCountAggregateInputType = {
+    id?: true
+    kursusId?: true
+    hari?: true
+    jamMulai?: true
+    jamSelesai?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type JadwalAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Jadwal to aggregate.
+     */
+    where?: JadwalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jadwals to fetch.
+     */
+    orderBy?: JadwalOrderByWithRelationInput | JadwalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: JadwalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jadwals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jadwals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Jadwals
+    **/
+    _count?: true | JadwalCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: JadwalMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: JadwalMaxAggregateInputType
+  }
+
+  export type GetJadwalAggregateType<T extends JadwalAggregateArgs> = {
+        [P in keyof T & keyof AggregateJadwal]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateJadwal[P]>
+      : GetScalarType<T[P], AggregateJadwal[P]>
+  }
+
+
+
+
+  export type JadwalGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: JadwalWhereInput
+    orderBy?: JadwalOrderByWithAggregationInput | JadwalOrderByWithAggregationInput[]
+    by: JadwalScalarFieldEnum[] | JadwalScalarFieldEnum
+    having?: JadwalScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: JadwalCountAggregateInputType | true
+    _min?: JadwalMinAggregateInputType
+    _max?: JadwalMaxAggregateInputType
+  }
+
+  export type JadwalGroupByOutputType = {
+    id: string
+    kursusId: string
+    hari: string
+    jamMulai: string
+    jamSelesai: string
+    createdAt: Date
+    updatedAt: Date
+    _count: JadwalCountAggregateOutputType | null
+    _min: JadwalMinAggregateOutputType | null
+    _max: JadwalMaxAggregateOutputType | null
+  }
+
+  type GetJadwalGroupByPayload<T extends JadwalGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<JadwalGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof JadwalGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], JadwalGroupByOutputType[P]>
+            : GetScalarType<T[P], JadwalGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type JadwalSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    kursusId?: boolean
+    hari?: boolean
+    jamMulai?: boolean
+    jamSelesai?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    kursus?: boolean | KursusDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jadwal"]>
+
+  export type JadwalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    kursusId?: boolean
+    hari?: boolean
+    jamMulai?: boolean
+    jamSelesai?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    kursus?: boolean | KursusDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jadwal"]>
+
+  export type JadwalSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    kursusId?: boolean
+    hari?: boolean
+    jamMulai?: boolean
+    jamSelesai?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    kursus?: boolean | KursusDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["jadwal"]>
+
+  export type JadwalSelectScalar = {
+    id?: boolean
+    kursusId?: boolean
+    hari?: boolean
+    jamMulai?: boolean
+    jamSelesai?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type JadwalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "kursusId" | "hari" | "jamMulai" | "jamSelesai" | "createdAt" | "updatedAt", ExtArgs["result"]["jadwal"]>
+  export type JadwalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    kursus?: boolean | KursusDefaultArgs<ExtArgs>
+  }
+  export type JadwalIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    kursus?: boolean | KursusDefaultArgs<ExtArgs>
+  }
+  export type JadwalIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    kursus?: boolean | KursusDefaultArgs<ExtArgs>
+  }
+
+  export type $JadwalPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Jadwal"
+    objects: {
+      kursus: Prisma.$KursusPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      kursusId: string
+      hari: string
+      jamMulai: string
+      jamSelesai: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["jadwal"]>
+    composites: {}
+  }
+
+  type JadwalGetPayload<S extends boolean | null | undefined | JadwalDefaultArgs> = $Result.GetResult<Prisma.$JadwalPayload, S>
+
+  type JadwalCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<JadwalFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: JadwalCountAggregateInputType | true
+    }
+
+  export interface JadwalDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Jadwal'], meta: { name: 'Jadwal' } }
+    /**
+     * Find zero or one Jadwal that matches the filter.
+     * @param {JadwalFindUniqueArgs} args - Arguments to find a Jadwal
+     * @example
+     * // Get one Jadwal
+     * const jadwal = await prisma.jadwal.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends JadwalFindUniqueArgs>(args: SelectSubset<T, JadwalFindUniqueArgs<ExtArgs>>): Prisma__JadwalClient<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Jadwal that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {JadwalFindUniqueOrThrowArgs} args - Arguments to find a Jadwal
+     * @example
+     * // Get one Jadwal
+     * const jadwal = await prisma.jadwal.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends JadwalFindUniqueOrThrowArgs>(args: SelectSubset<T, JadwalFindUniqueOrThrowArgs<ExtArgs>>): Prisma__JadwalClient<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Jadwal that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JadwalFindFirstArgs} args - Arguments to find a Jadwal
+     * @example
+     * // Get one Jadwal
+     * const jadwal = await prisma.jadwal.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends JadwalFindFirstArgs>(args?: SelectSubset<T, JadwalFindFirstArgs<ExtArgs>>): Prisma__JadwalClient<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Jadwal that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JadwalFindFirstOrThrowArgs} args - Arguments to find a Jadwal
+     * @example
+     * // Get one Jadwal
+     * const jadwal = await prisma.jadwal.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends JadwalFindFirstOrThrowArgs>(args?: SelectSubset<T, JadwalFindFirstOrThrowArgs<ExtArgs>>): Prisma__JadwalClient<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Jadwals that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JadwalFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Jadwals
+     * const jadwals = await prisma.jadwal.findMany()
+     * 
+     * // Get first 10 Jadwals
+     * const jadwals = await prisma.jadwal.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const jadwalWithIdOnly = await prisma.jadwal.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends JadwalFindManyArgs>(args?: SelectSubset<T, JadwalFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Jadwal.
+     * @param {JadwalCreateArgs} args - Arguments to create a Jadwal.
+     * @example
+     * // Create one Jadwal
+     * const Jadwal = await prisma.jadwal.create({
+     *   data: {
+     *     // ... data to create a Jadwal
+     *   }
+     * })
+     * 
+     */
+    create<T extends JadwalCreateArgs>(args: SelectSubset<T, JadwalCreateArgs<ExtArgs>>): Prisma__JadwalClient<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Jadwals.
+     * @param {JadwalCreateManyArgs} args - Arguments to create many Jadwals.
+     * @example
+     * // Create many Jadwals
+     * const jadwal = await prisma.jadwal.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends JadwalCreateManyArgs>(args?: SelectSubset<T, JadwalCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Jadwals and returns the data saved in the database.
+     * @param {JadwalCreateManyAndReturnArgs} args - Arguments to create many Jadwals.
+     * @example
+     * // Create many Jadwals
+     * const jadwal = await prisma.jadwal.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Jadwals and only return the `id`
+     * const jadwalWithIdOnly = await prisma.jadwal.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends JadwalCreateManyAndReturnArgs>(args?: SelectSubset<T, JadwalCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Jadwal.
+     * @param {JadwalDeleteArgs} args - Arguments to delete one Jadwal.
+     * @example
+     * // Delete one Jadwal
+     * const Jadwal = await prisma.jadwal.delete({
+     *   where: {
+     *     // ... filter to delete one Jadwal
+     *   }
+     * })
+     * 
+     */
+    delete<T extends JadwalDeleteArgs>(args: SelectSubset<T, JadwalDeleteArgs<ExtArgs>>): Prisma__JadwalClient<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Jadwal.
+     * @param {JadwalUpdateArgs} args - Arguments to update one Jadwal.
+     * @example
+     * // Update one Jadwal
+     * const jadwal = await prisma.jadwal.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends JadwalUpdateArgs>(args: SelectSubset<T, JadwalUpdateArgs<ExtArgs>>): Prisma__JadwalClient<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Jadwals.
+     * @param {JadwalDeleteManyArgs} args - Arguments to filter Jadwals to delete.
+     * @example
+     * // Delete a few Jadwals
+     * const { count } = await prisma.jadwal.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends JadwalDeleteManyArgs>(args?: SelectSubset<T, JadwalDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Jadwals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JadwalUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Jadwals
+     * const jadwal = await prisma.jadwal.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends JadwalUpdateManyArgs>(args: SelectSubset<T, JadwalUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Jadwals and returns the data updated in the database.
+     * @param {JadwalUpdateManyAndReturnArgs} args - Arguments to update many Jadwals.
+     * @example
+     * // Update many Jadwals
+     * const jadwal = await prisma.jadwal.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Jadwals and only return the `id`
+     * const jadwalWithIdOnly = await prisma.jadwal.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends JadwalUpdateManyAndReturnArgs>(args: SelectSubset<T, JadwalUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Jadwal.
+     * @param {JadwalUpsertArgs} args - Arguments to update or create a Jadwal.
+     * @example
+     * // Update or create a Jadwal
+     * const jadwal = await prisma.jadwal.upsert({
+     *   create: {
+     *     // ... data to create a Jadwal
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Jadwal we want to update
+     *   }
+     * })
+     */
+    upsert<T extends JadwalUpsertArgs>(args: SelectSubset<T, JadwalUpsertArgs<ExtArgs>>): Prisma__JadwalClient<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Jadwals.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JadwalCountArgs} args - Arguments to filter Jadwals to count.
+     * @example
+     * // Count the number of Jadwals
+     * const count = await prisma.jadwal.count({
+     *   where: {
+     *     // ... the filter for the Jadwals we want to count
+     *   }
+     * })
+    **/
+    count<T extends JadwalCountArgs>(
+      args?: Subset<T, JadwalCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], JadwalCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Jadwal.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JadwalAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends JadwalAggregateArgs>(args: Subset<T, JadwalAggregateArgs>): Prisma.PrismaPromise<GetJadwalAggregateType<T>>
+
+    /**
+     * Group by Jadwal.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {JadwalGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends JadwalGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: JadwalGroupByArgs['orderBy'] }
+        : { orderBy?: JadwalGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, JadwalGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetJadwalGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Jadwal model
+   */
+  readonly fields: JadwalFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Jadwal.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__JadwalClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    kursus<T extends KursusDefaultArgs<ExtArgs> = {}>(args?: Subset<T, KursusDefaultArgs<ExtArgs>>): Prisma__KursusClient<$Result.GetResult<Prisma.$KursusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Jadwal model
+   */
+  interface JadwalFieldRefs {
+    readonly id: FieldRef<"Jadwal", 'String'>
+    readonly kursusId: FieldRef<"Jadwal", 'String'>
+    readonly hari: FieldRef<"Jadwal", 'String'>
+    readonly jamMulai: FieldRef<"Jadwal", 'String'>
+    readonly jamSelesai: FieldRef<"Jadwal", 'String'>
+    readonly createdAt: FieldRef<"Jadwal", 'DateTime'>
+    readonly updatedAt: FieldRef<"Jadwal", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Jadwal findUnique
+   */
+  export type JadwalFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal
+     */
+    select?: JadwalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal
+     */
+    omit?: JadwalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JadwalInclude<ExtArgs> | null
+    /**
+     * Filter, which Jadwal to fetch.
+     */
+    where: JadwalWhereUniqueInput
+  }
+
+  /**
+   * Jadwal findUniqueOrThrow
+   */
+  export type JadwalFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal
+     */
+    select?: JadwalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal
+     */
+    omit?: JadwalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JadwalInclude<ExtArgs> | null
+    /**
+     * Filter, which Jadwal to fetch.
+     */
+    where: JadwalWhereUniqueInput
+  }
+
+  /**
+   * Jadwal findFirst
+   */
+  export type JadwalFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal
+     */
+    select?: JadwalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal
+     */
+    omit?: JadwalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JadwalInclude<ExtArgs> | null
+    /**
+     * Filter, which Jadwal to fetch.
+     */
+    where?: JadwalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jadwals to fetch.
+     */
+    orderBy?: JadwalOrderByWithRelationInput | JadwalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Jadwals.
+     */
+    cursor?: JadwalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jadwals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jadwals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Jadwals.
+     */
+    distinct?: JadwalScalarFieldEnum | JadwalScalarFieldEnum[]
+  }
+
+  /**
+   * Jadwal findFirstOrThrow
+   */
+  export type JadwalFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal
+     */
+    select?: JadwalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal
+     */
+    omit?: JadwalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JadwalInclude<ExtArgs> | null
+    /**
+     * Filter, which Jadwal to fetch.
+     */
+    where?: JadwalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jadwals to fetch.
+     */
+    orderBy?: JadwalOrderByWithRelationInput | JadwalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Jadwals.
+     */
+    cursor?: JadwalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jadwals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jadwals.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Jadwals.
+     */
+    distinct?: JadwalScalarFieldEnum | JadwalScalarFieldEnum[]
+  }
+
+  /**
+   * Jadwal findMany
+   */
+  export type JadwalFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal
+     */
+    select?: JadwalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal
+     */
+    omit?: JadwalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JadwalInclude<ExtArgs> | null
+    /**
+     * Filter, which Jadwals to fetch.
+     */
+    where?: JadwalWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Jadwals to fetch.
+     */
+    orderBy?: JadwalOrderByWithRelationInput | JadwalOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Jadwals.
+     */
+    cursor?: JadwalWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Jadwals from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Jadwals.
+     */
+    skip?: number
+    distinct?: JadwalScalarFieldEnum | JadwalScalarFieldEnum[]
+  }
+
+  /**
+   * Jadwal create
+   */
+  export type JadwalCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal
+     */
+    select?: JadwalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal
+     */
+    omit?: JadwalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JadwalInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Jadwal.
+     */
+    data: XOR<JadwalCreateInput, JadwalUncheckedCreateInput>
+  }
+
+  /**
+   * Jadwal createMany
+   */
+  export type JadwalCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Jadwals.
+     */
+    data: JadwalCreateManyInput | JadwalCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Jadwal createManyAndReturn
+   */
+  export type JadwalCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal
+     */
+    select?: JadwalSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal
+     */
+    omit?: JadwalOmit<ExtArgs> | null
+    /**
+     * The data used to create many Jadwals.
+     */
+    data: JadwalCreateManyInput | JadwalCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JadwalIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Jadwal update
+   */
+  export type JadwalUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal
+     */
+    select?: JadwalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal
+     */
+    omit?: JadwalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JadwalInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Jadwal.
+     */
+    data: XOR<JadwalUpdateInput, JadwalUncheckedUpdateInput>
+    /**
+     * Choose, which Jadwal to update.
+     */
+    where: JadwalWhereUniqueInput
+  }
+
+  /**
+   * Jadwal updateMany
+   */
+  export type JadwalUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Jadwals.
+     */
+    data: XOR<JadwalUpdateManyMutationInput, JadwalUncheckedUpdateManyInput>
+    /**
+     * Filter which Jadwals to update
+     */
+    where?: JadwalWhereInput
+    /**
+     * Limit how many Jadwals to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Jadwal updateManyAndReturn
+   */
+  export type JadwalUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal
+     */
+    select?: JadwalSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal
+     */
+    omit?: JadwalOmit<ExtArgs> | null
+    /**
+     * The data used to update Jadwals.
+     */
+    data: XOR<JadwalUpdateManyMutationInput, JadwalUncheckedUpdateManyInput>
+    /**
+     * Filter which Jadwals to update
+     */
+    where?: JadwalWhereInput
+    /**
+     * Limit how many Jadwals to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JadwalIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Jadwal upsert
+   */
+  export type JadwalUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal
+     */
+    select?: JadwalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal
+     */
+    omit?: JadwalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JadwalInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Jadwal to update in case it exists.
+     */
+    where: JadwalWhereUniqueInput
+    /**
+     * In case the Jadwal found by the `where` argument doesn't exist, create a new Jadwal with this data.
+     */
+    create: XOR<JadwalCreateInput, JadwalUncheckedCreateInput>
+    /**
+     * In case the Jadwal was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<JadwalUpdateInput, JadwalUncheckedUpdateInput>
+  }
+
+  /**
+   * Jadwal delete
+   */
+  export type JadwalDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal
+     */
+    select?: JadwalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal
+     */
+    omit?: JadwalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JadwalInclude<ExtArgs> | null
+    /**
+     * Filter which Jadwal to delete.
+     */
+    where: JadwalWhereUniqueInput
+  }
+
+  /**
+   * Jadwal deleteMany
+   */
+  export type JadwalDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Jadwals to delete
+     */
+    where?: JadwalWhereInput
+    /**
+     * Limit how many Jadwals to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Jadwal without action
+   */
+  export type JadwalDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Jadwal
+     */
+    select?: JadwalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Jadwal
+     */
+    omit?: JadwalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: JadwalInclude<ExtArgs> | null
   }
 
 
@@ -9650,21 +10849,33 @@ export namespace Prisma {
   export type PendaftaranScalarFieldEnum = (typeof PendaftaranScalarFieldEnum)[keyof typeof PendaftaranScalarFieldEnum]
 
 
-  export const PembayaranScalarFieldEnum: {
+  export const PaymentScalarFieldEnum: {
     id: 'id',
-    pendaftaranId: 'pendaftaranId',
-    metode: 'metode',
-    jumlah: 'jumlah',
-    buktiBayar: 'buktiBayar',
+    method: 'method',
+    amount: 'amount',
     snapToken: 'snapToken',
     redirectUrl: 'redirectUrl',
     waktuBayar: 'waktuBayar',
     status: 'status',
     createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    pendaftaranId: 'pendaftaranId'
+  };
+
+  export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+  export const JadwalScalarFieldEnum: {
+    id: 'id',
+    kursusId: 'kursusId',
+    hari: 'hari',
+    jamMulai: 'jamMulai',
+    jamSelesai: 'jamSelesai',
+    createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
-  export type PembayaranScalarFieldEnum = (typeof PembayaranScalarFieldEnum)[keyof typeof PembayaranScalarFieldEnum]
+  export type JadwalScalarFieldEnum = (typeof JadwalScalarFieldEnum)[keyof typeof JadwalScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -10096,6 +11307,7 @@ export namespace Prisma {
     userId?: StringNullableFilter<"Kursus"> | string | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     Pendaftaran?: PendaftaranListRelationFilter
+    Jadwal?: JadwalListRelationFilter
   }
 
   export type KursusOrderByWithRelationInput = {
@@ -10111,6 +11323,7 @@ export namespace Prisma {
     userId?: SortOrderInput | SortOrder
     user?: UserOrderByWithRelationInput
     Pendaftaran?: PendaftaranOrderByRelationAggregateInput
+    Jadwal?: JadwalOrderByRelationAggregateInput
   }
 
   export type KursusWhereUniqueInput = Prisma.AtLeast<{
@@ -10129,6 +11342,7 @@ export namespace Prisma {
     userId?: StringNullableFilter<"Kursus"> | string | null
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     Pendaftaran?: PendaftaranListRelationFilter
+    Jadwal?: JadwalListRelationFilter
   }, "id">
 
   export type KursusOrderByWithAggregationInput = {
@@ -10178,7 +11392,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Pendaftaran"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
-    Pembayaran?: XOR<PembayaranNullableScalarRelationFilter, PembayaranWhereInput> | null
+    Payment?: XOR<PaymentNullableScalarRelationFilter, PaymentWhereInput> | null
   }
 
   export type PendaftaranOrderByWithRelationInput = {
@@ -10191,7 +11405,7 @@ export namespace Prisma {
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
     kursus?: KursusOrderByWithRelationInput
-    Pembayaran?: PembayaranOrderByWithRelationInput
+    Payment?: PaymentOrderByWithRelationInput
   }
 
   export type PendaftaranWhereUniqueInput = Prisma.AtLeast<{
@@ -10207,7 +11421,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Pendaftaran"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
-    Pembayaran?: XOR<PembayaranNullableScalarRelationFilter, PembayaranWhereInput> | null
+    Payment?: XOR<PaymentNullableScalarRelationFilter, PaymentWhereInput> | null
   }, "id">
 
   export type PendaftaranOrderByWithAggregationInput = {
@@ -10236,91 +11450,151 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Pendaftaran"> | Date | string
   }
 
-  export type PembayaranWhereInput = {
-    AND?: PembayaranWhereInput | PembayaranWhereInput[]
-    OR?: PembayaranWhereInput[]
-    NOT?: PembayaranWhereInput | PembayaranWhereInput[]
-    id?: StringFilter<"Pembayaran"> | string
-    pendaftaranId?: StringFilter<"Pembayaran"> | string
-    metode?: StringFilter<"Pembayaran"> | string
-    jumlah?: IntFilter<"Pembayaran"> | number
-    buktiBayar?: StringNullableFilter<"Pembayaran"> | string | null
-    snapToken?: StringNullableFilter<"Pembayaran"> | string | null
-    redirectUrl?: StringNullableFilter<"Pembayaran"> | string | null
-    waktuBayar?: DateTimeNullableFilter<"Pembayaran"> | Date | string | null
-    status?: StringFilter<"Pembayaran"> | string
-    createdAt?: DateTimeFilter<"Pembayaran"> | Date | string
-    updatedAt?: DateTimeFilter<"Pembayaran"> | Date | string
+  export type PaymentWhereInput = {
+    AND?: PaymentWhereInput | PaymentWhereInput[]
+    OR?: PaymentWhereInput[]
+    NOT?: PaymentWhereInput | PaymentWhereInput[]
+    id?: StringFilter<"Payment"> | string
+    method?: StringNullableFilter<"Payment"> | string | null
+    amount?: IntFilter<"Payment"> | number
+    snapToken?: StringNullableFilter<"Payment"> | string | null
+    redirectUrl?: StringNullableFilter<"Payment"> | string | null
+    waktuBayar?: DateTimeNullableFilter<"Payment"> | Date | string | null
+    status?: StringFilter<"Payment"> | string
+    createdAt?: DateTimeFilter<"Payment"> | Date | string
+    updatedAt?: DateTimeFilter<"Payment"> | Date | string
+    pendaftaranId?: StringFilter<"Payment"> | string
     pendaftaran?: XOR<PendaftaranScalarRelationFilter, PendaftaranWhereInput>
   }
 
-  export type PembayaranOrderByWithRelationInput = {
+  export type PaymentOrderByWithRelationInput = {
     id?: SortOrder
-    pendaftaranId?: SortOrder
-    metode?: SortOrder
-    jumlah?: SortOrder
-    buktiBayar?: SortOrderInput | SortOrder
+    method?: SortOrderInput | SortOrder
+    amount?: SortOrder
     snapToken?: SortOrderInput | SortOrder
     redirectUrl?: SortOrderInput | SortOrder
     waktuBayar?: SortOrderInput | SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pendaftaranId?: SortOrder
     pendaftaran?: PendaftaranOrderByWithRelationInput
   }
 
-  export type PembayaranWhereUniqueInput = Prisma.AtLeast<{
+  export type PaymentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
     pendaftaranId?: string
-    AND?: PembayaranWhereInput | PembayaranWhereInput[]
-    OR?: PembayaranWhereInput[]
-    NOT?: PembayaranWhereInput | PembayaranWhereInput[]
-    metode?: StringFilter<"Pembayaran"> | string
-    jumlah?: IntFilter<"Pembayaran"> | number
-    buktiBayar?: StringNullableFilter<"Pembayaran"> | string | null
-    snapToken?: StringNullableFilter<"Pembayaran"> | string | null
-    redirectUrl?: StringNullableFilter<"Pembayaran"> | string | null
-    waktuBayar?: DateTimeNullableFilter<"Pembayaran"> | Date | string | null
-    status?: StringFilter<"Pembayaran"> | string
-    createdAt?: DateTimeFilter<"Pembayaran"> | Date | string
-    updatedAt?: DateTimeFilter<"Pembayaran"> | Date | string
+    AND?: PaymentWhereInput | PaymentWhereInput[]
+    OR?: PaymentWhereInput[]
+    NOT?: PaymentWhereInput | PaymentWhereInput[]
+    method?: StringNullableFilter<"Payment"> | string | null
+    amount?: IntFilter<"Payment"> | number
+    snapToken?: StringNullableFilter<"Payment"> | string | null
+    redirectUrl?: StringNullableFilter<"Payment"> | string | null
+    waktuBayar?: DateTimeNullableFilter<"Payment"> | Date | string | null
+    status?: StringFilter<"Payment"> | string
+    createdAt?: DateTimeFilter<"Payment"> | Date | string
+    updatedAt?: DateTimeFilter<"Payment"> | Date | string
     pendaftaran?: XOR<PendaftaranScalarRelationFilter, PendaftaranWhereInput>
   }, "id" | "pendaftaranId">
 
-  export type PembayaranOrderByWithAggregationInput = {
+  export type PaymentOrderByWithAggregationInput = {
     id?: SortOrder
-    pendaftaranId?: SortOrder
-    metode?: SortOrder
-    jumlah?: SortOrder
-    buktiBayar?: SortOrderInput | SortOrder
+    method?: SortOrderInput | SortOrder
+    amount?: SortOrder
     snapToken?: SortOrderInput | SortOrder
     redirectUrl?: SortOrderInput | SortOrder
     waktuBayar?: SortOrderInput | SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _count?: PembayaranCountOrderByAggregateInput
-    _avg?: PembayaranAvgOrderByAggregateInput
-    _max?: PembayaranMaxOrderByAggregateInput
-    _min?: PembayaranMinOrderByAggregateInput
-    _sum?: PembayaranSumOrderByAggregateInput
+    pendaftaranId?: SortOrder
+    _count?: PaymentCountOrderByAggregateInput
+    _avg?: PaymentAvgOrderByAggregateInput
+    _max?: PaymentMaxOrderByAggregateInput
+    _min?: PaymentMinOrderByAggregateInput
+    _sum?: PaymentSumOrderByAggregateInput
   }
 
-  export type PembayaranScalarWhereWithAggregatesInput = {
-    AND?: PembayaranScalarWhereWithAggregatesInput | PembayaranScalarWhereWithAggregatesInput[]
-    OR?: PembayaranScalarWhereWithAggregatesInput[]
-    NOT?: PembayaranScalarWhereWithAggregatesInput | PembayaranScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Pembayaran"> | string
-    pendaftaranId?: StringWithAggregatesFilter<"Pembayaran"> | string
-    metode?: StringWithAggregatesFilter<"Pembayaran"> | string
-    jumlah?: IntWithAggregatesFilter<"Pembayaran"> | number
-    buktiBayar?: StringNullableWithAggregatesFilter<"Pembayaran"> | string | null
-    snapToken?: StringNullableWithAggregatesFilter<"Pembayaran"> | string | null
-    redirectUrl?: StringNullableWithAggregatesFilter<"Pembayaran"> | string | null
-    waktuBayar?: DateTimeNullableWithAggregatesFilter<"Pembayaran"> | Date | string | null
-    status?: StringWithAggregatesFilter<"Pembayaran"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"Pembayaran"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Pembayaran"> | Date | string
+  export type PaymentScalarWhereWithAggregatesInput = {
+    AND?: PaymentScalarWhereWithAggregatesInput | PaymentScalarWhereWithAggregatesInput[]
+    OR?: PaymentScalarWhereWithAggregatesInput[]
+    NOT?: PaymentScalarWhereWithAggregatesInput | PaymentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Payment"> | string
+    method?: StringNullableWithAggregatesFilter<"Payment"> | string | null
+    amount?: IntWithAggregatesFilter<"Payment"> | number
+    snapToken?: StringNullableWithAggregatesFilter<"Payment"> | string | null
+    redirectUrl?: StringNullableWithAggregatesFilter<"Payment"> | string | null
+    waktuBayar?: DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
+    status?: StringWithAggregatesFilter<"Payment"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
+    pendaftaranId?: StringWithAggregatesFilter<"Payment"> | string
+  }
+
+  export type JadwalWhereInput = {
+    AND?: JadwalWhereInput | JadwalWhereInput[]
+    OR?: JadwalWhereInput[]
+    NOT?: JadwalWhereInput | JadwalWhereInput[]
+    id?: StringFilter<"Jadwal"> | string
+    kursusId?: StringFilter<"Jadwal"> | string
+    hari?: StringFilter<"Jadwal"> | string
+    jamMulai?: StringFilter<"Jadwal"> | string
+    jamSelesai?: StringFilter<"Jadwal"> | string
+    createdAt?: DateTimeFilter<"Jadwal"> | Date | string
+    updatedAt?: DateTimeFilter<"Jadwal"> | Date | string
+    kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
+  }
+
+  export type JadwalOrderByWithRelationInput = {
+    id?: SortOrder
+    kursusId?: SortOrder
+    hari?: SortOrder
+    jamMulai?: SortOrder
+    jamSelesai?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    kursus?: KursusOrderByWithRelationInput
+  }
+
+  export type JadwalWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: JadwalWhereInput | JadwalWhereInput[]
+    OR?: JadwalWhereInput[]
+    NOT?: JadwalWhereInput | JadwalWhereInput[]
+    kursusId?: StringFilter<"Jadwal"> | string
+    hari?: StringFilter<"Jadwal"> | string
+    jamMulai?: StringFilter<"Jadwal"> | string
+    jamSelesai?: StringFilter<"Jadwal"> | string
+    createdAt?: DateTimeFilter<"Jadwal"> | Date | string
+    updatedAt?: DateTimeFilter<"Jadwal"> | Date | string
+    kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
+  }, "id">
+
+  export type JadwalOrderByWithAggregationInput = {
+    id?: SortOrder
+    kursusId?: SortOrder
+    hari?: SortOrder
+    jamMulai?: SortOrder
+    jamSelesai?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: JadwalCountOrderByAggregateInput
+    _max?: JadwalMaxOrderByAggregateInput
+    _min?: JadwalMinOrderByAggregateInput
+  }
+
+  export type JadwalScalarWhereWithAggregatesInput = {
+    AND?: JadwalScalarWhereWithAggregatesInput | JadwalScalarWhereWithAggregatesInput[]
+    OR?: JadwalScalarWhereWithAggregatesInput[]
+    NOT?: JadwalScalarWhereWithAggregatesInput | JadwalScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Jadwal"> | string
+    kursusId?: StringWithAggregatesFilter<"Jadwal"> | string
+    hari?: StringWithAggregatesFilter<"Jadwal"> | string
+    jamMulai?: StringWithAggregatesFilter<"Jadwal"> | string
+    jamSelesai?: StringWithAggregatesFilter<"Jadwal"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Jadwal"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Jadwal"> | Date | string
   }
 
   export type AccountCreateInput = {
@@ -10706,6 +11980,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     user?: UserCreateNestedOneWithoutKursusInstrukturInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
+    Jadwal?: JadwalCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateInput = {
@@ -10720,6 +11995,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId?: string | null
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
+    Jadwal?: JadwalUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUpdateInput = {
@@ -10734,6 +12010,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutKursusInstrukturNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
+    Jadwal?: JadwalUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateInput = {
@@ -10748,6 +12025,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
+    Jadwal?: JadwalUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusCreateManyInput = {
@@ -10796,7 +12074,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutPendaftaranInput
     kursus: KursusCreateNestedOneWithoutPendaftaranInput
-    Pembayaran?: PembayaranCreateNestedOneWithoutPendaftaranInput
+    Payment?: PaymentCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranUncheckedCreateInput = {
@@ -10807,7 +12085,7 @@ export namespace Prisma {
     keterangan?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    Pembayaran?: PembayaranUncheckedCreateNestedOneWithoutPendaftaranInput
+    Payment?: PaymentUncheckedCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranUpdateInput = {
@@ -10818,7 +12096,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPendaftaranNestedInput
     kursus?: KursusUpdateOneRequiredWithoutPendaftaranNestedInput
-    Pembayaran?: PembayaranUpdateOneWithoutPendaftaranNestedInput
+    Payment?: PaymentUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type PendaftaranUncheckedUpdateInput = {
@@ -10829,7 +12107,7 @@ export namespace Prisma {
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Pembayaran?: PembayaranUncheckedUpdateOneWithoutPendaftaranNestedInput
+    Payment?: PaymentUncheckedUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type PendaftaranCreateManyInput = {
@@ -10860,81 +12138,75 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PembayaranCreateInput = {
+  export type PaymentCreateInput = {
     id?: string
-    metode: string
-    jumlah: number
-    buktiBayar?: string | null
+    method?: string | null
+    amount: number
     snapToken?: string | null
     redirectUrl?: string | null
     waktuBayar?: Date | string | null
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    pendaftaran: PendaftaranCreateNestedOneWithoutPembayaranInput
+    pendaftaran: PendaftaranCreateNestedOneWithoutPaymentInput
   }
 
-  export type PembayaranUncheckedCreateInput = {
+  export type PaymentUncheckedCreateInput = {
     id?: string
+    method?: string | null
+    amount: number
+    snapToken?: string | null
+    redirectUrl?: string | null
+    waktuBayar?: Date | string | null
+    status?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     pendaftaranId: string
-    metode: string
-    jumlah: number
-    buktiBayar?: string | null
-    snapToken?: string | null
-    redirectUrl?: string | null
-    waktuBayar?: Date | string | null
-    status?: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
   }
 
-  export type PembayaranUpdateInput = {
+  export type PaymentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    metode?: StringFieldUpdateOperationsInput | string
-    jumlah?: IntFieldUpdateOperationsInput | number
-    buktiBayar?: NullableStringFieldUpdateOperationsInput | string | null
+    method?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
     snapToken?: NullableStringFieldUpdateOperationsInput | string | null
     redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
     waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    pendaftaran?: PendaftaranUpdateOneRequiredWithoutPembayaranNestedInput
+    pendaftaran?: PendaftaranUpdateOneRequiredWithoutPaymentNestedInput
   }
 
-  export type PembayaranUncheckedUpdateInput = {
+  export type PaymentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    method?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
+    snapToken?: NullableStringFieldUpdateOperationsInput | string | null
+    redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pendaftaranId?: StringFieldUpdateOperationsInput | string
-    metode?: StringFieldUpdateOperationsInput | string
-    jumlah?: IntFieldUpdateOperationsInput | number
-    buktiBayar?: NullableStringFieldUpdateOperationsInput | string | null
-    snapToken?: NullableStringFieldUpdateOperationsInput | string | null
-    redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PembayaranCreateManyInput = {
+  export type PaymentCreateManyInput = {
     id?: string
-    pendaftaranId: string
-    metode: string
-    jumlah: number
-    buktiBayar?: string | null
+    method?: string | null
+    amount: number
     snapToken?: string | null
     redirectUrl?: string | null
     waktuBayar?: Date | string | null
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    pendaftaranId: string
   }
 
-  export type PembayaranUpdateManyMutationInput = {
+  export type PaymentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    metode?: StringFieldUpdateOperationsInput | string
-    jumlah?: IntFieldUpdateOperationsInput | number
-    buktiBayar?: NullableStringFieldUpdateOperationsInput | string | null
+    method?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
     snapToken?: NullableStringFieldUpdateOperationsInput | string | null
     redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
     waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -10943,16 +12215,84 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PembayaranUncheckedUpdateManyInput = {
+  export type PaymentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    pendaftaranId?: StringFieldUpdateOperationsInput | string
-    metode?: StringFieldUpdateOperationsInput | string
-    jumlah?: IntFieldUpdateOperationsInput | number
-    buktiBayar?: NullableStringFieldUpdateOperationsInput | string | null
+    method?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
     snapToken?: NullableStringFieldUpdateOperationsInput | string | null
     redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
     waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     status?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pendaftaranId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type JadwalCreateInput = {
+    id?: string
+    hari: string
+    jamMulai: string
+    jamSelesai: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    kursus: KursusCreateNestedOneWithoutJadwalInput
+  }
+
+  export type JadwalUncheckedCreateInput = {
+    id?: string
+    kursusId: string
+    hari: string
+    jamMulai: string
+    jamSelesai: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JadwalUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hari?: StringFieldUpdateOperationsInput | string
+    jamMulai?: StringFieldUpdateOperationsInput | string
+    jamSelesai?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    kursus?: KursusUpdateOneRequiredWithoutJadwalNestedInput
+  }
+
+  export type JadwalUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    kursusId?: StringFieldUpdateOperationsInput | string
+    hari?: StringFieldUpdateOperationsInput | string
+    jamMulai?: StringFieldUpdateOperationsInput | string
+    jamSelesai?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JadwalCreateManyInput = {
+    id?: string
+    kursusId: string
+    hari: string
+    jamMulai: string
+    jamSelesai: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JadwalUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hari?: StringFieldUpdateOperationsInput | string
+    jamMulai?: StringFieldUpdateOperationsInput | string
+    jamSelesai?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JadwalUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    kursusId?: StringFieldUpdateOperationsInput | string
+    hari?: StringFieldUpdateOperationsInput | string
+    jamMulai?: StringFieldUpdateOperationsInput | string
+    jamSelesai?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -11337,6 +12677,16 @@ export namespace Prisma {
     isNot?: UserWhereInput | null
   }
 
+  export type JadwalListRelationFilter = {
+    every?: JadwalWhereInput
+    some?: JadwalWhereInput
+    none?: JadwalWhereInput
+  }
+
+  export type JadwalOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type KursusCountOrderByAggregateInput = {
     id?: SortOrder
     nama?: SortOrder
@@ -11407,9 +12757,9 @@ export namespace Prisma {
     isNot?: KursusWhereInput
   }
 
-  export type PembayaranNullableScalarRelationFilter = {
-    is?: PembayaranWhereInput | null
-    isNot?: PembayaranWhereInput | null
+  export type PaymentNullableScalarRelationFilter = {
+    is?: PaymentWhereInput | null
+    isNot?: PaymentWhereInput | null
   }
 
   export type PendaftaranCountOrderByAggregateInput = {
@@ -11447,54 +12797,81 @@ export namespace Prisma {
     isNot?: PendaftaranWhereInput
   }
 
-  export type PembayaranCountOrderByAggregateInput = {
+  export type PaymentCountOrderByAggregateInput = {
     id?: SortOrder
-    pendaftaranId?: SortOrder
-    metode?: SortOrder
-    jumlah?: SortOrder
-    buktiBayar?: SortOrder
+    method?: SortOrder
+    amount?: SortOrder
     snapToken?: SortOrder
     redirectUrl?: SortOrder
     waktuBayar?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-  }
-
-  export type PembayaranAvgOrderByAggregateInput = {
-    jumlah?: SortOrder
-  }
-
-  export type PembayaranMaxOrderByAggregateInput = {
-    id?: SortOrder
     pendaftaranId?: SortOrder
-    metode?: SortOrder
-    jumlah?: SortOrder
-    buktiBayar?: SortOrder
+  }
+
+  export type PaymentAvgOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type PaymentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    method?: SortOrder
+    amount?: SortOrder
     snapToken?: SortOrder
     redirectUrl?: SortOrder
     waktuBayar?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pendaftaranId?: SortOrder
   }
 
-  export type PembayaranMinOrderByAggregateInput = {
+  export type PaymentMinOrderByAggregateInput = {
     id?: SortOrder
-    pendaftaranId?: SortOrder
-    metode?: SortOrder
-    jumlah?: SortOrder
-    buktiBayar?: SortOrder
+    method?: SortOrder
+    amount?: SortOrder
     snapToken?: SortOrder
     redirectUrl?: SortOrder
     waktuBayar?: SortOrder
     status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    pendaftaranId?: SortOrder
   }
 
-  export type PembayaranSumOrderByAggregateInput = {
-    jumlah?: SortOrder
+  export type PaymentSumOrderByAggregateInput = {
+    amount?: SortOrder
+  }
+
+  export type JadwalCountOrderByAggregateInput = {
+    id?: SortOrder
+    kursusId?: SortOrder
+    hari?: SortOrder
+    jamMulai?: SortOrder
+    jamSelesai?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JadwalMaxOrderByAggregateInput = {
+    id?: SortOrder
+    kursusId?: SortOrder
+    hari?: SortOrder
+    jamMulai?: SortOrder
+    jamSelesai?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type JadwalMinOrderByAggregateInput = {
+    id?: SortOrder
+    kursusId?: SortOrder
+    hari?: SortOrder
+    jamMulai?: SortOrder
+    jamSelesai?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type UserCreateNestedOneWithoutAccountInput = {
@@ -11730,11 +13107,25 @@ export namespace Prisma {
     connect?: PendaftaranWhereUniqueInput | PendaftaranWhereUniqueInput[]
   }
 
+  export type JadwalCreateNestedManyWithoutKursusInput = {
+    create?: XOR<JadwalCreateWithoutKursusInput, JadwalUncheckedCreateWithoutKursusInput> | JadwalCreateWithoutKursusInput[] | JadwalUncheckedCreateWithoutKursusInput[]
+    connectOrCreate?: JadwalCreateOrConnectWithoutKursusInput | JadwalCreateOrConnectWithoutKursusInput[]
+    createMany?: JadwalCreateManyKursusInputEnvelope
+    connect?: JadwalWhereUniqueInput | JadwalWhereUniqueInput[]
+  }
+
   export type PendaftaranUncheckedCreateNestedManyWithoutKursusInput = {
     create?: XOR<PendaftaranCreateWithoutKursusInput, PendaftaranUncheckedCreateWithoutKursusInput> | PendaftaranCreateWithoutKursusInput[] | PendaftaranUncheckedCreateWithoutKursusInput[]
     connectOrCreate?: PendaftaranCreateOrConnectWithoutKursusInput | PendaftaranCreateOrConnectWithoutKursusInput[]
     createMany?: PendaftaranCreateManyKursusInputEnvelope
     connect?: PendaftaranWhereUniqueInput | PendaftaranWhereUniqueInput[]
+  }
+
+  export type JadwalUncheckedCreateNestedManyWithoutKursusInput = {
+    create?: XOR<JadwalCreateWithoutKursusInput, JadwalUncheckedCreateWithoutKursusInput> | JadwalCreateWithoutKursusInput[] | JadwalUncheckedCreateWithoutKursusInput[]
+    connectOrCreate?: JadwalCreateOrConnectWithoutKursusInput | JadwalCreateOrConnectWithoutKursusInput[]
+    createMany?: JadwalCreateManyKursusInputEnvelope
+    connect?: JadwalWhereUniqueInput | JadwalWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -11769,6 +13160,20 @@ export namespace Prisma {
     deleteMany?: PendaftaranScalarWhereInput | PendaftaranScalarWhereInput[]
   }
 
+  export type JadwalUpdateManyWithoutKursusNestedInput = {
+    create?: XOR<JadwalCreateWithoutKursusInput, JadwalUncheckedCreateWithoutKursusInput> | JadwalCreateWithoutKursusInput[] | JadwalUncheckedCreateWithoutKursusInput[]
+    connectOrCreate?: JadwalCreateOrConnectWithoutKursusInput | JadwalCreateOrConnectWithoutKursusInput[]
+    upsert?: JadwalUpsertWithWhereUniqueWithoutKursusInput | JadwalUpsertWithWhereUniqueWithoutKursusInput[]
+    createMany?: JadwalCreateManyKursusInputEnvelope
+    set?: JadwalWhereUniqueInput | JadwalWhereUniqueInput[]
+    disconnect?: JadwalWhereUniqueInput | JadwalWhereUniqueInput[]
+    delete?: JadwalWhereUniqueInput | JadwalWhereUniqueInput[]
+    connect?: JadwalWhereUniqueInput | JadwalWhereUniqueInput[]
+    update?: JadwalUpdateWithWhereUniqueWithoutKursusInput | JadwalUpdateWithWhereUniqueWithoutKursusInput[]
+    updateMany?: JadwalUpdateManyWithWhereWithoutKursusInput | JadwalUpdateManyWithWhereWithoutKursusInput[]
+    deleteMany?: JadwalScalarWhereInput | JadwalScalarWhereInput[]
+  }
+
   export type PendaftaranUncheckedUpdateManyWithoutKursusNestedInput = {
     create?: XOR<PendaftaranCreateWithoutKursusInput, PendaftaranUncheckedCreateWithoutKursusInput> | PendaftaranCreateWithoutKursusInput[] | PendaftaranUncheckedCreateWithoutKursusInput[]
     connectOrCreate?: PendaftaranCreateOrConnectWithoutKursusInput | PendaftaranCreateOrConnectWithoutKursusInput[]
@@ -11783,6 +13188,20 @@ export namespace Prisma {
     deleteMany?: PendaftaranScalarWhereInput | PendaftaranScalarWhereInput[]
   }
 
+  export type JadwalUncheckedUpdateManyWithoutKursusNestedInput = {
+    create?: XOR<JadwalCreateWithoutKursusInput, JadwalUncheckedCreateWithoutKursusInput> | JadwalCreateWithoutKursusInput[] | JadwalUncheckedCreateWithoutKursusInput[]
+    connectOrCreate?: JadwalCreateOrConnectWithoutKursusInput | JadwalCreateOrConnectWithoutKursusInput[]
+    upsert?: JadwalUpsertWithWhereUniqueWithoutKursusInput | JadwalUpsertWithWhereUniqueWithoutKursusInput[]
+    createMany?: JadwalCreateManyKursusInputEnvelope
+    set?: JadwalWhereUniqueInput | JadwalWhereUniqueInput[]
+    disconnect?: JadwalWhereUniqueInput | JadwalWhereUniqueInput[]
+    delete?: JadwalWhereUniqueInput | JadwalWhereUniqueInput[]
+    connect?: JadwalWhereUniqueInput | JadwalWhereUniqueInput[]
+    update?: JadwalUpdateWithWhereUniqueWithoutKursusInput | JadwalUpdateWithWhereUniqueWithoutKursusInput[]
+    updateMany?: JadwalUpdateManyWithWhereWithoutKursusInput | JadwalUpdateManyWithWhereWithoutKursusInput[]
+    deleteMany?: JadwalScalarWhereInput | JadwalScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutPendaftaranInput = {
     create?: XOR<UserCreateWithoutPendaftaranInput, UserUncheckedCreateWithoutPendaftaranInput>
     connectOrCreate?: UserCreateOrConnectWithoutPendaftaranInput
@@ -11795,16 +13214,16 @@ export namespace Prisma {
     connect?: KursusWhereUniqueInput
   }
 
-  export type PembayaranCreateNestedOneWithoutPendaftaranInput = {
-    create?: XOR<PembayaranCreateWithoutPendaftaranInput, PembayaranUncheckedCreateWithoutPendaftaranInput>
-    connectOrCreate?: PembayaranCreateOrConnectWithoutPendaftaranInput
-    connect?: PembayaranWhereUniqueInput
+  export type PaymentCreateNestedOneWithoutPendaftaranInput = {
+    create?: XOR<PaymentCreateWithoutPendaftaranInput, PaymentUncheckedCreateWithoutPendaftaranInput>
+    connectOrCreate?: PaymentCreateOrConnectWithoutPendaftaranInput
+    connect?: PaymentWhereUniqueInput
   }
 
-  export type PembayaranUncheckedCreateNestedOneWithoutPendaftaranInput = {
-    create?: XOR<PembayaranCreateWithoutPendaftaranInput, PembayaranUncheckedCreateWithoutPendaftaranInput>
-    connectOrCreate?: PembayaranCreateOrConnectWithoutPendaftaranInput
-    connect?: PembayaranWhereUniqueInput
+  export type PaymentUncheckedCreateNestedOneWithoutPendaftaranInput = {
+    create?: XOR<PaymentCreateWithoutPendaftaranInput, PaymentUncheckedCreateWithoutPendaftaranInput>
+    connectOrCreate?: PaymentCreateOrConnectWithoutPendaftaranInput
+    connect?: PaymentWhereUniqueInput
   }
 
   export type UserUpdateOneRequiredWithoutPendaftaranNestedInput = {
@@ -11823,38 +13242,52 @@ export namespace Prisma {
     update?: XOR<XOR<KursusUpdateToOneWithWhereWithoutPendaftaranInput, KursusUpdateWithoutPendaftaranInput>, KursusUncheckedUpdateWithoutPendaftaranInput>
   }
 
-  export type PembayaranUpdateOneWithoutPendaftaranNestedInput = {
-    create?: XOR<PembayaranCreateWithoutPendaftaranInput, PembayaranUncheckedCreateWithoutPendaftaranInput>
-    connectOrCreate?: PembayaranCreateOrConnectWithoutPendaftaranInput
-    upsert?: PembayaranUpsertWithoutPendaftaranInput
-    disconnect?: PembayaranWhereInput | boolean
-    delete?: PembayaranWhereInput | boolean
-    connect?: PembayaranWhereUniqueInput
-    update?: XOR<XOR<PembayaranUpdateToOneWithWhereWithoutPendaftaranInput, PembayaranUpdateWithoutPendaftaranInput>, PembayaranUncheckedUpdateWithoutPendaftaranInput>
+  export type PaymentUpdateOneWithoutPendaftaranNestedInput = {
+    create?: XOR<PaymentCreateWithoutPendaftaranInput, PaymentUncheckedCreateWithoutPendaftaranInput>
+    connectOrCreate?: PaymentCreateOrConnectWithoutPendaftaranInput
+    upsert?: PaymentUpsertWithoutPendaftaranInput
+    disconnect?: PaymentWhereInput | boolean
+    delete?: PaymentWhereInput | boolean
+    connect?: PaymentWhereUniqueInput
+    update?: XOR<XOR<PaymentUpdateToOneWithWhereWithoutPendaftaranInput, PaymentUpdateWithoutPendaftaranInput>, PaymentUncheckedUpdateWithoutPendaftaranInput>
   }
 
-  export type PembayaranUncheckedUpdateOneWithoutPendaftaranNestedInput = {
-    create?: XOR<PembayaranCreateWithoutPendaftaranInput, PembayaranUncheckedCreateWithoutPendaftaranInput>
-    connectOrCreate?: PembayaranCreateOrConnectWithoutPendaftaranInput
-    upsert?: PembayaranUpsertWithoutPendaftaranInput
-    disconnect?: PembayaranWhereInput | boolean
-    delete?: PembayaranWhereInput | boolean
-    connect?: PembayaranWhereUniqueInput
-    update?: XOR<XOR<PembayaranUpdateToOneWithWhereWithoutPendaftaranInput, PembayaranUpdateWithoutPendaftaranInput>, PembayaranUncheckedUpdateWithoutPendaftaranInput>
+  export type PaymentUncheckedUpdateOneWithoutPendaftaranNestedInput = {
+    create?: XOR<PaymentCreateWithoutPendaftaranInput, PaymentUncheckedCreateWithoutPendaftaranInput>
+    connectOrCreate?: PaymentCreateOrConnectWithoutPendaftaranInput
+    upsert?: PaymentUpsertWithoutPendaftaranInput
+    disconnect?: PaymentWhereInput | boolean
+    delete?: PaymentWhereInput | boolean
+    connect?: PaymentWhereUniqueInput
+    update?: XOR<XOR<PaymentUpdateToOneWithWhereWithoutPendaftaranInput, PaymentUpdateWithoutPendaftaranInput>, PaymentUncheckedUpdateWithoutPendaftaranInput>
   }
 
-  export type PendaftaranCreateNestedOneWithoutPembayaranInput = {
-    create?: XOR<PendaftaranCreateWithoutPembayaranInput, PendaftaranUncheckedCreateWithoutPembayaranInput>
-    connectOrCreate?: PendaftaranCreateOrConnectWithoutPembayaranInput
+  export type PendaftaranCreateNestedOneWithoutPaymentInput = {
+    create?: XOR<PendaftaranCreateWithoutPaymentInput, PendaftaranUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: PendaftaranCreateOrConnectWithoutPaymentInput
     connect?: PendaftaranWhereUniqueInput
   }
 
-  export type PendaftaranUpdateOneRequiredWithoutPembayaranNestedInput = {
-    create?: XOR<PendaftaranCreateWithoutPembayaranInput, PendaftaranUncheckedCreateWithoutPembayaranInput>
-    connectOrCreate?: PendaftaranCreateOrConnectWithoutPembayaranInput
-    upsert?: PendaftaranUpsertWithoutPembayaranInput
+  export type PendaftaranUpdateOneRequiredWithoutPaymentNestedInput = {
+    create?: XOR<PendaftaranCreateWithoutPaymentInput, PendaftaranUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: PendaftaranCreateOrConnectWithoutPaymentInput
+    upsert?: PendaftaranUpsertWithoutPaymentInput
     connect?: PendaftaranWhereUniqueInput
-    update?: XOR<XOR<PendaftaranUpdateToOneWithWhereWithoutPembayaranInput, PendaftaranUpdateWithoutPembayaranInput>, PendaftaranUncheckedUpdateWithoutPembayaranInput>
+    update?: XOR<XOR<PendaftaranUpdateToOneWithWhereWithoutPaymentInput, PendaftaranUpdateWithoutPaymentInput>, PendaftaranUncheckedUpdateWithoutPaymentInput>
+  }
+
+  export type KursusCreateNestedOneWithoutJadwalInput = {
+    create?: XOR<KursusCreateWithoutJadwalInput, KursusUncheckedCreateWithoutJadwalInput>
+    connectOrCreate?: KursusCreateOrConnectWithoutJadwalInput
+    connect?: KursusWhereUniqueInput
+  }
+
+  export type KursusUpdateOneRequiredWithoutJadwalNestedInput = {
+    create?: XOR<KursusCreateWithoutJadwalInput, KursusUncheckedCreateWithoutJadwalInput>
+    connectOrCreate?: KursusCreateOrConnectWithoutJadwalInput
+    upsert?: KursusUpsertWithoutJadwalInput
+    connect?: KursusWhereUniqueInput
+    update?: XOR<XOR<KursusUpdateToOneWithWhereWithoutJadwalInput, KursusUpdateWithoutJadwalInput>, KursusUncheckedUpdateWithoutJadwalInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -12296,6 +13729,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
+    Jadwal?: JadwalCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateWithoutUserInput = {
@@ -12309,6 +13743,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
+    Jadwal?: JadwalUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusCreateOrConnectWithoutUserInput = {
@@ -12388,7 +13823,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     kursus: KursusCreateNestedOneWithoutPendaftaranInput
-    Pembayaran?: PembayaranCreateNestedOneWithoutPendaftaranInput
+    Payment?: PaymentCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranUncheckedCreateWithoutUserInput = {
@@ -12398,7 +13833,7 @@ export namespace Prisma {
     keterangan?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    Pembayaran?: PembayaranUncheckedCreateNestedOneWithoutPendaftaranInput
+    Payment?: PaymentUncheckedCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranCreateOrConnectWithoutUserInput = {
@@ -12596,7 +14031,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutPendaftaranInput
-    Pembayaran?: PembayaranCreateNestedOneWithoutPendaftaranInput
+    Payment?: PaymentCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranUncheckedCreateWithoutKursusInput = {
@@ -12606,7 +14041,7 @@ export namespace Prisma {
     keterangan?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    Pembayaran?: PembayaranUncheckedCreateNestedOneWithoutPendaftaranInput
+    Payment?: PaymentUncheckedCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranCreateOrConnectWithoutKursusInput = {
@@ -12616,6 +14051,34 @@ export namespace Prisma {
 
   export type PendaftaranCreateManyKursusInputEnvelope = {
     data: PendaftaranCreateManyKursusInput | PendaftaranCreateManyKursusInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type JadwalCreateWithoutKursusInput = {
+    id?: string
+    hari: string
+    jamMulai: string
+    jamSelesai: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JadwalUncheckedCreateWithoutKursusInput = {
+    id?: string
+    hari: string
+    jamMulai: string
+    jamSelesai: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type JadwalCreateOrConnectWithoutKursusInput = {
+    where: JadwalWhereUniqueInput
+    create: XOR<JadwalCreateWithoutKursusInput, JadwalUncheckedCreateWithoutKursusInput>
+  }
+
+  export type JadwalCreateManyKursusInputEnvelope = {
+    data: JadwalCreateManyKursusInput | JadwalCreateManyKursusInput[]
     skipDuplicates?: boolean
   }
 
@@ -12698,6 +14161,35 @@ export namespace Prisma {
     data: XOR<PendaftaranUpdateManyMutationInput, PendaftaranUncheckedUpdateManyWithoutKursusInput>
   }
 
+  export type JadwalUpsertWithWhereUniqueWithoutKursusInput = {
+    where: JadwalWhereUniqueInput
+    update: XOR<JadwalUpdateWithoutKursusInput, JadwalUncheckedUpdateWithoutKursusInput>
+    create: XOR<JadwalCreateWithoutKursusInput, JadwalUncheckedCreateWithoutKursusInput>
+  }
+
+  export type JadwalUpdateWithWhereUniqueWithoutKursusInput = {
+    where: JadwalWhereUniqueInput
+    data: XOR<JadwalUpdateWithoutKursusInput, JadwalUncheckedUpdateWithoutKursusInput>
+  }
+
+  export type JadwalUpdateManyWithWhereWithoutKursusInput = {
+    where: JadwalScalarWhereInput
+    data: XOR<JadwalUpdateManyMutationInput, JadwalUncheckedUpdateManyWithoutKursusInput>
+  }
+
+  export type JadwalScalarWhereInput = {
+    AND?: JadwalScalarWhereInput | JadwalScalarWhereInput[]
+    OR?: JadwalScalarWhereInput[]
+    NOT?: JadwalScalarWhereInput | JadwalScalarWhereInput[]
+    id?: StringFilter<"Jadwal"> | string
+    kursusId?: StringFilter<"Jadwal"> | string
+    hari?: StringFilter<"Jadwal"> | string
+    jamMulai?: StringFilter<"Jadwal"> | string
+    jamSelesai?: StringFilter<"Jadwal"> | string
+    createdAt?: DateTimeFilter<"Jadwal"> | Date | string
+    updatedAt?: DateTimeFilter<"Jadwal"> | Date | string
+  }
+
   export type UserCreateWithoutPendaftaranInput = {
     id?: string
     nama: string
@@ -12766,6 +14258,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     user?: UserCreateNestedOneWithoutKursusInstrukturInput
+    Jadwal?: JadwalCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateWithoutPendaftaranInput = {
@@ -12779,6 +14272,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     userId?: string | null
+    Jadwal?: JadwalUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusCreateOrConnectWithoutPendaftaranInput = {
@@ -12786,11 +14280,10 @@ export namespace Prisma {
     create: XOR<KursusCreateWithoutPendaftaranInput, KursusUncheckedCreateWithoutPendaftaranInput>
   }
 
-  export type PembayaranCreateWithoutPendaftaranInput = {
+  export type PaymentCreateWithoutPendaftaranInput = {
     id?: string
-    metode: string
-    jumlah: number
-    buktiBayar?: string | null
+    method?: string | null
+    amount: number
     snapToken?: string | null
     redirectUrl?: string | null
     waktuBayar?: Date | string | null
@@ -12799,11 +14292,10 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type PembayaranUncheckedCreateWithoutPendaftaranInput = {
+  export type PaymentUncheckedCreateWithoutPendaftaranInput = {
     id?: string
-    metode: string
-    jumlah: number
-    buktiBayar?: string | null
+    method?: string | null
+    amount: number
     snapToken?: string | null
     redirectUrl?: string | null
     waktuBayar?: Date | string | null
@@ -12812,9 +14304,9 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type PembayaranCreateOrConnectWithoutPendaftaranInput = {
-    where: PembayaranWhereUniqueInput
-    create: XOR<PembayaranCreateWithoutPendaftaranInput, PembayaranUncheckedCreateWithoutPendaftaranInput>
+  export type PaymentCreateOrConnectWithoutPendaftaranInput = {
+    where: PaymentWhereUniqueInput
+    create: XOR<PaymentCreateWithoutPendaftaranInput, PaymentUncheckedCreateWithoutPendaftaranInput>
   }
 
   export type UserUpsertWithoutPendaftaranInput = {
@@ -12902,6 +14394,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutKursusInstrukturNestedInput
+    Jadwal?: JadwalUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateWithoutPendaftaranInput = {
@@ -12915,24 +14408,24 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
+    Jadwal?: JadwalUncheckedUpdateManyWithoutKursusNestedInput
   }
 
-  export type PembayaranUpsertWithoutPendaftaranInput = {
-    update: XOR<PembayaranUpdateWithoutPendaftaranInput, PembayaranUncheckedUpdateWithoutPendaftaranInput>
-    create: XOR<PembayaranCreateWithoutPendaftaranInput, PembayaranUncheckedCreateWithoutPendaftaranInput>
-    where?: PembayaranWhereInput
+  export type PaymentUpsertWithoutPendaftaranInput = {
+    update: XOR<PaymentUpdateWithoutPendaftaranInput, PaymentUncheckedUpdateWithoutPendaftaranInput>
+    create: XOR<PaymentCreateWithoutPendaftaranInput, PaymentUncheckedCreateWithoutPendaftaranInput>
+    where?: PaymentWhereInput
   }
 
-  export type PembayaranUpdateToOneWithWhereWithoutPendaftaranInput = {
-    where?: PembayaranWhereInput
-    data: XOR<PembayaranUpdateWithoutPendaftaranInput, PembayaranUncheckedUpdateWithoutPendaftaranInput>
+  export type PaymentUpdateToOneWithWhereWithoutPendaftaranInput = {
+    where?: PaymentWhereInput
+    data: XOR<PaymentUpdateWithoutPendaftaranInput, PaymentUncheckedUpdateWithoutPendaftaranInput>
   }
 
-  export type PembayaranUpdateWithoutPendaftaranInput = {
+  export type PaymentUpdateWithoutPendaftaranInput = {
     id?: StringFieldUpdateOperationsInput | string
-    metode?: StringFieldUpdateOperationsInput | string
-    jumlah?: IntFieldUpdateOperationsInput | number
-    buktiBayar?: NullableStringFieldUpdateOperationsInput | string | null
+    method?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
     snapToken?: NullableStringFieldUpdateOperationsInput | string | null
     redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
     waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12941,11 +14434,10 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PembayaranUncheckedUpdateWithoutPendaftaranInput = {
+  export type PaymentUncheckedUpdateWithoutPendaftaranInput = {
     id?: StringFieldUpdateOperationsInput | string
-    metode?: StringFieldUpdateOperationsInput | string
-    jumlah?: IntFieldUpdateOperationsInput | number
-    buktiBayar?: NullableStringFieldUpdateOperationsInput | string | null
+    method?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: IntFieldUpdateOperationsInput | number
     snapToken?: NullableStringFieldUpdateOperationsInput | string | null
     redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
     waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12954,7 +14446,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type PendaftaranCreateWithoutPembayaranInput = {
+  export type PendaftaranCreateWithoutPaymentInput = {
     id?: string
     status?: string
     keterangan?: string | null
@@ -12964,7 +14456,7 @@ export namespace Prisma {
     kursus: KursusCreateNestedOneWithoutPendaftaranInput
   }
 
-  export type PendaftaranUncheckedCreateWithoutPembayaranInput = {
+  export type PendaftaranUncheckedCreateWithoutPaymentInput = {
     id?: string
     userId: string
     kursusId: string
@@ -12974,23 +14466,23 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type PendaftaranCreateOrConnectWithoutPembayaranInput = {
+  export type PendaftaranCreateOrConnectWithoutPaymentInput = {
     where: PendaftaranWhereUniqueInput
-    create: XOR<PendaftaranCreateWithoutPembayaranInput, PendaftaranUncheckedCreateWithoutPembayaranInput>
+    create: XOR<PendaftaranCreateWithoutPaymentInput, PendaftaranUncheckedCreateWithoutPaymentInput>
   }
 
-  export type PendaftaranUpsertWithoutPembayaranInput = {
-    update: XOR<PendaftaranUpdateWithoutPembayaranInput, PendaftaranUncheckedUpdateWithoutPembayaranInput>
-    create: XOR<PendaftaranCreateWithoutPembayaranInput, PendaftaranUncheckedCreateWithoutPembayaranInput>
+  export type PendaftaranUpsertWithoutPaymentInput = {
+    update: XOR<PendaftaranUpdateWithoutPaymentInput, PendaftaranUncheckedUpdateWithoutPaymentInput>
+    create: XOR<PendaftaranCreateWithoutPaymentInput, PendaftaranUncheckedCreateWithoutPaymentInput>
     where?: PendaftaranWhereInput
   }
 
-  export type PendaftaranUpdateToOneWithWhereWithoutPembayaranInput = {
+  export type PendaftaranUpdateToOneWithWhereWithoutPaymentInput = {
     where?: PendaftaranWhereInput
-    data: XOR<PendaftaranUpdateWithoutPembayaranInput, PendaftaranUncheckedUpdateWithoutPembayaranInput>
+    data: XOR<PendaftaranUpdateWithoutPaymentInput, PendaftaranUncheckedUpdateWithoutPaymentInput>
   }
 
-  export type PendaftaranUpdateWithoutPembayaranInput = {
+  export type PendaftaranUpdateWithoutPaymentInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13000,7 +14492,7 @@ export namespace Prisma {
     kursus?: KursusUpdateOneRequiredWithoutPendaftaranNestedInput
   }
 
-  export type PendaftaranUncheckedUpdateWithoutPembayaranInput = {
+  export type PendaftaranUncheckedUpdateWithoutPaymentInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     kursusId?: StringFieldUpdateOperationsInput | string
@@ -13008,6 +14500,78 @@ export namespace Prisma {
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type KursusCreateWithoutJadwalInput = {
+    id?: string
+    nama: string
+    deskripsi?: string | null
+    harga: number
+    lamaKursus?: number | null
+    tanggalMulai?: Date | string | null
+    tanggalSelesai?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutKursusInstrukturInput
+    Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
+  }
+
+  export type KursusUncheckedCreateWithoutJadwalInput = {
+    id?: string
+    nama: string
+    deskripsi?: string | null
+    harga: number
+    lamaKursus?: number | null
+    tanggalMulai?: Date | string | null
+    tanggalSelesai?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+    Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
+  }
+
+  export type KursusCreateOrConnectWithoutJadwalInput = {
+    where: KursusWhereUniqueInput
+    create: XOR<KursusCreateWithoutJadwalInput, KursusUncheckedCreateWithoutJadwalInput>
+  }
+
+  export type KursusUpsertWithoutJadwalInput = {
+    update: XOR<KursusUpdateWithoutJadwalInput, KursusUncheckedUpdateWithoutJadwalInput>
+    create: XOR<KursusCreateWithoutJadwalInput, KursusUncheckedCreateWithoutJadwalInput>
+    where?: KursusWhereInput
+  }
+
+  export type KursusUpdateToOneWithWhereWithoutJadwalInput = {
+    where?: KursusWhereInput
+    data: XOR<KursusUpdateWithoutJadwalInput, KursusUncheckedUpdateWithoutJadwalInput>
+  }
+
+  export type KursusUpdateWithoutJadwalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    harga?: IntFieldUpdateOperationsInput | number
+    lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
+    tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutKursusInstrukturNestedInput
+    Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
+  }
+
+  export type KursusUncheckedUpdateWithoutJadwalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    harga?: IntFieldUpdateOperationsInput | number
+    lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
+    tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusCreateManyUserInput = {
@@ -13062,6 +14626,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
+    Jadwal?: JadwalUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateWithoutUserInput = {
@@ -13075,6 +14640,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
+    Jadwal?: JadwalUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateManyWithoutUserInput = {
@@ -13156,7 +14722,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     kursus?: KursusUpdateOneRequiredWithoutPendaftaranNestedInput
-    Pembayaran?: PembayaranUpdateOneWithoutPendaftaranNestedInput
+    Payment?: PaymentUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type PendaftaranUncheckedUpdateWithoutUserInput = {
@@ -13166,7 +14732,7 @@ export namespace Prisma {
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Pembayaran?: PembayaranUncheckedUpdateOneWithoutPendaftaranNestedInput
+    Payment?: PaymentUncheckedUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type PendaftaranUncheckedUpdateManyWithoutUserInput = {
@@ -13187,6 +14753,15 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
+  export type JadwalCreateManyKursusInput = {
+    id?: string
+    hari: string
+    jamMulai: string
+    jamSelesai: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
   export type PendaftaranUpdateWithoutKursusInput = {
     id?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
@@ -13194,7 +14769,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPendaftaranNestedInput
-    Pembayaran?: PembayaranUpdateOneWithoutPendaftaranNestedInput
+    Payment?: PaymentUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type PendaftaranUncheckedUpdateWithoutKursusInput = {
@@ -13204,7 +14779,7 @@ export namespace Prisma {
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    Pembayaran?: PembayaranUncheckedUpdateOneWithoutPendaftaranNestedInput
+    Payment?: PaymentUncheckedUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type PendaftaranUncheckedUpdateManyWithoutKursusInput = {
@@ -13212,6 +14787,33 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
     status?: StringFieldUpdateOperationsInput | string
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JadwalUpdateWithoutKursusInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hari?: StringFieldUpdateOperationsInput | string
+    jamMulai?: StringFieldUpdateOperationsInput | string
+    jamSelesai?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JadwalUncheckedUpdateWithoutKursusInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hari?: StringFieldUpdateOperationsInput | string
+    jamMulai?: StringFieldUpdateOperationsInput | string
+    jamSelesai?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type JadwalUncheckedUpdateManyWithoutKursusInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    hari?: StringFieldUpdateOperationsInput | string
+    jamMulai?: StringFieldUpdateOperationsInput | string
+    jamSelesai?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
