@@ -91,7 +91,7 @@ model Kursus {
   updatedAt      DateTime  @updatedAt
   userId         String?
 
-  user User? @relation("InstrukturKursus", fields: [userId], references: [id], onDelete: Cascade)
+  user User? @relation("InstrukturKursus", fields: [userId], references: [id], onDelete: SetNull)
 
   Pendaftaran Pendaftaran[]
   Jadwal      Jadwal[]
@@ -114,16 +114,21 @@ model Pendaftaran {
 }
 
 model Payment {
-  id          String    @id @default(cuid())
-  method      String?
-  amount      Int
-  snapToken   String?
-  redirectUrl String?
-  waktuBayar  DateTime?
-  status      String    @default("unpaid")
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
+  id            String      @id @default(cuid())
+  method        String?
+  amount        Float
+  status        String      @default("unpaid")
+  waktuBayar    DateTime?
+  vaNumber      String?
+  bank          String?
+  orderId       String?
+  transactionId String?
+  paymentType   String?
+  fraudStatus   String?
+  snapToken     String?     @unique
+  redirectUrl   String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
   pendaftaranId String      @unique
   pendaftaran   Pendaftaran @relation(fields: [pendaftaranId], references: [id], onDelete: Cascade)
 }

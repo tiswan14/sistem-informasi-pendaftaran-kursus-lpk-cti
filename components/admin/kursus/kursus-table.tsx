@@ -157,7 +157,10 @@ const KursusTable = () => {
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{kursus.lamaKursus}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatTanggalIndonesia(kursus.tanggalMulai)}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatTanggalIndonesia(kursus.tanggalSelesai)}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{kursus.user.nama}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                                    {kursus.user?.nama || 'Belum ditentukan'}
+                                </td>
+
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatRupiah(kursus.harga)}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <div className="flex justify-center space-x-3">

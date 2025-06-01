@@ -8526,10 +8526,16 @@ export namespace Prisma {
     id: string | null
     method: string | null
     amount: number | null
+    status: string | null
+    waktuBayar: Date | null
+    vaNumber: string | null
+    bank: string | null
+    orderId: string | null
+    transactionId: string | null
+    paymentType: string | null
+    fraudStatus: string | null
     snapToken: string | null
     redirectUrl: string | null
-    waktuBayar: Date | null
-    status: string | null
     createdAt: Date | null
     updatedAt: Date | null
     pendaftaranId: string | null
@@ -8539,10 +8545,16 @@ export namespace Prisma {
     id: string | null
     method: string | null
     amount: number | null
+    status: string | null
+    waktuBayar: Date | null
+    vaNumber: string | null
+    bank: string | null
+    orderId: string | null
+    transactionId: string | null
+    paymentType: string | null
+    fraudStatus: string | null
     snapToken: string | null
     redirectUrl: string | null
-    waktuBayar: Date | null
-    status: string | null
     createdAt: Date | null
     updatedAt: Date | null
     pendaftaranId: string | null
@@ -8552,10 +8564,16 @@ export namespace Prisma {
     id: number
     method: number
     amount: number
+    status: number
+    waktuBayar: number
+    vaNumber: number
+    bank: number
+    orderId: number
+    transactionId: number
+    paymentType: number
+    fraudStatus: number
     snapToken: number
     redirectUrl: number
-    waktuBayar: number
-    status: number
     createdAt: number
     updatedAt: number
     pendaftaranId: number
@@ -8575,10 +8593,16 @@ export namespace Prisma {
     id?: true
     method?: true
     amount?: true
+    status?: true
+    waktuBayar?: true
+    vaNumber?: true
+    bank?: true
+    orderId?: true
+    transactionId?: true
+    paymentType?: true
+    fraudStatus?: true
     snapToken?: true
     redirectUrl?: true
-    waktuBayar?: true
-    status?: true
     createdAt?: true
     updatedAt?: true
     pendaftaranId?: true
@@ -8588,10 +8612,16 @@ export namespace Prisma {
     id?: true
     method?: true
     amount?: true
+    status?: true
+    waktuBayar?: true
+    vaNumber?: true
+    bank?: true
+    orderId?: true
+    transactionId?: true
+    paymentType?: true
+    fraudStatus?: true
     snapToken?: true
     redirectUrl?: true
-    waktuBayar?: true
-    status?: true
     createdAt?: true
     updatedAt?: true
     pendaftaranId?: true
@@ -8601,10 +8631,16 @@ export namespace Prisma {
     id?: true
     method?: true
     amount?: true
+    status?: true
+    waktuBayar?: true
+    vaNumber?: true
+    bank?: true
+    orderId?: true
+    transactionId?: true
+    paymentType?: true
+    fraudStatus?: true
     snapToken?: true
     redirectUrl?: true
-    waktuBayar?: true
-    status?: true
     createdAt?: true
     updatedAt?: true
     pendaftaranId?: true
@@ -8701,10 +8737,16 @@ export namespace Prisma {
     id: string
     method: string | null
     amount: number
+    status: string
+    waktuBayar: Date | null
+    vaNumber: string | null
+    bank: string | null
+    orderId: string | null
+    transactionId: string | null
+    paymentType: string | null
+    fraudStatus: string | null
     snapToken: string | null
     redirectUrl: string | null
-    waktuBayar: Date | null
-    status: string
     createdAt: Date
     updatedAt: Date
     pendaftaranId: string
@@ -8733,10 +8775,16 @@ export namespace Prisma {
     id?: boolean
     method?: boolean
     amount?: boolean
+    status?: boolean
+    waktuBayar?: boolean
+    vaNumber?: boolean
+    bank?: boolean
+    orderId?: boolean
+    transactionId?: boolean
+    paymentType?: boolean
+    fraudStatus?: boolean
     snapToken?: boolean
     redirectUrl?: boolean
-    waktuBayar?: boolean
-    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     pendaftaranId?: boolean
@@ -8747,10 +8795,16 @@ export namespace Prisma {
     id?: boolean
     method?: boolean
     amount?: boolean
+    status?: boolean
+    waktuBayar?: boolean
+    vaNumber?: boolean
+    bank?: boolean
+    orderId?: boolean
+    transactionId?: boolean
+    paymentType?: boolean
+    fraudStatus?: boolean
     snapToken?: boolean
     redirectUrl?: boolean
-    waktuBayar?: boolean
-    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     pendaftaranId?: boolean
@@ -8761,10 +8815,16 @@ export namespace Prisma {
     id?: boolean
     method?: boolean
     amount?: boolean
+    status?: boolean
+    waktuBayar?: boolean
+    vaNumber?: boolean
+    bank?: boolean
+    orderId?: boolean
+    transactionId?: boolean
+    paymentType?: boolean
+    fraudStatus?: boolean
     snapToken?: boolean
     redirectUrl?: boolean
-    waktuBayar?: boolean
-    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     pendaftaranId?: boolean
@@ -8775,16 +8835,22 @@ export namespace Prisma {
     id?: boolean
     method?: boolean
     amount?: boolean
+    status?: boolean
+    waktuBayar?: boolean
+    vaNumber?: boolean
+    bank?: boolean
+    orderId?: boolean
+    transactionId?: boolean
+    paymentType?: boolean
+    fraudStatus?: boolean
     snapToken?: boolean
     redirectUrl?: boolean
-    waktuBayar?: boolean
-    status?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     pendaftaranId?: boolean
   }
 
-  export type PaymentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "method" | "amount" | "snapToken" | "redirectUrl" | "waktuBayar" | "status" | "createdAt" | "updatedAt" | "pendaftaranId", ExtArgs["result"]["payment"]>
+  export type PaymentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "method" | "amount" | "status" | "waktuBayar" | "vaNumber" | "bank" | "orderId" | "transactionId" | "paymentType" | "fraudStatus" | "snapToken" | "redirectUrl" | "createdAt" | "updatedAt" | "pendaftaranId", ExtArgs["result"]["payment"]>
   export type PaymentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
   }
@@ -8804,10 +8870,16 @@ export namespace Prisma {
       id: string
       method: string | null
       amount: number
+      status: string
+      waktuBayar: Date | null
+      vaNumber: string | null
+      bank: string | null
+      orderId: string | null
+      transactionId: string | null
+      paymentType: string | null
+      fraudStatus: string | null
       snapToken: string | null
       redirectUrl: string | null
-      waktuBayar: Date | null
-      status: string
       createdAt: Date
       updatedAt: Date
       pendaftaranId: string
@@ -9237,11 +9309,17 @@ export namespace Prisma {
   interface PaymentFieldRefs {
     readonly id: FieldRef<"Payment", 'String'>
     readonly method: FieldRef<"Payment", 'String'>
-    readonly amount: FieldRef<"Payment", 'Int'>
+    readonly amount: FieldRef<"Payment", 'Float'>
+    readonly status: FieldRef<"Payment", 'String'>
+    readonly waktuBayar: FieldRef<"Payment", 'DateTime'>
+    readonly vaNumber: FieldRef<"Payment", 'String'>
+    readonly bank: FieldRef<"Payment", 'String'>
+    readonly orderId: FieldRef<"Payment", 'String'>
+    readonly transactionId: FieldRef<"Payment", 'String'>
+    readonly paymentType: FieldRef<"Payment", 'String'>
+    readonly fraudStatus: FieldRef<"Payment", 'String'>
     readonly snapToken: FieldRef<"Payment", 'String'>
     readonly redirectUrl: FieldRef<"Payment", 'String'>
-    readonly waktuBayar: FieldRef<"Payment", 'DateTime'>
-    readonly status: FieldRef<"Payment", 'String'>
     readonly createdAt: FieldRef<"Payment", 'DateTime'>
     readonly updatedAt: FieldRef<"Payment", 'DateTime'>
     readonly pendaftaranId: FieldRef<"Payment", 'String'>
@@ -10853,10 +10931,16 @@ export namespace Prisma {
     id: 'id',
     method: 'method',
     amount: 'amount',
+    status: 'status',
+    waktuBayar: 'waktuBayar',
+    vaNumber: 'vaNumber',
+    bank: 'bank',
+    orderId: 'orderId',
+    transactionId: 'transactionId',
+    paymentType: 'paymentType',
+    fraudStatus: 'fraudStatus',
     snapToken: 'snapToken',
     redirectUrl: 'redirectUrl',
-    waktuBayar: 'waktuBayar',
-    status: 'status',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     pendaftaranId: 'pendaftaranId'
@@ -11456,11 +11540,17 @@ export namespace Prisma {
     NOT?: PaymentWhereInput | PaymentWhereInput[]
     id?: StringFilter<"Payment"> | string
     method?: StringNullableFilter<"Payment"> | string | null
-    amount?: IntFilter<"Payment"> | number
+    amount?: FloatFilter<"Payment"> | number
+    status?: StringFilter<"Payment"> | string
+    waktuBayar?: DateTimeNullableFilter<"Payment"> | Date | string | null
+    vaNumber?: StringNullableFilter<"Payment"> | string | null
+    bank?: StringNullableFilter<"Payment"> | string | null
+    orderId?: StringNullableFilter<"Payment"> | string | null
+    transactionId?: StringNullableFilter<"Payment"> | string | null
+    paymentType?: StringNullableFilter<"Payment"> | string | null
+    fraudStatus?: StringNullableFilter<"Payment"> | string | null
     snapToken?: StringNullableFilter<"Payment"> | string | null
     redirectUrl?: StringNullableFilter<"Payment"> | string | null
-    waktuBayar?: DateTimeNullableFilter<"Payment"> | Date | string | null
-    status?: StringFilter<"Payment"> | string
     createdAt?: DateTimeFilter<"Payment"> | Date | string
     updatedAt?: DateTimeFilter<"Payment"> | Date | string
     pendaftaranId?: StringFilter<"Payment"> | string
@@ -11471,10 +11561,16 @@ export namespace Prisma {
     id?: SortOrder
     method?: SortOrderInput | SortOrder
     amount?: SortOrder
+    status?: SortOrder
+    waktuBayar?: SortOrderInput | SortOrder
+    vaNumber?: SortOrderInput | SortOrder
+    bank?: SortOrderInput | SortOrder
+    orderId?: SortOrderInput | SortOrder
+    transactionId?: SortOrderInput | SortOrder
+    paymentType?: SortOrderInput | SortOrder
+    fraudStatus?: SortOrderInput | SortOrder
     snapToken?: SortOrderInput | SortOrder
     redirectUrl?: SortOrderInput | SortOrder
-    waktuBayar?: SortOrderInput | SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     pendaftaranId?: SortOrder
@@ -11483,29 +11579,41 @@ export namespace Prisma {
 
   export type PaymentWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    snapToken?: string
     pendaftaranId?: string
     AND?: PaymentWhereInput | PaymentWhereInput[]
     OR?: PaymentWhereInput[]
     NOT?: PaymentWhereInput | PaymentWhereInput[]
     method?: StringNullableFilter<"Payment"> | string | null
-    amount?: IntFilter<"Payment"> | number
-    snapToken?: StringNullableFilter<"Payment"> | string | null
-    redirectUrl?: StringNullableFilter<"Payment"> | string | null
-    waktuBayar?: DateTimeNullableFilter<"Payment"> | Date | string | null
+    amount?: FloatFilter<"Payment"> | number
     status?: StringFilter<"Payment"> | string
+    waktuBayar?: DateTimeNullableFilter<"Payment"> | Date | string | null
+    vaNumber?: StringNullableFilter<"Payment"> | string | null
+    bank?: StringNullableFilter<"Payment"> | string | null
+    orderId?: StringNullableFilter<"Payment"> | string | null
+    transactionId?: StringNullableFilter<"Payment"> | string | null
+    paymentType?: StringNullableFilter<"Payment"> | string | null
+    fraudStatus?: StringNullableFilter<"Payment"> | string | null
+    redirectUrl?: StringNullableFilter<"Payment"> | string | null
     createdAt?: DateTimeFilter<"Payment"> | Date | string
     updatedAt?: DateTimeFilter<"Payment"> | Date | string
     pendaftaran?: XOR<PendaftaranScalarRelationFilter, PendaftaranWhereInput>
-  }, "id" | "pendaftaranId">
+  }, "id" | "snapToken" | "pendaftaranId">
 
   export type PaymentOrderByWithAggregationInput = {
     id?: SortOrder
     method?: SortOrderInput | SortOrder
     amount?: SortOrder
+    status?: SortOrder
+    waktuBayar?: SortOrderInput | SortOrder
+    vaNumber?: SortOrderInput | SortOrder
+    bank?: SortOrderInput | SortOrder
+    orderId?: SortOrderInput | SortOrder
+    transactionId?: SortOrderInput | SortOrder
+    paymentType?: SortOrderInput | SortOrder
+    fraudStatus?: SortOrderInput | SortOrder
     snapToken?: SortOrderInput | SortOrder
     redirectUrl?: SortOrderInput | SortOrder
-    waktuBayar?: SortOrderInput | SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     pendaftaranId?: SortOrder
@@ -11522,11 +11630,17 @@ export namespace Prisma {
     NOT?: PaymentScalarWhereWithAggregatesInput | PaymentScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Payment"> | string
     method?: StringNullableWithAggregatesFilter<"Payment"> | string | null
-    amount?: IntWithAggregatesFilter<"Payment"> | number
+    amount?: FloatWithAggregatesFilter<"Payment"> | number
+    status?: StringWithAggregatesFilter<"Payment"> | string
+    waktuBayar?: DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
+    vaNumber?: StringNullableWithAggregatesFilter<"Payment"> | string | null
+    bank?: StringNullableWithAggregatesFilter<"Payment"> | string | null
+    orderId?: StringNullableWithAggregatesFilter<"Payment"> | string | null
+    transactionId?: StringNullableWithAggregatesFilter<"Payment"> | string | null
+    paymentType?: StringNullableWithAggregatesFilter<"Payment"> | string | null
+    fraudStatus?: StringNullableWithAggregatesFilter<"Payment"> | string | null
     snapToken?: StringNullableWithAggregatesFilter<"Payment"> | string | null
     redirectUrl?: StringNullableWithAggregatesFilter<"Payment"> | string | null
-    waktuBayar?: DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
-    status?: StringWithAggregatesFilter<"Payment"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
     pendaftaranId?: StringWithAggregatesFilter<"Payment"> | string
@@ -12142,10 +12256,16 @@ export namespace Prisma {
     id?: string
     method?: string | null
     amount: number
+    status?: string
+    waktuBayar?: Date | string | null
+    vaNumber?: string | null
+    bank?: string | null
+    orderId?: string | null
+    transactionId?: string | null
+    paymentType?: string | null
+    fraudStatus?: string | null
     snapToken?: string | null
     redirectUrl?: string | null
-    waktuBayar?: Date | string | null
-    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     pendaftaran: PendaftaranCreateNestedOneWithoutPaymentInput
@@ -12155,10 +12275,16 @@ export namespace Prisma {
     id?: string
     method?: string | null
     amount: number
+    status?: string
+    waktuBayar?: Date | string | null
+    vaNumber?: string | null
+    bank?: string | null
+    orderId?: string | null
+    transactionId?: string | null
+    paymentType?: string | null
+    fraudStatus?: string | null
     snapToken?: string | null
     redirectUrl?: string | null
-    waktuBayar?: Date | string | null
-    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     pendaftaranId: string
@@ -12167,11 +12293,17 @@ export namespace Prisma {
   export type PaymentUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     method?: NullableStringFieldUpdateOperationsInput | string | null
-    amount?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    vaNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    bank?: NullableStringFieldUpdateOperationsInput | string | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentType?: NullableStringFieldUpdateOperationsInput | string | null
+    fraudStatus?: NullableStringFieldUpdateOperationsInput | string | null
     snapToken?: NullableStringFieldUpdateOperationsInput | string | null
     redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pendaftaran?: PendaftaranUpdateOneRequiredWithoutPaymentNestedInput
@@ -12180,11 +12312,17 @@ export namespace Prisma {
   export type PaymentUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     method?: NullableStringFieldUpdateOperationsInput | string | null
-    amount?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    vaNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    bank?: NullableStringFieldUpdateOperationsInput | string | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentType?: NullableStringFieldUpdateOperationsInput | string | null
+    fraudStatus?: NullableStringFieldUpdateOperationsInput | string | null
     snapToken?: NullableStringFieldUpdateOperationsInput | string | null
     redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pendaftaranId?: StringFieldUpdateOperationsInput | string
@@ -12194,10 +12332,16 @@ export namespace Prisma {
     id?: string
     method?: string | null
     amount: number
+    status?: string
+    waktuBayar?: Date | string | null
+    vaNumber?: string | null
+    bank?: string | null
+    orderId?: string | null
+    transactionId?: string | null
+    paymentType?: string | null
+    fraudStatus?: string | null
     snapToken?: string | null
     redirectUrl?: string | null
-    waktuBayar?: Date | string | null
-    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
     pendaftaranId: string
@@ -12206,11 +12350,17 @@ export namespace Prisma {
   export type PaymentUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     method?: NullableStringFieldUpdateOperationsInput | string | null
-    amount?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    vaNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    bank?: NullableStringFieldUpdateOperationsInput | string | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentType?: NullableStringFieldUpdateOperationsInput | string | null
+    fraudStatus?: NullableStringFieldUpdateOperationsInput | string | null
     snapToken?: NullableStringFieldUpdateOperationsInput | string | null
     redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12218,11 +12368,17 @@ export namespace Prisma {
   export type PaymentUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     method?: NullableStringFieldUpdateOperationsInput | string | null
-    amount?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    vaNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    bank?: NullableStringFieldUpdateOperationsInput | string | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentType?: NullableStringFieldUpdateOperationsInput | string | null
+    fraudStatus?: NullableStringFieldUpdateOperationsInput | string | null
     snapToken?: NullableStringFieldUpdateOperationsInput | string | null
     redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pendaftaranId?: StringFieldUpdateOperationsInput | string
@@ -12792,6 +12948,17 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type PendaftaranScalarRelationFilter = {
     is?: PendaftaranWhereInput
     isNot?: PendaftaranWhereInput
@@ -12801,10 +12968,16 @@ export namespace Prisma {
     id?: SortOrder
     method?: SortOrder
     amount?: SortOrder
+    status?: SortOrder
+    waktuBayar?: SortOrder
+    vaNumber?: SortOrder
+    bank?: SortOrder
+    orderId?: SortOrder
+    transactionId?: SortOrder
+    paymentType?: SortOrder
+    fraudStatus?: SortOrder
     snapToken?: SortOrder
     redirectUrl?: SortOrder
-    waktuBayar?: SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     pendaftaranId?: SortOrder
@@ -12818,10 +12991,16 @@ export namespace Prisma {
     id?: SortOrder
     method?: SortOrder
     amount?: SortOrder
+    status?: SortOrder
+    waktuBayar?: SortOrder
+    vaNumber?: SortOrder
+    bank?: SortOrder
+    orderId?: SortOrder
+    transactionId?: SortOrder
+    paymentType?: SortOrder
+    fraudStatus?: SortOrder
     snapToken?: SortOrder
     redirectUrl?: SortOrder
-    waktuBayar?: SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     pendaftaranId?: SortOrder
@@ -12831,10 +13010,16 @@ export namespace Prisma {
     id?: SortOrder
     method?: SortOrder
     amount?: SortOrder
+    status?: SortOrder
+    waktuBayar?: SortOrder
+    vaNumber?: SortOrder
+    bank?: SortOrder
+    orderId?: SortOrder
+    transactionId?: SortOrder
+    paymentType?: SortOrder
+    fraudStatus?: SortOrder
     snapToken?: SortOrder
     redirectUrl?: SortOrder
-    waktuBayar?: SortOrder
-    status?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     pendaftaranId?: SortOrder
@@ -12842,6 +13027,22 @@ export namespace Prisma {
 
   export type PaymentSumOrderByAggregateInput = {
     amount?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type JadwalCountOrderByAggregateInput = {
@@ -13268,6 +13469,14 @@ export namespace Prisma {
     connect?: PendaftaranWhereUniqueInput
   }
 
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type PendaftaranUpdateOneRequiredWithoutPaymentNestedInput = {
     create?: XOR<PendaftaranCreateWithoutPaymentInput, PendaftaranUncheckedCreateWithoutPaymentInput>
     connectOrCreate?: PendaftaranCreateOrConnectWithoutPaymentInput
@@ -13476,6 +13685,22 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type UserCreateWithoutAccountInput = {
@@ -14284,10 +14509,16 @@ export namespace Prisma {
     id?: string
     method?: string | null
     amount: number
+    status?: string
+    waktuBayar?: Date | string | null
+    vaNumber?: string | null
+    bank?: string | null
+    orderId?: string | null
+    transactionId?: string | null
+    paymentType?: string | null
+    fraudStatus?: string | null
     snapToken?: string | null
     redirectUrl?: string | null
-    waktuBayar?: Date | string | null
-    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14296,10 +14527,16 @@ export namespace Prisma {
     id?: string
     method?: string | null
     amount: number
+    status?: string
+    waktuBayar?: Date | string | null
+    vaNumber?: string | null
+    bank?: string | null
+    orderId?: string | null
+    transactionId?: string | null
+    paymentType?: string | null
+    fraudStatus?: string | null
     snapToken?: string | null
     redirectUrl?: string | null
-    waktuBayar?: Date | string | null
-    status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -14425,11 +14662,17 @@ export namespace Prisma {
   export type PaymentUpdateWithoutPendaftaranInput = {
     id?: StringFieldUpdateOperationsInput | string
     method?: NullableStringFieldUpdateOperationsInput | string | null
-    amount?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    vaNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    bank?: NullableStringFieldUpdateOperationsInput | string | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentType?: NullableStringFieldUpdateOperationsInput | string | null
+    fraudStatus?: NullableStringFieldUpdateOperationsInput | string | null
     snapToken?: NullableStringFieldUpdateOperationsInput | string | null
     redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14437,11 +14680,17 @@ export namespace Prisma {
   export type PaymentUncheckedUpdateWithoutPendaftaranInput = {
     id?: StringFieldUpdateOperationsInput | string
     method?: NullableStringFieldUpdateOperationsInput | string | null
-    amount?: IntFieldUpdateOperationsInput | number
+    amount?: FloatFieldUpdateOperationsInput | number
+    status?: StringFieldUpdateOperationsInput | string
+    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    vaNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    bank?: NullableStringFieldUpdateOperationsInput | string | null
+    orderId?: NullableStringFieldUpdateOperationsInput | string | null
+    transactionId?: NullableStringFieldUpdateOperationsInput | string | null
+    paymentType?: NullableStringFieldUpdateOperationsInput | string | null
+    fraudStatus?: NullableStringFieldUpdateOperationsInput | string | null
     snapToken?: NullableStringFieldUpdateOperationsInput | string | null
     redirectUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    waktuBayar?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

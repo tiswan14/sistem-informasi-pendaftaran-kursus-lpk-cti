@@ -1,7 +1,8 @@
 "use client";
 import { formatRupiah } from "@/utils/formatRupiah";
+import { Edit, Edit2, FilePen, FilePlus } from "lucide-react";
 import { useEffect, useState } from "react";
-import { FaTrash } from "react-icons/fa";
+import { FaStickyNote, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 interface Pendaftar {
@@ -180,12 +181,13 @@ const PendaftarTable = () => {
                                 <td className="px-6 py-4 whitespace-nowrap">{pendaftar.kursus?.nama || "-"}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{formatRupiah(pendaftar.kursus?.harga) || "-"}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{new Date(pendaftar.createdAt).toLocaleDateString()}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">
+                                <td className="px-6 py-4 whitespace-nowrap text-center">
                                     <select
+                                        title="Ubah status pendaftaran"
                                         value={pendaftar.status}
                                         onChange={(e) => handleStatusChange(pendaftar.id, e.target.value)}
                                         className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full appearance-none focus:outline-none focus:ring-1 focus:ring-opacity-50
-                                        ${pendaftar.status === 'Belum verifikasi' ? 'bg-gray-100 text-gray-800 focus:ring-gray-500' :
+      ${pendaftar.status === 'Belum verifikasi' ? 'bg-gray-100 text-gray-800 focus:ring-gray-500' :
                                                 pendaftar.status === 'Diterima' ? 'bg-green-100 text-green-800 focus:ring-green-500' :
                                                     pendaftar.status === 'Ditolak' ? 'bg-red-100 text-red-800 focus:ring-red-500' :
                                                         pendaftar.status === 'Lulus' ? 'bg-indigo-100 text-indigo-800 focus:ring-indigo-500' :
@@ -198,8 +200,18 @@ const PendaftarTable = () => {
                                     </select>
                                 </td>
 
+
                                 <td className="px-6 py-4 whitespace-nowrap text-center">
                                     <div className="flex justify-center space-x-3">
+                                        <Tooltip content="Tambah Catatan">
+                                            <button
+                                                // onClick={() => handleAddNoteClick(pendaftar.id)}
+                                                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md"
+                                                aria-label="Tambah Catatan"
+                                            >
+                                                <FilePlus className="h-4 w-4 text-white" />
+                                            </button>
+                                        </Tooltip>
 
                                         <Tooltip content="Hapus">
                                             <button
@@ -212,6 +224,7 @@ const PendaftarTable = () => {
                                         </Tooltip>
                                     </div>
                                 </td>
+
                             </tr>
                         ))
                     )}

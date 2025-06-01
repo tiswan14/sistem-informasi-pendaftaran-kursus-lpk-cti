@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { FaEye, FaEdit, FaTrash } from "react-icons/fa";
+import { FaEye, FaTrash } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { SearchX } from "lucide-react";
@@ -62,14 +62,14 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
         fetchPeserta();
     }, []);
 
-    const handleEdit = (id: string) => {
-        const pesertaToEdit = pesertaData.find(peserta => peserta.id === id);
-        if (pesertaToEdit) {
-            // setEditData(pesertaToEdit);
-            // Here you would typically open a modal or navigate to edit page
-            console.log("Editing:", pesertaToEdit);
-        }
-    };
+    // const handleEdit = (id: string) => {
+    //     const pesertaToEdit = pesertaData.find(peserta => peserta.id === id);
+    //     if (pesertaToEdit) {
+    //         // setEditData(pesertaToEdit);
+    //         // Here you would typically open a modal or navigate to edit page
+    //         console.log("Editing:", pesertaToEdit);
+    //     }
+    // };
 
     const handleDelete = async (id: number) => {
         try {
@@ -222,7 +222,7 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                                             </a>
                                         </Tooltip>
 
-                                        <Tooltip content="Edit">
+                                        {/* <Tooltip content="Edit">
                                             <button
                                                 onClick={() => handleEdit(peserta.id)}
                                                 className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
@@ -230,7 +230,7 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                                             >
                                                 <FaEdit className="h-4 w-4 text-white" />
                                             </button>
-                                        </Tooltip>
+                                        </Tooltip> */}
 
                                         <Tooltip content="Hapus">
                                             <button

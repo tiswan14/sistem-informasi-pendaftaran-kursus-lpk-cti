@@ -5,7 +5,14 @@ export async function GET() {
     try {
         const pendaftaran = await prisma.pendaftaran.findMany({
             include: {
-                user: true,
+                user: {
+                    select: {
+                        id: true,
+                        nama: true,
+                        email: true,
+                        noHp: true
+                    }
+                },
                 kursus: {
                     select: {
                         id: true,

@@ -3,7 +3,7 @@ import FormRegister from "@/components/auth/form-register";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "Form Pendaftaran | LPK CTI Ciamis",
+    title: "Register | LPK CTI Ciamis",
 };
 
 const RegisterPage = () => {
