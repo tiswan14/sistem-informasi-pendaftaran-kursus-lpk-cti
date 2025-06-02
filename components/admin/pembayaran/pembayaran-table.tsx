@@ -1,40 +1,73 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
 import { Tooltip } from "react-tooltip";
 import { formatRupiah } from "@/utils/formatRupiah";
 import { formatTanggalIndonesia } from "@/utils/formatTanggal";
 import renderStatus from "@/utils/renderStatus";
 
-const dummyData = [
-    {
-        id: "1",
-        method: "Transfer Bank",
-        amount: 250000,
-        waktuBayar: "2025-05-29T09:30:00Z",
-        status: "paid",
-        pendaftaran: {
-            user: { nama: "Tiswan Ardiansyah" },
-            kursus: { nama: "Dasar-Dasar Data Analytics" },
-        },
-    },
-    {
-        id: "2",
-        method: "E-Wallet",
-        amount: 150000,
-        waktuBayar: null,
-        status: "unpaid",
-        pendaftaran: {
-            user: { nama: "Siti Nurhaliza" },
-            kursus: { nama: "Pemrograman Python" },
-        },
-    },
-];
+
+
+type User = {
+    nama: string;
+};
+
+type Kursus = {
+    nama: string;
+};
+
+type Pendaftaran = {
+    user: User;
+    kursus: Kursus;
+};
+
+type Pembayaran = {
+    id: string;
+    method: string;
+    amount: number;
+    waktuBayar?: string | null;
+    status: string;
+    pendaftaran: Pendaftaran;
+};
 
 
 const PembayaranTable = () => {
-    const [pembayaranData, setPembayaranData] = useState(dummyData);
+    const [pembayaranData, setPembayaranData] = useState<Pembayaran[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [deleteId, setDeleteId] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchPembayaran = async () => {
+            try {
+                const res = await fetch("/api/transaction/notification");
+                if (!res.ok) {
+                    console.error("Fetch error: response not ok", res.status, res.statusText);
+                    throw new Error(`Gagal memuat data pembayaran: ${res.status} ${res.statusText}`);
+                }
+
+                const responseJson: { success: boolean; data: Pembayaran[] } = await res.json();
+
+                if (responseJson.success) {
+                    setPembayaranData(responseJson.data);
+                    console.log("Data pembayaran berhasil diterima:", responseJson.data); // <-- ini yang kamu minta
+                } else {
+                    console.error("API responded with success=false", responseJson);
+                    throw new Error("Response API gagal");
+                }
+            } catch (error: any) {
+                console.error("Error caught in fetchPembayaran:", error.message || error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchPembayaran();
+    }, []);
+
+
+
+
 
     const handleDelete = (id: string) => {
         setPembayaranData(prev => prev.filter(item => item.id !== id));
@@ -56,27 +89,34 @@ const PembayaranTable = () => {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {!pembayaranData.length ? (
+                    {loading ? (
+                        <tr>
+                            <td colSpan={8} className="text-center py-10 text-gray-400 italic">
+                                Loading data pembayaran...
+                            </td>
+                        </tr>
+                    ) : !pembayaranData.length ? (
                         <tr>
                             <td colSpan={8} className="text-center py-10 text-gray-400 italic">
                                 Tidak ada data pembayaran
                             </td>
                         </tr>
                     ) : (
-                        pembayaranData.map((pembayaran, index) => (
+                        pembayaranData.slice(0, 6).map((pembayaran, index) => (
                             <tr key={pembayaran.id}>
                                 <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pembayaran.pendaftaran.user.nama}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pembayaran.pendaftaran.kursus.nama}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{pembayaran.method}</td>
+                                <td className="px-6 py-4 whitespace-nowrap capitalize">
+                                    {pembayaran.method.replace('_', ' ')}
+                                </td>
                                 <td className="px-6 py-4 whitespace-nowrap">{formatRupiah(pembayaran.amount)}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    {formatTanggalIndonesia(pembayaran.waktuBayar)}
+                                    {pembayaran.waktuBayar ? formatTanggalIndonesia(pembayaran.waktuBayar) : '-'}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap capitalize">
                                     {renderStatus(pembayaran.status)}
                                 </td>
-
                                 <td className="px-6 py-4 text-center">
                                     <Tooltip content="Hapus">
                                         <button
@@ -91,7 +131,9 @@ const PembayaranTable = () => {
                         ))
                     )}
                 </tbody>
+
             </table>
+
         </div>
     );
 };

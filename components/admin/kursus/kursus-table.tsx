@@ -114,24 +114,24 @@ const KursusTable = () => {
                 </div>
             )}
 
-            <table className="w-full divide-y divide-gray-200">
+            <table className="w-full divide-y divide-gray-200 text-left">
                 <thead className="bg-gray-50">
                     <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Kursus</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Durasi(bulan)</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Mulai</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tanggal Selesai</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nama Instruktur</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga</th>
-                        <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">No</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Nama Kursus</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Durasi</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Tanggal Mulai</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Tanggal Selesai</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Instruktur</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Harga</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Aksi</th>
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                     {!kursusData.length ? (
                         <tr>
-                            <td colSpan={5} className="text-center py-10 text-gray-400 italic">
-                                <div className="flex flex-col items-center space-y-2">
+                            <td colSpan={8} className="py-10 text-gray-400 italic text-center">
+                                <div className="flex flex-col items-center justify-center space-y-2">
                                     <svg
                                         className="w-10 h-10 text-gray-300"
                                         fill="none"
@@ -151,34 +151,30 @@ const KursusTable = () => {
                         </tr>
                     ) : (
                         kursusData.map((kursus, index) => (
-                            <tr key={kursus.id} className="hover:bg-gray-50 transition-colors duration-150 ease-in-out">
-                                <td className="px-7 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{index + 1}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{kursus.nama}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{kursus.lamaKursus}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatTanggalIndonesia(kursus.tanggalMulai)}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatTanggalIndonesia(kursus.tanggalSelesai)}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                                    {kursus.user?.nama || 'Belum ditentukan'}
-                                </td>
-
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{formatRupiah(kursus.harga)}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <div className="flex justify-center space-x-3">
+                            <tr key={kursus.id} className="hover:bg-gray-50 transition-colors duration-150">
+                                <td className="px-4 py-3 text-sm text-gray-700">{index + 1}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{kursus.nama}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{kursus.lamaKursus} bulan</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{formatTanggalIndonesia(kursus.tanggalMulai)}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{formatTanggalIndonesia(kursus.tanggalSelesai)}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{kursus.user?.nama || 'Belum ditentukan'}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{formatRupiah(kursus.harga)}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">
+                                    <div className="flex justify-start space-x-2">
                                         <Tooltip content="Edit">
                                             <button
                                                 onClick={() => redirect(`/dashboard/data-kursus/edit/${kursus.id}`)}
-                                                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
-                                                aria-label="Edit"
+                                                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors"
                                             >
-                                                <FaEdit className="h-4 w-4 text-white" />
+                                                <FaEdit className="w-4 h-4 text-white" />
                                             </button>
                                         </Tooltip>
                                         <Tooltip content="Hapus">
                                             <button
                                                 onClick={() => setDeleteId(kursus.id)}
-                                                className="bg-red-600 hover:bg-red-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                className="bg-red-600 hover:bg-red-700 p-2 rounded-md transition-colors"
                                             >
-                                                <FaTrash className="h-4 w-4 text-white" />
+                                                <FaTrash className="w-4 h-4 text-white" />
                                             </button>
                                         </Tooltip>
                                     </div>
@@ -188,6 +184,8 @@ const KursusTable = () => {
                     )}
                 </tbody>
             </table>
+
+
         </div>
     );
 };

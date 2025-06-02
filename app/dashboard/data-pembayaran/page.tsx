@@ -1,11 +1,13 @@
-import { Metadata } from "next";
+"use client"
 import PembayaranTable from "@/components/admin/pembayaran/pembayaran-table";
+import { useEffect, useState } from "react";
 
-export const metadata: Metadata = {
-    title: "Data Pembayaran Kursus - LPK CTI Ciamis",
-};
+
+
+
 
 const PembayaranPage = () => {
+
     return (
         <div className="max-w-screen-xl px-4 ">
             <div className="px-3 flex items-center justify-between mb-10">

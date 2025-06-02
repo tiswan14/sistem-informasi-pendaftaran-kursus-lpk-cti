@@ -1,8 +1,7 @@
 "use client";
-import { formatRupiah } from "@/utils/formatRupiah";
-import { Edit, Edit2, FilePen, FilePlus } from "lucide-react";
+import { FilePlus } from "lucide-react";
 import { useEffect, useState } from "react";
-import { FaStickyNote, FaTrash } from "react-icons/fa";
+import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 interface Pendaftar {
@@ -145,7 +144,6 @@ const PendaftarTable = () => {
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">No</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Pendaftar</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Kursus</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Harga</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal Daftar</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
                         <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Aksi</th>
@@ -179,9 +177,8 @@ const PendaftarTable = () => {
                                 <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pendaftar.user?.nama || "-"}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pendaftar.kursus?.nama || "-"}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{formatRupiah(pendaftar.kursus?.harga) || "-"}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{new Date(pendaftar.createdAt).toLocaleDateString()}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-center">
+                                <td className="py-4 whitespace-nowrap text-center">
                                     <select
                                         title="Ubah status pendaftaran"
                                         value={pendaftar.status}

@@ -1,103 +1,127 @@
-"use client"
+import {
+    ArrowLeft,
+    Clock,
+    CheckCircle2,
+    CreditCard,
+    Banknote,
+    BookOpen,
+    Calendar,
+    AlertCircle,
+    History,
+    Receipt,
+    CalendarClock,
+    FileText
+} from 'lucide-react';
 
-import { useEffect, useState } from "react";
-import axios from "axios";
-
-const PembayaranPage = () => {
-    const [metode, setMetode] = useState("Manual");
-    const [buktiBayar, setBuktiBayar] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [pendaftaran, setPendaftaran] = useState(null);
-
-    // Simulasi fetch data pendaftaran
-    useEffect(() => {
-        // Ganti dengan data asli dari API atau props
-        setPendaftaran({
-            id: "cmaz5qstz0002cc2ofksmqy1g",
-            kursus: {
-                nama: "ReactJS Beginner",
-                harga: 1500000,
-            },
-        });
-    }, []);
-
-    const handleSubmit = async () => {
-        setLoading(true);
-
-        if (metode === "Manual") {
-            const formData = new FormData();
-            formData.append("pendaftaranId", pendaftaran.id);
-            formData.append("metode", "Manual");
-            formData.append("jumlah", pendaftaran.kursus.harga);
-            formData.append("buktiBayar", buktiBayar);
-
-            await axios.post("/api/pembayaran/manual", formData);
-            alert("Pembayaran manual berhasil diunggah.");
-        } else if (metode === "Midtrans") {
-            const res = await axios.post("/api/pembayaran/midtrans", {
-                pendaftaranId: pendaftaran.id,
-                jumlah: pendaftaran.kursus.harga,
-                metode: "Midtrans",
-            });
-
-            window.snap.pay(res.data.snapToken, {
-                onSuccess: (result) => {
-                    console.log("Pembayaran berhasil", result);
-                },
-                onPending: (result) => {
-                    console.log("Menunggu pembayaran", result);
-                },
-                onError: (result) => {
-                    console.log("Pembayaran gagal", result);
-                },
-                onClose: () => {
-                    alert("Transaksi belum selesai.");
-                },
-            });
+const RiwayatPembayaranPage = () => {
+    // Data contoh - di aplikasi nyata ini akan berasal dari props atau API
+    const riwayatPembayaran = [
+        {
+            id: 1,
+            namaKursus: "Dasar Pemrograman",
+            metodePembayaran: "Transfer Bank",
+            jumlah: 500000,
+            tanggal: "2023-10-15 14:30",
+            status: "berhasil"
+        },
+        {
+            id: 2,
+            namaKursus: "React Lanjutan",
+            metodePembayaran: "Kartu Kredit",
+            jumlah: 750000,
+            tanggal: "2023-09-28 10:15",
+            status: "berhasil"
+        },
+        {
+            id: 3,
+            namaKursus: "Data Science",
+            metodePembayaran: "E-Wallet",
+            jumlah: 600000,
+            tanggal: "2023-09-10 16:45",
+            status: "pending"
         }
+    ];
 
-        setLoading(false);
+    const formatMataUang = (jumlah) => {
+        return new Intl.NumberFormat('id-ID', {
+            style: 'currency',
+            currency: 'IDR',
+            minimumFractionDigits: 0
+        }).format(jumlah);
     };
 
-    if (!pendaftaran) return <p>Loading data...</p>;
+    const formatTanggal = (tanggalString) => {
+        const opsi = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        };
+        return new Date(tanggalString).toLocaleDateString('id-ID', opsi);
+    };
 
     return (
-        <div className="max-w-lg mx-auto mt-10 p-6 bg-white rounded shadow">
-            <h1 className="text-2xl font-bold mb-4">Pembayaran</h1>
-            <p className="mb-2">Kursus: <strong>{pendaftaran.kursus.nama}</strong></p>
-            <p className="mb-4">Harga: <strong>Rp {pendaftaran.kursus.harga.toLocaleString()}</strong></p>
-
-            <label className="block mb-2 font-semibold">Metode Pembayaran:</label>
-            <select
-                value={metode}
-                onChange={(e) => setMetode(e.target.value)}
-                className="w-full border px-2 py-2 rounded mb-4"
-            >
-                <option value="Manual">Manual</option>
-                <option value="Midtrans">Midtrans</option>
-            </select>
-
-            {metode === "Manual" && (
-                <div className="mb-4">
-                    <label className="block mb-1">Upload Bukti Bayar:</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => setBuktiBayar(e.target.files[0])}
-                        className="block w-full"
-                    />
+        <div className="min-h-screen bg-gray-50 py-36 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto">
+                <div className="flex items-center mb-8">
+                    <FileText className="w-5 h-5 mr-2 text-gray-900" />
+                    <h1 className="text-2xl font-bold text-gray-900">Riwayat Pembayaran</h1>
                 </div>
-            )}
 
-            <button
-                onClick={handleSubmit}
-                disabled={loading}
-                className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
-            >
-                {loading ? "Memproses..." : "Bayar Sekarang"}
-            </button>
+                <div className="bg-white shadow rounded-lg overflow-hidden">
+                    <div className="px-6 py-5 border-b border-gray-200">
+                        <h2 className="text-lg font-medium text-gray-900">Daftar Transaksi</h2>
+                    </div>
+
+                    <div className="divide-y divide-gray-200">
+                        {riwayatPembayaran.map((pembayaran) => (
+                            <div key={pembayaran.id} className="px-6 py-4 hover:bg-gray-50 transition-colors">
+                                <div className="flex items-start justify-between">
+                                    <div className="flex items-start space-x-4">
+                                        <div className="p-3 bg-blue-50 rounded-full">
+                                            {pembayaran.metodePembayaran === "Kartu Kredit" ? (
+                                                <CreditCard className="h-6 w-6 text-blue-600" />
+                                            ) : pembayaran.metodePembayaran === "Transfer Bank" ? (
+                                                <Banknote className="h-6 w-6 text-blue-600" />
+                                            ) : (
+                                                <CreditCard className="h-6 w-6 text-blue-600" />
+                                            )}
+                                        </div>
+                                        <div>
+                                            <h3 className="font-medium text-gray-900">{pembayaran.namaKursus}</h3>
+                                            <div className="flex items-center mt-2 text-sm text-gray-500">
+                                                {pembayaran.status === "berhasil" ? (
+                                                    <CheckCircle2 className="h-4 w-4 mr-1 text-green-500" />
+                                                ) : (
+                                                    <Clock className="h-4 w-4 mr-1 text-yellow-500" />
+                                                )}
+                                                <span className="capitalize">{pembayaran.status}</span>
+                                            </div>
+                                            <div className="flex items-center mt-1 text-sm text-gray-500">
+                                                <Calendar className="h-4 w-4 mr-1" />
+                                                <span>{formatTanggal(pembayaran.tanggal)}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="text-right">
+                                        <div className="font-semibold text-gray-900">
+                                            {formatMataUang(pembayaran.jumlah)}
+                                        </div>
+                                        <div className="mt-1 text-sm text-gray-500">
+                                            {pembayaran.metodePembayaran}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+            </div>
         </div>
-    );
-};
+    )
+}
 
-export default PembayaranPage;
+export default RiwayatPembayaranPage
