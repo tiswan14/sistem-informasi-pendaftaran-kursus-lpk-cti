@@ -44,6 +44,11 @@ export type Kursus = $Result.DefaultSelection<Prisma.$KursusPayload>
  */
 export type Pendaftaran = $Result.DefaultSelection<Prisma.$PendaftaranPayload>
 /**
+ * Model Sertifikat
+ * 
+ */
+export type Sertifikat = $Result.DefaultSelection<Prisma.$SertifikatPayload>
+/**
  * Model Payment
  * 
  */
@@ -53,11 +58,6 @@ export type Payment = $Result.DefaultSelection<Prisma.$PaymentPayload>
  * 
  */
 export type Jadwal = $Result.DefaultSelection<Prisma.$JadwalPayload>
-/**
- * Model Sertifikat
- * 
- */
-export type Sertifikat = $Result.DefaultSelection<Prisma.$SertifikatPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -245,6 +245,16 @@ export class PrismaClient<
   get pendaftaran(): Prisma.PendaftaranDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.sertifikat`: Exposes CRUD operations for the **Sertifikat** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Sertifikats
+    * const sertifikats = await prisma.sertifikat.findMany()
+    * ```
+    */
+  get sertifikat(): Prisma.SertifikatDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.payment`: Exposes CRUD operations for the **Payment** model.
     * Example usage:
     * ```ts
@@ -263,16 +273,6 @@ export class PrismaClient<
     * ```
     */
   get jadwal(): Prisma.JadwalDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.sertifikat`: Exposes CRUD operations for the **Sertifikat** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Sertifikats
-    * const sertifikats = await prisma.sertifikat.findMany()
-    * ```
-    */
-  get sertifikat(): Prisma.SertifikatDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -719,9 +719,9 @@ export namespace Prisma {
     User: 'User',
     Kursus: 'Kursus',
     Pendaftaran: 'Pendaftaran',
+    Sertifikat: 'Sertifikat',
     Payment: 'Payment',
-    Jadwal: 'Jadwal',
-    Sertifikat: 'Sertifikat'
+    Jadwal: 'Jadwal'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -740,7 +740,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "account" | "session" | "verificationToken" | "user" | "kursus" | "pendaftaran" | "payment" | "jadwal" | "sertifikat"
+      modelProps: "account" | "session" | "verificationToken" | "user" | "kursus" | "pendaftaran" | "sertifikat" | "payment" | "jadwal"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1188,6 +1188,80 @@ export namespace Prisma {
           }
         }
       }
+      Sertifikat: {
+        payload: Prisma.$SertifikatPayload<ExtArgs>
+        fields: Prisma.SertifikatFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SertifikatFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SertifikatFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>
+          }
+          findFirst: {
+            args: Prisma.SertifikatFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SertifikatFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>
+          }
+          findMany: {
+            args: Prisma.SertifikatFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>[]
+          }
+          create: {
+            args: Prisma.SertifikatCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>
+          }
+          createMany: {
+            args: Prisma.SertifikatCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SertifikatCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>[]
+          }
+          delete: {
+            args: Prisma.SertifikatDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>
+          }
+          update: {
+            args: Prisma.SertifikatUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>
+          }
+          deleteMany: {
+            args: Prisma.SertifikatDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SertifikatUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SertifikatUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>[]
+          }
+          upsert: {
+            args: Prisma.SertifikatUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>
+          }
+          aggregate: {
+            args: Prisma.SertifikatAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSertifikat>
+          }
+          groupBy: {
+            args: Prisma.SertifikatGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SertifikatGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SertifikatCountArgs<ExtArgs>
+            result: $Utils.Optional<SertifikatCountAggregateOutputType> | number
+          }
+        }
+      }
       Payment: {
         payload: Prisma.$PaymentPayload<ExtArgs>
         fields: Prisma.PaymentFieldRefs
@@ -1336,80 +1410,6 @@ export namespace Prisma {
           }
         }
       }
-      Sertifikat: {
-        payload: Prisma.$SertifikatPayload<ExtArgs>
-        fields: Prisma.SertifikatFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.SertifikatFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.SertifikatFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>
-          }
-          findFirst: {
-            args: Prisma.SertifikatFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.SertifikatFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>
-          }
-          findMany: {
-            args: Prisma.SertifikatFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>[]
-          }
-          create: {
-            args: Prisma.SertifikatCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>
-          }
-          createMany: {
-            args: Prisma.SertifikatCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.SertifikatCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>[]
-          }
-          delete: {
-            args: Prisma.SertifikatDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>
-          }
-          update: {
-            args: Prisma.SertifikatUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>
-          }
-          deleteMany: {
-            args: Prisma.SertifikatDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.SertifikatUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.SertifikatUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>[]
-          }
-          upsert: {
-            args: Prisma.SertifikatUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$SertifikatPayload>
-          }
-          aggregate: {
-            args: Prisma.SertifikatAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSertifikat>
-          }
-          groupBy: {
-            args: Prisma.SertifikatGroupByArgs<ExtArgs>
-            result: $Utils.Optional<SertifikatGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.SertifikatCountArgs<ExtArgs>
-            result: $Utils.Optional<SertifikatCountAggregateOutputType> | number
-          }
-        }
-      }
     }
   } & {
     other: {
@@ -1500,9 +1500,9 @@ export namespace Prisma {
     user?: UserOmit
     kursus?: KursusOmit
     pendaftaran?: PendaftaranOmit
+    sertifikat?: SertifikatOmit
     payment?: PaymentOmit
     jadwal?: JadwalOmit
-    sertifikat?: SertifikatOmit
   }
 
   /* Types for Logging */
@@ -7815,6 +7815,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
     kursus?: boolean | KursusDefaultArgs<ExtArgs>
     Payment?: boolean | Pendaftaran$PaymentArgs<ExtArgs>
+    sertifikat?: boolean | Pendaftaran$sertifikatArgs<ExtArgs>
   }, ExtArgs["result"]["pendaftaran"]>
 
   export type PendaftaranSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -7856,6 +7857,7 @@ export namespace Prisma {
     user?: boolean | UserDefaultArgs<ExtArgs>
     kursus?: boolean | KursusDefaultArgs<ExtArgs>
     Payment?: boolean | Pendaftaran$PaymentArgs<ExtArgs>
+    sertifikat?: boolean | Pendaftaran$sertifikatArgs<ExtArgs>
   }
   export type PendaftaranIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -7872,6 +7874,7 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs>
       kursus: Prisma.$KursusPayload<ExtArgs>
       Payment: Prisma.$PaymentPayload<ExtArgs> | null
+      sertifikat: Prisma.$SertifikatPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -8278,6 +8281,7 @@ export namespace Prisma {
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     kursus<T extends KursusDefaultArgs<ExtArgs> = {}>(args?: Subset<T, KursusDefaultArgs<ExtArgs>>): Prisma__KursusClient<$Result.GetResult<Prisma.$KursusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Payment<T extends Pendaftaran$PaymentArgs<ExtArgs> = {}>(args?: Subset<T, Pendaftaran$PaymentArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    sertifikat<T extends Pendaftaran$sertifikatArgs<ExtArgs> = {}>(args?: Subset<T, Pendaftaran$sertifikatArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8729,6 +8733,25 @@ export namespace Prisma {
   }
 
   /**
+   * Pendaftaran.sertifikat
+   */
+  export type Pendaftaran$sertifikatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sertifikat
+     */
+    select?: SertifikatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sertifikat
+     */
+    omit?: SertifikatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SertifikatInclude<ExtArgs> | null
+    where?: SertifikatWhereInput
+  }
+
+  /**
    * Pendaftaran without action
    */
   export type PendaftaranDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8744,6 +8767,1170 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: PendaftaranInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Sertifikat
+   */
+
+  export type AggregateSertifikat = {
+    _count: SertifikatCountAggregateOutputType | null
+    _min: SertifikatMinAggregateOutputType | null
+    _max: SertifikatMaxAggregateOutputType | null
+  }
+
+  export type SertifikatMinAggregateOutputType = {
+    id: string | null
+    pendaftaranId: string | null
+    nomor: string | null
+    tanggalTerbit: Date | null
+    fileUrl: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+    kursusId: string | null
+  }
+
+  export type SertifikatMaxAggregateOutputType = {
+    id: string | null
+    pendaftaranId: string | null
+    nomor: string | null
+    tanggalTerbit: Date | null
+    fileUrl: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+    kursusId: string | null
+  }
+
+  export type SertifikatCountAggregateOutputType = {
+    id: number
+    pendaftaranId: number
+    nomor: number
+    tanggalTerbit: number
+    fileUrl: number
+    createdAt: number
+    updatedAt: number
+    userId: number
+    kursusId: number
+    _all: number
+  }
+
+
+  export type SertifikatMinAggregateInputType = {
+    id?: true
+    pendaftaranId?: true
+    nomor?: true
+    tanggalTerbit?: true
+    fileUrl?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    kursusId?: true
+  }
+
+  export type SertifikatMaxAggregateInputType = {
+    id?: true
+    pendaftaranId?: true
+    nomor?: true
+    tanggalTerbit?: true
+    fileUrl?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    kursusId?: true
+  }
+
+  export type SertifikatCountAggregateInputType = {
+    id?: true
+    pendaftaranId?: true
+    nomor?: true
+    tanggalTerbit?: true
+    fileUrl?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    kursusId?: true
+    _all?: true
+  }
+
+  export type SertifikatAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Sertifikat to aggregate.
+     */
+    where?: SertifikatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sertifikats to fetch.
+     */
+    orderBy?: SertifikatOrderByWithRelationInput | SertifikatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SertifikatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sertifikats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sertifikats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Sertifikats
+    **/
+    _count?: true | SertifikatCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SertifikatMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SertifikatMaxAggregateInputType
+  }
+
+  export type GetSertifikatAggregateType<T extends SertifikatAggregateArgs> = {
+        [P in keyof T & keyof AggregateSertifikat]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSertifikat[P]>
+      : GetScalarType<T[P], AggregateSertifikat[P]>
+  }
+
+
+
+
+  export type SertifikatGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SertifikatWhereInput
+    orderBy?: SertifikatOrderByWithAggregationInput | SertifikatOrderByWithAggregationInput[]
+    by: SertifikatScalarFieldEnum[] | SertifikatScalarFieldEnum
+    having?: SertifikatScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SertifikatCountAggregateInputType | true
+    _min?: SertifikatMinAggregateInputType
+    _max?: SertifikatMaxAggregateInputType
+  }
+
+  export type SertifikatGroupByOutputType = {
+    id: string
+    pendaftaranId: string
+    nomor: string
+    tanggalTerbit: Date
+    fileUrl: string | null
+    createdAt: Date
+    updatedAt: Date
+    userId: string | null
+    kursusId: string | null
+    _count: SertifikatCountAggregateOutputType | null
+    _min: SertifikatMinAggregateOutputType | null
+    _max: SertifikatMaxAggregateOutputType | null
+  }
+
+  type GetSertifikatGroupByPayload<T extends SertifikatGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SertifikatGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SertifikatGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SertifikatGroupByOutputType[P]>
+            : GetScalarType<T[P], SertifikatGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SertifikatSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    pendaftaranId?: boolean
+    nomor?: boolean
+    tanggalTerbit?: boolean
+    fileUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    kursusId?: boolean
+    pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
+    User?: boolean | Sertifikat$UserArgs<ExtArgs>
+    Kursus?: boolean | Sertifikat$KursusArgs<ExtArgs>
+  }, ExtArgs["result"]["sertifikat"]>
+
+  export type SertifikatSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    pendaftaranId?: boolean
+    nomor?: boolean
+    tanggalTerbit?: boolean
+    fileUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    kursusId?: boolean
+    pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
+    User?: boolean | Sertifikat$UserArgs<ExtArgs>
+    Kursus?: boolean | Sertifikat$KursusArgs<ExtArgs>
+  }, ExtArgs["result"]["sertifikat"]>
+
+  export type SertifikatSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    pendaftaranId?: boolean
+    nomor?: boolean
+    tanggalTerbit?: boolean
+    fileUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    kursusId?: boolean
+    pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
+    User?: boolean | Sertifikat$UserArgs<ExtArgs>
+    Kursus?: boolean | Sertifikat$KursusArgs<ExtArgs>
+  }, ExtArgs["result"]["sertifikat"]>
+
+  export type SertifikatSelectScalar = {
+    id?: boolean
+    pendaftaranId?: boolean
+    nomor?: boolean
+    tanggalTerbit?: boolean
+    fileUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    kursusId?: boolean
+  }
+
+  export type SertifikatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pendaftaranId" | "nomor" | "tanggalTerbit" | "fileUrl" | "createdAt" | "updatedAt" | "userId" | "kursusId", ExtArgs["result"]["sertifikat"]>
+  export type SertifikatInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
+    User?: boolean | Sertifikat$UserArgs<ExtArgs>
+    Kursus?: boolean | Sertifikat$KursusArgs<ExtArgs>
+  }
+  export type SertifikatIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
+    User?: boolean | Sertifikat$UserArgs<ExtArgs>
+    Kursus?: boolean | Sertifikat$KursusArgs<ExtArgs>
+  }
+  export type SertifikatIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
+    User?: boolean | Sertifikat$UserArgs<ExtArgs>
+    Kursus?: boolean | Sertifikat$KursusArgs<ExtArgs>
+  }
+
+  export type $SertifikatPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Sertifikat"
+    objects: {
+      pendaftaran: Prisma.$PendaftaranPayload<ExtArgs>
+      User: Prisma.$UserPayload<ExtArgs> | null
+      Kursus: Prisma.$KursusPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      pendaftaranId: string
+      nomor: string
+      tanggalTerbit: Date
+      fileUrl: string | null
+      createdAt: Date
+      updatedAt: Date
+      userId: string | null
+      kursusId: string | null
+    }, ExtArgs["result"]["sertifikat"]>
+    composites: {}
+  }
+
+  type SertifikatGetPayload<S extends boolean | null | undefined | SertifikatDefaultArgs> = $Result.GetResult<Prisma.$SertifikatPayload, S>
+
+  type SertifikatCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SertifikatFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SertifikatCountAggregateInputType | true
+    }
+
+  export interface SertifikatDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Sertifikat'], meta: { name: 'Sertifikat' } }
+    /**
+     * Find zero or one Sertifikat that matches the filter.
+     * @param {SertifikatFindUniqueArgs} args - Arguments to find a Sertifikat
+     * @example
+     * // Get one Sertifikat
+     * const sertifikat = await prisma.sertifikat.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SertifikatFindUniqueArgs>(args: SelectSubset<T, SertifikatFindUniqueArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Sertifikat that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SertifikatFindUniqueOrThrowArgs} args - Arguments to find a Sertifikat
+     * @example
+     * // Get one Sertifikat
+     * const sertifikat = await prisma.sertifikat.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SertifikatFindUniqueOrThrowArgs>(args: SelectSubset<T, SertifikatFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sertifikat that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SertifikatFindFirstArgs} args - Arguments to find a Sertifikat
+     * @example
+     * // Get one Sertifikat
+     * const sertifikat = await prisma.sertifikat.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SertifikatFindFirstArgs>(args?: SelectSubset<T, SertifikatFindFirstArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Sertifikat that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SertifikatFindFirstOrThrowArgs} args - Arguments to find a Sertifikat
+     * @example
+     * // Get one Sertifikat
+     * const sertifikat = await prisma.sertifikat.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SertifikatFindFirstOrThrowArgs>(args?: SelectSubset<T, SertifikatFindFirstOrThrowArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Sertifikats that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SertifikatFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Sertifikats
+     * const sertifikats = await prisma.sertifikat.findMany()
+     * 
+     * // Get first 10 Sertifikats
+     * const sertifikats = await prisma.sertifikat.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const sertifikatWithIdOnly = await prisma.sertifikat.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SertifikatFindManyArgs>(args?: SelectSubset<T, SertifikatFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Sertifikat.
+     * @param {SertifikatCreateArgs} args - Arguments to create a Sertifikat.
+     * @example
+     * // Create one Sertifikat
+     * const Sertifikat = await prisma.sertifikat.create({
+     *   data: {
+     *     // ... data to create a Sertifikat
+     *   }
+     * })
+     * 
+     */
+    create<T extends SertifikatCreateArgs>(args: SelectSubset<T, SertifikatCreateArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Sertifikats.
+     * @param {SertifikatCreateManyArgs} args - Arguments to create many Sertifikats.
+     * @example
+     * // Create many Sertifikats
+     * const sertifikat = await prisma.sertifikat.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SertifikatCreateManyArgs>(args?: SelectSubset<T, SertifikatCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Sertifikats and returns the data saved in the database.
+     * @param {SertifikatCreateManyAndReturnArgs} args - Arguments to create many Sertifikats.
+     * @example
+     * // Create many Sertifikats
+     * const sertifikat = await prisma.sertifikat.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Sertifikats and only return the `id`
+     * const sertifikatWithIdOnly = await prisma.sertifikat.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SertifikatCreateManyAndReturnArgs>(args?: SelectSubset<T, SertifikatCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Sertifikat.
+     * @param {SertifikatDeleteArgs} args - Arguments to delete one Sertifikat.
+     * @example
+     * // Delete one Sertifikat
+     * const Sertifikat = await prisma.sertifikat.delete({
+     *   where: {
+     *     // ... filter to delete one Sertifikat
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SertifikatDeleteArgs>(args: SelectSubset<T, SertifikatDeleteArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Sertifikat.
+     * @param {SertifikatUpdateArgs} args - Arguments to update one Sertifikat.
+     * @example
+     * // Update one Sertifikat
+     * const sertifikat = await prisma.sertifikat.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SertifikatUpdateArgs>(args: SelectSubset<T, SertifikatUpdateArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Sertifikats.
+     * @param {SertifikatDeleteManyArgs} args - Arguments to filter Sertifikats to delete.
+     * @example
+     * // Delete a few Sertifikats
+     * const { count } = await prisma.sertifikat.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SertifikatDeleteManyArgs>(args?: SelectSubset<T, SertifikatDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sertifikats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SertifikatUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Sertifikats
+     * const sertifikat = await prisma.sertifikat.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SertifikatUpdateManyArgs>(args: SelectSubset<T, SertifikatUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Sertifikats and returns the data updated in the database.
+     * @param {SertifikatUpdateManyAndReturnArgs} args - Arguments to update many Sertifikats.
+     * @example
+     * // Update many Sertifikats
+     * const sertifikat = await prisma.sertifikat.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Sertifikats and only return the `id`
+     * const sertifikatWithIdOnly = await prisma.sertifikat.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SertifikatUpdateManyAndReturnArgs>(args: SelectSubset<T, SertifikatUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Sertifikat.
+     * @param {SertifikatUpsertArgs} args - Arguments to update or create a Sertifikat.
+     * @example
+     * // Update or create a Sertifikat
+     * const sertifikat = await prisma.sertifikat.upsert({
+     *   create: {
+     *     // ... data to create a Sertifikat
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Sertifikat we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SertifikatUpsertArgs>(args: SelectSubset<T, SertifikatUpsertArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Sertifikats.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SertifikatCountArgs} args - Arguments to filter Sertifikats to count.
+     * @example
+     * // Count the number of Sertifikats
+     * const count = await prisma.sertifikat.count({
+     *   where: {
+     *     // ... the filter for the Sertifikats we want to count
+     *   }
+     * })
+    **/
+    count<T extends SertifikatCountArgs>(
+      args?: Subset<T, SertifikatCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SertifikatCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Sertifikat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SertifikatAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SertifikatAggregateArgs>(args: Subset<T, SertifikatAggregateArgs>): Prisma.PrismaPromise<GetSertifikatAggregateType<T>>
+
+    /**
+     * Group by Sertifikat.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SertifikatGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SertifikatGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SertifikatGroupByArgs['orderBy'] }
+        : { orderBy?: SertifikatGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SertifikatGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSertifikatGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Sertifikat model
+   */
+  readonly fields: SertifikatFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Sertifikat.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SertifikatClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    pendaftaran<T extends PendaftaranDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PendaftaranDefaultArgs<ExtArgs>>): Prisma__PendaftaranClient<$Result.GetResult<Prisma.$PendaftaranPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    User<T extends Sertifikat$UserArgs<ExtArgs> = {}>(args?: Subset<T, Sertifikat$UserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    Kursus<T extends Sertifikat$KursusArgs<ExtArgs> = {}>(args?: Subset<T, Sertifikat$KursusArgs<ExtArgs>>): Prisma__KursusClient<$Result.GetResult<Prisma.$KursusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Sertifikat model
+   */
+  interface SertifikatFieldRefs {
+    readonly id: FieldRef<"Sertifikat", 'String'>
+    readonly pendaftaranId: FieldRef<"Sertifikat", 'String'>
+    readonly nomor: FieldRef<"Sertifikat", 'String'>
+    readonly tanggalTerbit: FieldRef<"Sertifikat", 'DateTime'>
+    readonly fileUrl: FieldRef<"Sertifikat", 'String'>
+    readonly createdAt: FieldRef<"Sertifikat", 'DateTime'>
+    readonly updatedAt: FieldRef<"Sertifikat", 'DateTime'>
+    readonly userId: FieldRef<"Sertifikat", 'String'>
+    readonly kursusId: FieldRef<"Sertifikat", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Sertifikat findUnique
+   */
+  export type SertifikatFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sertifikat
+     */
+    select?: SertifikatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sertifikat
+     */
+    omit?: SertifikatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SertifikatInclude<ExtArgs> | null
+    /**
+     * Filter, which Sertifikat to fetch.
+     */
+    where: SertifikatWhereUniqueInput
+  }
+
+  /**
+   * Sertifikat findUniqueOrThrow
+   */
+  export type SertifikatFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sertifikat
+     */
+    select?: SertifikatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sertifikat
+     */
+    omit?: SertifikatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SertifikatInclude<ExtArgs> | null
+    /**
+     * Filter, which Sertifikat to fetch.
+     */
+    where: SertifikatWhereUniqueInput
+  }
+
+  /**
+   * Sertifikat findFirst
+   */
+  export type SertifikatFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sertifikat
+     */
+    select?: SertifikatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sertifikat
+     */
+    omit?: SertifikatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SertifikatInclude<ExtArgs> | null
+    /**
+     * Filter, which Sertifikat to fetch.
+     */
+    where?: SertifikatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sertifikats to fetch.
+     */
+    orderBy?: SertifikatOrderByWithRelationInput | SertifikatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Sertifikats.
+     */
+    cursor?: SertifikatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sertifikats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sertifikats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Sertifikats.
+     */
+    distinct?: SertifikatScalarFieldEnum | SertifikatScalarFieldEnum[]
+  }
+
+  /**
+   * Sertifikat findFirstOrThrow
+   */
+  export type SertifikatFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sertifikat
+     */
+    select?: SertifikatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sertifikat
+     */
+    omit?: SertifikatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SertifikatInclude<ExtArgs> | null
+    /**
+     * Filter, which Sertifikat to fetch.
+     */
+    where?: SertifikatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sertifikats to fetch.
+     */
+    orderBy?: SertifikatOrderByWithRelationInput | SertifikatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Sertifikats.
+     */
+    cursor?: SertifikatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sertifikats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sertifikats.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Sertifikats.
+     */
+    distinct?: SertifikatScalarFieldEnum | SertifikatScalarFieldEnum[]
+  }
+
+  /**
+   * Sertifikat findMany
+   */
+  export type SertifikatFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sertifikat
+     */
+    select?: SertifikatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sertifikat
+     */
+    omit?: SertifikatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SertifikatInclude<ExtArgs> | null
+    /**
+     * Filter, which Sertifikats to fetch.
+     */
+    where?: SertifikatWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Sertifikats to fetch.
+     */
+    orderBy?: SertifikatOrderByWithRelationInput | SertifikatOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Sertifikats.
+     */
+    cursor?: SertifikatWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Sertifikats from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Sertifikats.
+     */
+    skip?: number
+    distinct?: SertifikatScalarFieldEnum | SertifikatScalarFieldEnum[]
+  }
+
+  /**
+   * Sertifikat create
+   */
+  export type SertifikatCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sertifikat
+     */
+    select?: SertifikatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sertifikat
+     */
+    omit?: SertifikatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SertifikatInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Sertifikat.
+     */
+    data: XOR<SertifikatCreateInput, SertifikatUncheckedCreateInput>
+  }
+
+  /**
+   * Sertifikat createMany
+   */
+  export type SertifikatCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Sertifikats.
+     */
+    data: SertifikatCreateManyInput | SertifikatCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Sertifikat createManyAndReturn
+   */
+  export type SertifikatCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sertifikat
+     */
+    select?: SertifikatSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sertifikat
+     */
+    omit?: SertifikatOmit<ExtArgs> | null
+    /**
+     * The data used to create many Sertifikats.
+     */
+    data: SertifikatCreateManyInput | SertifikatCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SertifikatIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Sertifikat update
+   */
+  export type SertifikatUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sertifikat
+     */
+    select?: SertifikatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sertifikat
+     */
+    omit?: SertifikatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SertifikatInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Sertifikat.
+     */
+    data: XOR<SertifikatUpdateInput, SertifikatUncheckedUpdateInput>
+    /**
+     * Choose, which Sertifikat to update.
+     */
+    where: SertifikatWhereUniqueInput
+  }
+
+  /**
+   * Sertifikat updateMany
+   */
+  export type SertifikatUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Sertifikats.
+     */
+    data: XOR<SertifikatUpdateManyMutationInput, SertifikatUncheckedUpdateManyInput>
+    /**
+     * Filter which Sertifikats to update
+     */
+    where?: SertifikatWhereInput
+    /**
+     * Limit how many Sertifikats to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Sertifikat updateManyAndReturn
+   */
+  export type SertifikatUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sertifikat
+     */
+    select?: SertifikatSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sertifikat
+     */
+    omit?: SertifikatOmit<ExtArgs> | null
+    /**
+     * The data used to update Sertifikats.
+     */
+    data: XOR<SertifikatUpdateManyMutationInput, SertifikatUncheckedUpdateManyInput>
+    /**
+     * Filter which Sertifikats to update
+     */
+    where?: SertifikatWhereInput
+    /**
+     * Limit how many Sertifikats to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SertifikatIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Sertifikat upsert
+   */
+  export type SertifikatUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sertifikat
+     */
+    select?: SertifikatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sertifikat
+     */
+    omit?: SertifikatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SertifikatInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Sertifikat to update in case it exists.
+     */
+    where: SertifikatWhereUniqueInput
+    /**
+     * In case the Sertifikat found by the `where` argument doesn't exist, create a new Sertifikat with this data.
+     */
+    create: XOR<SertifikatCreateInput, SertifikatUncheckedCreateInput>
+    /**
+     * In case the Sertifikat was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SertifikatUpdateInput, SertifikatUncheckedUpdateInput>
+  }
+
+  /**
+   * Sertifikat delete
+   */
+  export type SertifikatDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sertifikat
+     */
+    select?: SertifikatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sertifikat
+     */
+    omit?: SertifikatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SertifikatInclude<ExtArgs> | null
+    /**
+     * Filter which Sertifikat to delete.
+     */
+    where: SertifikatWhereUniqueInput
+  }
+
+  /**
+   * Sertifikat deleteMany
+   */
+  export type SertifikatDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Sertifikats to delete
+     */
+    where?: SertifikatWhereInput
+    /**
+     * Limit how many Sertifikats to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Sertifikat.User
+   */
+  export type Sertifikat$UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Sertifikat.Kursus
+   */
+  export type Sertifikat$KursusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Kursus
+     */
+    select?: KursusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Kursus
+     */
+    omit?: KursusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: KursusInclude<ExtArgs> | null
+    where?: KursusWhereInput
+  }
+
+  /**
+   * Sertifikat without action
+   */
+  export type SertifikatDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Sertifikat
+     */
+    select?: SertifikatSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Sertifikat
+     */
+    omit?: SertifikatOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SertifikatInclude<ExtArgs> | null
   }
 
 
@@ -11159,1111 +12346,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Sertifikat
-   */
-
-  export type AggregateSertifikat = {
-    _count: SertifikatCountAggregateOutputType | null
-    _min: SertifikatMinAggregateOutputType | null
-    _max: SertifikatMaxAggregateOutputType | null
-  }
-
-  export type SertifikatMinAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    kursusId: string | null
-    nomor: string | null
-    tanggalTerbit: Date | null
-    fileUrl: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type SertifikatMaxAggregateOutputType = {
-    id: string | null
-    userId: string | null
-    kursusId: string | null
-    nomor: string | null
-    tanggalTerbit: Date | null
-    fileUrl: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type SertifikatCountAggregateOutputType = {
-    id: number
-    userId: number
-    kursusId: number
-    nomor: number
-    tanggalTerbit: number
-    fileUrl: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type SertifikatMinAggregateInputType = {
-    id?: true
-    userId?: true
-    kursusId?: true
-    nomor?: true
-    tanggalTerbit?: true
-    fileUrl?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type SertifikatMaxAggregateInputType = {
-    id?: true
-    userId?: true
-    kursusId?: true
-    nomor?: true
-    tanggalTerbit?: true
-    fileUrl?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type SertifikatCountAggregateInputType = {
-    id?: true
-    userId?: true
-    kursusId?: true
-    nomor?: true
-    tanggalTerbit?: true
-    fileUrl?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type SertifikatAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Sertifikat to aggregate.
-     */
-    where?: SertifikatWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Sertifikats to fetch.
-     */
-    orderBy?: SertifikatOrderByWithRelationInput | SertifikatOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: SertifikatWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Sertifikats from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Sertifikats.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Sertifikats
-    **/
-    _count?: true | SertifikatCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: SertifikatMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: SertifikatMaxAggregateInputType
-  }
-
-  export type GetSertifikatAggregateType<T extends SertifikatAggregateArgs> = {
-        [P in keyof T & keyof AggregateSertifikat]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateSertifikat[P]>
-      : GetScalarType<T[P], AggregateSertifikat[P]>
-  }
-
-
-
-
-  export type SertifikatGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SertifikatWhereInput
-    orderBy?: SertifikatOrderByWithAggregationInput | SertifikatOrderByWithAggregationInput[]
-    by: SertifikatScalarFieldEnum[] | SertifikatScalarFieldEnum
-    having?: SertifikatScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: SertifikatCountAggregateInputType | true
-    _min?: SertifikatMinAggregateInputType
-    _max?: SertifikatMaxAggregateInputType
-  }
-
-  export type SertifikatGroupByOutputType = {
-    id: string
-    userId: string
-    kursusId: string
-    nomor: string
-    tanggalTerbit: Date
-    fileUrl: string | null
-    createdAt: Date
-    updatedAt: Date
-    _count: SertifikatCountAggregateOutputType | null
-    _min: SertifikatMinAggregateOutputType | null
-    _max: SertifikatMaxAggregateOutputType | null
-  }
-
-  type GetSertifikatGroupByPayload<T extends SertifikatGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<SertifikatGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof SertifikatGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], SertifikatGroupByOutputType[P]>
-            : GetScalarType<T[P], SertifikatGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type SertifikatSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    kursusId?: boolean
-    nomor?: boolean
-    tanggalTerbit?: boolean
-    fileUrl?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["sertifikat"]>
-
-  export type SertifikatSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    kursusId?: boolean
-    nomor?: boolean
-    tanggalTerbit?: boolean
-    fileUrl?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["sertifikat"]>
-
-  export type SertifikatSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    userId?: boolean
-    kursusId?: boolean
-    nomor?: boolean
-    tanggalTerbit?: boolean
-    fileUrl?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["sertifikat"]>
-
-  export type SertifikatSelectScalar = {
-    id?: boolean
-    userId?: boolean
-    kursusId?: boolean
-    nomor?: boolean
-    tanggalTerbit?: boolean
-    fileUrl?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type SertifikatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "kursusId" | "nomor" | "tanggalTerbit" | "fileUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["sertifikat"]>
-  export type SertifikatInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }
-  export type SertifikatIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }
-  export type SertifikatIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    kursus?: boolean | KursusDefaultArgs<ExtArgs>
-  }
-
-  export type $SertifikatPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Sertifikat"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-      kursus: Prisma.$KursusPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      userId: string
-      kursusId: string
-      nomor: string
-      tanggalTerbit: Date
-      fileUrl: string | null
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["sertifikat"]>
-    composites: {}
-  }
-
-  type SertifikatGetPayload<S extends boolean | null | undefined | SertifikatDefaultArgs> = $Result.GetResult<Prisma.$SertifikatPayload, S>
-
-  type SertifikatCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<SertifikatFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: SertifikatCountAggregateInputType | true
-    }
-
-  export interface SertifikatDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Sertifikat'], meta: { name: 'Sertifikat' } }
-    /**
-     * Find zero or one Sertifikat that matches the filter.
-     * @param {SertifikatFindUniqueArgs} args - Arguments to find a Sertifikat
-     * @example
-     * // Get one Sertifikat
-     * const sertifikat = await prisma.sertifikat.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends SertifikatFindUniqueArgs>(args: SelectSubset<T, SertifikatFindUniqueArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Sertifikat that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {SertifikatFindUniqueOrThrowArgs} args - Arguments to find a Sertifikat
-     * @example
-     * // Get one Sertifikat
-     * const sertifikat = await prisma.sertifikat.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends SertifikatFindUniqueOrThrowArgs>(args: SelectSubset<T, SertifikatFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Sertifikat that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SertifikatFindFirstArgs} args - Arguments to find a Sertifikat
-     * @example
-     * // Get one Sertifikat
-     * const sertifikat = await prisma.sertifikat.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends SertifikatFindFirstArgs>(args?: SelectSubset<T, SertifikatFindFirstArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Sertifikat that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SertifikatFindFirstOrThrowArgs} args - Arguments to find a Sertifikat
-     * @example
-     * // Get one Sertifikat
-     * const sertifikat = await prisma.sertifikat.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends SertifikatFindFirstOrThrowArgs>(args?: SelectSubset<T, SertifikatFindFirstOrThrowArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Sertifikats that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SertifikatFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Sertifikats
-     * const sertifikats = await prisma.sertifikat.findMany()
-     * 
-     * // Get first 10 Sertifikats
-     * const sertifikats = await prisma.sertifikat.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const sertifikatWithIdOnly = await prisma.sertifikat.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends SertifikatFindManyArgs>(args?: SelectSubset<T, SertifikatFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Sertifikat.
-     * @param {SertifikatCreateArgs} args - Arguments to create a Sertifikat.
-     * @example
-     * // Create one Sertifikat
-     * const Sertifikat = await prisma.sertifikat.create({
-     *   data: {
-     *     // ... data to create a Sertifikat
-     *   }
-     * })
-     * 
-     */
-    create<T extends SertifikatCreateArgs>(args: SelectSubset<T, SertifikatCreateArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Sertifikats.
-     * @param {SertifikatCreateManyArgs} args - Arguments to create many Sertifikats.
-     * @example
-     * // Create many Sertifikats
-     * const sertifikat = await prisma.sertifikat.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends SertifikatCreateManyArgs>(args?: SelectSubset<T, SertifikatCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Sertifikats and returns the data saved in the database.
-     * @param {SertifikatCreateManyAndReturnArgs} args - Arguments to create many Sertifikats.
-     * @example
-     * // Create many Sertifikats
-     * const sertifikat = await prisma.sertifikat.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Sertifikats and only return the `id`
-     * const sertifikatWithIdOnly = await prisma.sertifikat.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends SertifikatCreateManyAndReturnArgs>(args?: SelectSubset<T, SertifikatCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Sertifikat.
-     * @param {SertifikatDeleteArgs} args - Arguments to delete one Sertifikat.
-     * @example
-     * // Delete one Sertifikat
-     * const Sertifikat = await prisma.sertifikat.delete({
-     *   where: {
-     *     // ... filter to delete one Sertifikat
-     *   }
-     * })
-     * 
-     */
-    delete<T extends SertifikatDeleteArgs>(args: SelectSubset<T, SertifikatDeleteArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Sertifikat.
-     * @param {SertifikatUpdateArgs} args - Arguments to update one Sertifikat.
-     * @example
-     * // Update one Sertifikat
-     * const sertifikat = await prisma.sertifikat.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends SertifikatUpdateArgs>(args: SelectSubset<T, SertifikatUpdateArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Sertifikats.
-     * @param {SertifikatDeleteManyArgs} args - Arguments to filter Sertifikats to delete.
-     * @example
-     * // Delete a few Sertifikats
-     * const { count } = await prisma.sertifikat.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends SertifikatDeleteManyArgs>(args?: SelectSubset<T, SertifikatDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Sertifikats.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SertifikatUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Sertifikats
-     * const sertifikat = await prisma.sertifikat.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends SertifikatUpdateManyArgs>(args: SelectSubset<T, SertifikatUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Sertifikats and returns the data updated in the database.
-     * @param {SertifikatUpdateManyAndReturnArgs} args - Arguments to update many Sertifikats.
-     * @example
-     * // Update many Sertifikats
-     * const sertifikat = await prisma.sertifikat.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Sertifikats and only return the `id`
-     * const sertifikatWithIdOnly = await prisma.sertifikat.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends SertifikatUpdateManyAndReturnArgs>(args: SelectSubset<T, SertifikatUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Sertifikat.
-     * @param {SertifikatUpsertArgs} args - Arguments to update or create a Sertifikat.
-     * @example
-     * // Update or create a Sertifikat
-     * const sertifikat = await prisma.sertifikat.upsert({
-     *   create: {
-     *     // ... data to create a Sertifikat
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Sertifikat we want to update
-     *   }
-     * })
-     */
-    upsert<T extends SertifikatUpsertArgs>(args: SelectSubset<T, SertifikatUpsertArgs<ExtArgs>>): Prisma__SertifikatClient<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Sertifikats.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SertifikatCountArgs} args - Arguments to filter Sertifikats to count.
-     * @example
-     * // Count the number of Sertifikats
-     * const count = await prisma.sertifikat.count({
-     *   where: {
-     *     // ... the filter for the Sertifikats we want to count
-     *   }
-     * })
-    **/
-    count<T extends SertifikatCountArgs>(
-      args?: Subset<T, SertifikatCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], SertifikatCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Sertifikat.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SertifikatAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends SertifikatAggregateArgs>(args: Subset<T, SertifikatAggregateArgs>): Prisma.PrismaPromise<GetSertifikatAggregateType<T>>
-
-    /**
-     * Group by Sertifikat.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {SertifikatGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends SertifikatGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: SertifikatGroupByArgs['orderBy'] }
-        : { orderBy?: SertifikatGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, SertifikatGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSertifikatGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Sertifikat model
-   */
-  readonly fields: SertifikatFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Sertifikat.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__SertifikatClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    kursus<T extends KursusDefaultArgs<ExtArgs> = {}>(args?: Subset<T, KursusDefaultArgs<ExtArgs>>): Prisma__KursusClient<$Result.GetResult<Prisma.$KursusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Sertifikat model
-   */
-  interface SertifikatFieldRefs {
-    readonly id: FieldRef<"Sertifikat", 'String'>
-    readonly userId: FieldRef<"Sertifikat", 'String'>
-    readonly kursusId: FieldRef<"Sertifikat", 'String'>
-    readonly nomor: FieldRef<"Sertifikat", 'String'>
-    readonly tanggalTerbit: FieldRef<"Sertifikat", 'DateTime'>
-    readonly fileUrl: FieldRef<"Sertifikat", 'String'>
-    readonly createdAt: FieldRef<"Sertifikat", 'DateTime'>
-    readonly updatedAt: FieldRef<"Sertifikat", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Sertifikat findUnique
-   */
-  export type SertifikatFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatInclude<ExtArgs> | null
-    /**
-     * Filter, which Sertifikat to fetch.
-     */
-    where: SertifikatWhereUniqueInput
-  }
-
-  /**
-   * Sertifikat findUniqueOrThrow
-   */
-  export type SertifikatFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatInclude<ExtArgs> | null
-    /**
-     * Filter, which Sertifikat to fetch.
-     */
-    where: SertifikatWhereUniqueInput
-  }
-
-  /**
-   * Sertifikat findFirst
-   */
-  export type SertifikatFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatInclude<ExtArgs> | null
-    /**
-     * Filter, which Sertifikat to fetch.
-     */
-    where?: SertifikatWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Sertifikats to fetch.
-     */
-    orderBy?: SertifikatOrderByWithRelationInput | SertifikatOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Sertifikats.
-     */
-    cursor?: SertifikatWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Sertifikats from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Sertifikats.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Sertifikats.
-     */
-    distinct?: SertifikatScalarFieldEnum | SertifikatScalarFieldEnum[]
-  }
-
-  /**
-   * Sertifikat findFirstOrThrow
-   */
-  export type SertifikatFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatInclude<ExtArgs> | null
-    /**
-     * Filter, which Sertifikat to fetch.
-     */
-    where?: SertifikatWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Sertifikats to fetch.
-     */
-    orderBy?: SertifikatOrderByWithRelationInput | SertifikatOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Sertifikats.
-     */
-    cursor?: SertifikatWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Sertifikats from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Sertifikats.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Sertifikats.
-     */
-    distinct?: SertifikatScalarFieldEnum | SertifikatScalarFieldEnum[]
-  }
-
-  /**
-   * Sertifikat findMany
-   */
-  export type SertifikatFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatInclude<ExtArgs> | null
-    /**
-     * Filter, which Sertifikats to fetch.
-     */
-    where?: SertifikatWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Sertifikats to fetch.
-     */
-    orderBy?: SertifikatOrderByWithRelationInput | SertifikatOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Sertifikats.
-     */
-    cursor?: SertifikatWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Sertifikats from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Sertifikats.
-     */
-    skip?: number
-    distinct?: SertifikatScalarFieldEnum | SertifikatScalarFieldEnum[]
-  }
-
-  /**
-   * Sertifikat create
-   */
-  export type SertifikatCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Sertifikat.
-     */
-    data: XOR<SertifikatCreateInput, SertifikatUncheckedCreateInput>
-  }
-
-  /**
-   * Sertifikat createMany
-   */
-  export type SertifikatCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Sertifikats.
-     */
-    data: SertifikatCreateManyInput | SertifikatCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Sertifikat createManyAndReturn
-   */
-  export type SertifikatCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * The data used to create many Sertifikats.
-     */
-    data: SertifikatCreateManyInput | SertifikatCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Sertifikat update
-   */
-  export type SertifikatUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Sertifikat.
-     */
-    data: XOR<SertifikatUpdateInput, SertifikatUncheckedUpdateInput>
-    /**
-     * Choose, which Sertifikat to update.
-     */
-    where: SertifikatWhereUniqueInput
-  }
-
-  /**
-   * Sertifikat updateMany
-   */
-  export type SertifikatUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Sertifikats.
-     */
-    data: XOR<SertifikatUpdateManyMutationInput, SertifikatUncheckedUpdateManyInput>
-    /**
-     * Filter which Sertifikats to update
-     */
-    where?: SertifikatWhereInput
-    /**
-     * Limit how many Sertifikats to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Sertifikat updateManyAndReturn
-   */
-  export type SertifikatUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * The data used to update Sertifikats.
-     */
-    data: XOR<SertifikatUpdateManyMutationInput, SertifikatUncheckedUpdateManyInput>
-    /**
-     * Filter which Sertifikats to update
-     */
-    where?: SertifikatWhereInput
-    /**
-     * Limit how many Sertifikats to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Sertifikat upsert
-   */
-  export type SertifikatUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Sertifikat to update in case it exists.
-     */
-    where: SertifikatWhereUniqueInput
-    /**
-     * In case the Sertifikat found by the `where` argument doesn't exist, create a new Sertifikat with this data.
-     */
-    create: XOR<SertifikatCreateInput, SertifikatUncheckedCreateInput>
-    /**
-     * In case the Sertifikat was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<SertifikatUpdateInput, SertifikatUncheckedUpdateInput>
-  }
-
-  /**
-   * Sertifikat delete
-   */
-  export type SertifikatDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatInclude<ExtArgs> | null
-    /**
-     * Filter which Sertifikat to delete.
-     */
-    where: SertifikatWhereUniqueInput
-  }
-
-  /**
-   * Sertifikat deleteMany
-   */
-  export type SertifikatDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Sertifikats to delete
-     */
-    where?: SertifikatWhereInput
-    /**
-     * Limit how many Sertifikats to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Sertifikat without action
-   */
-  export type SertifikatDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Enums
    */
 
@@ -12372,6 +12454,21 @@ export namespace Prisma {
   export type PendaftaranScalarFieldEnum = (typeof PendaftaranScalarFieldEnum)[keyof typeof PendaftaranScalarFieldEnum]
 
 
+  export const SertifikatScalarFieldEnum: {
+    id: 'id',
+    pendaftaranId: 'pendaftaranId',
+    nomor: 'nomor',
+    tanggalTerbit: 'tanggalTerbit',
+    fileUrl: 'fileUrl',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId',
+    kursusId: 'kursusId'
+  };
+
+  export type SertifikatScalarFieldEnum = (typeof SertifikatScalarFieldEnum)[keyof typeof SertifikatScalarFieldEnum]
+
+
   export const PaymentScalarFieldEnum: {
     id: 'id',
     method: 'method',
@@ -12410,20 +12507,6 @@ export namespace Prisma {
   };
 
   export type JadwalScalarFieldEnum = (typeof JadwalScalarFieldEnum)[keyof typeof JadwalScalarFieldEnum]
-
-
-  export const SertifikatScalarFieldEnum: {
-    id: 'id',
-    userId: 'userId',
-    kursusId: 'kursusId',
-    nomor: 'nomor',
-    tanggalTerbit: 'tanggalTerbit',
-    fileUrl: 'fileUrl',
-    createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
-  };
-
-  export type SertifikatScalarFieldEnum = (typeof SertifikatScalarFieldEnum)[keyof typeof SertifikatScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -12965,6 +13048,7 @@ export namespace Prisma {
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
     Payment?: XOR<PaymentNullableScalarRelationFilter, PaymentWhereInput> | null
+    sertifikat?: XOR<SertifikatNullableScalarRelationFilter, SertifikatWhereInput> | null
   }
 
   export type PendaftaranOrderByWithRelationInput = {
@@ -12978,6 +13062,7 @@ export namespace Prisma {
     user?: UserOrderByWithRelationInput
     kursus?: KursusOrderByWithRelationInput
     Payment?: PaymentOrderByWithRelationInput
+    sertifikat?: SertifikatOrderByWithRelationInput
   }
 
   export type PendaftaranWhereUniqueInput = Prisma.AtLeast<{
@@ -12994,6 +13079,7 @@ export namespace Prisma {
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
     Payment?: XOR<PaymentNullableScalarRelationFilter, PaymentWhereInput> | null
+    sertifikat?: XOR<SertifikatNullableScalarRelationFilter, SertifikatWhereInput> | null
   }, "id">
 
   export type PendaftaranOrderByWithAggregationInput = {
@@ -13020,6 +13106,87 @@ export namespace Prisma {
     keterangan?: StringNullableWithAggregatesFilter<"Pendaftaran"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Pendaftaran"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Pendaftaran"> | Date | string
+  }
+
+  export type SertifikatWhereInput = {
+    AND?: SertifikatWhereInput | SertifikatWhereInput[]
+    OR?: SertifikatWhereInput[]
+    NOT?: SertifikatWhereInput | SertifikatWhereInput[]
+    id?: StringFilter<"Sertifikat"> | string
+    pendaftaranId?: StringFilter<"Sertifikat"> | string
+    nomor?: StringFilter<"Sertifikat"> | string
+    tanggalTerbit?: DateTimeFilter<"Sertifikat"> | Date | string
+    fileUrl?: StringNullableFilter<"Sertifikat"> | string | null
+    createdAt?: DateTimeFilter<"Sertifikat"> | Date | string
+    updatedAt?: DateTimeFilter<"Sertifikat"> | Date | string
+    userId?: StringNullableFilter<"Sertifikat"> | string | null
+    kursusId?: StringNullableFilter<"Sertifikat"> | string | null
+    pendaftaran?: XOR<PendaftaranScalarRelationFilter, PendaftaranWhereInput>
+    User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    Kursus?: XOR<KursusNullableScalarRelationFilter, KursusWhereInput> | null
+  }
+
+  export type SertifikatOrderByWithRelationInput = {
+    id?: SortOrder
+    pendaftaranId?: SortOrder
+    nomor?: SortOrder
+    tanggalTerbit?: SortOrder
+    fileUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    kursusId?: SortOrderInput | SortOrder
+    pendaftaran?: PendaftaranOrderByWithRelationInput
+    User?: UserOrderByWithRelationInput
+    Kursus?: KursusOrderByWithRelationInput
+  }
+
+  export type SertifikatWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    pendaftaranId?: string
+    nomor?: string
+    AND?: SertifikatWhereInput | SertifikatWhereInput[]
+    OR?: SertifikatWhereInput[]
+    NOT?: SertifikatWhereInput | SertifikatWhereInput[]
+    tanggalTerbit?: DateTimeFilter<"Sertifikat"> | Date | string
+    fileUrl?: StringNullableFilter<"Sertifikat"> | string | null
+    createdAt?: DateTimeFilter<"Sertifikat"> | Date | string
+    updatedAt?: DateTimeFilter<"Sertifikat"> | Date | string
+    userId?: StringNullableFilter<"Sertifikat"> | string | null
+    kursusId?: StringNullableFilter<"Sertifikat"> | string | null
+    pendaftaran?: XOR<PendaftaranScalarRelationFilter, PendaftaranWhereInput>
+    User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    Kursus?: XOR<KursusNullableScalarRelationFilter, KursusWhereInput> | null
+  }, "id" | "pendaftaranId" | "nomor">
+
+  export type SertifikatOrderByWithAggregationInput = {
+    id?: SortOrder
+    pendaftaranId?: SortOrder
+    nomor?: SortOrder
+    tanggalTerbit?: SortOrder
+    fileUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    kursusId?: SortOrderInput | SortOrder
+    _count?: SertifikatCountOrderByAggregateInput
+    _max?: SertifikatMaxOrderByAggregateInput
+    _min?: SertifikatMinOrderByAggregateInput
+  }
+
+  export type SertifikatScalarWhereWithAggregatesInput = {
+    AND?: SertifikatScalarWhereWithAggregatesInput | SertifikatScalarWhereWithAggregatesInput[]
+    OR?: SertifikatScalarWhereWithAggregatesInput[]
+    NOT?: SertifikatScalarWhereWithAggregatesInput | SertifikatScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Sertifikat"> | string
+    pendaftaranId?: StringWithAggregatesFilter<"Sertifikat"> | string
+    nomor?: StringWithAggregatesFilter<"Sertifikat"> | string
+    tanggalTerbit?: DateTimeWithAggregatesFilter<"Sertifikat"> | Date | string
+    fileUrl?: StringNullableWithAggregatesFilter<"Sertifikat"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Sertifikat"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Sertifikat"> | Date | string
+    userId?: StringNullableWithAggregatesFilter<"Sertifikat"> | string | null
+    kursusId?: StringNullableWithAggregatesFilter<"Sertifikat"> | string | null
   }
 
   export type PaymentWhereInput = {
@@ -13225,79 +13392,6 @@ export namespace Prisma {
     status?: StringWithAggregatesFilter<"Jadwal"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Jadwal"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Jadwal"> | Date | string
-  }
-
-  export type SertifikatWhereInput = {
-    AND?: SertifikatWhereInput | SertifikatWhereInput[]
-    OR?: SertifikatWhereInput[]
-    NOT?: SertifikatWhereInput | SertifikatWhereInput[]
-    id?: StringFilter<"Sertifikat"> | string
-    userId?: StringFilter<"Sertifikat"> | string
-    kursusId?: StringFilter<"Sertifikat"> | string
-    nomor?: StringFilter<"Sertifikat"> | string
-    tanggalTerbit?: DateTimeFilter<"Sertifikat"> | Date | string
-    fileUrl?: StringNullableFilter<"Sertifikat"> | string | null
-    createdAt?: DateTimeFilter<"Sertifikat"> | Date | string
-    updatedAt?: DateTimeFilter<"Sertifikat"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
-  }
-
-  export type SertifikatOrderByWithRelationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    nomor?: SortOrder
-    tanggalTerbit?: SortOrder
-    fileUrl?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    user?: UserOrderByWithRelationInput
-    kursus?: KursusOrderByWithRelationInput
-  }
-
-  export type SertifikatWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    nomor?: string
-    AND?: SertifikatWhereInput | SertifikatWhereInput[]
-    OR?: SertifikatWhereInput[]
-    NOT?: SertifikatWhereInput | SertifikatWhereInput[]
-    userId?: StringFilter<"Sertifikat"> | string
-    kursusId?: StringFilter<"Sertifikat"> | string
-    tanggalTerbit?: DateTimeFilter<"Sertifikat"> | Date | string
-    fileUrl?: StringNullableFilter<"Sertifikat"> | string | null
-    createdAt?: DateTimeFilter<"Sertifikat"> | Date | string
-    updatedAt?: DateTimeFilter<"Sertifikat"> | Date | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    kursus?: XOR<KursusScalarRelationFilter, KursusWhereInput>
-  }, "id" | "nomor">
-
-  export type SertifikatOrderByWithAggregationInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    nomor?: SortOrder
-    tanggalTerbit?: SortOrder
-    fileUrl?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: SertifikatCountOrderByAggregateInput
-    _max?: SertifikatMaxOrderByAggregateInput
-    _min?: SertifikatMinOrderByAggregateInput
-  }
-
-  export type SertifikatScalarWhereWithAggregatesInput = {
-    AND?: SertifikatScalarWhereWithAggregatesInput | SertifikatScalarWhereWithAggregatesInput[]
-    OR?: SertifikatScalarWhereWithAggregatesInput[]
-    NOT?: SertifikatScalarWhereWithAggregatesInput | SertifikatScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Sertifikat"> | string
-    userId?: StringWithAggregatesFilter<"Sertifikat"> | string
-    kursusId?: StringWithAggregatesFilter<"Sertifikat"> | string
-    nomor?: StringWithAggregatesFilter<"Sertifikat"> | string
-    tanggalTerbit?: DateTimeWithAggregatesFilter<"Sertifikat"> | Date | string
-    fileUrl?: StringNullableWithAggregatesFilter<"Sertifikat"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"Sertifikat"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Sertifikat"> | Date | string
   }
 
   export type AccountCreateInput = {
@@ -13811,6 +13905,7 @@ export namespace Prisma {
     user: UserCreateNestedOneWithoutPendaftaranInput
     kursus: KursusCreateNestedOneWithoutPendaftaranInput
     Payment?: PaymentCreateNestedOneWithoutPendaftaranInput
+    sertifikat?: SertifikatCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranUncheckedCreateInput = {
@@ -13822,6 +13917,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Payment?: PaymentUncheckedCreateNestedOneWithoutPendaftaranInput
+    sertifikat?: SertifikatUncheckedCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranUpdateInput = {
@@ -13833,6 +13929,7 @@ export namespace Prisma {
     user?: UserUpdateOneRequiredWithoutPendaftaranNestedInput
     kursus?: KursusUpdateOneRequiredWithoutPendaftaranNestedInput
     Payment?: PaymentUpdateOneWithoutPendaftaranNestedInput
+    sertifikat?: SertifikatUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type PendaftaranUncheckedUpdateInput = {
@@ -13844,6 +13941,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Payment?: PaymentUncheckedUpdateOneWithoutPendaftaranNestedInput
+    sertifikat?: SertifikatUncheckedUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type PendaftaranCreateManyInput = {
@@ -13872,6 +13970,87 @@ export namespace Prisma {
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SertifikatCreateInput = {
+    id?: string
+    nomor: string
+    tanggalTerbit?: Date | string
+    fileUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    pendaftaran: PendaftaranCreateNestedOneWithoutSertifikatInput
+    User?: UserCreateNestedOneWithoutSertifikatInput
+    Kursus?: KursusCreateNestedOneWithoutSertifikatInput
+  }
+
+  export type SertifikatUncheckedCreateInput = {
+    id?: string
+    pendaftaranId: string
+    nomor: string
+    tanggalTerbit?: Date | string
+    fileUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+    kursusId?: string | null
+  }
+
+  export type SertifikatUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nomor?: StringFieldUpdateOperationsInput | string
+    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    pendaftaran?: PendaftaranUpdateOneRequiredWithoutSertifikatNestedInput
+    User?: UserUpdateOneWithoutSertifikatNestedInput
+    Kursus?: KursusUpdateOneWithoutSertifikatNestedInput
+  }
+
+  export type SertifikatUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pendaftaranId?: StringFieldUpdateOperationsInput | string
+    nomor?: StringFieldUpdateOperationsInput | string
+    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    kursusId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type SertifikatCreateManyInput = {
+    id?: string
+    pendaftaranId: string
+    nomor: string
+    tanggalTerbit?: Date | string
+    fileUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+    kursusId?: string | null
+  }
+
+  export type SertifikatUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nomor?: StringFieldUpdateOperationsInput | string
+    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SertifikatUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    pendaftaranId?: StringFieldUpdateOperationsInput | string
+    nomor?: StringFieldUpdateOperationsInput | string
+    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    kursusId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PaymentCreateInput = {
@@ -14105,81 +14284,6 @@ export namespace Prisma {
     lokasi?: NullableStringFieldUpdateOperationsInput | string | null
     ruangan?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SertifikatCreateInput = {
-    id?: string
-    nomor: string
-    tanggalTerbit?: Date | string
-    fileUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutSertifikatInput
-    kursus: KursusCreateNestedOneWithoutSertifikatInput
-  }
-
-  export type SertifikatUncheckedCreateInput = {
-    id?: string
-    userId: string
-    kursusId: string
-    nomor: string
-    tanggalTerbit?: Date | string
-    fileUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SertifikatUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nomor?: StringFieldUpdateOperationsInput | string
-    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSertifikatNestedInput
-    kursus?: KursusUpdateOneRequiredWithoutSertifikatNestedInput
-  }
-
-  export type SertifikatUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    kursusId?: StringFieldUpdateOperationsInput | string
-    nomor?: StringFieldUpdateOperationsInput | string
-    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SertifikatCreateManyInput = {
-    id?: string
-    userId: string
-    kursusId: string
-    nomor: string
-    tanggalTerbit?: Date | string
-    fileUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type SertifikatUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nomor?: StringFieldUpdateOperationsInput | string
-    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SertifikatUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    kursusId?: StringFieldUpdateOperationsInput | string
-    nomor?: StringFieldUpdateOperationsInput | string
-    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14670,6 +14774,11 @@ export namespace Prisma {
     isNot?: PaymentWhereInput | null
   }
 
+  export type SertifikatNullableScalarRelationFilter = {
+    is?: SertifikatWhereInput | null
+    isNot?: SertifikatWhereInput | null
+  }
+
   export type PendaftaranCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -14700,6 +14809,52 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type PendaftaranScalarRelationFilter = {
+    is?: PendaftaranWhereInput
+    isNot?: PendaftaranWhereInput
+  }
+
+  export type KursusNullableScalarRelationFilter = {
+    is?: KursusWhereInput | null
+    isNot?: KursusWhereInput | null
+  }
+
+  export type SertifikatCountOrderByAggregateInput = {
+    id?: SortOrder
+    pendaftaranId?: SortOrder
+    nomor?: SortOrder
+    tanggalTerbit?: SortOrder
+    fileUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    kursusId?: SortOrder
+  }
+
+  export type SertifikatMaxOrderByAggregateInput = {
+    id?: SortOrder
+    pendaftaranId?: SortOrder
+    nomor?: SortOrder
+    tanggalTerbit?: SortOrder
+    fileUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    kursusId?: SortOrder
+  }
+
+  export type SertifikatMinOrderByAggregateInput = {
+    id?: SortOrder
+    pendaftaranId?: SortOrder
+    nomor?: SortOrder
+    tanggalTerbit?: SortOrder
+    fileUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    kursusId?: SortOrder
+  }
+
   export type FloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
     in?: number[] | ListFloatFieldRefInput<$PrismaModel>
@@ -14709,11 +14864,6 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
-  }
-
-  export type PendaftaranScalarRelationFilter = {
-    is?: PendaftaranWhereInput
-    isNot?: PendaftaranWhereInput
   }
 
   export type PaymentCountOrderByAggregateInput = {
@@ -14838,39 +14988,6 @@ export namespace Prisma {
     lokasi?: SortOrder
     ruangan?: SortOrder
     status?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type SertifikatCountOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    nomor?: SortOrder
-    tanggalTerbit?: SortOrder
-    fileUrl?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type SertifikatMaxOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    nomor?: SortOrder
-    tanggalTerbit?: SortOrder
-    fileUrl?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type SertifikatMinOrderByAggregateInput = {
-    id?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
-    nomor?: SortOrder
-    tanggalTerbit?: SortOrder
-    fileUrl?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -15347,10 +15464,22 @@ export namespace Prisma {
     connect?: PaymentWhereUniqueInput
   }
 
+  export type SertifikatCreateNestedOneWithoutPendaftaranInput = {
+    create?: XOR<SertifikatCreateWithoutPendaftaranInput, SertifikatUncheckedCreateWithoutPendaftaranInput>
+    connectOrCreate?: SertifikatCreateOrConnectWithoutPendaftaranInput
+    connect?: SertifikatWhereUniqueInput
+  }
+
   export type PaymentUncheckedCreateNestedOneWithoutPendaftaranInput = {
     create?: XOR<PaymentCreateWithoutPendaftaranInput, PaymentUncheckedCreateWithoutPendaftaranInput>
     connectOrCreate?: PaymentCreateOrConnectWithoutPendaftaranInput
     connect?: PaymentWhereUniqueInput
+  }
+
+  export type SertifikatUncheckedCreateNestedOneWithoutPendaftaranInput = {
+    create?: XOR<SertifikatCreateWithoutPendaftaranInput, SertifikatUncheckedCreateWithoutPendaftaranInput>
+    connectOrCreate?: SertifikatCreateOrConnectWithoutPendaftaranInput
+    connect?: SertifikatWhereUniqueInput
   }
 
   export type UserUpdateOneRequiredWithoutPendaftaranNestedInput = {
@@ -15379,6 +15508,16 @@ export namespace Prisma {
     update?: XOR<XOR<PaymentUpdateToOneWithWhereWithoutPendaftaranInput, PaymentUpdateWithoutPendaftaranInput>, PaymentUncheckedUpdateWithoutPendaftaranInput>
   }
 
+  export type SertifikatUpdateOneWithoutPendaftaranNestedInput = {
+    create?: XOR<SertifikatCreateWithoutPendaftaranInput, SertifikatUncheckedCreateWithoutPendaftaranInput>
+    connectOrCreate?: SertifikatCreateOrConnectWithoutPendaftaranInput
+    upsert?: SertifikatUpsertWithoutPendaftaranInput
+    disconnect?: SertifikatWhereInput | boolean
+    delete?: SertifikatWhereInput | boolean
+    connect?: SertifikatWhereUniqueInput
+    update?: XOR<XOR<SertifikatUpdateToOneWithWhereWithoutPendaftaranInput, SertifikatUpdateWithoutPendaftaranInput>, SertifikatUncheckedUpdateWithoutPendaftaranInput>
+  }
+
   export type PaymentUncheckedUpdateOneWithoutPendaftaranNestedInput = {
     create?: XOR<PaymentCreateWithoutPendaftaranInput, PaymentUncheckedCreateWithoutPendaftaranInput>
     connectOrCreate?: PaymentCreateOrConnectWithoutPendaftaranInput
@@ -15387,6 +15526,62 @@ export namespace Prisma {
     delete?: PaymentWhereInput | boolean
     connect?: PaymentWhereUniqueInput
     update?: XOR<XOR<PaymentUpdateToOneWithWhereWithoutPendaftaranInput, PaymentUpdateWithoutPendaftaranInput>, PaymentUncheckedUpdateWithoutPendaftaranInput>
+  }
+
+  export type SertifikatUncheckedUpdateOneWithoutPendaftaranNestedInput = {
+    create?: XOR<SertifikatCreateWithoutPendaftaranInput, SertifikatUncheckedCreateWithoutPendaftaranInput>
+    connectOrCreate?: SertifikatCreateOrConnectWithoutPendaftaranInput
+    upsert?: SertifikatUpsertWithoutPendaftaranInput
+    disconnect?: SertifikatWhereInput | boolean
+    delete?: SertifikatWhereInput | boolean
+    connect?: SertifikatWhereUniqueInput
+    update?: XOR<XOR<SertifikatUpdateToOneWithWhereWithoutPendaftaranInput, SertifikatUpdateWithoutPendaftaranInput>, SertifikatUncheckedUpdateWithoutPendaftaranInput>
+  }
+
+  export type PendaftaranCreateNestedOneWithoutSertifikatInput = {
+    create?: XOR<PendaftaranCreateWithoutSertifikatInput, PendaftaranUncheckedCreateWithoutSertifikatInput>
+    connectOrCreate?: PendaftaranCreateOrConnectWithoutSertifikatInput
+    connect?: PendaftaranWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutSertifikatInput = {
+    create?: XOR<UserCreateWithoutSertifikatInput, UserUncheckedCreateWithoutSertifikatInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSertifikatInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type KursusCreateNestedOneWithoutSertifikatInput = {
+    create?: XOR<KursusCreateWithoutSertifikatInput, KursusUncheckedCreateWithoutSertifikatInput>
+    connectOrCreate?: KursusCreateOrConnectWithoutSertifikatInput
+    connect?: KursusWhereUniqueInput
+  }
+
+  export type PendaftaranUpdateOneRequiredWithoutSertifikatNestedInput = {
+    create?: XOR<PendaftaranCreateWithoutSertifikatInput, PendaftaranUncheckedCreateWithoutSertifikatInput>
+    connectOrCreate?: PendaftaranCreateOrConnectWithoutSertifikatInput
+    upsert?: PendaftaranUpsertWithoutSertifikatInput
+    connect?: PendaftaranWhereUniqueInput
+    update?: XOR<XOR<PendaftaranUpdateToOneWithWhereWithoutSertifikatInput, PendaftaranUpdateWithoutSertifikatInput>, PendaftaranUncheckedUpdateWithoutSertifikatInput>
+  }
+
+  export type UserUpdateOneWithoutSertifikatNestedInput = {
+    create?: XOR<UserCreateWithoutSertifikatInput, UserUncheckedCreateWithoutSertifikatInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSertifikatInput
+    upsert?: UserUpsertWithoutSertifikatInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSertifikatInput, UserUpdateWithoutSertifikatInput>, UserUncheckedUpdateWithoutSertifikatInput>
+  }
+
+  export type KursusUpdateOneWithoutSertifikatNestedInput = {
+    create?: XOR<KursusCreateWithoutSertifikatInput, KursusUncheckedCreateWithoutSertifikatInput>
+    connectOrCreate?: KursusCreateOrConnectWithoutSertifikatInput
+    upsert?: KursusUpsertWithoutSertifikatInput
+    disconnect?: KursusWhereInput | boolean
+    delete?: KursusWhereInput | boolean
+    connect?: KursusWhereUniqueInput
+    update?: XOR<XOR<KursusUpdateToOneWithWhereWithoutSertifikatInput, KursusUpdateWithoutSertifikatInput>, KursusUncheckedUpdateWithoutSertifikatInput>
   }
 
   export type PendaftaranCreateNestedOneWithoutPaymentInput = {
@@ -15439,34 +15634,6 @@ export namespace Prisma {
     delete?: UserWhereInput | boolean
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutJadwalInput, UserUpdateWithoutJadwalInput>, UserUncheckedUpdateWithoutJadwalInput>
-  }
-
-  export type UserCreateNestedOneWithoutSertifikatInput = {
-    create?: XOR<UserCreateWithoutSertifikatInput, UserUncheckedCreateWithoutSertifikatInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSertifikatInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type KursusCreateNestedOneWithoutSertifikatInput = {
-    create?: XOR<KursusCreateWithoutSertifikatInput, KursusUncheckedCreateWithoutSertifikatInput>
-    connectOrCreate?: KursusCreateOrConnectWithoutSertifikatInput
-    connect?: KursusWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutSertifikatNestedInput = {
-    create?: XOR<UserCreateWithoutSertifikatInput, UserUncheckedCreateWithoutSertifikatInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSertifikatInput
-    upsert?: UserUpsertWithoutSertifikatInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSertifikatInput, UserUpdateWithoutSertifikatInput>, UserUncheckedUpdateWithoutSertifikatInput>
-  }
-
-  export type KursusUpdateOneRequiredWithoutSertifikatNestedInput = {
-    create?: XOR<KursusCreateWithoutSertifikatInput, KursusUncheckedCreateWithoutSertifikatInput>
-    connectOrCreate?: KursusCreateOrConnectWithoutSertifikatInput
-    upsert?: KursusUpsertWithoutSertifikatInput
-    connect?: KursusWhereUniqueInput
-    update?: XOR<XOR<KursusUpdateToOneWithWhereWithoutSertifikatInput, KursusUpdateWithoutSertifikatInput>, KursusUncheckedUpdateWithoutSertifikatInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -16043,6 +16210,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     kursus: KursusCreateNestedOneWithoutPendaftaranInput
     Payment?: PaymentCreateNestedOneWithoutPendaftaranInput
+    sertifikat?: SertifikatCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranUncheckedCreateWithoutUserInput = {
@@ -16053,6 +16221,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Payment?: PaymentUncheckedCreateNestedOneWithoutPendaftaranInput
+    sertifikat?: SertifikatUncheckedCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranCreateOrConnectWithoutUserInput = {
@@ -16072,17 +16241,19 @@ export namespace Prisma {
     fileUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    kursus: KursusCreateNestedOneWithoutSertifikatInput
+    pendaftaran: PendaftaranCreateNestedOneWithoutSertifikatInput
+    Kursus?: KursusCreateNestedOneWithoutSertifikatInput
   }
 
   export type SertifikatUncheckedCreateWithoutUserInput = {
     id?: string
-    kursusId: string
+    pendaftaranId: string
     nomor: string
     tanggalTerbit?: Date | string
     fileUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    kursusId?: string | null
   }
 
   export type SertifikatCreateOrConnectWithoutUserInput = {
@@ -16278,13 +16449,14 @@ export namespace Prisma {
     OR?: SertifikatScalarWhereInput[]
     NOT?: SertifikatScalarWhereInput | SertifikatScalarWhereInput[]
     id?: StringFilter<"Sertifikat"> | string
-    userId?: StringFilter<"Sertifikat"> | string
-    kursusId?: StringFilter<"Sertifikat"> | string
+    pendaftaranId?: StringFilter<"Sertifikat"> | string
     nomor?: StringFilter<"Sertifikat"> | string
     tanggalTerbit?: DateTimeFilter<"Sertifikat"> | Date | string
     fileUrl?: StringNullableFilter<"Sertifikat"> | string | null
     createdAt?: DateTimeFilter<"Sertifikat"> | Date | string
     updatedAt?: DateTimeFilter<"Sertifikat"> | Date | string
+    userId?: StringNullableFilter<"Sertifikat"> | string | null
+    kursusId?: StringNullableFilter<"Sertifikat"> | string | null
   }
 
   export type JadwalUpsertWithWhereUniqueWithoutInstrukturInput = {
@@ -16390,6 +16562,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutPendaftaranInput
     Payment?: PaymentCreateNestedOneWithoutPendaftaranInput
+    sertifikat?: SertifikatCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranUncheckedCreateWithoutKursusInput = {
@@ -16400,6 +16573,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     Payment?: PaymentUncheckedCreateNestedOneWithoutPendaftaranInput
+    sertifikat?: SertifikatUncheckedCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranCreateOrConnectWithoutKursusInput = {
@@ -16457,17 +16631,19 @@ export namespace Prisma {
     fileUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutSertifikatInput
+    pendaftaran: PendaftaranCreateNestedOneWithoutSertifikatInput
+    User?: UserCreateNestedOneWithoutSertifikatInput
   }
 
   export type SertifikatUncheckedCreateWithoutKursusInput = {
     id?: string
-    userId: string
+    pendaftaranId: string
     nomor: string
     tanggalTerbit?: Date | string
     fileUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    userId?: string | null
   }
 
   export type SertifikatCreateOrConnectWithoutKursusInput = {
@@ -16738,6 +16914,33 @@ export namespace Prisma {
     create: XOR<PaymentCreateWithoutPendaftaranInput, PaymentUncheckedCreateWithoutPendaftaranInput>
   }
 
+  export type SertifikatCreateWithoutPendaftaranInput = {
+    id?: string
+    nomor: string
+    tanggalTerbit?: Date | string
+    fileUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    User?: UserCreateNestedOneWithoutSertifikatInput
+    Kursus?: KursusCreateNestedOneWithoutSertifikatInput
+  }
+
+  export type SertifikatUncheckedCreateWithoutPendaftaranInput = {
+    id?: string
+    nomor: string
+    tanggalTerbit?: Date | string
+    fileUrl?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+    kursusId?: string | null
+  }
+
+  export type SertifikatCreateOrConnectWithoutPendaftaranInput = {
+    where: SertifikatWhereUniqueInput
+    create: XOR<SertifikatCreateWithoutPendaftaranInput, SertifikatUncheckedCreateWithoutPendaftaranInput>
+  }
+
   export type UserUpsertWithoutPendaftaranInput = {
     update: XOR<UserUpdateWithoutPendaftaranInput, UserUncheckedUpdateWithoutPendaftaranInput>
     create: XOR<UserCreateWithoutPendaftaranInput, UserUncheckedCreateWithoutPendaftaranInput>
@@ -16899,6 +17102,315 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type SertifikatUpsertWithoutPendaftaranInput = {
+    update: XOR<SertifikatUpdateWithoutPendaftaranInput, SertifikatUncheckedUpdateWithoutPendaftaranInput>
+    create: XOR<SertifikatCreateWithoutPendaftaranInput, SertifikatUncheckedCreateWithoutPendaftaranInput>
+    where?: SertifikatWhereInput
+  }
+
+  export type SertifikatUpdateToOneWithWhereWithoutPendaftaranInput = {
+    where?: SertifikatWhereInput
+    data: XOR<SertifikatUpdateWithoutPendaftaranInput, SertifikatUncheckedUpdateWithoutPendaftaranInput>
+  }
+
+  export type SertifikatUpdateWithoutPendaftaranInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nomor?: StringFieldUpdateOperationsInput | string
+    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    User?: UserUpdateOneWithoutSertifikatNestedInput
+    Kursus?: KursusUpdateOneWithoutSertifikatNestedInput
+  }
+
+  export type SertifikatUncheckedUpdateWithoutPendaftaranInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nomor?: StringFieldUpdateOperationsInput | string
+    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
+    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    kursusId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type PendaftaranCreateWithoutSertifikatInput = {
+    id?: string
+    status?: string
+    keterangan?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutPendaftaranInput
+    kursus: KursusCreateNestedOneWithoutPendaftaranInput
+    Payment?: PaymentCreateNestedOneWithoutPendaftaranInput
+  }
+
+  export type PendaftaranUncheckedCreateWithoutSertifikatInput = {
+    id?: string
+    userId: string
+    kursusId: string
+    status?: string
+    keterangan?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    Payment?: PaymentUncheckedCreateNestedOneWithoutPendaftaranInput
+  }
+
+  export type PendaftaranCreateOrConnectWithoutSertifikatInput = {
+    where: PendaftaranWhereUniqueInput
+    create: XOR<PendaftaranCreateWithoutSertifikatInput, PendaftaranUncheckedCreateWithoutSertifikatInput>
+  }
+
+  export type UserCreateWithoutSertifikatInput = {
+    id?: string
+    nama: string
+    nik?: string | null
+    jenisKelamin?: string | null
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
+    mediaSosial?: string | null
+    noHp?: string | null
+    email: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
+    password?: string | null
+    role?: string
+    keahlian?: string | null
+    jabatan?: string | null
+    image?: string | null
+    emailVerified?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    kursusInstruktur?: KursusCreateNestedManyWithoutUserInput
+    Account?: AccountCreateNestedManyWithoutUserInput
+    Session?: SessionCreateNestedManyWithoutUserInput
+    Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
+    Jadwal?: JadwalCreateNestedManyWithoutInstrukturInput
+  }
+
+  export type UserUncheckedCreateWithoutSertifikatInput = {
+    id?: string
+    nama: string
+    nik?: string | null
+    jenisKelamin?: string | null
+    tempatLahir?: string | null
+    tanggalLahir?: string | null
+    mediaSosial?: string | null
+    noHp?: string | null
+    email: string
+    agama?: string | null
+    jurusan?: string | null
+    tahunAkademik?: string | null
+    password?: string | null
+    role?: string
+    keahlian?: string | null
+    jabatan?: string | null
+    image?: string | null
+    emailVerified?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    kursusInstruktur?: KursusUncheckedCreateNestedManyWithoutUserInput
+    Account?: AccountUncheckedCreateNestedManyWithoutUserInput
+    Session?: SessionUncheckedCreateNestedManyWithoutUserInput
+    Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
+    Jadwal?: JadwalUncheckedCreateNestedManyWithoutInstrukturInput
+  }
+
+  export type UserCreateOrConnectWithoutSertifikatInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSertifikatInput, UserUncheckedCreateWithoutSertifikatInput>
+  }
+
+  export type KursusCreateWithoutSertifikatInput = {
+    id?: string
+    nama: string
+    deskripsi?: string | null
+    harga: number
+    lamaKursus?: number | null
+    kuota?: number | null
+    status?: string
+    thumbnail?: string | null
+    tanggalMulai?: Date | string | null
+    tanggalSelesai?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutKursusInstrukturInput
+    Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
+    Jadwal?: JadwalCreateNestedManyWithoutKursusInput
+  }
+
+  export type KursusUncheckedCreateWithoutSertifikatInput = {
+    id?: string
+    nama: string
+    deskripsi?: string | null
+    harga: number
+    lamaKursus?: number | null
+    kuota?: number | null
+    status?: string
+    thumbnail?: string | null
+    tanggalMulai?: Date | string | null
+    tanggalSelesai?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId?: string | null
+    Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
+    Jadwal?: JadwalUncheckedCreateNestedManyWithoutKursusInput
+  }
+
+  export type KursusCreateOrConnectWithoutSertifikatInput = {
+    where: KursusWhereUniqueInput
+    create: XOR<KursusCreateWithoutSertifikatInput, KursusUncheckedCreateWithoutSertifikatInput>
+  }
+
+  export type PendaftaranUpsertWithoutSertifikatInput = {
+    update: XOR<PendaftaranUpdateWithoutSertifikatInput, PendaftaranUncheckedUpdateWithoutSertifikatInput>
+    create: XOR<PendaftaranCreateWithoutSertifikatInput, PendaftaranUncheckedCreateWithoutSertifikatInput>
+    where?: PendaftaranWhereInput
+  }
+
+  export type PendaftaranUpdateToOneWithWhereWithoutSertifikatInput = {
+    where?: PendaftaranWhereInput
+    data: XOR<PendaftaranUpdateWithoutSertifikatInput, PendaftaranUncheckedUpdateWithoutSertifikatInput>
+  }
+
+  export type PendaftaranUpdateWithoutSertifikatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutPendaftaranNestedInput
+    kursus?: KursusUpdateOneRequiredWithoutPendaftaranNestedInput
+    Payment?: PaymentUpdateOneWithoutPendaftaranNestedInput
+  }
+
+  export type PendaftaranUncheckedUpdateWithoutSertifikatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    kursusId?: StringFieldUpdateOperationsInput | string
+    status?: StringFieldUpdateOperationsInput | string
+    keterangan?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    Payment?: PaymentUncheckedUpdateOneWithoutPendaftaranNestedInput
+  }
+
+  export type UserUpsertWithoutSertifikatInput = {
+    update: XOR<UserUpdateWithoutSertifikatInput, UserUncheckedUpdateWithoutSertifikatInput>
+    create: XOR<UserCreateWithoutSertifikatInput, UserUncheckedCreateWithoutSertifikatInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSertifikatInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSertifikatInput, UserUncheckedUpdateWithoutSertifikatInput>
+  }
+
+  export type UserUpdateWithoutSertifikatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
+    noHp?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    kursusInstruktur?: KursusUpdateManyWithoutUserNestedInput
+    Account?: AccountUpdateManyWithoutUserNestedInput
+    Session?: SessionUpdateManyWithoutUserNestedInput
+    Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
+    Jadwal?: JadwalUpdateManyWithoutInstrukturNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSertifikatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    nik?: NullableStringFieldUpdateOperationsInput | string | null
+    jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
+    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
+    mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
+    noHp?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    agama?: NullableStringFieldUpdateOperationsInput | string | null
+    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
+    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: StringFieldUpdateOperationsInput | string
+    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
+    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    kursusInstruktur?: KursusUncheckedUpdateManyWithoutUserNestedInput
+    Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
+    Jadwal?: JadwalUncheckedUpdateManyWithoutInstrukturNestedInput
+  }
+
+  export type KursusUpsertWithoutSertifikatInput = {
+    update: XOR<KursusUpdateWithoutSertifikatInput, KursusUncheckedUpdateWithoutSertifikatInput>
+    create: XOR<KursusCreateWithoutSertifikatInput, KursusUncheckedCreateWithoutSertifikatInput>
+    where?: KursusWhereInput
+  }
+
+  export type KursusUpdateToOneWithWhereWithoutSertifikatInput = {
+    where?: KursusWhereInput
+    data: XOR<KursusUpdateWithoutSertifikatInput, KursusUncheckedUpdateWithoutSertifikatInput>
+  }
+
+  export type KursusUpdateWithoutSertifikatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    harga?: IntFieldUpdateOperationsInput | number
+    lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
+    kuota?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutKursusInstrukturNestedInput
+    Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
+    Jadwal?: JadwalUpdateManyWithoutKursusNestedInput
+  }
+
+  export type KursusUncheckedUpdateWithoutSertifikatInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    nama?: StringFieldUpdateOperationsInput | string
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
+    harga?: IntFieldUpdateOperationsInput | number
+    lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
+    kuota?: NullableIntFieldUpdateOperationsInput | number | null
+    status?: StringFieldUpdateOperationsInput | string
+    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
+    Jadwal?: JadwalUncheckedUpdateManyWithoutKursusNestedInput
+  }
+
   export type PendaftaranCreateWithoutPaymentInput = {
     id?: string
     status?: string
@@ -16907,6 +17419,7 @@ export namespace Prisma {
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutPendaftaranInput
     kursus: KursusCreateNestedOneWithoutPendaftaranInput
+    sertifikat?: SertifikatCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranUncheckedCreateWithoutPaymentInput = {
@@ -16917,6 +17430,7 @@ export namespace Prisma {
     keterangan?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    sertifikat?: SertifikatUncheckedCreateNestedOneWithoutPendaftaranInput
   }
 
   export type PendaftaranCreateOrConnectWithoutPaymentInput = {
@@ -16943,6 +17457,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPendaftaranNestedInput
     kursus?: KursusUpdateOneRequiredWithoutPendaftaranNestedInput
+    sertifikat?: SertifikatUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type PendaftaranUncheckedUpdateWithoutPaymentInput = {
@@ -16953,6 +17468,7 @@ export namespace Prisma {
     keterangan?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sertifikat?: SertifikatUncheckedUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type KursusCreateWithoutJadwalInput = {
@@ -17171,222 +17687,6 @@ export namespace Prisma {
     Sertifikat?: SertifikatUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type UserCreateWithoutSertifikatInput = {
-    id?: string
-    nama: string
-    nik?: string | null
-    jenisKelamin?: string | null
-    tempatLahir?: string | null
-    tanggalLahir?: string | null
-    mediaSosial?: string | null
-    noHp?: string | null
-    email: string
-    agama?: string | null
-    jurusan?: string | null
-    tahunAkademik?: string | null
-    password?: string | null
-    role?: string
-    keahlian?: string | null
-    jabatan?: string | null
-    image?: string | null
-    emailVerified?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    kursusInstruktur?: KursusCreateNestedManyWithoutUserInput
-    Account?: AccountCreateNestedManyWithoutUserInput
-    Session?: SessionCreateNestedManyWithoutUserInput
-    Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    Jadwal?: JadwalCreateNestedManyWithoutInstrukturInput
-  }
-
-  export type UserUncheckedCreateWithoutSertifikatInput = {
-    id?: string
-    nama: string
-    nik?: string | null
-    jenisKelamin?: string | null
-    tempatLahir?: string | null
-    tanggalLahir?: string | null
-    mediaSosial?: string | null
-    noHp?: string | null
-    email: string
-    agama?: string | null
-    jurusan?: string | null
-    tahunAkademik?: string | null
-    password?: string | null
-    role?: string
-    keahlian?: string | null
-    jabatan?: string | null
-    image?: string | null
-    emailVerified?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    kursusInstruktur?: KursusUncheckedCreateNestedManyWithoutUserInput
-    Account?: AccountUncheckedCreateNestedManyWithoutUserInput
-    Session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    Jadwal?: JadwalUncheckedCreateNestedManyWithoutInstrukturInput
-  }
-
-  export type UserCreateOrConnectWithoutSertifikatInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSertifikatInput, UserUncheckedCreateWithoutSertifikatInput>
-  }
-
-  export type KursusCreateWithoutSertifikatInput = {
-    id?: string
-    nama: string
-    deskripsi?: string | null
-    harga: number
-    lamaKursus?: number | null
-    kuota?: number | null
-    status?: string
-    thumbnail?: string | null
-    tanggalMulai?: Date | string | null
-    tanggalSelesai?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user?: UserCreateNestedOneWithoutKursusInstrukturInput
-    Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
-    Jadwal?: JadwalCreateNestedManyWithoutKursusInput
-  }
-
-  export type KursusUncheckedCreateWithoutSertifikatInput = {
-    id?: string
-    nama: string
-    deskripsi?: string | null
-    harga: number
-    lamaKursus?: number | null
-    kuota?: number | null
-    status?: string
-    thumbnail?: string | null
-    tanggalMulai?: Date | string | null
-    tanggalSelesai?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId?: string | null
-    Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
-    Jadwal?: JadwalUncheckedCreateNestedManyWithoutKursusInput
-  }
-
-  export type KursusCreateOrConnectWithoutSertifikatInput = {
-    where: KursusWhereUniqueInput
-    create: XOR<KursusCreateWithoutSertifikatInput, KursusUncheckedCreateWithoutSertifikatInput>
-  }
-
-  export type UserUpsertWithoutSertifikatInput = {
-    update: XOR<UserUpdateWithoutSertifikatInput, UserUncheckedUpdateWithoutSertifikatInput>
-    create: XOR<UserCreateWithoutSertifikatInput, UserUncheckedCreateWithoutSertifikatInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutSertifikatInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSertifikatInput, UserUncheckedUpdateWithoutSertifikatInput>
-  }
-
-  export type UserUpdateWithoutSertifikatInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
-    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
-    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
-    mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
-    noHp?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    agama?: NullableStringFieldUpdateOperationsInput | string | null
-    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
-    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
-    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
-    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursusInstruktur?: KursusUpdateManyWithoutUserNestedInput
-    Account?: AccountUpdateManyWithoutUserNestedInput
-    Session?: SessionUpdateManyWithoutUserNestedInput
-    Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    Jadwal?: JadwalUpdateManyWithoutInstrukturNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutSertifikatInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
-    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
-    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
-    mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
-    noHp?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    agama?: NullableStringFieldUpdateOperationsInput | string | null
-    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
-    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
-    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
-    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursusInstruktur?: KursusUncheckedUpdateManyWithoutUserNestedInput
-    Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    Jadwal?: JadwalUncheckedUpdateManyWithoutInstrukturNestedInput
-  }
-
-  export type KursusUpsertWithoutSertifikatInput = {
-    update: XOR<KursusUpdateWithoutSertifikatInput, KursusUncheckedUpdateWithoutSertifikatInput>
-    create: XOR<KursusCreateWithoutSertifikatInput, KursusUncheckedCreateWithoutSertifikatInput>
-    where?: KursusWhereInput
-  }
-
-  export type KursusUpdateToOneWithWhereWithoutSertifikatInput = {
-    where?: KursusWhereInput
-    data: XOR<KursusUpdateWithoutSertifikatInput, KursusUncheckedUpdateWithoutSertifikatInput>
-  }
-
-  export type KursusUpdateWithoutSertifikatInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
-    harga?: IntFieldUpdateOperationsInput | number
-    lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
-    status?: StringFieldUpdateOperationsInput | string
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutKursusInstrukturNestedInput
-    Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
-    Jadwal?: JadwalUpdateManyWithoutKursusNestedInput
-  }
-
-  export type KursusUncheckedUpdateWithoutSertifikatInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
-    harga?: IntFieldUpdateOperationsInput | number
-    lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
-    status?: StringFieldUpdateOperationsInput | string
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
-    Jadwal?: JadwalUncheckedUpdateManyWithoutKursusNestedInput
-  }
-
   export type KursusCreateManyUserInput = {
     id?: string
     nama: string
@@ -17433,12 +17733,13 @@ export namespace Prisma {
 
   export type SertifikatCreateManyUserInput = {
     id?: string
-    kursusId: string
+    pendaftaranId: string
     nomor: string
     tanggalTerbit?: Date | string
     fileUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    kursusId?: string | null
   }
 
   export type JadwalCreateManyInstrukturInput = {
@@ -17574,6 +17875,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     kursus?: KursusUpdateOneRequiredWithoutPendaftaranNestedInput
     Payment?: PaymentUpdateOneWithoutPendaftaranNestedInput
+    sertifikat?: SertifikatUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type PendaftaranUncheckedUpdateWithoutUserInput = {
@@ -17584,6 +17886,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Payment?: PaymentUncheckedUpdateOneWithoutPendaftaranNestedInput
+    sertifikat?: SertifikatUncheckedUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type PendaftaranUncheckedUpdateManyWithoutUserInput = {
@@ -17602,27 +17905,30 @@ export namespace Prisma {
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursus?: KursusUpdateOneRequiredWithoutSertifikatNestedInput
+    pendaftaran?: PendaftaranUpdateOneRequiredWithoutSertifikatNestedInput
+    Kursus?: KursusUpdateOneWithoutSertifikatNestedInput
   }
 
   export type SertifikatUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    kursusId?: StringFieldUpdateOperationsInput | string
+    pendaftaranId?: StringFieldUpdateOperationsInput | string
     nomor?: StringFieldUpdateOperationsInput | string
     tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    kursusId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SertifikatUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    kursusId?: StringFieldUpdateOperationsInput | string
+    pendaftaranId?: StringFieldUpdateOperationsInput | string
     nomor?: StringFieldUpdateOperationsInput | string
     tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    kursusId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type JadwalUpdateWithoutInstrukturInput = {
@@ -17692,12 +17998,13 @@ export namespace Prisma {
 
   export type SertifikatCreateManyKursusInput = {
     id?: string
-    userId: string
+    pendaftaranId: string
     nomor: string
     tanggalTerbit?: Date | string
     fileUrl?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    userId?: string | null
   }
 
   export type PendaftaranUpdateWithoutKursusInput = {
@@ -17708,6 +18015,7 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutPendaftaranNestedInput
     Payment?: PaymentUpdateOneWithoutPendaftaranNestedInput
+    sertifikat?: SertifikatUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type PendaftaranUncheckedUpdateWithoutKursusInput = {
@@ -17718,6 +18026,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Payment?: PaymentUncheckedUpdateOneWithoutPendaftaranNestedInput
+    sertifikat?: SertifikatUncheckedUpdateOneWithoutPendaftaranNestedInput
   }
 
   export type PendaftaranUncheckedUpdateManyWithoutKursusInput = {
@@ -17778,27 +18087,30 @@ export namespace Prisma {
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutSertifikatNestedInput
+    pendaftaran?: PendaftaranUpdateOneRequiredWithoutSertifikatNestedInput
+    User?: UserUpdateOneWithoutSertifikatNestedInput
   }
 
   export type SertifikatUncheckedUpdateWithoutKursusInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    pendaftaranId?: StringFieldUpdateOperationsInput | string
     nomor?: StringFieldUpdateOperationsInput | string
     tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SertifikatUncheckedUpdateManyWithoutKursusInput = {
     id?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
+    pendaftaranId?: StringFieldUpdateOperationsInput | string
     nomor?: StringFieldUpdateOperationsInput | string
     tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

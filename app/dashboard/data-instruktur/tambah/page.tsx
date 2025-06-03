@@ -15,11 +15,11 @@ import {
     VenusAndMars,
 } from "lucide-react";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SyntheticEvent } from "react";
-import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-
+import TambahInstrukturFormSkeleton from "@/components/skeleton/TambahInstrukturSkeleton";
+import { redirect } from "next/navigation";
 
 
 const TambahInstrukturForm = () => {
@@ -34,7 +34,22 @@ const TambahInstrukturForm = () => {
 
     const [isPending, setIsPending] = useState(false);
 
-    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate loading
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
+    if (isLoading) {
+        return <TambahInstrukturFormSkeleton />;
+    }
+
+
 
 
     const handleSubmit = async (e: SyntheticEvent) => {
@@ -51,7 +66,7 @@ const TambahInstrukturForm = () => {
                 jabatan,
                 password
             })
-            router.push("/dashboard/data-instruktur")
+            redirect("/dashboard/data-instruktur")
 
             setIsPending(false)
 

@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import { SyntheticEvent } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import EditJadwalSkeleton from "@/components/skeleton/EditJadwalSkeleton";
 
 const EditJadwalForm = () => {
     const { id } = useParams();
@@ -42,6 +43,9 @@ const EditJadwalForm = () => {
 
     const router = useRouter();
 
+    const [loading, setLoading] = useState<boolean>(true);
+
+
     useEffect(() => {
         const fetchJadwalData = async () => {
             try {
@@ -60,6 +64,8 @@ const EditJadwalForm = () => {
             } catch (error) {
                 console.error("Error fetching jadwal data:", error);
                 toast.error("Gagal memuat data jadwal");
+            } finally {
+                setLoading(false); // Tambahkan ini
             }
         };
 
@@ -114,6 +120,7 @@ const EditJadwalForm = () => {
             toast.error("Gagal memperbarui jadwal");
         } finally {
             setIsPending(false);
+            setLoading(false);
         }
     };
 
@@ -125,6 +132,12 @@ const EditJadwalForm = () => {
         "Senin", "Selasa", "Rabu", "Kamis",
         "Jumat", "Sabtu", "Minggu"
     ];
+
+    if (loading) {
+        return (
+            <EditJadwalSkeleton />
+        )
+    }
 
     return (
         <form onSubmit={handleSubmit}
