@@ -75,6 +75,7 @@ model User {
   Account     Account[]
   Session     Session[]
   Pendaftaran Pendaftaran[]
+  Jadwal      Jadwal[]
 
   @@map("users")
 }
@@ -85,6 +86,9 @@ model Kursus {
   deskripsi      String?
   harga          Int
   lamaKursus     Int?
+  kuota          Int?
+  status         String    @default("aktif")
+  thumbnail      String?
   tanggalMulai   DateTime?
   tanggalSelesai DateTime?
   createdAt      DateTime  @default(now())
@@ -108,42 +112,65 @@ model Pendaftaran {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  user    User     @relation(fields: [userId], references: [id])
-  kursus  Kursus   @relation(fields: [kursusId], references: [id], onDelete: Cascade)
-  Payment Payment?
+  user       User        @relation(fields: [userId], references: [id])
+  kursus     Kursus      @relation(fields: [kursusId], references: [id], onDelete: Cascade)
+  Payment    Payment?
+  sertifikat Sertifikat?
+}
+
+model Sertifikat {
+  id            String   @id @default(cuid())
+  pendaftaranId String   @unique
+  nomor         String   @unique
+  tanggalTerbit DateTime @default(now())
+  fileUrl       String?
+  fileName      String?
+  fileType      String?
+  fileSize      Int?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  pendaftaran Pendaftaran @relation(fields: [pendaftaranId], references: [id], onDelete: Cascade)
+
+  @@map("sertifikat")
 }
 
 model Payment {
-  id            String    @id @default(cuid())
-  method        String? // bank_transfer, etc
-  amount        Float // Mengubah dari Int ke Float untuk menampung decimal
-  snapToken     String?
-  redirectUrl   String?
+  id            String      @id @default(cuid())
+  method        String?
+  amount        Float
+  status        String      @default("unpaid")
   waktuBayar    DateTime?
-  status        String    @default("unpaid") // unpaid, pending, paid, failure
-  vaNumber      String? // Untuk payment bank transfer
-  bank          String? // bni, bca, etc
-  orderId       String? // order_id dari Midtrans
-  transactionId String? // transaction_id dari Midtrans
-  paymentType   String? // payment_type dari Midtrans
-  fraudStatus   String? // fraud_status dari Midtrans
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-
+  vaNumber      String?
+  bank          String?
+  orderId       String?
+  transactionId String?
+  paymentType   String?
+  fraudStatus   String?
+  snapToken     String?     @unique
+  redirectUrl   String?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
   pendaftaranId String      @unique
   pendaftaran   Pendaftaran @relation(fields: [pendaftaranId], references: [id], onDelete: Cascade)
 }
 
 model Jadwal {
-  id         String   @id @default(cuid())
-  kursusId   String
-  hari       String
-  jamMulai   String
-  jamSelesai String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id           String   @id @default(cuid())
+  kursusId     String
+  instrukturId String?
+  deskripsi    String?
+  hari         String
+  jamMulai     String
+  jamSelesai   String
+  lokasi       String?
+  ruangan      String?
+  status       String   @default("aktif")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  kursus Kursus @relation(fields: [kursusId], references: [id], onDelete: Cascade)
+  kursus     Kursus @relation(fields: [kursusId], references: [id], onDelete: Cascade)
+  instruktur User?  @relation(fields: [instrukturId], references: [id], onDelete: SetNull)
 
   @@map("jadwal")
 }

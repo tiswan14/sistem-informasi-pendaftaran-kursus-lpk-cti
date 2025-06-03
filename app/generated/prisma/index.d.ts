@@ -1601,7 +1601,6 @@ export namespace Prisma {
     Account: number
     Session: number
     Pendaftaran: number
-    Sertifikat: number
     Jadwal: number
   }
 
@@ -1610,7 +1609,6 @@ export namespace Prisma {
     Account?: boolean | UserCountOutputTypeCountAccountArgs
     Session?: boolean | UserCountOutputTypeCountSessionArgs
     Pendaftaran?: boolean | UserCountOutputTypeCountPendaftaranArgs
-    Sertifikat?: boolean | UserCountOutputTypeCountSertifikatArgs
     Jadwal?: boolean | UserCountOutputTypeCountJadwalArgs
   }
 
@@ -1656,13 +1654,6 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSertifikatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SertifikatWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
   export type UserCountOutputTypeCountJadwalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: JadwalWhereInput
   }
@@ -1675,13 +1666,11 @@ export namespace Prisma {
   export type KursusCountOutputType = {
     Pendaftaran: number
     Jadwal: number
-    Sertifikat: number
   }
 
   export type KursusCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Pendaftaran?: boolean | KursusCountOutputTypeCountPendaftaranArgs
     Jadwal?: boolean | KursusCountOutputTypeCountJadwalArgs
-    Sertifikat?: boolean | KursusCountOutputTypeCountSertifikatArgs
   }
 
   // Custom InputTypes
@@ -1707,13 +1696,6 @@ export namespace Prisma {
    */
   export type KursusCountOutputTypeCountJadwalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: JadwalWhereInput
-  }
-
-  /**
-   * KursusCountOutputType without action
-   */
-  export type KursusCountOutputTypeCountSertifikatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: SertifikatWhereInput
   }
 
 
@@ -5206,7 +5188,6 @@ export namespace Prisma {
     Account?: boolean | User$AccountArgs<ExtArgs>
     Session?: boolean | User$SessionArgs<ExtArgs>
     Pendaftaran?: boolean | User$PendaftaranArgs<ExtArgs>
-    Sertifikat?: boolean | User$SertifikatArgs<ExtArgs>
     Jadwal?: boolean | User$JadwalArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
@@ -5286,7 +5267,6 @@ export namespace Prisma {
     Account?: boolean | User$AccountArgs<ExtArgs>
     Session?: boolean | User$SessionArgs<ExtArgs>
     Pendaftaran?: boolean | User$PendaftaranArgs<ExtArgs>
-    Sertifikat?: boolean | User$SertifikatArgs<ExtArgs>
     Jadwal?: boolean | User$JadwalArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -5300,7 +5280,6 @@ export namespace Prisma {
       Account: Prisma.$AccountPayload<ExtArgs>[]
       Session: Prisma.$SessionPayload<ExtArgs>[]
       Pendaftaran: Prisma.$PendaftaranPayload<ExtArgs>[]
-      Sertifikat: Prisma.$SertifikatPayload<ExtArgs>[]
       Jadwal: Prisma.$JadwalPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -5722,7 +5701,6 @@ export namespace Prisma {
     Account<T extends User$AccountArgs<ExtArgs> = {}>(args?: Subset<T, User$AccountArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Session<T extends User$SessionArgs<ExtArgs> = {}>(args?: Subset<T, User$SessionArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Pendaftaran<T extends User$PendaftaranArgs<ExtArgs> = {}>(args?: Subset<T, User$PendaftaranArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendaftaranPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Sertifikat<T extends User$SertifikatArgs<ExtArgs> = {}>(args?: Subset<T, User$SertifikatArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Jadwal<T extends User$JadwalArgs<ExtArgs> = {}>(args?: Subset<T, User$JadwalArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -6257,30 +6235,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.Sertifikat
-   */
-  export type User$SertifikatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatInclude<ExtArgs> | null
-    where?: SertifikatWhereInput
-    orderBy?: SertifikatOrderByWithRelationInput | SertifikatOrderByWithRelationInput[]
-    cursor?: SertifikatWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SertifikatScalarFieldEnum | SertifikatScalarFieldEnum[]
-  }
-
-  /**
    * User.Jadwal
    */
   export type User$JadwalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6596,7 +6550,6 @@ export namespace Prisma {
     user?: boolean | Kursus$userArgs<ExtArgs>
     Pendaftaran?: boolean | Kursus$PendaftaranArgs<ExtArgs>
     Jadwal?: boolean | Kursus$JadwalArgs<ExtArgs>
-    Sertifikat?: boolean | Kursus$SertifikatArgs<ExtArgs>
     _count?: boolean | KursusCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["kursus"]>
 
@@ -6655,7 +6608,6 @@ export namespace Prisma {
     user?: boolean | Kursus$userArgs<ExtArgs>
     Pendaftaran?: boolean | Kursus$PendaftaranArgs<ExtArgs>
     Jadwal?: boolean | Kursus$JadwalArgs<ExtArgs>
-    Sertifikat?: boolean | Kursus$SertifikatArgs<ExtArgs>
     _count?: boolean | KursusCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type KursusIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6671,7 +6623,6 @@ export namespace Prisma {
       user: Prisma.$UserPayload<ExtArgs> | null
       Pendaftaran: Prisma.$PendaftaranPayload<ExtArgs>[]
       Jadwal: Prisma.$JadwalPayload<ExtArgs>[]
-      Sertifikat: Prisma.$SertifikatPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7084,7 +7035,6 @@ export namespace Prisma {
     user<T extends Kursus$userArgs<ExtArgs> = {}>(args?: Subset<T, Kursus$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     Pendaftaran<T extends Kursus$PendaftaranArgs<ExtArgs> = {}>(args?: Subset<T, Kursus$PendaftaranArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PendaftaranPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Jadwal<T extends Kursus$JadwalArgs<ExtArgs> = {}>(args?: Subset<T, Kursus$JadwalArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$JadwalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Sertifikat<T extends Kursus$SertifikatArgs<ExtArgs> = {}>(args?: Subset<T, Kursus$SertifikatArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SertifikatPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7587,30 +7537,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: JadwalScalarFieldEnum | JadwalScalarFieldEnum[]
-  }
-
-  /**
-   * Kursus.Sertifikat
-   */
-  export type Kursus$SertifikatArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Sertifikat
-     */
-    select?: SertifikatSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Sertifikat
-     */
-    omit?: SertifikatOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: SertifikatInclude<ExtArgs> | null
-    where?: SertifikatWhereInput
-    orderBy?: SertifikatOrderByWithRelationInput | SertifikatOrderByWithRelationInput[]
-    cursor?: SertifikatWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SertifikatScalarFieldEnum | SertifikatScalarFieldEnum[]
   }
 
   /**
@@ -8776,8 +8702,18 @@ export namespace Prisma {
 
   export type AggregateSertifikat = {
     _count: SertifikatCountAggregateOutputType | null
+    _avg: SertifikatAvgAggregateOutputType | null
+    _sum: SertifikatSumAggregateOutputType | null
     _min: SertifikatMinAggregateOutputType | null
     _max: SertifikatMaxAggregateOutputType | null
+  }
+
+  export type SertifikatAvgAggregateOutputType = {
+    fileSize: number | null
+  }
+
+  export type SertifikatSumAggregateOutputType = {
+    fileSize: number | null
   }
 
   export type SertifikatMinAggregateOutputType = {
@@ -8786,10 +8722,11 @@ export namespace Prisma {
     nomor: string | null
     tanggalTerbit: Date | null
     fileUrl: string | null
+    fileName: string | null
+    fileType: string | null
+    fileSize: number | null
     createdAt: Date | null
     updatedAt: Date | null
-    userId: string | null
-    kursusId: string | null
   }
 
   export type SertifikatMaxAggregateOutputType = {
@@ -8798,10 +8735,11 @@ export namespace Prisma {
     nomor: string | null
     tanggalTerbit: Date | null
     fileUrl: string | null
+    fileName: string | null
+    fileType: string | null
+    fileSize: number | null
     createdAt: Date | null
     updatedAt: Date | null
-    userId: string | null
-    kursusId: string | null
   }
 
   export type SertifikatCountAggregateOutputType = {
@@ -8810,13 +8748,22 @@ export namespace Prisma {
     nomor: number
     tanggalTerbit: number
     fileUrl: number
+    fileName: number
+    fileType: number
+    fileSize: number
     createdAt: number
     updatedAt: number
-    userId: number
-    kursusId: number
     _all: number
   }
 
+
+  export type SertifikatAvgAggregateInputType = {
+    fileSize?: true
+  }
+
+  export type SertifikatSumAggregateInputType = {
+    fileSize?: true
+  }
 
   export type SertifikatMinAggregateInputType = {
     id?: true
@@ -8824,10 +8771,11 @@ export namespace Prisma {
     nomor?: true
     tanggalTerbit?: true
     fileUrl?: true
+    fileName?: true
+    fileType?: true
+    fileSize?: true
     createdAt?: true
     updatedAt?: true
-    userId?: true
-    kursusId?: true
   }
 
   export type SertifikatMaxAggregateInputType = {
@@ -8836,10 +8784,11 @@ export namespace Prisma {
     nomor?: true
     tanggalTerbit?: true
     fileUrl?: true
+    fileName?: true
+    fileType?: true
+    fileSize?: true
     createdAt?: true
     updatedAt?: true
-    userId?: true
-    kursusId?: true
   }
 
   export type SertifikatCountAggregateInputType = {
@@ -8848,10 +8797,11 @@ export namespace Prisma {
     nomor?: true
     tanggalTerbit?: true
     fileUrl?: true
+    fileName?: true
+    fileType?: true
+    fileSize?: true
     createdAt?: true
     updatedAt?: true
-    userId?: true
-    kursusId?: true
     _all?: true
   }
 
@@ -8893,6 +8843,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: SertifikatAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SertifikatSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: SertifikatMinAggregateInputType
@@ -8923,6 +8885,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: SertifikatCountAggregateInputType | true
+    _avg?: SertifikatAvgAggregateInputType
+    _sum?: SertifikatSumAggregateInputType
     _min?: SertifikatMinAggregateInputType
     _max?: SertifikatMaxAggregateInputType
   }
@@ -8933,11 +8897,14 @@ export namespace Prisma {
     nomor: string
     tanggalTerbit: Date
     fileUrl: string | null
+    fileName: string | null
+    fileType: string | null
+    fileSize: number | null
     createdAt: Date
     updatedAt: Date
-    userId: string | null
-    kursusId: string | null
     _count: SertifikatCountAggregateOutputType | null
+    _avg: SertifikatAvgAggregateOutputType | null
+    _sum: SertifikatSumAggregateOutputType | null
     _min: SertifikatMinAggregateOutputType | null
     _max: SertifikatMaxAggregateOutputType | null
   }
@@ -8962,13 +8929,12 @@ export namespace Prisma {
     nomor?: boolean
     tanggalTerbit?: boolean
     fileUrl?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileSize?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
-    kursusId?: boolean
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
-    User?: boolean | Sertifikat$UserArgs<ExtArgs>
-    Kursus?: boolean | Sertifikat$KursusArgs<ExtArgs>
   }, ExtArgs["result"]["sertifikat"]>
 
   export type SertifikatSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8977,13 +8943,12 @@ export namespace Prisma {
     nomor?: boolean
     tanggalTerbit?: boolean
     fileUrl?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileSize?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
-    kursusId?: boolean
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
-    User?: boolean | Sertifikat$UserArgs<ExtArgs>
-    Kursus?: boolean | Sertifikat$KursusArgs<ExtArgs>
   }, ExtArgs["result"]["sertifikat"]>
 
   export type SertifikatSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -8992,13 +8957,12 @@ export namespace Prisma {
     nomor?: boolean
     tanggalTerbit?: boolean
     fileUrl?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileSize?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
-    kursusId?: boolean
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
-    User?: boolean | Sertifikat$UserArgs<ExtArgs>
-    Kursus?: boolean | Sertifikat$KursusArgs<ExtArgs>
   }, ExtArgs["result"]["sertifikat"]>
 
   export type SertifikatSelectScalar = {
@@ -9007,35 +8971,28 @@ export namespace Prisma {
     nomor?: boolean
     tanggalTerbit?: boolean
     fileUrl?: boolean
+    fileName?: boolean
+    fileType?: boolean
+    fileSize?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    userId?: boolean
-    kursusId?: boolean
   }
 
-  export type SertifikatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pendaftaranId" | "nomor" | "tanggalTerbit" | "fileUrl" | "createdAt" | "updatedAt" | "userId" | "kursusId", ExtArgs["result"]["sertifikat"]>
+  export type SertifikatOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "pendaftaranId" | "nomor" | "tanggalTerbit" | "fileUrl" | "fileName" | "fileType" | "fileSize" | "createdAt" | "updatedAt", ExtArgs["result"]["sertifikat"]>
   export type SertifikatInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
-    User?: boolean | Sertifikat$UserArgs<ExtArgs>
-    Kursus?: boolean | Sertifikat$KursusArgs<ExtArgs>
   }
   export type SertifikatIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
-    User?: boolean | Sertifikat$UserArgs<ExtArgs>
-    Kursus?: boolean | Sertifikat$KursusArgs<ExtArgs>
   }
   export type SertifikatIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     pendaftaran?: boolean | PendaftaranDefaultArgs<ExtArgs>
-    User?: boolean | Sertifikat$UserArgs<ExtArgs>
-    Kursus?: boolean | Sertifikat$KursusArgs<ExtArgs>
   }
 
   export type $SertifikatPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Sertifikat"
     objects: {
       pendaftaran: Prisma.$PendaftaranPayload<ExtArgs>
-      User: Prisma.$UserPayload<ExtArgs> | null
-      Kursus: Prisma.$KursusPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -9043,10 +9000,11 @@ export namespace Prisma {
       nomor: string
       tanggalTerbit: Date
       fileUrl: string | null
+      fileName: string | null
+      fileType: string | null
+      fileSize: number | null
       createdAt: Date
       updatedAt: Date
-      userId: string | null
-      kursusId: string | null
     }, ExtArgs["result"]["sertifikat"]>
     composites: {}
   }
@@ -9442,8 +9400,6 @@ export namespace Prisma {
   export interface Prisma__SertifikatClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     pendaftaran<T extends PendaftaranDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PendaftaranDefaultArgs<ExtArgs>>): Prisma__PendaftaranClient<$Result.GetResult<Prisma.$PendaftaranPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    User<T extends Sertifikat$UserArgs<ExtArgs> = {}>(args?: Subset<T, Sertifikat$UserArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    Kursus<T extends Sertifikat$KursusArgs<ExtArgs> = {}>(args?: Subset<T, Sertifikat$KursusArgs<ExtArgs>>): Prisma__KursusClient<$Result.GetResult<Prisma.$KursusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9478,10 +9434,11 @@ export namespace Prisma {
     readonly nomor: FieldRef<"Sertifikat", 'String'>
     readonly tanggalTerbit: FieldRef<"Sertifikat", 'DateTime'>
     readonly fileUrl: FieldRef<"Sertifikat", 'String'>
+    readonly fileName: FieldRef<"Sertifikat", 'String'>
+    readonly fileType: FieldRef<"Sertifikat", 'String'>
+    readonly fileSize: FieldRef<"Sertifikat", 'Int'>
     readonly createdAt: FieldRef<"Sertifikat", 'DateTime'>
     readonly updatedAt: FieldRef<"Sertifikat", 'DateTime'>
-    readonly userId: FieldRef<"Sertifikat", 'String'>
-    readonly kursusId: FieldRef<"Sertifikat", 'String'>
   }
     
 
@@ -9875,44 +9832,6 @@ export namespace Prisma {
      * Limit how many Sertifikats to delete.
      */
     limit?: number
-  }
-
-  /**
-   * Sertifikat.User
-   */
-  export type Sertifikat$UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the User
-     */
-    omit?: UserOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    where?: UserWhereInput
-  }
-
-  /**
-   * Sertifikat.Kursus
-   */
-  export type Sertifikat$KursusArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Kursus
-     */
-    select?: KursusSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Kursus
-     */
-    omit?: KursusOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: KursusInclude<ExtArgs> | null
-    where?: KursusWhereInput
   }
 
   /**
@@ -12460,10 +12379,11 @@ export namespace Prisma {
     nomor: 'nomor',
     tanggalTerbit: 'tanggalTerbit',
     fileUrl: 'fileUrl',
+    fileName: 'fileName',
+    fileType: 'fileType',
+    fileSize: 'fileSize',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    userId: 'userId',
-    kursusId: 'kursusId'
+    updatedAt: 'updatedAt'
   };
 
   export type SertifikatScalarFieldEnum = (typeof SertifikatScalarFieldEnum)[keyof typeof SertifikatScalarFieldEnum]
@@ -12811,7 +12731,6 @@ export namespace Prisma {
     Account?: AccountListRelationFilter
     Session?: SessionListRelationFilter
     Pendaftaran?: PendaftaranListRelationFilter
-    Sertifikat?: SertifikatListRelationFilter
     Jadwal?: JadwalListRelationFilter
   }
 
@@ -12840,7 +12759,6 @@ export namespace Prisma {
     Account?: AccountOrderByRelationAggregateInput
     Session?: SessionOrderByRelationAggregateInput
     Pendaftaran?: PendaftaranOrderByRelationAggregateInput
-    Sertifikat?: SertifikatOrderByRelationAggregateInput
     Jadwal?: JadwalOrderByRelationAggregateInput
   }
 
@@ -12872,7 +12790,6 @@ export namespace Prisma {
     Account?: AccountListRelationFilter
     Session?: SessionListRelationFilter
     Pendaftaran?: PendaftaranListRelationFilter
-    Sertifikat?: SertifikatListRelationFilter
     Jadwal?: JadwalListRelationFilter
   }, "id" | "nik" | "email">
 
@@ -12948,7 +12865,6 @@ export namespace Prisma {
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     Pendaftaran?: PendaftaranListRelationFilter
     Jadwal?: JadwalListRelationFilter
-    Sertifikat?: SertifikatListRelationFilter
   }
 
   export type KursusOrderByWithRelationInput = {
@@ -12968,7 +12884,6 @@ export namespace Prisma {
     user?: UserOrderByWithRelationInput
     Pendaftaran?: PendaftaranOrderByRelationAggregateInput
     Jadwal?: JadwalOrderByRelationAggregateInput
-    Sertifikat?: SertifikatOrderByRelationAggregateInput
   }
 
   export type KursusWhereUniqueInput = Prisma.AtLeast<{
@@ -12991,7 +12906,6 @@ export namespace Prisma {
     user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     Pendaftaran?: PendaftaranListRelationFilter
     Jadwal?: JadwalListRelationFilter
-    Sertifikat?: SertifikatListRelationFilter
   }, "id">
 
   export type KursusOrderByWithAggregationInput = {
@@ -13117,13 +13031,12 @@ export namespace Prisma {
     nomor?: StringFilter<"Sertifikat"> | string
     tanggalTerbit?: DateTimeFilter<"Sertifikat"> | Date | string
     fileUrl?: StringNullableFilter<"Sertifikat"> | string | null
+    fileName?: StringNullableFilter<"Sertifikat"> | string | null
+    fileType?: StringNullableFilter<"Sertifikat"> | string | null
+    fileSize?: IntNullableFilter<"Sertifikat"> | number | null
     createdAt?: DateTimeFilter<"Sertifikat"> | Date | string
     updatedAt?: DateTimeFilter<"Sertifikat"> | Date | string
-    userId?: StringNullableFilter<"Sertifikat"> | string | null
-    kursusId?: StringNullableFilter<"Sertifikat"> | string | null
     pendaftaran?: XOR<PendaftaranScalarRelationFilter, PendaftaranWhereInput>
-    User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    Kursus?: XOR<KursusNullableScalarRelationFilter, KursusWhereInput> | null
   }
 
   export type SertifikatOrderByWithRelationInput = {
@@ -13132,13 +13045,12 @@ export namespace Prisma {
     nomor?: SortOrder
     tanggalTerbit?: SortOrder
     fileUrl?: SortOrderInput | SortOrder
+    fileName?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrderInput | SortOrder
-    kursusId?: SortOrderInput | SortOrder
     pendaftaran?: PendaftaranOrderByWithRelationInput
-    User?: UserOrderByWithRelationInput
-    Kursus?: KursusOrderByWithRelationInput
   }
 
   export type SertifikatWhereUniqueInput = Prisma.AtLeast<{
@@ -13150,13 +13062,12 @@ export namespace Prisma {
     NOT?: SertifikatWhereInput | SertifikatWhereInput[]
     tanggalTerbit?: DateTimeFilter<"Sertifikat"> | Date | string
     fileUrl?: StringNullableFilter<"Sertifikat"> | string | null
+    fileName?: StringNullableFilter<"Sertifikat"> | string | null
+    fileType?: StringNullableFilter<"Sertifikat"> | string | null
+    fileSize?: IntNullableFilter<"Sertifikat"> | number | null
     createdAt?: DateTimeFilter<"Sertifikat"> | Date | string
     updatedAt?: DateTimeFilter<"Sertifikat"> | Date | string
-    userId?: StringNullableFilter<"Sertifikat"> | string | null
-    kursusId?: StringNullableFilter<"Sertifikat"> | string | null
     pendaftaran?: XOR<PendaftaranScalarRelationFilter, PendaftaranWhereInput>
-    User?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    Kursus?: XOR<KursusNullableScalarRelationFilter, KursusWhereInput> | null
   }, "id" | "pendaftaranId" | "nomor">
 
   export type SertifikatOrderByWithAggregationInput = {
@@ -13165,13 +13076,16 @@ export namespace Prisma {
     nomor?: SortOrder
     tanggalTerbit?: SortOrder
     fileUrl?: SortOrderInput | SortOrder
+    fileName?: SortOrderInput | SortOrder
+    fileType?: SortOrderInput | SortOrder
+    fileSize?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrderInput | SortOrder
-    kursusId?: SortOrderInput | SortOrder
     _count?: SertifikatCountOrderByAggregateInput
+    _avg?: SertifikatAvgOrderByAggregateInput
     _max?: SertifikatMaxOrderByAggregateInput
     _min?: SertifikatMinOrderByAggregateInput
+    _sum?: SertifikatSumOrderByAggregateInput
   }
 
   export type SertifikatScalarWhereWithAggregatesInput = {
@@ -13183,10 +13097,11 @@ export namespace Prisma {
     nomor?: StringWithAggregatesFilter<"Sertifikat"> | string
     tanggalTerbit?: DateTimeWithAggregatesFilter<"Sertifikat"> | Date | string
     fileUrl?: StringNullableWithAggregatesFilter<"Sertifikat"> | string | null
+    fileName?: StringNullableWithAggregatesFilter<"Sertifikat"> | string | null
+    fileType?: StringNullableWithAggregatesFilter<"Sertifikat"> | string | null
+    fileSize?: IntNullableWithAggregatesFilter<"Sertifikat"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"Sertifikat"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Sertifikat"> | Date | string
-    userId?: StringNullableWithAggregatesFilter<"Sertifikat"> | string | null
-    kursusId?: StringNullableWithAggregatesFilter<"Sertifikat"> | string | null
   }
 
   export type PaymentWhereInput = {
@@ -13613,7 +13528,6 @@ export namespace Prisma {
     Account?: AccountCreateNestedManyWithoutUserInput
     Session?: SessionCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    Sertifikat?: SertifikatCreateNestedManyWithoutUserInput
     Jadwal?: JadwalCreateNestedManyWithoutInstrukturInput
   }
 
@@ -13642,7 +13556,6 @@ export namespace Prisma {
     Account?: AccountUncheckedCreateNestedManyWithoutUserInput
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    Sertifikat?: SertifikatUncheckedCreateNestedManyWithoutUserInput
     Jadwal?: JadwalUncheckedCreateNestedManyWithoutInstrukturInput
   }
 
@@ -13671,7 +13584,6 @@ export namespace Prisma {
     Account?: AccountUpdateManyWithoutUserNestedInput
     Session?: SessionUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    Sertifikat?: SertifikatUpdateManyWithoutUserNestedInput
     Jadwal?: JadwalUpdateManyWithoutInstrukturNestedInput
   }
 
@@ -13700,7 +13612,6 @@ export namespace Prisma {
     Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    Sertifikat?: SertifikatUncheckedUpdateManyWithoutUserNestedInput
     Jadwal?: JadwalUncheckedUpdateManyWithoutInstrukturNestedInput
   }
 
@@ -13789,7 +13700,6 @@ export namespace Prisma {
     user?: UserCreateNestedOneWithoutKursusInstrukturInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
     Jadwal?: JadwalCreateNestedManyWithoutKursusInput
-    Sertifikat?: SertifikatCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateInput = {
@@ -13808,7 +13718,6 @@ export namespace Prisma {
     userId?: string | null
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
     Jadwal?: JadwalUncheckedCreateNestedManyWithoutKursusInput
-    Sertifikat?: SertifikatUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUpdateInput = {
@@ -13827,7 +13736,6 @@ export namespace Prisma {
     user?: UserUpdateOneWithoutKursusInstrukturNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
     Jadwal?: JadwalUpdateManyWithoutKursusNestedInput
-    Sertifikat?: SertifikatUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateInput = {
@@ -13846,7 +13754,6 @@ export namespace Prisma {
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
     Jadwal?: JadwalUncheckedUpdateManyWithoutKursusNestedInput
-    Sertifikat?: SertifikatUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusCreateManyInput = {
@@ -13977,11 +13884,12 @@ export namespace Prisma {
     nomor: string
     tanggalTerbit?: Date | string
     fileUrl?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileSize?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
     pendaftaran: PendaftaranCreateNestedOneWithoutSertifikatInput
-    User?: UserCreateNestedOneWithoutSertifikatInput
-    Kursus?: KursusCreateNestedOneWithoutSertifikatInput
   }
 
   export type SertifikatUncheckedCreateInput = {
@@ -13990,10 +13898,11 @@ export namespace Prisma {
     nomor: string
     tanggalTerbit?: Date | string
     fileUrl?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileSize?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId?: string | null
-    kursusId?: string | null
   }
 
   export type SertifikatUpdateInput = {
@@ -14001,11 +13910,12 @@ export namespace Prisma {
     nomor?: StringFieldUpdateOperationsInput | string
     tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     pendaftaran?: PendaftaranUpdateOneRequiredWithoutSertifikatNestedInput
-    User?: UserUpdateOneWithoutSertifikatNestedInput
-    Kursus?: KursusUpdateOneWithoutSertifikatNestedInput
   }
 
   export type SertifikatUncheckedUpdateInput = {
@@ -14014,10 +13924,11 @@ export namespace Prisma {
     nomor?: StringFieldUpdateOperationsInput | string
     tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    kursusId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type SertifikatCreateManyInput = {
@@ -14026,10 +13937,11 @@ export namespace Prisma {
     nomor: string
     tanggalTerbit?: Date | string
     fileUrl?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileSize?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId?: string | null
-    kursusId?: string | null
   }
 
   export type SertifikatUpdateManyMutationInput = {
@@ -14037,6 +13949,9 @@ export namespace Prisma {
     nomor?: StringFieldUpdateOperationsInput | string
     tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14047,10 +13962,11 @@ export namespace Prisma {
     nomor?: StringFieldUpdateOperationsInput | string
     tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    kursusId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PaymentCreateInput = {
@@ -14553,12 +14469,6 @@ export namespace Prisma {
     none?: PendaftaranWhereInput
   }
 
-  export type SertifikatListRelationFilter = {
-    every?: SertifikatWhereInput
-    some?: SertifikatWhereInput
-    none?: SertifikatWhereInput
-  }
-
   export type JadwalListRelationFilter = {
     every?: JadwalWhereInput
     some?: JadwalWhereInput
@@ -14578,10 +14488,6 @@ export namespace Prisma {
   }
 
   export type PendaftaranOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type SertifikatOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -14814,21 +14720,21 @@ export namespace Prisma {
     isNot?: PendaftaranWhereInput
   }
 
-  export type KursusNullableScalarRelationFilter = {
-    is?: KursusWhereInput | null
-    isNot?: KursusWhereInput | null
-  }
-
   export type SertifikatCountOrderByAggregateInput = {
     id?: SortOrder
     pendaftaranId?: SortOrder
     nomor?: SortOrder
     tanggalTerbit?: SortOrder
     fileUrl?: SortOrder
+    fileName?: SortOrder
+    fileType?: SortOrder
+    fileSize?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
+  }
+
+  export type SertifikatAvgOrderByAggregateInput = {
+    fileSize?: SortOrder
   }
 
   export type SertifikatMaxOrderByAggregateInput = {
@@ -14837,10 +14743,11 @@ export namespace Prisma {
     nomor?: SortOrder
     tanggalTerbit?: SortOrder
     fileUrl?: SortOrder
+    fileName?: SortOrder
+    fileType?: SortOrder
+    fileSize?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
   }
 
   export type SertifikatMinOrderByAggregateInput = {
@@ -14849,10 +14756,15 @@ export namespace Prisma {
     nomor?: SortOrder
     tanggalTerbit?: SortOrder
     fileUrl?: SortOrder
+    fileName?: SortOrder
+    fileType?: SortOrder
+    fileSize?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    userId?: SortOrder
-    kursusId?: SortOrder
+  }
+
+  export type SertifikatSumOrderByAggregateInput = {
+    fileSize?: SortOrder
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -15068,13 +14980,6 @@ export namespace Prisma {
     connect?: PendaftaranWhereUniqueInput | PendaftaranWhereUniqueInput[]
   }
 
-  export type SertifikatCreateNestedManyWithoutUserInput = {
-    create?: XOR<SertifikatCreateWithoutUserInput, SertifikatUncheckedCreateWithoutUserInput> | SertifikatCreateWithoutUserInput[] | SertifikatUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SertifikatCreateOrConnectWithoutUserInput | SertifikatCreateOrConnectWithoutUserInput[]
-    createMany?: SertifikatCreateManyUserInputEnvelope
-    connect?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-  }
-
   export type JadwalCreateNestedManyWithoutInstrukturInput = {
     create?: XOR<JadwalCreateWithoutInstrukturInput, JadwalUncheckedCreateWithoutInstrukturInput> | JadwalCreateWithoutInstrukturInput[] | JadwalUncheckedCreateWithoutInstrukturInput[]
     connectOrCreate?: JadwalCreateOrConnectWithoutInstrukturInput | JadwalCreateOrConnectWithoutInstrukturInput[]
@@ -15108,13 +15013,6 @@ export namespace Prisma {
     connectOrCreate?: PendaftaranCreateOrConnectWithoutUserInput | PendaftaranCreateOrConnectWithoutUserInput[]
     createMany?: PendaftaranCreateManyUserInputEnvelope
     connect?: PendaftaranWhereUniqueInput | PendaftaranWhereUniqueInput[]
-  }
-
-  export type SertifikatUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<SertifikatCreateWithoutUserInput, SertifikatUncheckedCreateWithoutUserInput> | SertifikatCreateWithoutUserInput[] | SertifikatUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SertifikatCreateOrConnectWithoutUserInput | SertifikatCreateOrConnectWithoutUserInput[]
-    createMany?: SertifikatCreateManyUserInputEnvelope
-    connect?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
   }
 
   export type JadwalUncheckedCreateNestedManyWithoutInstrukturInput = {
@@ -15182,20 +15080,6 @@ export namespace Prisma {
     update?: PendaftaranUpdateWithWhereUniqueWithoutUserInput | PendaftaranUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: PendaftaranUpdateManyWithWhereWithoutUserInput | PendaftaranUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: PendaftaranScalarWhereInput | PendaftaranScalarWhereInput[]
-  }
-
-  export type SertifikatUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SertifikatCreateWithoutUserInput, SertifikatUncheckedCreateWithoutUserInput> | SertifikatCreateWithoutUserInput[] | SertifikatUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SertifikatCreateOrConnectWithoutUserInput | SertifikatCreateOrConnectWithoutUserInput[]
-    upsert?: SertifikatUpsertWithWhereUniqueWithoutUserInput | SertifikatUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SertifikatCreateManyUserInputEnvelope
-    set?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    disconnect?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    delete?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    connect?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    update?: SertifikatUpdateWithWhereUniqueWithoutUserInput | SertifikatUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SertifikatUpdateManyWithWhereWithoutUserInput | SertifikatUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SertifikatScalarWhereInput | SertifikatScalarWhereInput[]
   }
 
   export type JadwalUpdateManyWithoutInstrukturNestedInput = {
@@ -15268,20 +15152,6 @@ export namespace Prisma {
     deleteMany?: PendaftaranScalarWhereInput | PendaftaranScalarWhereInput[]
   }
 
-  export type SertifikatUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<SertifikatCreateWithoutUserInput, SertifikatUncheckedCreateWithoutUserInput> | SertifikatCreateWithoutUserInput[] | SertifikatUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: SertifikatCreateOrConnectWithoutUserInput | SertifikatCreateOrConnectWithoutUserInput[]
-    upsert?: SertifikatUpsertWithWhereUniqueWithoutUserInput | SertifikatUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: SertifikatCreateManyUserInputEnvelope
-    set?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    disconnect?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    delete?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    connect?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    update?: SertifikatUpdateWithWhereUniqueWithoutUserInput | SertifikatUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: SertifikatUpdateManyWithWhereWithoutUserInput | SertifikatUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: SertifikatScalarWhereInput | SertifikatScalarWhereInput[]
-  }
-
   export type JadwalUncheckedUpdateManyWithoutInstrukturNestedInput = {
     create?: XOR<JadwalCreateWithoutInstrukturInput, JadwalUncheckedCreateWithoutInstrukturInput> | JadwalCreateWithoutInstrukturInput[] | JadwalUncheckedCreateWithoutInstrukturInput[]
     connectOrCreate?: JadwalCreateOrConnectWithoutInstrukturInput | JadwalCreateOrConnectWithoutInstrukturInput[]
@@ -15316,13 +15186,6 @@ export namespace Prisma {
     connect?: JadwalWhereUniqueInput | JadwalWhereUniqueInput[]
   }
 
-  export type SertifikatCreateNestedManyWithoutKursusInput = {
-    create?: XOR<SertifikatCreateWithoutKursusInput, SertifikatUncheckedCreateWithoutKursusInput> | SertifikatCreateWithoutKursusInput[] | SertifikatUncheckedCreateWithoutKursusInput[]
-    connectOrCreate?: SertifikatCreateOrConnectWithoutKursusInput | SertifikatCreateOrConnectWithoutKursusInput[]
-    createMany?: SertifikatCreateManyKursusInputEnvelope
-    connect?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-  }
-
   export type PendaftaranUncheckedCreateNestedManyWithoutKursusInput = {
     create?: XOR<PendaftaranCreateWithoutKursusInput, PendaftaranUncheckedCreateWithoutKursusInput> | PendaftaranCreateWithoutKursusInput[] | PendaftaranUncheckedCreateWithoutKursusInput[]
     connectOrCreate?: PendaftaranCreateOrConnectWithoutKursusInput | PendaftaranCreateOrConnectWithoutKursusInput[]
@@ -15335,13 +15198,6 @@ export namespace Prisma {
     connectOrCreate?: JadwalCreateOrConnectWithoutKursusInput | JadwalCreateOrConnectWithoutKursusInput[]
     createMany?: JadwalCreateManyKursusInputEnvelope
     connect?: JadwalWhereUniqueInput | JadwalWhereUniqueInput[]
-  }
-
-  export type SertifikatUncheckedCreateNestedManyWithoutKursusInput = {
-    create?: XOR<SertifikatCreateWithoutKursusInput, SertifikatUncheckedCreateWithoutKursusInput> | SertifikatCreateWithoutKursusInput[] | SertifikatUncheckedCreateWithoutKursusInput[]
-    connectOrCreate?: SertifikatCreateOrConnectWithoutKursusInput | SertifikatCreateOrConnectWithoutKursusInput[]
-    createMany?: SertifikatCreateManyKursusInputEnvelope
-    connect?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -15390,20 +15246,6 @@ export namespace Prisma {
     deleteMany?: JadwalScalarWhereInput | JadwalScalarWhereInput[]
   }
 
-  export type SertifikatUpdateManyWithoutKursusNestedInput = {
-    create?: XOR<SertifikatCreateWithoutKursusInput, SertifikatUncheckedCreateWithoutKursusInput> | SertifikatCreateWithoutKursusInput[] | SertifikatUncheckedCreateWithoutKursusInput[]
-    connectOrCreate?: SertifikatCreateOrConnectWithoutKursusInput | SertifikatCreateOrConnectWithoutKursusInput[]
-    upsert?: SertifikatUpsertWithWhereUniqueWithoutKursusInput | SertifikatUpsertWithWhereUniqueWithoutKursusInput[]
-    createMany?: SertifikatCreateManyKursusInputEnvelope
-    set?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    disconnect?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    delete?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    connect?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    update?: SertifikatUpdateWithWhereUniqueWithoutKursusInput | SertifikatUpdateWithWhereUniqueWithoutKursusInput[]
-    updateMany?: SertifikatUpdateManyWithWhereWithoutKursusInput | SertifikatUpdateManyWithWhereWithoutKursusInput[]
-    deleteMany?: SertifikatScalarWhereInput | SertifikatScalarWhereInput[]
-  }
-
   export type PendaftaranUncheckedUpdateManyWithoutKursusNestedInput = {
     create?: XOR<PendaftaranCreateWithoutKursusInput, PendaftaranUncheckedCreateWithoutKursusInput> | PendaftaranCreateWithoutKursusInput[] | PendaftaranUncheckedCreateWithoutKursusInput[]
     connectOrCreate?: PendaftaranCreateOrConnectWithoutKursusInput | PendaftaranCreateOrConnectWithoutKursusInput[]
@@ -15430,20 +15272,6 @@ export namespace Prisma {
     update?: JadwalUpdateWithWhereUniqueWithoutKursusInput | JadwalUpdateWithWhereUniqueWithoutKursusInput[]
     updateMany?: JadwalUpdateManyWithWhereWithoutKursusInput | JadwalUpdateManyWithWhereWithoutKursusInput[]
     deleteMany?: JadwalScalarWhereInput | JadwalScalarWhereInput[]
-  }
-
-  export type SertifikatUncheckedUpdateManyWithoutKursusNestedInput = {
-    create?: XOR<SertifikatCreateWithoutKursusInput, SertifikatUncheckedCreateWithoutKursusInput> | SertifikatCreateWithoutKursusInput[] | SertifikatUncheckedCreateWithoutKursusInput[]
-    connectOrCreate?: SertifikatCreateOrConnectWithoutKursusInput | SertifikatCreateOrConnectWithoutKursusInput[]
-    upsert?: SertifikatUpsertWithWhereUniqueWithoutKursusInput | SertifikatUpsertWithWhereUniqueWithoutKursusInput[]
-    createMany?: SertifikatCreateManyKursusInputEnvelope
-    set?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    disconnect?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    delete?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    connect?: SertifikatWhereUniqueInput | SertifikatWhereUniqueInput[]
-    update?: SertifikatUpdateWithWhereUniqueWithoutKursusInput | SertifikatUpdateWithWhereUniqueWithoutKursusInput[]
-    updateMany?: SertifikatUpdateManyWithWhereWithoutKursusInput | SertifikatUpdateManyWithWhereWithoutKursusInput[]
-    deleteMany?: SertifikatScalarWhereInput | SertifikatScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutPendaftaranInput = {
@@ -15544,44 +15372,12 @@ export namespace Prisma {
     connect?: PendaftaranWhereUniqueInput
   }
 
-  export type UserCreateNestedOneWithoutSertifikatInput = {
-    create?: XOR<UserCreateWithoutSertifikatInput, UserUncheckedCreateWithoutSertifikatInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSertifikatInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type KursusCreateNestedOneWithoutSertifikatInput = {
-    create?: XOR<KursusCreateWithoutSertifikatInput, KursusUncheckedCreateWithoutSertifikatInput>
-    connectOrCreate?: KursusCreateOrConnectWithoutSertifikatInput
-    connect?: KursusWhereUniqueInput
-  }
-
   export type PendaftaranUpdateOneRequiredWithoutSertifikatNestedInput = {
     create?: XOR<PendaftaranCreateWithoutSertifikatInput, PendaftaranUncheckedCreateWithoutSertifikatInput>
     connectOrCreate?: PendaftaranCreateOrConnectWithoutSertifikatInput
     upsert?: PendaftaranUpsertWithoutSertifikatInput
     connect?: PendaftaranWhereUniqueInput
     update?: XOR<XOR<PendaftaranUpdateToOneWithWhereWithoutSertifikatInput, PendaftaranUpdateWithoutSertifikatInput>, PendaftaranUncheckedUpdateWithoutSertifikatInput>
-  }
-
-  export type UserUpdateOneWithoutSertifikatNestedInput = {
-    create?: XOR<UserCreateWithoutSertifikatInput, UserUncheckedCreateWithoutSertifikatInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSertifikatInput
-    upsert?: UserUpsertWithoutSertifikatInput
-    disconnect?: UserWhereInput | boolean
-    delete?: UserWhereInput | boolean
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSertifikatInput, UserUpdateWithoutSertifikatInput>, UserUncheckedUpdateWithoutSertifikatInput>
-  }
-
-  export type KursusUpdateOneWithoutSertifikatNestedInput = {
-    create?: XOR<KursusCreateWithoutSertifikatInput, KursusUncheckedCreateWithoutSertifikatInput>
-    connectOrCreate?: KursusCreateOrConnectWithoutSertifikatInput
-    upsert?: KursusUpsertWithoutSertifikatInput
-    disconnect?: KursusWhereInput | boolean
-    delete?: KursusWhereInput | boolean
-    connect?: KursusWhereUniqueInput
-    update?: XOR<XOR<KursusUpdateToOneWithWhereWithoutSertifikatInput, KursusUpdateWithoutSertifikatInput>, KursusUncheckedUpdateWithoutSertifikatInput>
   }
 
   export type PendaftaranCreateNestedOneWithoutPaymentInput = {
@@ -15864,7 +15660,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusCreateNestedManyWithoutUserInput
     Session?: SessionCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    Sertifikat?: SertifikatCreateNestedManyWithoutUserInput
     Jadwal?: JadwalCreateNestedManyWithoutInstrukturInput
   }
 
@@ -15892,7 +15687,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUncheckedCreateNestedManyWithoutUserInput
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    Sertifikat?: SertifikatUncheckedCreateNestedManyWithoutUserInput
     Jadwal?: JadwalUncheckedCreateNestedManyWithoutInstrukturInput
   }
 
@@ -15936,7 +15730,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUpdateManyWithoutUserNestedInput
     Session?: SessionUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    Sertifikat?: SertifikatUpdateManyWithoutUserNestedInput
     Jadwal?: JadwalUpdateManyWithoutInstrukturNestedInput
   }
 
@@ -15964,7 +15757,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUncheckedUpdateManyWithoutUserNestedInput
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    Sertifikat?: SertifikatUncheckedUpdateManyWithoutUserNestedInput
     Jadwal?: JadwalUncheckedUpdateManyWithoutInstrukturNestedInput
   }
 
@@ -15992,7 +15784,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusCreateNestedManyWithoutUserInput
     Account?: AccountCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    Sertifikat?: SertifikatCreateNestedManyWithoutUserInput
     Jadwal?: JadwalCreateNestedManyWithoutInstrukturInput
   }
 
@@ -16020,7 +15811,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUncheckedCreateNestedManyWithoutUserInput
     Account?: AccountUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    Sertifikat?: SertifikatUncheckedCreateNestedManyWithoutUserInput
     Jadwal?: JadwalUncheckedCreateNestedManyWithoutInstrukturInput
   }
 
@@ -16064,7 +15854,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUpdateManyWithoutUserNestedInput
     Account?: AccountUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    Sertifikat?: SertifikatUpdateManyWithoutUserNestedInput
     Jadwal?: JadwalUpdateManyWithoutInstrukturNestedInput
   }
 
@@ -16092,7 +15881,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUncheckedUpdateManyWithoutUserNestedInput
     Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    Sertifikat?: SertifikatUncheckedUpdateManyWithoutUserNestedInput
     Jadwal?: JadwalUncheckedUpdateManyWithoutInstrukturNestedInput
   }
 
@@ -16111,7 +15899,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
     Jadwal?: JadwalCreateNestedManyWithoutKursusInput
-    Sertifikat?: SertifikatCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateWithoutUserInput = {
@@ -16129,7 +15916,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
     Jadwal?: JadwalUncheckedCreateNestedManyWithoutKursusInput
-    Sertifikat?: SertifikatUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusCreateOrConnectWithoutUserInput = {
@@ -16231,38 +16017,6 @@ export namespace Prisma {
 
   export type PendaftaranCreateManyUserInputEnvelope = {
     data: PendaftaranCreateManyUserInput | PendaftaranCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type SertifikatCreateWithoutUserInput = {
-    id?: string
-    nomor: string
-    tanggalTerbit?: Date | string
-    fileUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    pendaftaran: PendaftaranCreateNestedOneWithoutSertifikatInput
-    Kursus?: KursusCreateNestedOneWithoutSertifikatInput
-  }
-
-  export type SertifikatUncheckedCreateWithoutUserInput = {
-    id?: string
-    pendaftaranId: string
-    nomor: string
-    tanggalTerbit?: Date | string
-    fileUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    kursusId?: string | null
-  }
-
-  export type SertifikatCreateOrConnectWithoutUserInput = {
-    where: SertifikatWhereUniqueInput
-    create: XOR<SertifikatCreateWithoutUserInput, SertifikatUncheckedCreateWithoutUserInput>
-  }
-
-  export type SertifikatCreateManyUserInputEnvelope = {
-    data: SertifikatCreateManyUserInput | SertifikatCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -16428,37 +16182,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Pendaftaran"> | Date | string
   }
 
-  export type SertifikatUpsertWithWhereUniqueWithoutUserInput = {
-    where: SertifikatWhereUniqueInput
-    update: XOR<SertifikatUpdateWithoutUserInput, SertifikatUncheckedUpdateWithoutUserInput>
-    create: XOR<SertifikatCreateWithoutUserInput, SertifikatUncheckedCreateWithoutUserInput>
-  }
-
-  export type SertifikatUpdateWithWhereUniqueWithoutUserInput = {
-    where: SertifikatWhereUniqueInput
-    data: XOR<SertifikatUpdateWithoutUserInput, SertifikatUncheckedUpdateWithoutUserInput>
-  }
-
-  export type SertifikatUpdateManyWithWhereWithoutUserInput = {
-    where: SertifikatScalarWhereInput
-    data: XOR<SertifikatUpdateManyMutationInput, SertifikatUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type SertifikatScalarWhereInput = {
-    AND?: SertifikatScalarWhereInput | SertifikatScalarWhereInput[]
-    OR?: SertifikatScalarWhereInput[]
-    NOT?: SertifikatScalarWhereInput | SertifikatScalarWhereInput[]
-    id?: StringFilter<"Sertifikat"> | string
-    pendaftaranId?: StringFilter<"Sertifikat"> | string
-    nomor?: StringFilter<"Sertifikat"> | string
-    tanggalTerbit?: DateTimeFilter<"Sertifikat"> | Date | string
-    fileUrl?: StringNullableFilter<"Sertifikat"> | string | null
-    createdAt?: DateTimeFilter<"Sertifikat"> | Date | string
-    updatedAt?: DateTimeFilter<"Sertifikat"> | Date | string
-    userId?: StringNullableFilter<"Sertifikat"> | string | null
-    kursusId?: StringNullableFilter<"Sertifikat"> | string | null
-  }
-
   export type JadwalUpsertWithWhereUniqueWithoutInstrukturInput = {
     where: JadwalWhereUniqueInput
     update: XOR<JadwalUpdateWithoutInstrukturInput, JadwalUncheckedUpdateWithoutInstrukturInput>
@@ -16517,7 +16240,6 @@ export namespace Prisma {
     Account?: AccountCreateNestedManyWithoutUserInput
     Session?: SessionCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    Sertifikat?: SertifikatCreateNestedManyWithoutUserInput
     Jadwal?: JadwalCreateNestedManyWithoutInstrukturInput
   }
 
@@ -16545,7 +16267,6 @@ export namespace Prisma {
     Account?: AccountUncheckedCreateNestedManyWithoutUserInput
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    Sertifikat?: SertifikatUncheckedCreateNestedManyWithoutUserInput
     Jadwal?: JadwalUncheckedCreateNestedManyWithoutInstrukturInput
   }
 
@@ -16624,38 +16345,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type SertifikatCreateWithoutKursusInput = {
-    id?: string
-    nomor: string
-    tanggalTerbit?: Date | string
-    fileUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    pendaftaran: PendaftaranCreateNestedOneWithoutSertifikatInput
-    User?: UserCreateNestedOneWithoutSertifikatInput
-  }
-
-  export type SertifikatUncheckedCreateWithoutKursusInput = {
-    id?: string
-    pendaftaranId: string
-    nomor: string
-    tanggalTerbit?: Date | string
-    fileUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId?: string | null
-  }
-
-  export type SertifikatCreateOrConnectWithoutKursusInput = {
-    where: SertifikatWhereUniqueInput
-    create: XOR<SertifikatCreateWithoutKursusInput, SertifikatUncheckedCreateWithoutKursusInput>
-  }
-
-  export type SertifikatCreateManyKursusInputEnvelope = {
-    data: SertifikatCreateManyKursusInput | SertifikatCreateManyKursusInput[]
-    skipDuplicates?: boolean
-  }
-
   export type UserUpsertWithoutKursusInstrukturInput = {
     update: XOR<UserUpdateWithoutKursusInstrukturInput, UserUncheckedUpdateWithoutKursusInstrukturInput>
     create: XOR<UserCreateWithoutKursusInstrukturInput, UserUncheckedCreateWithoutKursusInstrukturInput>
@@ -16691,7 +16380,6 @@ export namespace Prisma {
     Account?: AccountUpdateManyWithoutUserNestedInput
     Session?: SessionUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    Sertifikat?: SertifikatUpdateManyWithoutUserNestedInput
     Jadwal?: JadwalUpdateManyWithoutInstrukturNestedInput
   }
 
@@ -16719,7 +16407,6 @@ export namespace Prisma {
     Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    Sertifikat?: SertifikatUncheckedUpdateManyWithoutUserNestedInput
     Jadwal?: JadwalUncheckedUpdateManyWithoutInstrukturNestedInput
   }
 
@@ -16755,22 +16442,6 @@ export namespace Prisma {
     data: XOR<JadwalUpdateManyMutationInput, JadwalUncheckedUpdateManyWithoutKursusInput>
   }
 
-  export type SertifikatUpsertWithWhereUniqueWithoutKursusInput = {
-    where: SertifikatWhereUniqueInput
-    update: XOR<SertifikatUpdateWithoutKursusInput, SertifikatUncheckedUpdateWithoutKursusInput>
-    create: XOR<SertifikatCreateWithoutKursusInput, SertifikatUncheckedCreateWithoutKursusInput>
-  }
-
-  export type SertifikatUpdateWithWhereUniqueWithoutKursusInput = {
-    where: SertifikatWhereUniqueInput
-    data: XOR<SertifikatUpdateWithoutKursusInput, SertifikatUncheckedUpdateWithoutKursusInput>
-  }
-
-  export type SertifikatUpdateManyWithWhereWithoutKursusInput = {
-    where: SertifikatScalarWhereInput
-    data: XOR<SertifikatUpdateManyMutationInput, SertifikatUncheckedUpdateManyWithoutKursusInput>
-  }
-
   export type UserCreateWithoutPendaftaranInput = {
     id?: string
     nama: string
@@ -16795,7 +16466,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusCreateNestedManyWithoutUserInput
     Account?: AccountCreateNestedManyWithoutUserInput
     Session?: SessionCreateNestedManyWithoutUserInput
-    Sertifikat?: SertifikatCreateNestedManyWithoutUserInput
     Jadwal?: JadwalCreateNestedManyWithoutInstrukturInput
   }
 
@@ -16823,7 +16493,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUncheckedCreateNestedManyWithoutUserInput
     Account?: AccountUncheckedCreateNestedManyWithoutUserInput
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    Sertifikat?: SertifikatUncheckedCreateNestedManyWithoutUserInput
     Jadwal?: JadwalUncheckedCreateNestedManyWithoutInstrukturInput
   }
 
@@ -16847,7 +16516,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     user?: UserCreateNestedOneWithoutKursusInstrukturInput
     Jadwal?: JadwalCreateNestedManyWithoutKursusInput
-    Sertifikat?: SertifikatCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateWithoutPendaftaranInput = {
@@ -16865,7 +16533,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId?: string | null
     Jadwal?: JadwalUncheckedCreateNestedManyWithoutKursusInput
-    Sertifikat?: SertifikatUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusCreateOrConnectWithoutPendaftaranInput = {
@@ -16919,10 +16586,11 @@ export namespace Prisma {
     nomor: string
     tanggalTerbit?: Date | string
     fileUrl?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileSize?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    User?: UserCreateNestedOneWithoutSertifikatInput
-    Kursus?: KursusCreateNestedOneWithoutSertifikatInput
   }
 
   export type SertifikatUncheckedCreateWithoutPendaftaranInput = {
@@ -16930,10 +16598,11 @@ export namespace Prisma {
     nomor: string
     tanggalTerbit?: Date | string
     fileUrl?: string | null
+    fileName?: string | null
+    fileType?: string | null
+    fileSize?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    userId?: string | null
-    kursusId?: string | null
   }
 
   export type SertifikatCreateOrConnectWithoutPendaftaranInput = {
@@ -16976,7 +16645,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUpdateManyWithoutUserNestedInput
     Account?: AccountUpdateManyWithoutUserNestedInput
     Session?: SessionUpdateManyWithoutUserNestedInput
-    Sertifikat?: SertifikatUpdateManyWithoutUserNestedInput
     Jadwal?: JadwalUpdateManyWithoutInstrukturNestedInput
   }
 
@@ -17004,7 +16672,6 @@ export namespace Prisma {
     kursusInstruktur?: KursusUncheckedUpdateManyWithoutUserNestedInput
     Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    Sertifikat?: SertifikatUncheckedUpdateManyWithoutUserNestedInput
     Jadwal?: JadwalUncheckedUpdateManyWithoutInstrukturNestedInput
   }
 
@@ -17034,7 +16701,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutKursusInstrukturNestedInput
     Jadwal?: JadwalUpdateManyWithoutKursusNestedInput
-    Sertifikat?: SertifikatUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateWithoutPendaftaranInput = {
@@ -17052,7 +16718,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     Jadwal?: JadwalUncheckedUpdateManyWithoutKursusNestedInput
-    Sertifikat?: SertifikatUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type PaymentUpsertWithoutPendaftaranInput = {
@@ -17118,10 +16783,11 @@ export namespace Prisma {
     nomor?: StringFieldUpdateOperationsInput | string
     tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    User?: UserUpdateOneWithoutSertifikatNestedInput
-    Kursus?: KursusUpdateOneWithoutSertifikatNestedInput
   }
 
   export type SertifikatUncheckedUpdateWithoutPendaftaranInput = {
@@ -17129,10 +16795,11 @@ export namespace Prisma {
     nomor?: StringFieldUpdateOperationsInput | string
     tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
     fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    fileName?: NullableStringFieldUpdateOperationsInput | string | null
+    fileType?: NullableStringFieldUpdateOperationsInput | string | null
+    fileSize?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    kursusId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type PendaftaranCreateWithoutSertifikatInput = {
@@ -17160,108 +16827,6 @@ export namespace Prisma {
   export type PendaftaranCreateOrConnectWithoutSertifikatInput = {
     where: PendaftaranWhereUniqueInput
     create: XOR<PendaftaranCreateWithoutSertifikatInput, PendaftaranUncheckedCreateWithoutSertifikatInput>
-  }
-
-  export type UserCreateWithoutSertifikatInput = {
-    id?: string
-    nama: string
-    nik?: string | null
-    jenisKelamin?: string | null
-    tempatLahir?: string | null
-    tanggalLahir?: string | null
-    mediaSosial?: string | null
-    noHp?: string | null
-    email: string
-    agama?: string | null
-    jurusan?: string | null
-    tahunAkademik?: string | null
-    password?: string | null
-    role?: string
-    keahlian?: string | null
-    jabatan?: string | null
-    image?: string | null
-    emailVerified?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    kursusInstruktur?: KursusCreateNestedManyWithoutUserInput
-    Account?: AccountCreateNestedManyWithoutUserInput
-    Session?: SessionCreateNestedManyWithoutUserInput
-    Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    Jadwal?: JadwalCreateNestedManyWithoutInstrukturInput
-  }
-
-  export type UserUncheckedCreateWithoutSertifikatInput = {
-    id?: string
-    nama: string
-    nik?: string | null
-    jenisKelamin?: string | null
-    tempatLahir?: string | null
-    tanggalLahir?: string | null
-    mediaSosial?: string | null
-    noHp?: string | null
-    email: string
-    agama?: string | null
-    jurusan?: string | null
-    tahunAkademik?: string | null
-    password?: string | null
-    role?: string
-    keahlian?: string | null
-    jabatan?: string | null
-    image?: string | null
-    emailVerified?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    kursusInstruktur?: KursusUncheckedCreateNestedManyWithoutUserInput
-    Account?: AccountUncheckedCreateNestedManyWithoutUserInput
-    Session?: SessionUncheckedCreateNestedManyWithoutUserInput
-    Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    Jadwal?: JadwalUncheckedCreateNestedManyWithoutInstrukturInput
-  }
-
-  export type UserCreateOrConnectWithoutSertifikatInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSertifikatInput, UserUncheckedCreateWithoutSertifikatInput>
-  }
-
-  export type KursusCreateWithoutSertifikatInput = {
-    id?: string
-    nama: string
-    deskripsi?: string | null
-    harga: number
-    lamaKursus?: number | null
-    kuota?: number | null
-    status?: string
-    thumbnail?: string | null
-    tanggalMulai?: Date | string | null
-    tanggalSelesai?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user?: UserCreateNestedOneWithoutKursusInstrukturInput
-    Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
-    Jadwal?: JadwalCreateNestedManyWithoutKursusInput
-  }
-
-  export type KursusUncheckedCreateWithoutSertifikatInput = {
-    id?: string
-    nama: string
-    deskripsi?: string | null
-    harga: number
-    lamaKursus?: number | null
-    kuota?: number | null
-    status?: string
-    thumbnail?: string | null
-    tanggalMulai?: Date | string | null
-    tanggalSelesai?: Date | string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId?: string | null
-    Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
-    Jadwal?: JadwalUncheckedCreateNestedManyWithoutKursusInput
-  }
-
-  export type KursusCreateOrConnectWithoutSertifikatInput = {
-    where: KursusWhereUniqueInput
-    create: XOR<KursusCreateWithoutSertifikatInput, KursusUncheckedCreateWithoutSertifikatInput>
   }
 
   export type PendaftaranUpsertWithoutSertifikatInput = {
@@ -17295,120 +16860,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Payment?: PaymentUncheckedUpdateOneWithoutPendaftaranNestedInput
-  }
-
-  export type UserUpsertWithoutSertifikatInput = {
-    update: XOR<UserUpdateWithoutSertifikatInput, UserUncheckedUpdateWithoutSertifikatInput>
-    create: XOR<UserCreateWithoutSertifikatInput, UserUncheckedCreateWithoutSertifikatInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutSertifikatInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSertifikatInput, UserUncheckedUpdateWithoutSertifikatInput>
-  }
-
-  export type UserUpdateWithoutSertifikatInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
-    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
-    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
-    mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
-    noHp?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    agama?: NullableStringFieldUpdateOperationsInput | string | null
-    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
-    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
-    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
-    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursusInstruktur?: KursusUpdateManyWithoutUserNestedInput
-    Account?: AccountUpdateManyWithoutUserNestedInput
-    Session?: SessionUpdateManyWithoutUserNestedInput
-    Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    Jadwal?: JadwalUpdateManyWithoutInstrukturNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutSertifikatInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    nik?: NullableStringFieldUpdateOperationsInput | string | null
-    jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
-    tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
-    tanggalLahir?: NullableStringFieldUpdateOperationsInput | string | null
-    mediaSosial?: NullableStringFieldUpdateOperationsInput | string | null
-    noHp?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: StringFieldUpdateOperationsInput | string
-    agama?: NullableStringFieldUpdateOperationsInput | string | null
-    jurusan?: NullableStringFieldUpdateOperationsInput | string | null
-    tahunAkademik?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    role?: StringFieldUpdateOperationsInput | string
-    keahlian?: NullableStringFieldUpdateOperationsInput | string | null
-    jabatan?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursusInstruktur?: KursusUncheckedUpdateManyWithoutUserNestedInput
-    Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
-    Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
-    Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    Jadwal?: JadwalUncheckedUpdateManyWithoutInstrukturNestedInput
-  }
-
-  export type KursusUpsertWithoutSertifikatInput = {
-    update: XOR<KursusUpdateWithoutSertifikatInput, KursusUncheckedUpdateWithoutSertifikatInput>
-    create: XOR<KursusCreateWithoutSertifikatInput, KursusUncheckedCreateWithoutSertifikatInput>
-    where?: KursusWhereInput
-  }
-
-  export type KursusUpdateToOneWithWhereWithoutSertifikatInput = {
-    where?: KursusWhereInput
-    data: XOR<KursusUpdateWithoutSertifikatInput, KursusUncheckedUpdateWithoutSertifikatInput>
-  }
-
-  export type KursusUpdateWithoutSertifikatInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
-    harga?: IntFieldUpdateOperationsInput | number
-    lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
-    status?: StringFieldUpdateOperationsInput | string
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneWithoutKursusInstrukturNestedInput
-    Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
-    Jadwal?: JadwalUpdateManyWithoutKursusNestedInput
-  }
-
-  export type KursusUncheckedUpdateWithoutSertifikatInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
-    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
-    harga?: IntFieldUpdateOperationsInput | number
-    lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
-    status?: StringFieldUpdateOperationsInput | string
-    thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
-    tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-    Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
-    Jadwal?: JadwalUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type PendaftaranCreateWithoutPaymentInput = {
@@ -17486,7 +16937,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     user?: UserCreateNestedOneWithoutKursusInstrukturInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutKursusInput
-    Sertifikat?: SertifikatCreateNestedManyWithoutKursusInput
   }
 
   export type KursusUncheckedCreateWithoutJadwalInput = {
@@ -17504,7 +16954,6 @@ export namespace Prisma {
     updatedAt?: Date | string
     userId?: string | null
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutKursusInput
-    Sertifikat?: SertifikatUncheckedCreateNestedManyWithoutKursusInput
   }
 
   export type KursusCreateOrConnectWithoutJadwalInput = {
@@ -17537,7 +16986,6 @@ export namespace Prisma {
     Account?: AccountCreateNestedManyWithoutUserInput
     Session?: SessionCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranCreateNestedManyWithoutUserInput
-    Sertifikat?: SertifikatCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutJadwalInput = {
@@ -17565,7 +17013,6 @@ export namespace Prisma {
     Account?: AccountUncheckedCreateNestedManyWithoutUserInput
     Session?: SessionUncheckedCreateNestedManyWithoutUserInput
     Pendaftaran?: PendaftaranUncheckedCreateNestedManyWithoutUserInput
-    Sertifikat?: SertifikatUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutJadwalInput = {
@@ -17599,7 +17046,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneWithoutKursusInstrukturNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
-    Sertifikat?: SertifikatUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateWithoutJadwalInput = {
@@ -17617,7 +17063,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: NullableStringFieldUpdateOperationsInput | string | null
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
-    Sertifikat?: SertifikatUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type UserUpsertWithoutJadwalInput = {
@@ -17656,7 +17101,6 @@ export namespace Prisma {
     Account?: AccountUpdateManyWithoutUserNestedInput
     Session?: SessionUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUpdateManyWithoutUserNestedInput
-    Sertifikat?: SertifikatUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutJadwalInput = {
@@ -17684,7 +17128,6 @@ export namespace Prisma {
     Account?: AccountUncheckedUpdateManyWithoutUserNestedInput
     Session?: SessionUncheckedUpdateManyWithoutUserNestedInput
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutUserNestedInput
-    Sertifikat?: SertifikatUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type KursusCreateManyUserInput = {
@@ -17731,17 +17174,6 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type SertifikatCreateManyUserInput = {
-    id?: string
-    pendaftaranId: string
-    nomor: string
-    tanggalTerbit?: Date | string
-    fileUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    kursusId?: string | null
-  }
-
   export type JadwalCreateManyInstrukturInput = {
     id?: string
     kursusId: string
@@ -17771,7 +17203,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Pendaftaran?: PendaftaranUpdateManyWithoutKursusNestedInput
     Jadwal?: JadwalUpdateManyWithoutKursusNestedInput
-    Sertifikat?: SertifikatUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateWithoutUserInput = {
@@ -17789,7 +17220,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Pendaftaran?: PendaftaranUncheckedUpdateManyWithoutKursusNestedInput
     Jadwal?: JadwalUncheckedUpdateManyWithoutKursusNestedInput
-    Sertifikat?: SertifikatUncheckedUpdateManyWithoutKursusNestedInput
   }
 
   export type KursusUncheckedUpdateManyWithoutUserInput = {
@@ -17898,39 +17328,6 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type SertifikatUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nomor?: StringFieldUpdateOperationsInput | string
-    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    pendaftaran?: PendaftaranUpdateOneRequiredWithoutSertifikatNestedInput
-    Kursus?: KursusUpdateOneWithoutSertifikatNestedInput
-  }
-
-  export type SertifikatUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    pendaftaranId?: StringFieldUpdateOperationsInput | string
-    nomor?: StringFieldUpdateOperationsInput | string
-    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursusId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type SertifikatUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    pendaftaranId?: StringFieldUpdateOperationsInput | string
-    nomor?: StringFieldUpdateOperationsInput | string
-    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    kursusId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
   export type JadwalUpdateWithoutInstrukturInput = {
     id?: StringFieldUpdateOperationsInput | string
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17994,17 +17391,6 @@ export namespace Prisma {
     status?: string
     createdAt?: Date | string
     updatedAt?: Date | string
-  }
-
-  export type SertifikatCreateManyKursusInput = {
-    id?: string
-    pendaftaranId: string
-    nomor: string
-    tanggalTerbit?: Date | string
-    fileUrl?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId?: string | null
   }
 
   export type PendaftaranUpdateWithoutKursusInput = {
@@ -18078,39 +17464,6 @@ export namespace Prisma {
     status?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type SertifikatUpdateWithoutKursusInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nomor?: StringFieldUpdateOperationsInput | string
-    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    pendaftaran?: PendaftaranUpdateOneRequiredWithoutSertifikatNestedInput
-    User?: UserUpdateOneWithoutSertifikatNestedInput
-  }
-
-  export type SertifikatUncheckedUpdateWithoutKursusInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    pendaftaranId?: StringFieldUpdateOperationsInput | string
-    nomor?: StringFieldUpdateOperationsInput | string
-    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type SertifikatUncheckedUpdateManyWithoutKursusInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    pendaftaranId?: StringFieldUpdateOperationsInput | string
-    nomor?: StringFieldUpdateOperationsInput | string
-    tanggalTerbit?: DateTimeFieldUpdateOperationsInput | Date | string
-    fileUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

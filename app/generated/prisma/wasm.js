@@ -203,10 +203,11 @@ exports.Prisma.SertifikatScalarFieldEnum = {
   nomor: 'nomor',
   tanggalTerbit: 'tanggalTerbit',
   fileUrl: 'fileUrl',
+  fileName: 'fileName',
+  fileType: 'fileType',
+  fileSize: 'fileSize',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  userId: 'userId',
-  kursusId: 'kursusId'
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.PaymentScalarFieldEnum = {

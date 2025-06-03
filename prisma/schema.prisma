@@ -75,7 +75,6 @@ model User {
   Account     Account[]
   Session     Session[]
   Pendaftaran Pendaftaran[]
-  Sertifikat  Sertifikat[]
   Jadwal      Jadwal[]
 
   @@map("users")
@@ -100,7 +99,6 @@ model Kursus {
 
   Pendaftaran Pendaftaran[]
   Jadwal      Jadwal[]
-  Sertifikat  Sertifikat[]
 
   @@map("kursus")
 }
@@ -126,14 +124,13 @@ model Sertifikat {
   nomor         String   @unique
   tanggalTerbit DateTime @default(now())
   fileUrl       String?
+  fileName      String?
+  fileType      String?
+  fileSize      Int?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
   pendaftaran Pendaftaran @relation(fields: [pendaftaranId], references: [id], onDelete: Cascade)
-  User        User?       @relation(fields: [userId], references: [id])
-  userId      String?
-  Kursus      Kursus?     @relation(fields: [kursusId], references: [id])
-  kursusId    String?
 
   @@map("sertifikat")
 }

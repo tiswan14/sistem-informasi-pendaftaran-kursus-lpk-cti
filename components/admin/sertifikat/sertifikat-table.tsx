@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { formatTanggalIndonesia } from "@/utils/formatTanggal";
+import { useState, useEffect } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
@@ -13,39 +14,22 @@ interface Kursus {
     nama: string;
 }
 
-interface Sertifikat {
+interface Pendaftaran {
     id: string;
-    userId: string;
-    kursusId: string;
-    nomor: string;
-    tanggalTerbit: string;  // ISO string, misal "2025-06-03T08:00:00Z"
-    fileUrl?: string | null;
-    user?: User | null;
-    kursus?: Kursus | null;
+    user: User;
+    kursus: Kursus;
 }
 
-const dummyData: Sertifikat[] = [
-    {
-        id: "1",
-        userId: "user-1",
-        kursusId: "kursus-1",
-        nomor: "CERT-2025-001",
-        tanggalTerbit: "2025-06-01T08:00:00Z",
-        fileUrl: "https://example.com/files/cert-001.pdf",
-        user: { id: "user-1", nama: "Andi Saputra" },
-        kursus: { id: "kursus-1", nama: "Pemrograman Dasar" },
-    },
-    {
-        id: "2",
-        userId: "user-2",
-        kursusId: "kursus-2",
-        nomor: "CERT-2025-002",
-        tanggalTerbit: "2025-06-02T08:00:00Z",
-        fileUrl: null,
-        user: { id: "user-2", nama: "Sari Lestari" },
-        kursus: { id: "kursus-2", nama: "Desain Grafis" },
-    },
-];
+interface Sertifikat {
+    id: string;
+    pendaftaranId: string;
+    nomor: string;
+    tanggalTerbit: string;
+    fileUrl: string | null;
+    createdAt: string;
+    updatedAt: string;
+    pendaftaran: Pendaftaran;
+}
 
 const Tooltip = ({ content, children }: { content: string; children: React.ReactNode }) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -66,16 +50,67 @@ const Tooltip = ({ content, children }: { content: string; children: React.React
 };
 
 const SertifikatTable = () => {
-    const [sertifikatData, setSertifikatData] = useState<Sertifikat[]>(dummyData);
+    const [sertifikatData, setSertifikatData] = useState<Sertifikat[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
     const [deleteId, setDeleteId] = useState<string | null>(null);
 
-    const handleDelete = () => {
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/api/sertifikat');
+                if (!response.ok) {
+                    throw new Error('Gagal mengambil data sertifikat');
+                }
+                const data = await response.json();
+                setSertifikatData(data);
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Terjadi kesalahan');
+                toast.error('Gagal memuat data sertifikat');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    const handleDelete = async () => {
         if (!deleteId) return;
 
-        setSertifikatData(sertifikatData.filter((sertifikat) => sertifikat.id !== deleteId));
-        toast.success("Sertifikat berhasil dihapus");
-        setDeleteId(null);
+        try {
+            const response = await fetch(`/api/sertifikat/${deleteId}`, {
+                method: 'DELETE',
+            });
+
+            if (!response.ok) {
+                throw new Error('Gagal menghapus sertifikat');
+            }
+
+            setSertifikatData(sertifikatData.filter((sertifikat) => sertifikat.id !== deleteId));
+            toast.success("Sertifikat berhasil dihapus");
+        } catch (err) {
+            toast.error(err instanceof Error ? err.message : 'Gagal menghapus sertifikat');
+        } finally {
+            setDeleteId(null);
+        }
     };
+
+    if (loading) {
+        return (
+            <div className="bg-white p-6 mt-6 rounded-lg shadow-sm border border-gray-100 flex justify-center items-center h-64">
+                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="bg-white p-6 mt-6 rounded-lg shadow-sm border border-gray-100 text-center text-red-500">
+                {error}
+            </div>
+        );
+    }
 
     return (
         <div className="bg-white p-6 mt-6 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
@@ -141,9 +176,9 @@ const SertifikatTable = () => {
                             <tr key={sertifikat.id} className="hover:bg-gray-50 transition-colors duration-150">
                                 <td className="px-4 py-3 text-sm text-gray-700">{index + 1}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{sertifikat.nomor}</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">{sertifikat.user?.nama || "Tidak diketahui"}</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">{sertifikat.kursus?.nama || "Tidak diketahui"}</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">{new Date(sertifikat.tanggalTerbit).toLocaleDateString()}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{sertifikat.pendaftaran.user.nama}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{sertifikat.pendaftaran.kursus.nama}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{formatTanggalIndonesia(sertifikat.tanggalTerbit)}</td>
                                 <td className="px-4 py-3 text-sm text-blue-600">
                                     {sertifikat.fileUrl ? (
                                         <a href={sertifikat.fileUrl} target="_blank" rel="noopener noreferrer" className="underline">
