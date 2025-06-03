@@ -3,6 +3,12 @@ import Header from "@/components/admin/Header";
 import { Toaster } from "react-hot-toast";
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Dashboard | LPK CTI Ciamis",
+    description: "Dashboard page for managing data and activities",
+};
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
     return (

@@ -91,8 +91,18 @@ const PembayaranTable = () => {
                 <tbody className="bg-white divide-y divide-gray-200">
                     {loading ? (
                         <tr>
-                            <td colSpan={8} className="text-center py-10 text-gray-400 italic">
-                                Loading data pembayaran...
+                            <td colSpan={8} className="py-10 text-center">
+                                <div className="flex flex-col items-center justify-center gap-3">
+                                    <div className="animate-spin rounded-full h-14 w-14 border-4 border-blue-200 border-t-transparent border-r-transparent"></div>
+                                    <div>
+                                        <h3 className="text-md font-medium text-gray-600">
+                                            Memuat data pembayaran
+                                        </h3>
+                                        <p className="text-sm text-gray-400 mt-1">
+                                            Harap tunggu sebentar...
+                                        </p>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     ) : !pembayaranData.length ? (

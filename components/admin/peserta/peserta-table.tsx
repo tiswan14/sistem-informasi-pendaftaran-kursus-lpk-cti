@@ -43,7 +43,6 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
     const [pesertaData, setPesertaData] = useState<Peserta[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [deleteId, setDeleteId] = useState<string | null>(null);
-    // const [editData, setEditData] = useState<Peserta | null>(null);
 
     useEffect(() => {
         const fetchPeserta = async () => {
@@ -62,16 +61,8 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
         fetchPeserta();
     }, []);
 
-    // const handleEdit = (id: string) => {
-    //     const pesertaToEdit = pesertaData.find(peserta => peserta.id === id);
-    //     if (pesertaToEdit) {
-    //         // setEditData(pesertaToEdit);
-    //         // Here you would typically open a modal or navigate to edit page
-    //         console.log("Editing:", pesertaToEdit);
-    //     }
-    // };
 
-    const handleDelete = async (id: number) => {
+    const handleDelete = async (id: string) => {
         try {
             await axios.delete(`/api/peserta/${id}`);
             toast.success("Peserta berhasil dihapus");
@@ -86,28 +77,27 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
         }
     };
 
-    // Misalnya ada props searchQuery dari komponen induk
     const filteredPeserta = pesertaData.filter((peserta) =>
         peserta.nama.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
 
-    if (loading) {
-        return (
-            <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
-            </div>
-        );
-    }
+    // if (loading) {
+    //     return (
+    //         <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
+    //             <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
+    //         </div>
+    //     );
+    // }
 
 
-    if (!pesertaData.length) {
-        return (
-            <div className="bg-white p-6 mt-6 rounded-2xl shadow-md text-center text-gray-500">
-                Tidak ada data peserta
-            </div>
-        );
-    }
+    // if (!pesertaData.length) {
+    //     return (
+    //         <div className="bg-white p-6 mt-6 rounded-2xl shadow-md text-center text-gray-500">
+    //             Tidak ada data peserta
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className="bg-white p-6 mt-6 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
@@ -167,7 +157,23 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {filteredPeserta.length === 0 ? (
+                    {loading ? (
+                        <tr>
+                            <td colSpan={6} className="py-10 text-center">
+                                <div className="flex flex-col items-center justify-center gap-3">
+                                    <div className="animate-spin rounded-full h-14 w-14 border-4 border-blue-200 border-t-transparent border-r-transparent"></div>
+                                    <div>
+                                        <h3 className="text-md font-medium text-gray-600">
+                                            Memuat data peserta
+                                        </h3>
+                                        <p className="text-sm text-gray-400 mt-1">
+                                            Harap tunggu sebentar...
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    ) : filteredPeserta.length === 0 ? (
                         <tr>
                             <td colSpan={7} className="py-10 text-center">
                                 <div className="flex flex-col items-center justify-center gap-2">
@@ -179,7 +185,6 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                             </td>
                         </tr>
                     ) : (
-
                         filteredPeserta.map((peserta, index) => (
                             <tr
                                 key={peserta.id}
@@ -215,27 +220,17 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                                         <Tooltip content="Detail">
                                             <a
                                                 href={`/dashboard/data-peserta/${peserta.id}`}
-                                                className="bg-green-600 hover:bg-green-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
                                                 aria-label="Detail"
                                             >
                                                 <FaEye className="h-4 w-4 text-white" />
                                             </a>
                                         </Tooltip>
 
-                                        {/* <Tooltip content="Edit">
-                                            <button
-                                                onClick={() => handleEdit(peserta.id)}
-                                                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
-                                                aria-label="Edit"
-                                            >
-                                                <FaEdit className="h-4 w-4 text-white" />
-                                            </button>
-                                        </Tooltip> */}
-
                                         <Tooltip content="Hapus">
                                             <button
                                                 onClick={() => setDeleteId(peserta.id)}
-                                                className="bg-red-600 hover:bg-red-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                className="bg-orange-600 hover:bg-orange-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
                                                 aria-label="Hapus"
                                             >
                                                 <FaTrash className="h-4 w-4 text-white" />
@@ -247,7 +242,6 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                         ))
                     )}
                 </tbody>
-
 
             </table>
         </div>

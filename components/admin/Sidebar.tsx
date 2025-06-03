@@ -124,14 +124,14 @@ const Sidebar = () => {
                     </div>
                 </Link>
 
-                <Link href="/dashboard/data-laporan">
+                {/* <Link href="/dashboard/data-laporan">
                     <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 hover:text-gray-600 transition-all group">
                         <div className="p-2 bg-gray-50 rounded-lg group-hover:bg-gray-100 transition">
                             <FaChartBar className="text-gray-500 group-hover:text-gray-600" />
                         </div>
                         {!collapsed && <span className="font-medium">Laporan</span>}
                     </div>
-                </Link>
+                </Link> */}
 
             </nav>
 

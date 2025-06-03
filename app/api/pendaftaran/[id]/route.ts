@@ -93,3 +93,19 @@ export async function OPTIONS() {
 }
 
 
+export const DELETE = async (
+    request: Request,
+    { params }: { params: { id: string } }
+) => {
+    try {
+        const deletePendaftaran = await prisma.pendaftaran.delete({
+            where: {
+                id: params.id,
+            },
+        });
+        return NextResponse.json({ deletePendaftaran }, { status: 200 });
+    } catch (error) {
+        console.error("Error menghapus instruktur:", error);
+        return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    }
+};

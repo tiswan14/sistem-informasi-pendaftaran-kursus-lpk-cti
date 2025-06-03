@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { FaUsers, FaClipboardList, FaChalkboardTeacher, FaCertificate, FaCalendarAlt, FaMoneyBillWave, FaClock } from "react-icons/fa";
+import { FaUsers, FaClipboardList, FaChalkboardTeacher, FaCertificate, FaCalendarAlt, FaMoneyBillWave } from "react-icons/fa";
+
 
 const DashboardPage = () => {
     const [loading, setLoading] = useState(true);

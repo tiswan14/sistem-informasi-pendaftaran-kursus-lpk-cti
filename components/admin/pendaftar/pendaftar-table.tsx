@@ -1,4 +1,5 @@
 "use client";
+import { formatTanggalIndonesia } from "@/utils/formatTanggal";
 import { FilePlus } from "lucide-react";
 import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
@@ -44,6 +45,26 @@ const PendaftarTable = () => {
     const [pendaftarData, setPendaftarData] = useState<Pendaftar[]>([]);
     const [loading, setLoading] = useState(true);
     const [deleteId, setDeleteId] = useState<string | null>(null);
+    const [newStatus, setNewStatus] = useState("");
+
+    const [addNote, setAddNote] = useState(false);
+    const [currentId, setCurrentId] = useState(null);
+    const [keterangan, setKeterangan] = useState("");
+    const handleOpenAddNote = (id, status: string) => {
+        setCurrentId(id);
+        setNewStatus(status);
+        setKeterangan("");
+        setAddNote(true);
+    };
+
+    const handleCancel = () => {
+        setAddNote(false);
+        setCurrentId(null);
+        setKeterangan("");
+        setNewStatus("");
+    };
+
+
 
     useEffect(() => {
         const fetchPendaftar = async () => {
@@ -74,8 +95,10 @@ const PendaftarTable = () => {
 
             setPendaftarData(pendaftarData.filter(p => p.id !== deleteId));
             setDeleteId(null);
+            toast.success("Data pendaftaran berhasil dihapus!");
         } catch (error) {
             console.error("Error:", error);
+            toast.error("Terjadi kesalahan saat menghapus data.");
         }
     };
 
@@ -105,31 +128,50 @@ const PendaftarTable = () => {
         }
     };
 
-    if (loading) {
-        return (
-            <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
-            </div>
-        );
-    }
+
+    const handleSaveNote = async (id: string) => {
+        try {
+            const response = await fetch(`/api/pendaftaran/${id}`, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ status: newStatus, keterangan }),
+            });
+
+            if (!response.ok) throw new Error('Gagal memperbarui data');
+
+            // Update state pendaftar jika perlu
+            setPendaftarData(prev =>
+                prev.map(p => p.id === currentId ? { ...p, status: newStatus, keterangan } : p)
+            );
+
+            setAddNote(false);
+            setCurrentId(null);
+            setKeterangan("");
+            setNewStatus("");
+        } catch (error) {
+            console.error(error);
+            toast.error('Gagal memperbarui data');
+        }
+    };
+
 
     return (
         <div className="bg-white p-6 mt-6 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
             {deleteId && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div className="fixed inset-0 bg-transparent bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-6 rounded-lg max-w-md w-full text-gray-800 shadow-lg">
                         <h3 className="text-lg font-medium mb-4">Konfirmasi Hapus</h3>
                         <p className="mb-6">Yakin ingin menghapus data ini?</p>
                         <div className="flex justify-end space-x-3">
                             <button
                                 onClick={() => setDeleteId(null)}
-                                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
+                                className="cursor-pointer px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
                             >
                                 Batal
                             </button>
                             <button
                                 onClick={handleDelete}
-                                className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
+                                className="cursor-pointer px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700"
                             >
                                 Hapus
                             </button>
@@ -137,6 +179,44 @@ const PendaftarTable = () => {
                     </div>
                 </div>
             )}
+
+
+            {addNote && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white p-6 rounded-lg max-w-md w-full text-gray-800 shadow-lg">
+                        <h3 className="text-lg font-medium mb-4">Tambah Catatan dan Ubah Status</h3>
+
+                        <textarea
+                            className="w-full border rounded p-2 mb-4"
+                            rows={4}
+                            placeholder="Masukkan catatan..."
+                            value={keterangan}
+                            onChange={(e) => setKeterangan(e.target.value)}
+                        />
+
+                        <div className="flex justify-end space-x-3">
+                            <button
+                                onClick={handleCancel}
+                                className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-100"
+                            >
+                                Batal
+                            </button>
+                            <button
+                                onClick={handleSaveNote}
+                                disabled={!keterangan.trim()}
+                                className={`px-4 py-2 rounded-md text-white ${keterangan.trim()
+                                    ? "bg-blue-600 hover:bg-blue-700"
+                                    : "bg-blue-300 cursor-not-allowed"
+                                    }`}
+                            >
+                                Simpan
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+
 
             <table className="w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
@@ -150,7 +230,23 @@ const PendaftarTable = () => {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {!pendaftarData.length ? (
+                    {loading ? (
+                        <tr>
+                            <td colSpan={5} className="py-10 text-center">
+                                <div className="flex flex-col items-center justify-center gap-3">
+                                    <div className="animate-spin rounded-full h-14 w-14 border-4 border-blue-200 border-t-transparent border-r-transparent"></div>
+                                    <div>
+                                        <h3 className="text-md font-medium text-gray-600">
+                                            Memuat data pendaftaran
+                                        </h3>
+                                        <p className="text-sm text-gray-400 mt-1">
+                                            Harap tunggu sebentar...
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    ) : !pendaftarData.length ? (
                         <tr>
                             <td colSpan={7} className="text-center py-10 text-gray-400 italic">
                                 <div className="flex flex-col items-center space-y-2">
@@ -177,14 +273,14 @@ const PendaftarTable = () => {
                                 <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pendaftar.user?.nama || "-"}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pendaftar.kursus?.nama || "-"}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{new Date(pendaftar.createdAt).toLocaleDateString()}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">{formatTanggalIndonesia(pendaftar.createdAt)}</td>
                                 <td className="py-4 whitespace-nowrap text-center">
                                     <select
                                         title="Ubah status pendaftaran"
                                         value={pendaftar.status}
                                         onChange={(e) => handleStatusChange(pendaftar.id, e.target.value)}
                                         className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full appearance-none focus:outline-none focus:ring-1 focus:ring-opacity-50
-      ${pendaftar.status === 'Belum verifikasi' ? 'bg-gray-100 text-gray-800 focus:ring-gray-500' :
+                            ${pendaftar.status === 'Belum verifikasi' ? 'bg-gray-100 text-gray-800 focus:ring-gray-500' :
                                                 pendaftar.status === 'Diterima' ? 'bg-green-100 text-green-800 focus:ring-green-500' :
                                                     pendaftar.status === 'Ditolak' ? 'bg-red-100 text-red-800 focus:ring-red-500' :
                                                         pendaftar.status === 'Lulus' ? 'bg-indigo-100 text-indigo-800 focus:ring-indigo-500' :
@@ -196,24 +292,21 @@ const PendaftarTable = () => {
                                         <option value="Lulus">Lulus</option>
                                     </select>
                                 </td>
-
-
                                 <td className="px-6 py-4 whitespace-nowrap text-center">
                                     <div className="flex justify-center space-x-3">
                                         <Tooltip content="Tambah Catatan">
                                             <button
-                                                // onClick={() => handleAddNoteClick(pendaftar.id)}
+                                                onClick={() => handleOpenAddNote(pendaftar.id)}
                                                 className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md"
                                                 aria-label="Tambah Catatan"
                                             >
                                                 <FilePlus className="h-4 w-4 text-white" />
                                             </button>
                                         </Tooltip>
-
                                         <Tooltip content="Hapus">
                                             <button
                                                 onClick={() => setDeleteId(pendaftar.id)}
-                                                className="bg-red-600 hover:bg-red-700 p-2 rounded-md"
+                                                className="cursor-pointer bg-red-600 hover:bg-red-700 p-2 rounded-md"
                                                 aria-label="Hapus"
                                             >
                                                 <FaTrash className="h-4 w-4 text-white" />
@@ -221,7 +314,6 @@ const PendaftarTable = () => {
                                         </Tooltip>
                                     </div>
                                 </td>
-
                             </tr>
                         ))
                     )}

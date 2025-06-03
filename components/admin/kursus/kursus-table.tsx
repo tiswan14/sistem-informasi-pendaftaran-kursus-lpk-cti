@@ -85,13 +85,6 @@ const KursusTable = () => {
     };
 
 
-    if (loading) {
-        return (
-            <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
-            </div>
-        );
-    }
 
     return (
         <div className="bg-white p-6 mt-6 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
@@ -134,7 +127,23 @@ const KursusTable = () => {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {!kursusData.length ? (
+                    {loading ? (
+                        <tr>
+                            <td colSpan={9} className="py-10 text-center">
+                                <div className="flex flex-col items-center justify-center gap-3">
+                                    <div className="animate-spin rounded-full h-14 w-14 border-4 border-blue-200 border-t-transparent border-r-transparent"></div>
+                                    <div>
+                                        <h3 className="text-md font-medium text-gray-600">
+                                            Memuat data kursus
+                                        </h3>
+                                        <p className="text-sm text-gray-400 mt-1">
+                                            Harap tunggu sebentar...
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    ) : !kursusData.length ? (
                         <tr>
                             <td colSpan={10} className="py-10 text-gray-400 italic text-center">
                                 <div className="flex flex-col items-center justify-center space-y-2">
@@ -168,15 +177,13 @@ const KursusTable = () => {
                                 <td className="px-4 py-3 text-sm text-gray-700">{kursus.kuota ?? '-'}</td>
                                 <td className="px-4 py-3 text-center">
                                     <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold
-    ${kursus.status === 'aktif'
+                        ${kursus.status === 'aktif'
                                             ? 'bg-green-100 text-green-800'
                                             : 'bg-red-100 text-red-800'
                                         }`}>
                                         {kursus.status === 'aktif' ? 'Aktif' : 'Nonaktif'}
                                     </span>
                                 </td>
-
-
                                 <td className="px-4 py-3 text-sm text-gray-700">
                                     <div className="flex justify-start space-x-2">
                                         <Tooltip content="Edit">

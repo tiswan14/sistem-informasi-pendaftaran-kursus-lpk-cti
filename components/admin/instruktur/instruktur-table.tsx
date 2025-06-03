@@ -211,13 +211,13 @@ const InstrukturTable = ({ searchQuery }: InstrukturTableProps) => {
     );
 
 
-    if (loading) {
-        return (
-            <div className="flex justify-center items-center min-h-[calc(100vh-350px)]">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
-            </div>
-        );
-    }
+    // if (loading) {
+    //     return (
+    //         <div className="flex justify-center items-center min-h-[calc(100vh-350px)]">
+    //             <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
+    //         </div>
+    //     );
+    // }
 
     return (
         <div className="bg-white p-6 mt-6 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
@@ -262,7 +262,23 @@ const InstrukturTable = ({ searchQuery }: InstrukturTableProps) => {
                 </thead>
 
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {!filteredInstruktur.length ? (
+                    {loading ? (
+                        <tr>
+                            <td colSpan={6} className="py-10 text-center">
+                                <div className="flex flex-col items-center justify-center gap-3">
+                                    <div className="animate-spin rounded-full h-14 w-14 border-4 border-blue-200 border-t-transparent border-r-transparent"></div>
+                                    <div>
+                                        <h3 className="text-md font-medium text-gray-600">
+                                            Memuat data instruktur
+                                        </h3>
+                                        <p className="text-sm text-gray-400 mt-1">
+                                            Harap tunggu sebentar...
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    ) : !filteredInstruktur.length ? (
                         <tr>
                             <td colSpan={7} className="text-center py-10 text-gray-400 italic">
                                 <div className="flex flex-col items-center space-y-2">
@@ -300,8 +316,8 @@ const InstrukturTable = ({ searchQuery }: InstrukturTableProps) => {
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     <span
                                         className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${instruktur.jenisKelamin === "Laki-laki"
-                                                ? "bg-blue-100 text-blue-800"
-                                                : "bg-pink-100 text-pink-800"
+                                            ? "bg-blue-100 text-blue-800"
+                                            : "bg-pink-100 text-pink-800"
                                             }`}
                                     >
                                         {instruktur.jenisKelamin}
@@ -342,7 +358,6 @@ const InstrukturTable = ({ searchQuery }: InstrukturTableProps) => {
                         ))
                     )}
                 </tbody>
-
             </table>
 
             {pagination.totalPages > 1 && (
