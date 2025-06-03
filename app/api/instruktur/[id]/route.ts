@@ -1,19 +1,9 @@
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@/app/generated/prisma";
 import { hashSync } from "bcrypt-ts";
+import { InstrukturInput } from "@/types/InstrukturInput";
 
 const prisma = new PrismaClient();
-
-interface InstrukturInput {
-    nama: string;
-    nik: string;
-    jenisKelamin: string;
-    noHp: string;
-    email: string;
-    keahlian: string;
-    jabatan: string;
-    password?: string;
-}
 
 export const PUT = async (
     request: Request,

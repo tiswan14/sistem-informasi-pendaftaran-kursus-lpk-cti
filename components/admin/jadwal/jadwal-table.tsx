@@ -1,73 +1,26 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
-
-interface Kursus {
-    id: string;
-    nama: string;
-}
-
-interface Instruktur {
-    id: string;
-    nama: string;
-}
+import { redirect } from "next/navigation";
 
 interface Jadwal {
     id: string;
     kursusId: string;
     instrukturId?: string | null;
     hari: string;
-    jamMulai: string;  // misal "08:00"
-    jamSelesai: string; // misal "10:00"
+    jamMulai: string;
+    jamSelesai: string;
     lokasi?: string | null;
     ruangan?: string | null;
-    status: string; // contoh: "aktif" atau "nonaktif"
-    instruktur?: Instruktur | null;
-    kursus: Kursus; // relasi kursus dengan minimal id dan nama
+    status: string;
+    instruktur?: {
+        nama: string;
+    } | null;
+    kursus: {
+        nama: string;
+    };
 }
-
-const dummyData: Jadwal[] = [
-    {
-        id: "1",
-        kursusId: "kursus-1",
-        instrukturId: "instruktur-1",
-        hari: "Senin",
-        jamMulai: "08:00",
-        jamSelesai: "10:00",
-        lokasi: "Gedung A",
-        ruangan: "Ruang 101",
-        status: "aktif",
-        instruktur: { id: "instruktur-1", nama: "Budi Santoso" },
-        kursus: { id: "kursus-1", nama: "Bahasa Inggris Dasar" },
-    },
-    {
-        id: "2",
-        kursusId: "kursus-2",
-        instrukturId: null,
-        hari: "Rabu",
-        jamMulai: "13:00",
-        jamSelesai: "15:00",
-        lokasi: "Gedung B",
-        ruangan: "Ruang 202",
-        status: "aktif",
-        instruktur: null,
-        kursus: { id: "kursus-2", nama: "Pemrograman JavaScript" },
-    },
-    {
-        id: "3",
-        kursusId: "kursus-3",
-        instrukturId: "instruktur-2",
-        hari: "Jumat",
-        jamMulai: "09:00",
-        jamSelesai: "11:00",
-        lokasi: "Gedung C",
-        ruangan: "Ruang 303",
-        status: "nonaktif",
-        instruktur: { id: "instruktur-2", nama: "Siti Aminah" },
-        kursus: { id: "kursus-3", nama: "Desain Grafis" },
-    },
-];
 
 const Tooltip = ({
     content,
@@ -97,15 +50,49 @@ const Tooltip = ({
 };
 
 const JadwalTable = () => {
-    const [jadwalData, setJadwalData] = useState<Jadwal[]>(dummyData);
+    const [jadwalData, setJadwalData] = useState<Jadwal[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
     const [deleteId, setDeleteId] = useState<string | null>(null);
 
-    const handleDelete = () => {
+    useEffect(() => {
+        const fetchJadwal = async () => {
+            try {
+                const res = await fetch("/api/jadwal");
+                if (!res.ok) throw new Error("Gagal memuat data jadwal");
+                const data: Jadwal[] = await res.json();
+                setJadwalData(data);
+            } catch (error) {
+                console.error("Error:", error);
+                toast.error("Gagal memuat data jadwal");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchJadwal();
+    }, []);
+
+    const handleDelete = async () => {
         if (!deleteId) return;
 
-        setJadwalData(jadwalData.filter((jadwal) => jadwal.id !== deleteId));
-        toast.success("Jadwal berhasil dihapus");
-        setDeleteId(null);
+        try {
+            const res = await fetch(`/api/jadwal/${deleteId}`, {
+                method: "DELETE",
+            });
+
+            const result = await res.json();
+
+            if (!res.ok) {
+                throw new Error(result.message || "Gagal menghapus jadwal");
+            }
+
+            toast.success("Jadwal berhasil dihapus");
+            setJadwalData(jadwalData.filter(jadwal => jadwal.id !== deleteId));
+            setDeleteId(null);
+        } catch (error) {
+            toast.error("Gagal menghapus jadwal");
+            console.error("Error:", error);
+        }
     };
 
     return (
@@ -136,40 +123,36 @@ const JadwalTable = () => {
             <table className="w-full divide-y divide-gray-200 text-left">
                 <thead className="bg-gray-50">
                     <tr>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">
-                            No
-                        </th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">
-                            Hari
-                        </th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">
-                            Nama Kursus
-                        </th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">
-                            Instruktur
-                        </th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">
-                            Lokasi
-                        </th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">
-                            Ruangan
-                        </th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">
-                            Jam Mulai
-                        </th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">
-                            Jam Selesai
-                        </th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">
-                            Status
-                        </th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">
-                            Aksi
-                        </th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">No</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Hari</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Nama Kursus</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Instruktur</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Lokasi</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Ruangan</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Jam Mulai</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Jam Selesai</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Status</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Aksi</th>
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {!jadwalData.length ? (
+                    {loading ? (
+                        <tr>
+                            <td colSpan={9} className="py-10 text-center">
+                                <div className="flex flex-col items-center justify-center gap-3">
+                                    <div className="animate-spin rounded-full h-14 w-14 border-4 border-blue-200 border-t-transparent border-r-transparent"></div>
+                                    <div>
+                                        <h3 className="text-md font-medium text-gray-600">
+                                            Memuat data jadwal
+                                        </h3>
+                                        <p className="text-sm text-gray-400 mt-1">
+                                            Harap tunggu sebentar...
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    ) : !jadwalData.length ? (
                         <tr>
                             <td colSpan={10} className="py-10 text-gray-400 italic text-center">
                                 <div className="flex flex-col items-center justify-center space-y-2">
@@ -192,41 +175,29 @@ const JadwalTable = () => {
                         </tr>
                     ) : (
                         jadwalData.map((jadwal, index) => (
-                            <tr
-                                key={jadwal.id}
-                                className="hover:bg-gray-50 transition-colors duration-150"
-                            >
+                            <tr key={jadwal.id} className="hover:bg-gray-50 transition-colors duration-150">
                                 <td className="px-4 py-3 text-sm text-gray-700">{index + 1}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.hari}</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">
-                                    {jadwal.kursus.nama}
-                                </td>
-                                <td className="px-4 py-3 text-sm text-gray-700">
-                                    {jadwal.instruktur?.nama || "Belum ditentukan"}
-                                </td>
-                                <td className="px-4 py-3 text-sm text-gray-700">
-                                    {jadwal.lokasi || "-"}
-                                </td>
-                                <td className="px-4 py-3 text-sm text-gray-700">
-                                    {jadwal.ruangan || "-"}
-                                </td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{jadwal.kursus.nama}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{jadwal.instruktur?.nama || 'Belum ditentukan'}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{jadwal.lokasi || '-'}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{jadwal.ruangan || '-'}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.jamMulai}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.jamSelesai}</td>
-                                <td
-                                    className={`px-4 py-3 text-sm font-semibold ${jadwal.status === "aktif" ? "text-green-600" : "text-red-600"
-                                        }`}
-                                >
-                                    {jadwal.status}
+                                <td className="px-4 py-3 text-center">
+                                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold
+                                        ${jadwal.status === 'aktif'
+                                            ? 'bg-green-100 text-green-800'
+                                            : 'bg-red-100 text-red-800'
+                                        }`}>
+                                        {jadwal.status === 'aktif' ? 'Aktif' : 'Nonaktif'}
+                                    </span>
                                 </td>
                                 <td className="px-4 py-3 text-sm text-gray-700">
                                     <div className="flex justify-start space-x-2">
                                         <Tooltip content="Edit">
                                             <button
-                                                onClick={() =>
-                                                    alert(
-                                                        `Edit jadwal hari ${jadwal.hari} (${jadwal.jamMulai} - ${jadwal.jamSelesai})`
-                                                    )
-                                                }
+                                                onClick={() => redirect(`/dashboard/data-jadwal/edit/${jadwal.id}`)}
                                                 className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors"
                                             >
                                                 <FaEdit className="w-4 h-4 text-white" />
@@ -247,7 +218,6 @@ const JadwalTable = () => {
                     )}
                 </tbody>
             </table>
-
         </div>
     );
 };

@@ -1,0 +1,10 @@
+export interface InstrukturInput {
+    nama: string;
+    nik: string;
+    jenisKelamin: string;
+    noHp: string;
+    email: string;
+    keahlian: string;
+    jabatan: string;
+    password?: string;
+}

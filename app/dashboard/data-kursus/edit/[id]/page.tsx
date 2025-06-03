@@ -4,12 +4,12 @@ import axios from 'axios';
 import { redirect, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { Calendar, BookOpen, User2, Clock, MapPin, DoorOpen, CheckCircle2, ChevronDown, RefreshCw, Save } from 'lucide-react';
 
 interface Instruktur {
     id: string;
     nama: string;
 }
-
 
 const EditKursusPage = () => {
     const { id } = useParams();
@@ -25,6 +25,7 @@ const EditKursusPage = () => {
     const [instrukturId, setInstrukturId] = useState('');
     const [instrukturs, setInstrukturs] = useState<Instruktur[]>([]);
     const [loading, setLoading] = useState(true);
+    const [isPending, setIsPending] = useState(false);
 
     useEffect(() => {
         const fetchKursus = async () => {
@@ -32,7 +33,6 @@ const EditKursusPage = () => {
                 const res = await axios.get(`/api/kursus/${id}`);
                 const data = res.data;
                 console.log("Full response:", data);
-
 
                 setKursus(data);
                 setNama(data.kursus.nama);
@@ -72,6 +72,7 @@ const EditKursusPage = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsPending(true);
         try {
             const payload = {
                 nama,
@@ -94,10 +95,24 @@ const EditKursusPage = () => {
             redirect('/dashboard/data-kursus');
         } catch (error) {
             console.error("Gagal update:", error);
-            toast.error("Gagal update");
+        } finally {
+            setIsPending(false);
         }
     };
 
+    const handleReset = () => {
+        if (kursus) {
+            setNama(kursus.kursus.nama);
+            setDeskripsi(kursus.kursus.deskripsi);
+            setHarga(kursus.kursus.harga);
+            setLamaKursus(kursus.kursus.lamaKursus);
+            setTanggalMulai(kursus.kursus.tanggalMulai);
+            setTanggalSelesai(kursus.kursus.tanggalSelesai);
+            setKuota(kursus.kursus.kuota);
+            setStatus(kursus.kursus.status);
+            setInstrukturId(kursus.kursus.userId);
+        }
+    };
 
     if (loading) {
         return (
@@ -109,158 +124,178 @@ const EditKursusPage = () => {
     if (!kursus) return <div>Kursus tidak ditemukan.</div>;
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="max-w-md mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg space-y-4"
-        >
-            <h2 className="text-2xl font-semibold text-center text-gray-800">Edit Kursus</h2>
+        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold mb-5 text-gray-700 flex items-center">
+                <BookOpen className="h-5 w-5 mr-2" />
+                Edit Kursus
+            </h2>
 
-            <div className="flex flex-col">
-                <label htmlFor="nama" className="mb-1 text-sm font-medium text-gray-700">
-                    Nama Kursus
-                </label>
-                <input
-                    type="text"
-                    id="nama"
-                    name="nama"
-                    value={nama}
-                    onChange={(e) => setNama(e.target.value)}
-                    className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+            <div className="grid md:grid-cols-2 gap-5">
+                {/* Left Column */}
+                <div className="space-y-4">
+                    {/* Nama Kursus */}
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Nama Kursus</label>
+                        <div className="relative">
+                            <BookOpen className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
+                            <input
+                                type="text"
+                                value={nama}
+                                onChange={(e) => setNama(e.target.value)}
+                                className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
+                                placeholder="Nama kursus"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Harga */}
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Harga</label>
+                        <div className="relative">
+                            <span className="absolute left-3 top-2.5 text-gray-400">Rp</span>
+                            <input
+                                type="number"
+                                value={harga}
+                                onChange={(e) => setHarga(Number(e.target.value))}
+                                className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
+                                placeholder="Harga kursus"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Lama Kursus */}
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Lama Kursus (bulan)</label>
+                        <div className="relative">
+                            <Clock className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
+                            <input
+                                type="number"
+                                value={lamaKursus}
+                                onChange={(e) => setLamaKursus(Number(e.target.value))}
+                                className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
+                                placeholder="Durasi dalam bulan"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Tanggal Mulai */}
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Tanggal Mulai</label>
+                        <div className="relative">
+                            <Calendar className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
+                            <input
+                                type="date"
+                                value={tanggalMulai ? tanggalMulai.split('T')[0] : ''}
+                                onChange={(e) => setTanggalMulai(e.target.value)}
+                                className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Tanggal Selesai */}
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Tanggal Selesai</label>
+                        <div className="relative">
+                            <Calendar className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
+                            <input
+                                type="date"
+                                value={tanggalSelesai ? tanggalSelesai.split('T')[0] : ''}
+                                onChange={(e) => setTanggalSelesai(e.target.value)}
+                                className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right Column */}
+                <div className="space-y-4">
+                    {/* Deskripsi */}
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Deskripsi</label>
+                        <textarea
+                            value={deskripsi}
+                            onChange={(e) => setDeskripsi(e.target.value)}
+                            className="py-2 px-3 rounded-md border border-gray-300 w-full h-24"
+                            placeholder="Deskripsi kursus..."
+                        />
+                    </div>
+
+                    {/* Kuota */}
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Kuota</label>
+                        <div className="relative">
+                            <User2 className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
+                            <input
+                                type="number"
+                                value={kuota}
+                                onChange={(e) => setKuota(Number(e.target.value))}
+                                className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
+                                placeholder="Jumlah kuota"
+                                min={0}
+                            />
+                        </div>
+                    </div>
+
+                    {/* Instruktur */}
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Instruktur</label>
+                        <div className="relative">
+                            <User2 className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
+                            <select
+                                value={instrukturId}
+                                onChange={(e) => setInstrukturId(e.target.value)}
+                                className="py-2 pl-10 pr-10 rounded-md border border-gray-300 w-full appearance-none"
+                            >
+                                <option value="">Pilih Instruktur</option>
+                                {instrukturs.map((instruktur) => (
+                                    <option key={instruktur.id} value={instruktur.id}>
+                                        {instruktur.nama}
+                                    </option>
+                                ))}
+                            </select>
+                            <ChevronDown className="absolute right-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
+                        </div>
+                    </div>
+
+                    {/* Status */}
+                    <div className="mb-4">
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                        <div className="relative">
+                            <CheckCircle2 className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
+                            <select
+                                value={status}
+                                onChange={(e) => setStatus(e.target.value as 'aktif' | 'nonaktif')}
+                                className="py-2 pl-10 pr-10 rounded-md border border-gray-300 w-full appearance-none"
+                            >
+                                <option value="aktif">Aktif</option>
+                                <option value="nonaktif">Nonaktif</option>
+                            </select>
+                            <ChevronDown className="absolute right-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div className="flex flex-col">
-                <label htmlFor="deskripsi" className="mb-1 text-sm font-medium text-gray-700">
-                    Deskripsi
-                </label>
-                <textarea
-                    id="deskripsi"
-                    name="deskripsi"
-                    value={deskripsi}
-                    onChange={(e) => setDeskripsi(e.target.value)}
-                    className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    rows={4}
-                />
-            </div>
-
-
-
-            <div className="flex flex-col">
-                <label htmlFor="nama" className="mb-1 text-sm font-medium text-gray-700">
-                    Harga
-                </label>
-                <input
-                    type="text"
-                    id="harga"
-                    name="harga"
-                    value={harga}
-                    onChange={(e) => setHarga(Number(e.target.value))}
-                    className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-            </div>
-
-
-            <div className="flex flex-col">
-                <label htmlFor="nama" className="mb-1 text-sm font-medium text-gray-700">
-                    Lama Kursus (bulan)
-                </label>
-                <input
-                    type="text"
-                    id="lamaKursus"
-                    name="lamaKursus"
-                    value={lamaKursus}
-                    onChange={(e) => setLamaKursus(Number(e.target.value))}
-                    className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-            </div>
-
-
-            <div className="flex flex-col">
-                <label htmlFor="nama" className="mb-1 text-sm font-medium text-gray-700">
-                    Tanggal Mulai
-                </label>
-                <input
-                    type="date"
-                    id="tanggalMulai"
-                    name="tanggalMulai"
-                    value={tanggalMulai ? tanggalMulai.split('T')[0] : ''}
-                    onChange={(e) => setTanggalMulai(e.target.value)}
-                    className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-            </div>
-            <div className="flex flex-col">
-                <label htmlFor="nama" className="mb-1 text-sm font-medium text-gray-700">
-                    Tanggal Selesai
-                </label>
-                <input
-                    type="date"
-                    id="tanggalSelesai"
-                    name="tanggalSelesai"
-                    value={tanggalSelesai ? tanggalSelesai.split('T')[0] : ''}
-                    onChange={(e) => setTanggalSelesai(e.target.value)}
-                    className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-            </div>
-
-            <div className="flex flex-col">
-                <label htmlFor="kuota" className="mb-1 text-sm font-medium text-gray-700">
-                    Kuota
-                </label>
-                <input
-                    type="number"
-                    id="kuota"
-                    name="kuota"
-                    value={kuota}
-                    onChange={(e) => setKuota(Number(e.target.value))}
-                    className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    min={0}
-                />
-            </div>
-
-            <div className="flex flex-col">
-                <label htmlFor="status" className="mb-1 text-sm font-medium text-gray-700">
-                    Status
-                </label>
-                <select
-                    id="status"
-                    name="status"
-                    value={status}
-                    onChange={(e) => setStatus(e.target.value as 'aktif' | 'nonaktif')}
-                    className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            {/* Buttons */}
+            <div className="flex space-x-3 mt-6">
+                <button
+                    type="button"
+                    onClick={handleReset}
+                    className="cursor-pointer flex-1 bg-gray-100 text-gray-600 py-2 px-4 text-base font-medium rounded-md shadow-sm flex items-center justify-center hover:bg-gray-200 transition-colors"
                 >
-                    <option value="aktif">Aktif</option>
-                    <option value="nonaktif">Nonaktif</option>
-                </select>
-            </div>
+                    <RefreshCw className="h-4 w-4 mr-2" />
+                    Reset
+                </button>
 
-
-            <div>
-                <label htmlFor="instruktur-select" className="block mb-2 font-medium text-gray-700">
-                    Instruktur
-                </label>
-                <select
-                    id="instruktur-select"
-                    value={instrukturId}
-                    onChange={(e) => setInstrukturId(e.target.value)}
-                    className="border border-gray-300 px-3 py-2 rounded"
+                <button
+                    type="submit"
+                    disabled={isPending}
+                    className="cursor-pointer flex-1 bg-blue-600 text-white py-2 px-4 text-base font-medium rounded-md shadow-sm flex items-center justify-center hover:bg-blue-700 transition-colors disabled:opacity-70"
                 >
-                    {instrukturs.map((instruktur) => (
-                        <option key={instruktur.id} value={instruktur.id}>
-                            {instruktur.nama}
-                        </option>
-                    ))}
-                </select>
+                    <Save className="h-4 w-4 mr-2" />
+                    {isPending ? "Menyimpan..." : "Simpan Perubahan"}
+                </button>
             </div>
-
-
-
-
-            <button
-                type="submit"
-                className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200"
-            >
-                Simpan
-            </button>
         </form>
     );
 };
