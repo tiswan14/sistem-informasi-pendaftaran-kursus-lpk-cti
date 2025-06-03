@@ -27,7 +27,7 @@ const Sidebar = () => {
     return (
         <aside className={`${collapsed ? 'w-20' : 'w-64'} bg-white text-gray-700 flex flex-col h-screen border-r border-gray-100 shadow-sm transition-all duration-300`}>
             {/* Logo dan Judul */}
-            <div className={`py-5 px-6 flex items-center ${collapsed ? 'justify-center' : 'justify-between'} border-b border-gray-100`}>
+            <div className={`py-5 px-6 flex items-center ${collapsed ? 'justify-center' : 'justify-between'} border-b border-gray-100 h-[78px]`}>
                 {!collapsed && (
                     <div className="flex items-center gap-3">
                         <div className="p-2 bg-blue-50 rounded-lg">
@@ -106,7 +106,7 @@ const Sidebar = () => {
                     </div>
                 </Link>
 
-                <Link href="/dashboard/jadwal">
+                <Link href="/dashboard/data-jadwal">
                     <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-all group">
                         <div className="p-2 bg-indigo-50 rounded-lg group-hover:bg-indigo-100 transition">
                             <FaCalendarAlt className="text-indigo-500 group-hover:text-indigo-600" />
@@ -115,7 +115,7 @@ const Sidebar = () => {
                     </div>
                 </Link>
 
-                <Link href="/dashboard/sertifikat">
+                <Link href="/dashboard/data-sertifikat">
                     <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-cyan-50 hover:text-cyan-600 transition-all group">
                         <div className="p-2 bg-cyan-50 rounded-lg group-hover:bg-cyan-100 transition">
                             <FaCertificate className="text-cyan-500 group-hover:text-cyan-600" />
@@ -124,7 +124,7 @@ const Sidebar = () => {
                     </div>
                 </Link>
 
-                <Link href="/dashboard/laporan">
+                <Link href="/dashboard/data-laporan">
                     <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 hover:text-gray-600 transition-all group">
                         <div className="p-2 bg-gray-50 rounded-lg group-hover:bg-gray-100 transition">
                             <FaChartBar className="text-gray-500 group-hover:text-gray-600" />

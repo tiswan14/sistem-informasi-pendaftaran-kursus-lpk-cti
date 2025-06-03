@@ -39,13 +39,17 @@ const KursusTable = () => {
     const [deleteId, setDeleteId] = useState<string | null>(null);
 
     useEffect(() => {
+
         const fetchKursus = async () => {
             try {
                 const res = await fetch("/api/kursus");
                 if (!res.ok) throw new Error("Gagal memuat data kursus");
                 const data: Kursus[] = await res.json();
                 setKursusData(data);
+                console.log(data);
+
             } catch (error) {
+
                 console.error("Error:", error);
             } finally {
                 setLoading(false);
@@ -124,13 +128,15 @@ const KursusTable = () => {
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Tanggal Selesai</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Instruktur</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Harga</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Kuota</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Status</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Aksi</th>
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                     {!kursusData.length ? (
                         <tr>
-                            <td colSpan={8} className="py-10 text-gray-400 italic text-center">
+                            <td colSpan={10} className="py-10 text-gray-400 italic text-center">
                                 <div className="flex flex-col items-center justify-center space-y-2">
                                     <svg
                                         className="w-10 h-10 text-gray-300"
@@ -159,6 +165,18 @@ const KursusTable = () => {
                                 <td className="px-4 py-3 text-sm text-gray-700">{formatTanggalIndonesia(kursus.tanggalSelesai)}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{kursus.user?.nama || 'Belum ditentukan'}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{formatRupiah(kursus.harga)}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{kursus.kuota ?? '-'}</td>
+                                <td className="px-4 py-3 text-center">
+                                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold
+    ${kursus.status === 'aktif'
+                                            ? 'bg-green-100 text-green-800'
+                                            : 'bg-red-100 text-red-800'
+                                        }`}>
+                                        {kursus.status === 'aktif' ? 'Aktif' : 'Nonaktif'}
+                                    </span>
+                                </td>
+
+
                                 <td className="px-4 py-3 text-sm text-gray-700">
                                     <div className="flex justify-start space-x-2">
                                         <Tooltip content="Edit">
@@ -184,6 +202,7 @@ const KursusTable = () => {
                     )}
                 </tbody>
             </table>
+
 
 
         </div>

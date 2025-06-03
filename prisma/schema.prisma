@@ -75,6 +75,8 @@ model User {
   Account     Account[]
   Session     Session[]
   Pendaftaran Pendaftaran[]
+  Sertifikat  Sertifikat[]
+  Jadwal      Jadwal[]
 
   @@map("users")
 }
@@ -85,6 +87,9 @@ model Kursus {
   deskripsi      String?
   harga          Int
   lamaKursus     Int?
+  kuota          Int?
+  status         String    @default("aktif")
+  thumbnail      String?
   tanggalMulai   DateTime?
   tanggalSelesai DateTime?
   createdAt      DateTime  @default(now())
@@ -95,6 +100,7 @@ model Kursus {
 
   Pendaftaran Pendaftaran[]
   Jadwal      Jadwal[]
+  Sertifikat  Sertifikat[]
 
   @@map("kursus")
 }
@@ -134,15 +140,36 @@ model Payment {
 }
 
 model Jadwal {
-  id         String   @id @default(cuid())
-  kursusId   String
-  hari       String
-  jamMulai   String
-  jamSelesai String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id           String   @id @default(cuid())
+  kursusId     String
+  instrukturId String?
+  hari         String
+  jamMulai     String
+  jamSelesai   String
+  lokasi       String?
+  ruangan      String?
+  status       String   @default("aktif")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
-  kursus Kursus @relation(fields: [kursusId], references: [id], onDelete: Cascade)
+  kursus     Kursus @relation(fields: [kursusId], references: [id], onDelete: Cascade)
+  instruktur User?  @relation(fields: [instrukturId], references: [id], onDelete: SetNull)
 
   @@map("jadwal")
+}
+
+model Sertifikat {
+  id            String   @id @default(cuid())
+  userId        String
+  kursusId      String
+  nomor         String   @unique
+  tanggalTerbit DateTime @default(now())
+  fileUrl       String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  kursus Kursus @relation(fields: [kursusId], references: [id], onDelete: Cascade)
+
+  @@map("sertifikat")
 }

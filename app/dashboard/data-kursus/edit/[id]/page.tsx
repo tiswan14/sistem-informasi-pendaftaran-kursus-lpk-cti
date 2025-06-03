@@ -20,6 +20,8 @@ const EditKursusPage = () => {
     const [lamaKursus, setLamaKursus] = useState(0);
     const [tanggalMulai, setTanggalMulai] = useState('');
     const [tanggalSelesai, setTanggalSelesai] = useState('');
+    const [kuota, setKuota] = useState(0);
+    const [status, setStatus] = useState<'aktif' | 'nonaktif'>('aktif');
     const [instrukturId, setInstrukturId] = useState('');
     const [instrukturs, setInstrukturs] = useState<Instruktur[]>([]);
     const [loading, setLoading] = useState(true);
@@ -29,6 +31,8 @@ const EditKursusPage = () => {
             try {
                 const res = await axios.get(`/api/kursus/${id}`);
                 const data = res.data;
+                console.log("Full response:", data);
+
 
                 setKursus(data);
                 setNama(data.kursus.nama);
@@ -37,6 +41,8 @@ const EditKursusPage = () => {
                 setLamaKursus(data.kursus.lamaKursus);
                 setTanggalMulai(data.kursus.tanggalMulai);
                 setTanggalSelesai(data.kursus.tanggalSelesai);
+                setKuota(data.kursus.kuota);
+                setStatus(data.kursus.status);
                 setInstrukturId(data.kursus.userId);
                 setLoading(false);
             } catch (error) {
@@ -65,28 +71,33 @@ const EditKursusPage = () => {
     }, [id]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-
         e.preventDefault();
         try {
-            await axios.put(`/api/kursus/${id}`, {
+            const payload = {
                 nama,
                 deskripsi,
                 harga,
                 lamaKursus,
                 tanggalMulai,
                 tanggalSelesai,
+                kuota,
+                status,
                 userId: instrukturId,
-            });
-            console.log("instrukturId: ", instrukturId);
+            };
 
+            const response = await axios.put(`/api/kursus/${id}`, payload);
+
+            console.log("Payload yang dikirim:", payload);
+            console.log("Respon dari server:", response.data);
+
+            toast.success("Kursus berhasil diupdate");
+            redirect('/dashboard/data-kursus');
         } catch (error) {
             console.error("Gagal update:", error);
             toast.error("Gagal update");
         }
-        toast.success("Kursus berhasil diupdate");
-        redirect('/dashboard/data-kursus');
-
     };
+
 
     if (loading) {
         return (
@@ -190,6 +201,38 @@ const EditKursusPage = () => {
                     className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
             </div>
+
+            <div className="flex flex-col">
+                <label htmlFor="kuota" className="mb-1 text-sm font-medium text-gray-700">
+                    Kuota
+                </label>
+                <input
+                    type="number"
+                    id="kuota"
+                    name="kuota"
+                    value={kuota}
+                    onChange={(e) => setKuota(Number(e.target.value))}
+                    className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    min={0}
+                />
+            </div>
+
+            <div className="flex flex-col">
+                <label htmlFor="status" className="mb-1 text-sm font-medium text-gray-700">
+                    Status
+                </label>
+                <select
+                    id="status"
+                    name="status"
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value as 'aktif' | 'nonaktif')}
+                    className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    <option value="aktif">Aktif</option>
+                    <option value="nonaktif">Nonaktif</option>
+                </select>
+            </div>
+
 
             <div>
                 <label htmlFor="instruktur-select" className="block mb-2 font-medium text-gray-700">

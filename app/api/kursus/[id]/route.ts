@@ -36,6 +36,8 @@ export async function PUT(
             lamaKursus,
             tanggalMulai,
             tanggalSelesai,
+            kuota,
+            status,
             userId,
         } = body;
 
@@ -49,6 +51,8 @@ export async function PUT(
                 lamaKursus: lamaKursus ? Number(lamaKursus) : null,
                 tanggalMulai: tanggalMulai ? new Date(tanggalMulai) : null,
                 tanggalSelesai: tanggalSelesai ? new Date(tanggalSelesai) : null,
+                kuota: kuota ? Number(kuota) : null,
+                status,
                 userId: userId || null,
             },
         });

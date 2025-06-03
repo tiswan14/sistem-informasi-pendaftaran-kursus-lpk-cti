@@ -68,6 +68,8 @@ export const getKursusDetailById = async (kursusId: string) => {
                 lamaKursus: true,
                 tanggalMulai: true,
                 tanggalSelesai: true,
+                kuota: true,
+                status: true,
                 userId: true,
                 user: {
                     select: {

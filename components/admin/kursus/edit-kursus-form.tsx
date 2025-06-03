@@ -6,10 +6,13 @@ interface Kursus {
     deskripsi: string | null;
     harga: number;
     lamaKursus: number | null;
-    tanggalMulai: string | null;   // simpan sebagai string format YYYY-MM-DD atau null
-    tanggalSelesai: string | null; // simpan sebagai string format YYYY-MM-DD atau null
+    tanggalMulai: string | null;
+    tanggalSelesai: string | null;
     userId: string | null;
+    kuota: number | null;
+    status: "aktif" | "nonaktif";
 }
+
 
 interface EditKursusFormProps {
     initialData: Kursus;
@@ -33,6 +36,8 @@ const EditKursusForm: React.FC<EditKursusFormProps> = ({
     const [lamaKursus, setLamaKursus] = useState<number | "">(0);
     const [tanggalMulai, setTanggalMulai] = useState("");
     const [tanggalSelesai, setTanggalSelesai] = useState("");
+    const [kuota, setKuota] = useState<number | "">(0);
+    const [status, setStatus] = useState<"aktif" | "nonaktif">("aktif");
     const [userId, setUserId] = useState("");
     const [isUpdating, setIsUpdating] = useState(false);
     const [error, setError] = useState("");
@@ -46,8 +51,11 @@ const EditKursusForm: React.FC<EditKursusFormProps> = ({
             setTanggalMulai(initialData.tanggalMulai ?? "");
             setTanggalSelesai(initialData.tanggalSelesai ?? "");
             setUserId(initialData.userId ?? "");
+            setKuota(initialData.kuota ?? ""); // Perhatikan perubahan di sini
+            setStatus(initialData.status || "aktif");
         }
     }, [initialData]);
+
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -68,6 +76,8 @@ const EditKursusForm: React.FC<EditKursusFormProps> = ({
                     tanggalMulai: tanggalMulai || null,
                     tanggalSelesai: tanggalSelesai || null,
                     userId: user?.id || userId || null,
+                    kuota: kuota === "" ? null : Number(kuota), // Tambahkan ini
+                    status, // Tambahkan ini
                 }),
             });
 
@@ -184,6 +194,31 @@ const EditKursusForm: React.FC<EditKursusFormProps> = ({
                         />
                     </div>
                 </div>
+
+                {/* Untuk kuota */}
+                <input
+                    id="kuota"
+                    type="number"
+                    className="w-full p-2 border rounded"
+                    value={kuota}
+                    onChange={(e) =>
+                        setKuota(e.target.value === "" ? "" : Number(e.target.value))
+                    }
+                    min={0}
+                />
+
+                {/* Untuk status */}
+                <select
+                    id="status"
+                    className="w-full p-2 border rounded"
+                    value={status}
+                    onChange={(e) => setStatus(e.target.value as "aktif" | "nonaktif")}
+                >
+                    <option value="aktif">Aktif</option>
+                    <option value="nonaktif">Nonaktif</option>
+                </select>
+
+
 
                 {!user && (
                     <div className="mb-4">
