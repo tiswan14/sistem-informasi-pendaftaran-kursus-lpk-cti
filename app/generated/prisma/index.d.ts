@@ -9996,6 +9996,7 @@ export namespace Prisma {
     id: string | null
     kursusId: string | null
     instrukturId: string | null
+    deskripsi: string | null
     hari: string | null
     jamMulai: string | null
     jamSelesai: string | null
@@ -10010,6 +10011,7 @@ export namespace Prisma {
     id: string | null
     kursusId: string | null
     instrukturId: string | null
+    deskripsi: string | null
     hari: string | null
     jamMulai: string | null
     jamSelesai: string | null
@@ -10024,6 +10026,7 @@ export namespace Prisma {
     id: number
     kursusId: number
     instrukturId: number
+    deskripsi: number
     hari: number
     jamMulai: number
     jamSelesai: number
@@ -10040,6 +10043,7 @@ export namespace Prisma {
     id?: true
     kursusId?: true
     instrukturId?: true
+    deskripsi?: true
     hari?: true
     jamMulai?: true
     jamSelesai?: true
@@ -10054,6 +10058,7 @@ export namespace Prisma {
     id?: true
     kursusId?: true
     instrukturId?: true
+    deskripsi?: true
     hari?: true
     jamMulai?: true
     jamSelesai?: true
@@ -10068,6 +10073,7 @@ export namespace Prisma {
     id?: true
     kursusId?: true
     instrukturId?: true
+    deskripsi?: true
     hari?: true
     jamMulai?: true
     jamSelesai?: true
@@ -10155,6 +10161,7 @@ export namespace Prisma {
     id: string
     kursusId: string
     instrukturId: string | null
+    deskripsi: string | null
     hari: string
     jamMulai: string
     jamSelesai: string
@@ -10186,6 +10193,7 @@ export namespace Prisma {
     id?: boolean
     kursusId?: boolean
     instrukturId?: boolean
+    deskripsi?: boolean
     hari?: boolean
     jamMulai?: boolean
     jamSelesai?: boolean
@@ -10202,6 +10210,7 @@ export namespace Prisma {
     id?: boolean
     kursusId?: boolean
     instrukturId?: boolean
+    deskripsi?: boolean
     hari?: boolean
     jamMulai?: boolean
     jamSelesai?: boolean
@@ -10218,6 +10227,7 @@ export namespace Prisma {
     id?: boolean
     kursusId?: boolean
     instrukturId?: boolean
+    deskripsi?: boolean
     hari?: boolean
     jamMulai?: boolean
     jamSelesai?: boolean
@@ -10234,6 +10244,7 @@ export namespace Prisma {
     id?: boolean
     kursusId?: boolean
     instrukturId?: boolean
+    deskripsi?: boolean
     hari?: boolean
     jamMulai?: boolean
     jamSelesai?: boolean
@@ -10244,7 +10255,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type JadwalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "kursusId" | "instrukturId" | "hari" | "jamMulai" | "jamSelesai" | "lokasi" | "ruangan" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["jadwal"]>
+  export type JadwalOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "kursusId" | "instrukturId" | "deskripsi" | "hari" | "jamMulai" | "jamSelesai" | "lokasi" | "ruangan" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["jadwal"]>
   export type JadwalInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     kursus?: boolean | KursusDefaultArgs<ExtArgs>
     instruktur?: boolean | Jadwal$instrukturArgs<ExtArgs>
@@ -10268,6 +10279,7 @@ export namespace Prisma {
       id: string
       kursusId: string
       instrukturId: string | null
+      deskripsi: string | null
       hari: string
       jamMulai: string
       jamSelesai: string
@@ -10704,6 +10716,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Jadwal", 'String'>
     readonly kursusId: FieldRef<"Jadwal", 'String'>
     readonly instrukturId: FieldRef<"Jadwal", 'String'>
+    readonly deskripsi: FieldRef<"Jadwal", 'String'>
     readonly hari: FieldRef<"Jadwal", 'String'>
     readonly jamMulai: FieldRef<"Jadwal", 'String'>
     readonly jamSelesai: FieldRef<"Jadwal", 'String'>
@@ -12385,6 +12398,7 @@ export namespace Prisma {
     id: 'id',
     kursusId: 'kursusId',
     instrukturId: 'instrukturId',
+    deskripsi: 'deskripsi',
     hari: 'hari',
     jamMulai: 'jamMulai',
     jamSelesai: 'jamSelesai',
@@ -13127,6 +13141,7 @@ export namespace Prisma {
     id?: StringFilter<"Jadwal"> | string
     kursusId?: StringFilter<"Jadwal"> | string
     instrukturId?: StringNullableFilter<"Jadwal"> | string | null
+    deskripsi?: StringNullableFilter<"Jadwal"> | string | null
     hari?: StringFilter<"Jadwal"> | string
     jamMulai?: StringFilter<"Jadwal"> | string
     jamSelesai?: StringFilter<"Jadwal"> | string
@@ -13143,6 +13158,7 @@ export namespace Prisma {
     id?: SortOrder
     kursusId?: SortOrder
     instrukturId?: SortOrderInput | SortOrder
+    deskripsi?: SortOrderInput | SortOrder
     hari?: SortOrder
     jamMulai?: SortOrder
     jamSelesai?: SortOrder
@@ -13162,6 +13178,7 @@ export namespace Prisma {
     NOT?: JadwalWhereInput | JadwalWhereInput[]
     kursusId?: StringFilter<"Jadwal"> | string
     instrukturId?: StringNullableFilter<"Jadwal"> | string | null
+    deskripsi?: StringNullableFilter<"Jadwal"> | string | null
     hari?: StringFilter<"Jadwal"> | string
     jamMulai?: StringFilter<"Jadwal"> | string
     jamSelesai?: StringFilter<"Jadwal"> | string
@@ -13178,6 +13195,7 @@ export namespace Prisma {
     id?: SortOrder
     kursusId?: SortOrder
     instrukturId?: SortOrderInput | SortOrder
+    deskripsi?: SortOrderInput | SortOrder
     hari?: SortOrder
     jamMulai?: SortOrder
     jamSelesai?: SortOrder
@@ -13198,6 +13216,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Jadwal"> | string
     kursusId?: StringWithAggregatesFilter<"Jadwal"> | string
     instrukturId?: StringNullableWithAggregatesFilter<"Jadwal"> | string | null
+    deskripsi?: StringNullableWithAggregatesFilter<"Jadwal"> | string | null
     hari?: StringWithAggregatesFilter<"Jadwal"> | string
     jamMulai?: StringWithAggregatesFilter<"Jadwal"> | string
     jamSelesai?: StringWithAggregatesFilter<"Jadwal"> | string
@@ -13989,6 +14008,7 @@ export namespace Prisma {
 
   export type JadwalCreateInput = {
     id?: string
+    deskripsi?: string | null
     hari: string
     jamMulai: string
     jamSelesai: string
@@ -14005,6 +14025,7 @@ export namespace Prisma {
     id?: string
     kursusId: string
     instrukturId?: string | null
+    deskripsi?: string | null
     hari: string
     jamMulai: string
     jamSelesai: string
@@ -14017,6 +14038,7 @@ export namespace Prisma {
 
   export type JadwalUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     hari?: StringFieldUpdateOperationsInput | string
     jamMulai?: StringFieldUpdateOperationsInput | string
     jamSelesai?: StringFieldUpdateOperationsInput | string
@@ -14033,6 +14055,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     kursusId?: StringFieldUpdateOperationsInput | string
     instrukturId?: NullableStringFieldUpdateOperationsInput | string | null
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     hari?: StringFieldUpdateOperationsInput | string
     jamMulai?: StringFieldUpdateOperationsInput | string
     jamSelesai?: StringFieldUpdateOperationsInput | string
@@ -14047,6 +14070,7 @@ export namespace Prisma {
     id?: string
     kursusId: string
     instrukturId?: string | null
+    deskripsi?: string | null
     hari: string
     jamMulai: string
     jamSelesai: string
@@ -14059,6 +14083,7 @@ export namespace Prisma {
 
   export type JadwalUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     hari?: StringFieldUpdateOperationsInput | string
     jamMulai?: StringFieldUpdateOperationsInput | string
     jamSelesai?: StringFieldUpdateOperationsInput | string
@@ -14073,6 +14098,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     kursusId?: StringFieldUpdateOperationsInput | string
     instrukturId?: NullableStringFieldUpdateOperationsInput | string | null
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     hari?: StringFieldUpdateOperationsInput | string
     jamMulai?: StringFieldUpdateOperationsInput | string
     jamSelesai?: StringFieldUpdateOperationsInput | string
@@ -14775,6 +14801,7 @@ export namespace Prisma {
     id?: SortOrder
     kursusId?: SortOrder
     instrukturId?: SortOrder
+    deskripsi?: SortOrder
     hari?: SortOrder
     jamMulai?: SortOrder
     jamSelesai?: SortOrder
@@ -14789,6 +14816,7 @@ export namespace Prisma {
     id?: SortOrder
     kursusId?: SortOrder
     instrukturId?: SortOrder
+    deskripsi?: SortOrder
     hari?: SortOrder
     jamMulai?: SortOrder
     jamSelesai?: SortOrder
@@ -14803,6 +14831,7 @@ export namespace Prisma {
     id?: SortOrder
     kursusId?: SortOrder
     instrukturId?: SortOrder
+    deskripsi?: SortOrder
     hari?: SortOrder
     jamMulai?: SortOrder
     jamSelesai?: SortOrder
@@ -16068,6 +16097,7 @@ export namespace Prisma {
 
   export type JadwalCreateWithoutInstrukturInput = {
     id?: string
+    deskripsi?: string | null
     hari: string
     jamMulai: string
     jamSelesai: string
@@ -16082,6 +16112,7 @@ export namespace Prisma {
   export type JadwalUncheckedCreateWithoutInstrukturInput = {
     id?: string
     kursusId: string
+    deskripsi?: string | null
     hari: string
     jamMulai: string
     jamSelesai: string
@@ -16279,6 +16310,7 @@ export namespace Prisma {
     id?: StringFilter<"Jadwal"> | string
     kursusId?: StringFilter<"Jadwal"> | string
     instrukturId?: StringNullableFilter<"Jadwal"> | string | null
+    deskripsi?: StringNullableFilter<"Jadwal"> | string | null
     hari?: StringFilter<"Jadwal"> | string
     jamMulai?: StringFilter<"Jadwal"> | string
     jamSelesai?: StringFilter<"Jadwal"> | string
@@ -16382,6 +16414,7 @@ export namespace Prisma {
 
   export type JadwalCreateWithoutKursusInput = {
     id?: string
+    deskripsi?: string | null
     hari: string
     jamMulai: string
     jamSelesai: string
@@ -16396,6 +16429,7 @@ export namespace Prisma {
   export type JadwalUncheckedCreateWithoutKursusInput = {
     id?: string
     instrukturId?: string | null
+    deskripsi?: string | null
     hari: string
     jamMulai: string
     jamSelesai: string
@@ -17410,6 +17444,7 @@ export namespace Prisma {
   export type JadwalCreateManyInstrukturInput = {
     id?: string
     kursusId: string
+    deskripsi?: string | null
     hari: string
     jamMulai: string
     jamSelesai: string
@@ -17592,6 +17627,7 @@ export namespace Prisma {
 
   export type JadwalUpdateWithoutInstrukturInput = {
     id?: StringFieldUpdateOperationsInput | string
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     hari?: StringFieldUpdateOperationsInput | string
     jamMulai?: StringFieldUpdateOperationsInput | string
     jamSelesai?: StringFieldUpdateOperationsInput | string
@@ -17606,6 +17642,7 @@ export namespace Prisma {
   export type JadwalUncheckedUpdateWithoutInstrukturInput = {
     id?: StringFieldUpdateOperationsInput | string
     kursusId?: StringFieldUpdateOperationsInput | string
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     hari?: StringFieldUpdateOperationsInput | string
     jamMulai?: StringFieldUpdateOperationsInput | string
     jamSelesai?: StringFieldUpdateOperationsInput | string
@@ -17619,6 +17656,7 @@ export namespace Prisma {
   export type JadwalUncheckedUpdateManyWithoutInstrukturInput = {
     id?: StringFieldUpdateOperationsInput | string
     kursusId?: StringFieldUpdateOperationsInput | string
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     hari?: StringFieldUpdateOperationsInput | string
     jamMulai?: StringFieldUpdateOperationsInput | string
     jamSelesai?: StringFieldUpdateOperationsInput | string
@@ -17641,6 +17679,7 @@ export namespace Prisma {
   export type JadwalCreateManyKursusInput = {
     id?: string
     instrukturId?: string | null
+    deskripsi?: string | null
     hari: string
     jamMulai: string
     jamSelesai: string
@@ -17692,6 +17731,7 @@ export namespace Prisma {
 
   export type JadwalUpdateWithoutKursusInput = {
     id?: StringFieldUpdateOperationsInput | string
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     hari?: StringFieldUpdateOperationsInput | string
     jamMulai?: StringFieldUpdateOperationsInput | string
     jamSelesai?: StringFieldUpdateOperationsInput | string
@@ -17706,6 +17746,7 @@ export namespace Prisma {
   export type JadwalUncheckedUpdateWithoutKursusInput = {
     id?: StringFieldUpdateOperationsInput | string
     instrukturId?: NullableStringFieldUpdateOperationsInput | string | null
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     hari?: StringFieldUpdateOperationsInput | string
     jamMulai?: StringFieldUpdateOperationsInput | string
     jamSelesai?: StringFieldUpdateOperationsInput | string
@@ -17719,6 +17760,7 @@ export namespace Prisma {
   export type JadwalUncheckedUpdateManyWithoutKursusInput = {
     id?: StringFieldUpdateOperationsInput | string
     instrukturId?: NullableStringFieldUpdateOperationsInput | string | null
+    deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     hari?: StringFieldUpdateOperationsInput | string
     jamMulai?: StringFieldUpdateOperationsInput | string
     jamSelesai?: StringFieldUpdateOperationsInput | string

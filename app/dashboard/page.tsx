@@ -61,11 +61,71 @@ const DashboardPage = () => {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
+            <div className="p-6 bg-white rounded-lg shadow-md">
+                <h1 className="text-2xl font-semibold mb-6 text-gray-800">
+                    <div className="h-8 bg-gray-200 rounded w-1/4 animate-pulse"></div>
+                </h1>
+
+                {/* Card Skeletons */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-8">
+                    {[...Array(6)].map((_, i) => (
+                        <div key={i} className="bg-white p-5 rounded-xl shadow-xs border border-gray-100">
+                            <div className="flex items-center space-x-4">
+                                <div className="p-3 rounded-lg bg-gray-200 animate-pulse">
+                                    <div className="w-5 h-5"></div>
+                                </div>
+                                <div className="flex-1">
+                                    <div className="h-4 bg-gray-200 rounded w-3/4 mb-2 animate-pulse"></div>
+                                    <div className="h-8 bg-gray-200 rounded w-1/2 animate-pulse"></div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Table Skeleton */}
+                <div className="mt-8">
+                    <h2 className="text-xl font-semibold mb-6 text-gray-800">
+                        <div className="h-6 bg-gray-200 rounded w-1/3 animate-pulse"></div>
+                    </h2>
+
+                    <div className="overflow-x-auto bg-white rounded-xl shadow-sm border border-gray-100">
+                        <table className="min-w-full divide-y divide-gray-200">
+                            <thead className="bg-gray-50">
+                                <tr>
+                                    {[...Array(6)].map((_, i) => (
+                                        <th key={i} className="px-6 py-3">
+                                            <div className="h-4 bg-gray-200 rounded w-3/4 animate-pulse"></div>
+                                        </th>
+                                    ))}
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-100">
+                                {[...Array(3)].map((_, rowIndex) => (
+                                    <tr key={rowIndex} className="hover:bg-gray-50">
+                                        {[...Array(6)].map((_, colIndex) => (
+                                            <td key={colIndex} className="px-6 py-4">
+                                                <div
+                                                    className="h-4 bg-gray-200 rounded animate-pulse"
+                                                    style={{
+                                                        width: colIndex === 1 ? '80%' : '50%',
+                                                        animationDelay: `${rowIndex * 0.05}s`,
+                                                        animationDuration: '1.5s'
+                                                    }}
+                                                ></div>
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         );
     }
+
+
 
     return (
         <div className="p-6 bg-white rounded-lg shadow-md">

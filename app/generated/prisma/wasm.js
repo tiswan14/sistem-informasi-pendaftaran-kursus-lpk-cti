@@ -220,6 +220,7 @@ exports.Prisma.JadwalScalarFieldEnum = {
   id: 'id',
   kursusId: 'kursusId',
   instrukturId: 'instrukturId',
+  deskripsi: 'deskripsi',
   hari: 'hari',
   jamMulai: 'jamMulai',
   jamSelesai: 'jamSelesai',

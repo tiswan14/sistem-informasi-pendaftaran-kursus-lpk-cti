@@ -143,6 +143,7 @@ model Jadwal {
   id           String   @id @default(cuid())
   kursusId     String
   instrukturId String?
+  deskripsi    String?
   hari         String
   jamMulai     String
   jamSelesai   String
