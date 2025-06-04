@@ -1,7 +1,9 @@
 "use client";
 import { formatTanggalIndonesia } from "@/utils/formatTanggal";
+import { Download, ExternalLink, Eye, FileCheck, FileCheck2, FileSearch, FileText, FileX, FolderOpen, Link, Link2, Paperclip, Printer, ScrollText } from "lucide-react";
+import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaCertificate, FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 interface User {
@@ -179,25 +181,37 @@ const SertifikatTable = () => {
                                 <td className="px-4 py-3 text-sm text-gray-700">{sertifikat.pendaftaran.user.nama}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{sertifikat.pendaftaran.kursus.nama}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{formatTanggalIndonesia(sertifikat.tanggalTerbit)}</td>
-                                <td className="px-4 py-3 text-sm text-blue-600">
+                                <td className="px-4 py-3">
                                     {sertifikat.fileUrl ? (
-                                        <a href={sertifikat.fileUrl} target="_blank" rel="noopener noreferrer" className="underline">
-                                            Lihat File
+                                        <a
+                                            href={sertifikat.fileUrl}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium bg-blue-100 text-blue-800 hover:bg-blue-200 transition-colors"
+                                        >
+                                            <FileText className="w-4 h-4 mr-2" />
+                                            Lihat Sertifikat
                                         </a>
                                     ) : (
-                                        "-"
+                                        <span className="inline-flex items-center text-gray-400">
+                                            <FileX className="w-4 h-4 mr-1" />
+                                            Tidak Ada File
+                                        </span>
                                     )}
                                 </td>
                                 <td className="px-4 py-3 text-sm text-gray-700">
                                     <div className="flex justify-start space-x-2">
                                         <Tooltip content="Edit">
-                                            <button
-                                                onClick={() => alert(`Edit sertifikat nomor ${sertifikat.nomor}`)}
-                                                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors"
-                                            >
-                                                <FaEdit className="w-4 h-4 text-white" />
-                                            </button>
+                                            <Tooltip content="Edit">
+                                                <button
+                                                    onClick={() => redirect(`/dashboard/data-sertifikat/edit/${sertifikat.id}`)}
+                                                    className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors"
+                                                >
+                                                    <FaEdit className="w-4 h-4 text-white" />
+                                                </button>
+                                            </Tooltip>
                                         </Tooltip>
+
                                         <Tooltip content="Hapus">
                                             <button
                                                 onClick={() => setDeleteId(sertifikat.id)}

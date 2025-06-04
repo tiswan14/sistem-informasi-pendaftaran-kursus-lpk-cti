@@ -55,6 +55,7 @@ const TambahInstrukturForm = () => {
     const handleSubmit = async (e: SyntheticEvent) => {
         e.preventDefault()
         setIsPending(true)
+
         try {
             await axios.post('/api/instruktur', {
                 nama,
@@ -66,15 +67,19 @@ const TambahInstrukturForm = () => {
                 jabatan,
                 password
             })
-            redirect("/dashboard/data-instruktur")
 
+            toast.success("Instruktur berhasil ditambahkan")
             setIsPending(false)
 
+            redirect("/dashboard/data-instruktur")
+
         } catch (error) {
-            console.log("Error tambah instruktur", error)
+            console.error("Error tambah instruktur:", error)
+            toast.error("Gagal menambahkan instruktur") // tampilkan toast error
+            setIsPending(false)
         }
-        toast.success("Instruktur berhasil ditambahkan")
     }
+
 
 
 

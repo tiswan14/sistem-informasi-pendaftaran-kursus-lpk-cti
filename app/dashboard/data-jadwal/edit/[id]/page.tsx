@@ -53,7 +53,6 @@ const EditJadwalForm = () => {
                 const jadwalData = response.data;
 
                 setKursusId(jadwalData.kursusId || "");
-                setInstrukturId(jadwalData.instrukturId || "");
                 setDeskripsi(jadwalData.deskripsi || "");
                 setHari(jadwalData.hari || "");
                 setJamMulai(jadwalData.jamMulai || "");
@@ -65,9 +64,10 @@ const EditJadwalForm = () => {
                 console.error("Error fetching jadwal data:", error);
                 toast.error("Gagal memuat data jadwal");
             } finally {
-                setLoading(false); // Tambahkan ini
+                setLoading(false);
             }
         };
+
 
         const fetchKursus = async () => {
             try {
@@ -81,21 +81,8 @@ const EditJadwalForm = () => {
             }
         };
 
-        const fetchInstruktur = async () => {
-            try {
-                const response = await axios.get('/api/instruktur/all');
-                setInstrukturList(response.data);
-            } catch (err) {
-                setErrorInstruktur(err.message || 'Gagal memuat data instruktur');
-                console.error("Error fetching instruktur:", err);
-            } finally {
-                setLoadingInstruktur(false);
-            }
-        };
-
         fetchJadwalData();
         fetchKursus();
-        fetchInstruktur();
     }, [id]);
 
     const handleSubmit = async (e: SyntheticEvent) => {
@@ -104,7 +91,6 @@ const EditJadwalForm = () => {
         try {
             await axios.put(`/api/jadwal/${id}`, {
                 kursusId,
-                instrukturId,
                 deskripsi,
                 hari,
                 jamMulai,
@@ -165,7 +151,7 @@ const EditJadwalForm = () => {
                                 <option value="">Pilih Kursus</option>
                                 {kursusList.map((kursus) => (
                                     <option key={kursus.id} value={kursus.id}>
-                                        {kursus.nama}
+                                        {kursus.nama} - {kursus.user?.nama ?? 'Tanpa Instruktur'}
                                     </option>
                                 ))}
                             </select>
@@ -173,26 +159,7 @@ const EditJadwalForm = () => {
                         </div>
                     </div>
 
-                    {/* Instruktur */}
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Instruktur (Opsional)</label>
-                        <div className="relative">
-                            <User2 className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
-                            <select
-                                value={instrukturId}
-                                onChange={(e) => setInstrukturId(e.target.value)}
-                                className="py-2 pl-10 pr-10 rounded-md border border-gray-300 w-full appearance-none"
-                            >
-                                <option value="">Pilih Instruktur</option>
-                                {instrukturList.map((instruktur) => (
-                                    <option key={instruktur.id} value={instruktur.id}>
-                                        {instruktur.nama}
-                                    </option>
-                                ))}
-                            </select>
-                            <ChevronDown className="absolute right-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
-                        </div>
-                    </div>
+
 
                     {/* Hari */}
                     <div className="mb-4">

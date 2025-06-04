@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { DatabaseBackupIcon, Loader2 } from "lucide-react";
 import Script from "next/script";
 import { formatRupiah } from "@/utils/formatRupiah";
@@ -179,6 +179,7 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
             console.error("Gagal proses pembayaran", error);
         } finally {
             setIsProcessingPayment(false);
+            redirect("/riwayat-pendaftaran");
         }
     };
 

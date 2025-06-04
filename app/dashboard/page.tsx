@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { FaUsers, FaClipboardList, FaChalkboardTeacher, FaCertificate, FaCalendarAlt, FaMoneyBillWave } from "react-icons/fa";
-
-
+import { FaUsers, FaClipboardList, FaChalkboardTeacher, FaCertificate, FaCalendarAlt, FaMoneyBillWave, FaUser, FaCalendar, FaExclamationTriangle, FaBullhorn, FaFire, FaUserFriends, FaClock } from "react-icons/fa";
+import EnrollemntChart from "@/components/admin/chart/EnrollmentChart";
+import { CornerUpLeft } from "lucide-react";
 const DashboardPage = () => {
     const [loading, setLoading] = useState(true);
     const [totalPeserta, setTotalPeserta] = useState(0);
@@ -240,72 +240,48 @@ const DashboardPage = () => {
                     </div>
                 </div>
             </div>
+            {/* <EnrollemntChart /> */}
 
-            <div className="mt-8">
-                <h2 className="text-xl font-semibold mb-6 text-gray-800 flex items-center">
-                    <FaCalendarAlt className="mr-2 text-blue-500" />
-                    Jadwal Kursus Terdekat
+
+            <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                <h2 className="text-xl font-semibold mb-4 flex items-center">
+                    <FaClock className="mr-2 text-amber-500" />
+                    Batas Pendaftaran!
                 </h2>
 
-                <div className="overflow-x-auto bg-white rounded-xl shadow-sm border border-gray-100">
-                    <table className="min-w-full divide-y divide-gray-200">
-                        <thead className="bg-gray-50">
-                            <tr>
-                                <th className="px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">No</th>
-                                <th className="px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Nama Kursus</th>
-                                <th className="px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Durasi</th>
-                                <th className="px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Tanggal Mulai</th>
-                                <th className="px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Tanggal Selesai</th>
-                                <th className="px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Instruktur</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-100">
-                            <tr className="hover:bg-gray-50">
-                                <td className="px-6 py-4 text-sm text-gray-700">1</td>
-                                <td className="px-6 py-4 text-sm font-medium text-gray-900">Komputer Umum & Internet</td>
-                                <td className="px-6 py-4 text-sm text-gray-500">4 Minggu</td>
-                                <td className="px-6 py-4 text-sm text-gray-700">15 Mei 2025</td>
-                                <td className="px-6 py-4 text-sm text-gray-700">12 Juni 2025</td>
-                                <td className="px-6 py-4">
-                                    <div className="flex items-center">
-                                        <div className="ml-3">
-                                            <div className="text-sm font-medium text-gray-900">Budi Santoso</div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
+                <div className="space-y-4">
+                    {[
+                        {
+                            title: "AI Fundamentals",
+                            seats: 2,
+                            deadline: "2025-07-15",
+                            discount: "20% OFF"
+                        }
+                    ].map((course, idx) => (
+                        <div key={idx} className="p-4 bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg border border-amber-200">
+                            <div className="flex justify-between items-start">
+                                <div>
+                                    <h3 className="font-bold text-lg">{course.title}</h3>
+                                    <p className="text-sm text-amber-800 bg-amber-100 px-2 py-1 rounded-full inline-block mt-1">
+                                        {course.discount} • Hanya {course.seats} kursi tersisa!
+                                    </p>
+                                </div>
+                                <div className="text-center bg-white p-2 rounded-lg shadow-xs border border-amber-200">
+                                    <CornerUpLeft deadline={course.deadline} />
+                                </div>
+                            </div>
 
-                            <tr className="hover:bg-gray-50">
-                                <td className="px-6 py-4 text-sm text-gray-700">2</td>
-                                <td className="px-6 py-4 text-sm font-medium text-gray-900">Pemrograman Dasar</td>
-                                <td className="px-6 py-4 text-sm text-gray-500">4 Minggu</td>
-                                <td className="px-6 py-4 text-sm text-gray-700">20 Mei 2025</td>
-                                <td className="px-6 py-4 text-sm text-gray-700">17 Juni 2025</td>
-                                <td className="px-6 py-4">
-                                    <div className="flex items-center">
-                                        <div className="ml-3">
-                                            <div className="text-sm font-medium text-gray-900">Ani Wijaya</div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr className="hover:bg-gray-50">
-                                <td className="px-6 py-4 text-sm text-gray-700">3</td>
-                                <td className="px-6 py-4 text-sm font-medium text-gray-900">Desain Grafis</td>
-                                <td className="px-6 py-4 text-sm text-gray-500">6 Minggu</td>
-                                <td className="px-6 py-4 text-sm text-gray-700">1 Juni 2025</td>
-                                <td className="px-6 py-4 text-sm text-gray-700">13 Juli 2025</td>
-                                <td className="px-6 py-4">
-                                    <div className="flex items-center">
-                                        <div className="ml-3">
-                                            <div className="text-sm font-medium text-gray-900">Citra Dewi</div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            <div className="mt-4 flex justify-between items-center">
+                                <div className="flex items-center">
+                                    <FaUserFriends className="text-amber-500 mr-2" />
+                                    <span className="text-sm">Hampir penuh!</span>
+                                </div>
+                                <button className="px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors text-sm font-medium">
+                                    Daftar Sekarang
+                                </button>
+                            </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

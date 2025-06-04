@@ -1,4 +1,6 @@
+import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 interface Kursus {
     id: string;
@@ -76,8 +78,8 @@ const EditKursusForm: React.FC<EditKursusFormProps> = ({
                     tanggalMulai: tanggalMulai || null,
                     tanggalSelesai: tanggalSelesai || null,
                     userId: user?.id || userId || null,
-                    kuota: kuota === "" ? null : Number(kuota), // Tambahkan ini
-                    status, // Tambahkan ini
+                    kuota: kuota === "" ? null : Number(kuota),
+                    status,
                 }),
             });
 
@@ -85,12 +87,14 @@ const EditKursusForm: React.FC<EditKursusFormProps> = ({
                 throw new Error("Gagal memperbarui kursus");
             }
 
-            if (onSuccess) onSuccess();
+            toast.success("Kursus berhasil diperbarui!");
+            redirectt("/dashboard/data-kursus");
         } catch (err) {
-            setError(err instanceof Error ? err.message : "Terjadi kesalahan");
+            toast.error(err instanceof Error ? err.message : "Terjadi kesalahan");
         } finally {
             setIsUpdating(false);
         }
+
     };
 
     const handleCancel = () => {

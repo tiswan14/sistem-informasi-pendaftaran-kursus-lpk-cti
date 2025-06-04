@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Kursus, KursusDetailProps } from '@/types/kursus';
+import { redirect } from "next/navigation";
 
 
 const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
@@ -47,14 +48,14 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
             return;
         }
         try {
-            const response = await axios.post("/api/pendaftaran", {
+            await axios.post("/api/pendaftaran", {
                 userId: session.user.id,
                 kursusId: kursus?.id,
             });
-            console.log(response.data);
 
-            toast.success("Berhasil daftar kursus");
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            // Redirect dengan membawa nama kursus sebagai query parameter
+            window.location.href = `/pendaftaran-berhasil?namaKursus=${encodeURIComponent(kursus?.nama || '')}`;
+
         } catch (error: any) {
             if (error.response?.data?.message) {
                 toast.error(error.response.data.message);
@@ -63,7 +64,6 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
             }
         }
     };
-
 
 
 

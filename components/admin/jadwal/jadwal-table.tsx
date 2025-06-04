@@ -179,7 +179,7 @@ const JadwalTable = () => {
                                 <td className="px-4 py-3 text-sm text-gray-700">{index + 1}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.hari}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.kursus.nama}</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">{jadwal.instruktur?.nama || 'Belum ditentukan'}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{jadwal.kursus.user.nama || 'Belum ditentukan'}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.lokasi || '-'}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.ruangan || '-'}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.jamMulai}</td>

@@ -10,7 +10,6 @@ import {
     RefreshCw,
     Save,
     BookOpen,
-    User2,
 } from "lucide-react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -143,7 +142,7 @@ const TambahJadwalForm = () => {
                                 <option value="">Pilih Kursus</option>
                                 {kursusList.map((kursus) => (
                                     <option key={kursus.id} value={kursus.id}>
-                                        {kursus.nama}
+                                        {kursus.nama} - {kursus.user?.nama ?? 'Tanpa Instruktur'}
                                     </option>
                                 ))}
                             </select>
@@ -151,26 +150,7 @@ const TambahJadwalForm = () => {
                         </div>
                     </div>
 
-                    {/* Instruktur */}
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Instruktur (Opsional)</label>
-                        <div className="relative">
-                            <User2 className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
-                            <select
-                                value={instrukturId}
-                                onChange={(e) => setInstrukturId(e.target.value)}
-                                className="py-2 pl-10 pr-10 rounded-md border border-gray-300 w-full appearance-none"
-                            >
-                                <option value="">Pilih Instruktur</option>
-                                {instrukturList.map((instruktur) => (
-                                    <option key={instruktur.id} value={instruktur.id}>
-                                        {instruktur.nama}
-                                    </option>
-                                ))}
-                            </select>
-                            <ChevronDown className="absolute right-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
-                        </div>
-                    </div>
+
 
                     {/* Hari */}
                     <div className="mb-4">

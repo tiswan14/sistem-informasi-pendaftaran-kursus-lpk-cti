@@ -187,6 +187,21 @@ exports.Prisma.KursusScalarFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.JadwalScalarFieldEnum = {
+  id: 'id',
+  kursusId: 'kursusId',
+  deskripsi: 'deskripsi',
+  hari: 'hari',
+  jamMulai: 'jamMulai',
+  jamSelesai: 'jamSelesai',
+  lokasi: 'lokasi',
+  ruangan: 'ruangan',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
 exports.Prisma.PendaftaranScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -207,7 +222,8 @@ exports.Prisma.SertifikatScalarFieldEnum = {
   fileType: 'fileType',
   fileSize: 'fileSize',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId'
 };
 
 exports.Prisma.PaymentScalarFieldEnum = {
@@ -226,22 +242,8 @@ exports.Prisma.PaymentScalarFieldEnum = {
   redirectUrl: 'redirectUrl',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  pendaftaranId: 'pendaftaranId'
-};
-
-exports.Prisma.JadwalScalarFieldEnum = {
-  id: 'id',
-  kursusId: 'kursusId',
-  instrukturId: 'instrukturId',
-  deskripsi: 'deskripsi',
-  hari: 'hari',
-  jamMulai: 'jamMulai',
-  jamSelesai: 'jamSelesai',
-  lokasi: 'lokasi',
-  ruangan: 'ruangan',
-  status: 'status',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  pendaftaranId: 'pendaftaranId',
+  userId: 'userId'
 };
 
 exports.Prisma.SortOrder = {
@@ -266,10 +268,10 @@ exports.Prisma.ModelName = {
   VerificationToken: 'VerificationToken',
   User: 'User',
   Kursus: 'Kursus',
+  Jadwal: 'Jadwal',
   Pendaftaran: 'Pendaftaran',
   Sertifikat: 'Sertifikat',
-  Payment: 'Payment',
-  Jadwal: 'Jadwal'
+  Payment: 'Payment'
 };
 
 /**

@@ -5,6 +5,7 @@ import { redirect, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Calendar, BookOpen, User2, Clock, MapPin, DoorOpen, CheckCircle2, ChevronDown, RefreshCw, Save } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface Instruktur {
     id: string;
@@ -70,6 +71,10 @@ const EditKursusPage = () => {
         fetchInstruktur();
     }, [id]);
 
+
+    // Di dalam komponen Anda:
+    const router = useRouter();
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsPending(true);
@@ -92,9 +97,10 @@ const EditKursusPage = () => {
             console.log("Respon dari server:", response.data);
 
             toast.success("Kursus berhasil diupdate");
-            redirect('/dashboard/data-kursus');
+            router.push('/dashboard/data-kursus'); // Ganti redirect dengan router.push
         } catch (error) {
             console.error("Gagal update:", error);
+            toast.error("Gagal mengupdate kursus"); // Tambahkan notifikasi error
         } finally {
             setIsPending(false);
         }

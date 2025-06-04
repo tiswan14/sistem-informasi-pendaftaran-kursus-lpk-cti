@@ -116,16 +116,17 @@ const KursusTable = () => {
                     <tr>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">No</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Nama Kursus</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Instruktur</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Durasi</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Tanggal Mulai</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Tanggal Selesai</th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Instruktur</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Harga</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Kuota</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Status</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Aksi</th>
                     </tr>
                 </thead>
+
                 <tbody className="bg-white divide-y divide-gray-200">
                     {loading ? (
                         <tr>
@@ -169,15 +170,15 @@ const KursusTable = () => {
                             <tr key={kursus.id} className="hover:bg-gray-50 transition-colors duration-150">
                                 <td className="px-4 py-3 text-sm text-gray-700">{index + 1}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{kursus.nama}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{kursus.user?.nama || 'Belum ditentukan'}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{kursus.lamaKursus} bulan</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{formatTanggalIndonesia(kursus.tanggalMulai)}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{formatTanggalIndonesia(kursus.tanggalSelesai)}</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">{kursus.user?.nama || 'Belum ditentukan'}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{formatRupiah(kursus.harga)}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{kursus.kuota ?? '-'}</td>
                                 <td className="px-4 py-3 text-center">
                                     <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold
-                        ${kursus.status === 'aktif'
+      ${kursus.status === 'aktif'
                                             ? 'bg-green-100 text-green-800'
                                             : 'bg-red-100 text-red-800'
                                         }`}>
@@ -205,6 +206,7 @@ const KursusTable = () => {
                                     </div>
                                 </td>
                             </tr>
+
                         ))
                     )}
                 </tbody>

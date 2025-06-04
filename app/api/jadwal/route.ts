@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server';
 
 export type JadwalInput = {
     kursusId: string;
-    instrukturId?: string;
     hari: string;
     jamMulai: string;
     jamSelesai: string;
@@ -18,15 +17,12 @@ export async function GET() {
         const allJadwal = await prisma.jadwal.findMany({
             include: {
                 kursus: {
-                    select: {
-                        id: true,
-                        nama: true
-                    }
-                },
-                instruktur: {
-                    select: {
-                        id: true,
-                        nama: true
+                    include: {
+                        user: {
+                            select: {
+                                nama: true
+                            }
+                        }
                     }
                 }
             },
@@ -48,7 +44,6 @@ export async function POST(request: Request) {
 
         const {
             kursusId,
-            instrukturId,
             deskripsi,
             hari,
             jamMulai,
@@ -68,7 +63,6 @@ export async function POST(request: Request) {
         const newJadwal = await prisma.jadwal.create({
             data: {
                 kursusId,
-                instrukturId,
                 deskripsi,
                 hari,
                 jamMulai,
@@ -84,12 +78,6 @@ export async function POST(request: Request) {
                         nama: true
                     }
                 },
-                instruktur: {
-                    select: {
-                        id: true,
-                        nama: true
-                    }
-                }
             }
         });
 

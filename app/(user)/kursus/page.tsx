@@ -16,7 +16,7 @@ const KursusPage = () => {
     useEffect(() => {
         const fetchKursus = async () => {
             try {
-                const res = await fetch("/api/kursus");
+                const res = await fetch("/api/kursus/aktif");
                 if (!res.ok) throw new Error("Gagal memuat data kursus");
                 const data: Kursus[] = await res.json();
                 setKursusData(data);
