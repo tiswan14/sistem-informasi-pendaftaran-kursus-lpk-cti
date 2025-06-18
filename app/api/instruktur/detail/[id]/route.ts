@@ -5,12 +5,14 @@ const prisma = new PrismaClient();
 
 export async function GET(
     req: Request,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) {
     try {
+        const { id } = await context.params;
+
         const instruktur = await prisma.user.findUnique({
             where: {
-                id: params.id,
+                id,
             },
         });
 
@@ -28,5 +30,7 @@ export async function GET(
             { error: 'Internal server error' },
             { status: 500 }
         );
+    } finally {
+        await prisma.$disconnect();
     }
 }

@@ -5,18 +5,19 @@ const prisma = new PrismaClient();
 
 export async function GET(
     req: Request,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) {
+    const { id } = await context.params;
+
     try {
         const kursus = await prisma.kursus.findUnique({
             where: {
-                id: params.id,
+                id,
             },
             include: {
-                user: true
-            }
+                user: true,
+            },
         });
-
 
         if (!kursus) {
             return NextResponse.json(

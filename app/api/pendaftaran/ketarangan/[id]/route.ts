@@ -5,12 +5,12 @@ const prisma = new PrismaClient();
 
 export async function PATCH(
     request: Request,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) {
     try {
+        const { id } = await context.params;
         const { status, keterangan } = await request.json();
 
-        // Validasi status
         const allowedStatus = ['Belum verifikasi', 'Ditolak', 'Diterima', 'Lulus'];
         if (!allowedStatus.includes(status)) {
             return NextResponse.json(
@@ -19,33 +19,29 @@ export async function PATCH(
             );
         }
 
-        // Validasi keterangan opsional (bisa ditambah syarat sesuai kebutuhan)
-        if (typeof keterangan !== 'string') {
+        if (keterangan !== undefined && typeof keterangan !== 'string') {
             return NextResponse.json(
                 { error: 'Keterangan harus berupa string' },
                 { status: 400 }
             );
         }
 
-        // Update data di database
         const updatedPendaftaran = await prisma.pendaftaran.update({
-            where: { id: params.id },
+            where: { id },
             data: { status, keterangan },
         });
 
         return NextResponse.json(updatedPendaftaran);
-    } catch (error) {
+    } catch (error: unknown) {
         console.error('Error:', error);
-        return NextResponse.json(
-            { error: 'Gagal memperbarui data' },
-            { status: 500 }
-        );
+        const message = error instanceof Error ? error.message : 'Gagal memperbarui data';
+        return NextResponse.json({ error: message }, { status: 500 });
     } finally {
         await prisma.$disconnect();
     }
 }
 
-// Handler untuk OPTIONS (untuk CORS preflight)
+// Untuk preflight CORS
 export async function OPTIONS() {
     return NextResponse.json({}, { status: 200 });
 }

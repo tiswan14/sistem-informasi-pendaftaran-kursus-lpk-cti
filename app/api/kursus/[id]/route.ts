@@ -1,14 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@/app/generated/prisma";
 import { getKursusDetailById } from "@/lib/data";
-import { put } from '@vercel/blob'
+import { put } from '@vercel/blob';
 
 const prisma = new PrismaClient();
 
-export async function GET(req: NextRequest, context: { params: Promise<{ id: string }> }) {
-    // Tunggu dulu sampai params selesai (await)
-    const params = await context.params;
-    const id = params.id;
+export async function GET(
+    req: NextRequest,
+    context: { params: Promise<{ id: string }> }
+) {
+    const { id } = await context.params;
 
     try {
         const kursus = await getKursusDetailById(id);
@@ -22,11 +23,12 @@ export async function GET(req: NextRequest, context: { params: Promise<{ id: str
     }
 }
 
-
 export async function PUT(
     request: Request,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) {
+    const { id } = await context.params;
+
     try {
         const formData = await request.formData();
 
@@ -41,7 +43,6 @@ export async function PUT(
         const status = formData.get("status")?.toString() || undefined;
         const thumbnail = formData.get("thumbnail") as File | null;
 
-        // Validasi minimal
         if (!nama || !hargaStr) {
             return NextResponse.json(
                 { error: "Nama dan harga kursus harus diisi" },
@@ -62,8 +63,7 @@ export async function PUT(
         const tanggalSelesai = tanggalSelesaiStr ? new Date(tanggalSelesaiStr) : null;
         const kuota = kuotaStr ? Number(kuotaStr) : null;
 
-        // Handle thumbnail upload (optional update)
-        let thumbnailData = undefined; // pakai undefined supaya tidak diubah kalau tidak diisi
+        let thumbnailData = undefined;
         if (thumbnail && thumbnail.size > 0) {
             const blob = await put(
                 `kursus/thumbnail-${Date.now()}`,
@@ -74,7 +74,7 @@ export async function PUT(
         }
 
         const updatedKursus = await prisma.kursus.update({
-            where: { id: params.id },
+            where: { id },
             data: {
                 nama,
                 deskripsi,
@@ -85,7 +85,7 @@ export async function PUT(
                 kuota,
                 userId,
                 status,
-                ...(thumbnailData !== undefined && { thumbnail: thumbnailData }), // update hanya jika ada thumbnail baru
+                ...(thumbnailData !== undefined && { thumbnail: thumbnailData }),
             },
         });
 
@@ -99,24 +99,21 @@ export async function PUT(
     }
 }
 
-
-
 export const DELETE = async (
     request: Request,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) => {
+    const { id } = await context.params;
+
     try {
         const deleteKursus = await prisma.kursus.delete({
             where: {
-                id: params.id,
+                id,
             },
         });
         return NextResponse.json({ deleteKursus }, { status: 200 });
     } catch (error) {
-        console.error("Error menghapus instruktur:", error);
+        console.error("Error menghapus kursus:", error);
         return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     }
 };
-
-
-

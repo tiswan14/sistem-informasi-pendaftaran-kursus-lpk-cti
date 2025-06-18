@@ -3,15 +3,14 @@ import { PrismaClient } from '@/app/generated/prisma';
 
 const prisma = new PrismaClient();
 
-
-
+// GET handler
 export async function GET(
     req: Request,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) {
-    try {
-        const { id } = params
+    const { id } = await context.params;
 
+    try {
         const pendaftaran = await prisma.pendaftaran.findUnique({
             where: { id },
             include: {
@@ -38,74 +37,68 @@ export async function GET(
                 },
                 Payment: true,
             },
-        })
+        });
 
         if (!pendaftaran) {
-            return NextResponse.json({ error: 'Data tidak ditemukan' }, { status: 404 })
+            return NextResponse.json({ error: 'Data tidak ditemukan' }, { status: 404 });
         }
 
-        return NextResponse.json(pendaftaran)
+        return NextResponse.json(pendaftaran);
     } catch (error) {
-        console.error('Gagal fetch pendaftaran by ID:', error)
-        return NextResponse.json({ error: 'Gagal mengambil data pendaftaran' }, { status: 500 })
+        console.error('Gagal fetch pendaftaran by ID:', error);
+        return NextResponse.json({ error: 'Gagal mengambil data pendaftaran' }, { status: 500 });
     }
 }
 
-// Handler untuk PATCH
+// PATCH handler
 export async function PATCH(
     request: Request,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) {
+    const { id } = await context.params;
+
     try {
         const { status } = await request.json();
 
-        // Validasi status
         const allowedStatus = ['Belum verifikasi', 'Ditolak', 'Diterima', 'Lulus'];
         if (!allowedStatus.includes(status)) {
-            return NextResponse.json(
-                { error: 'Status tidak valid' },
-                { status: 400 }
-            );
+            return NextResponse.json({ error: 'Status tidak valid' }, { status: 400 });
         }
 
-        // Update data di database
         const updatedPendaftaran = await prisma.pendaftaran.update({
-            where: { id: params.id },
+            where: { id },
             data: { status },
         });
 
         return NextResponse.json(updatedPendaftaran);
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error('Error:', error);
-        return NextResponse.json(
-            { error: 'Gagal memperbarui status' },
-            { status: 500 }
-        );
+        const message = error instanceof Error ? error.message : 'Gagal memperbarui status';
+        return NextResponse.json({ error: message }, { status: 500 });
     } finally {
         await prisma.$disconnect();
     }
 }
 
-// Handler untuk OPTIONS (untuk CORS preflight)
-export async function OPTIONS() {
-    return NextResponse.json({}, { status: 200 });
-}
-
-
-export const DELETE = async (
+// DELETE handler
+export async function DELETE(
     request: Request,
-    { params }: { params: { id: string } }
-) => {
+    context: { params: Promise<{ id: string }> }
+) {
+    const { id } = await context.params;
+
     try {
         const deletePendaftaran = await prisma.pendaftaran.delete({
-            where: {
-                id: params.id,
-            },
+            where: { id },
         });
         return NextResponse.json({ deletePendaftaran }, { status: 200 });
     } catch (error) {
-        console.error("Error menghapus instruktur:", error);
+        console.error("Error menghapus pendaftaran:", error);
         return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     }
-};
+}
+
+// OPTIONS handler
+export async function OPTIONS() {
+    return NextResponse.json({}, { status: 200 });
+}

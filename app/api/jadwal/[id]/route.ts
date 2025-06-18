@@ -6,15 +6,17 @@ const prisma = new PrismaClient();
 
 export const GET = async (
     request: Request,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) => {
     try {
-        if (!params.id) {
+        const { id } = await context.params;
+
+        if (!id) {
             return NextResponse.json({ error: "ID jadwal tidak valid" }, { status: 400 });
         }
 
         const jadwal = await prisma.jadwal.findUnique({
-            where: { id: params.id },
+            where: { id },
             include: {
                 kursus: true,
             },
@@ -37,10 +39,12 @@ export const GET = async (
 
 export const PUT = async (
     request: Request,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) => {
     try {
-        if (!params.id) {
+        const { id } = await context.params;
+
+        if (!id) {
             return NextResponse.json({ error: "ID jadwal tidak valid" }, { status: 400 });
         }
 
@@ -51,7 +55,7 @@ export const PUT = async (
         }
 
         const updatedJadwal = await prisma.jadwal.update({
-            where: { id: params.id },
+            where: { id },
             data: body,
         });
 
@@ -68,15 +72,17 @@ export const PUT = async (
 
 export const DELETE = async (
     request: Request,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) => {
     try {
-        if (!params.id) {
+        const { id } = await context.params;
+
+        if (!id) {
             return NextResponse.json({ error: "ID jadwal tidak valid" }, { status: 400 });
         }
 
         const deletedJadwal = await prisma.jadwal.delete({
-            where: { id: params.id },
+            where: { id },
         });
 
         return NextResponse.json({ message: "Jadwal berhasil dihapus", data: deletedJadwal }, { status: 200 });
