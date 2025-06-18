@@ -1,13 +1,16 @@
-import { hash } from "bcrypt-ts"; // ganti dari hashSync ke hash
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { hash } from "bcrypt-ts";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export const PUT = async (
     request: Request,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) => {
     try {
-        if (!params.id) {
+        const { id } = await context.params;
+
+        if (!id) {
             return NextResponse.json(
                 { error: "ID peserta tidak valid" },
                 { status: 400 }
@@ -36,22 +39,18 @@ export const PUT = async (
             );
         }
 
-        // Hash password secara async
         if (body.password) {
             body.password = await hash(body.password, 10);
         }
 
         const updatePeserta = await prisma.user.update({
-            where: { id: params.id },
+            where: { id },
             data: body,
         });
 
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { password: _, ...pesertaWithoutPassword } = updatePeserta;
 
-
         return NextResponse.json(pesertaWithoutPassword, { status: 200 });
-
 
     } catch (error: unknown) {
         console.error("Update error:", error);
