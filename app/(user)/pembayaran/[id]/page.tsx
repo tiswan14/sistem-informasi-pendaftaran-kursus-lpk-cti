@@ -1,20 +1,20 @@
+import PembayaranDetailComponent from "@/components/user/pembayaran/PembayaranDetailComponent";
 import { Metadata } from "next";
-import PesertaDetail from "@/components/admin/peserta/peserta-detail";
 
 export const metadata: Metadata = {
-    title: "Detail Peserta - LPK CTI Ciamis",
+    title: "Pembayaran Detail - LPK CTI Ciamis",
 };
 
 interface PageProps {
-    params: Promise<{ pesertaId: string }>;
+    params: Promise<{ id: string }>;
 }
 
-export default async function PesertaDetailPage(props: PageProps) {
-    const { pesertaId } = await props.params;
+export default async function PembayaranDetailPage(props: PageProps) {
+    const { id } = await props.params;
 
     return (
         <div className="py-32 px-16">
-            <PesertaDetail pesertaId={pesertaId} />
+            <PembayaranDetailComponent id={id} />
         </div>
     );
 }

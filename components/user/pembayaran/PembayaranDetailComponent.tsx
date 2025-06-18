@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 "use client";
 
 import { useState, useEffect } from "react";
-import { redirect, useRouter } from "next/navigation";
-import { DatabaseBackupIcon, Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Loader2 } from "lucide-react";
 import Script from "next/script";
 import { formatRupiah } from "@/utils/formatRupiah";
-import transactionServices from "@/app/services/page";
+import transactionServices from "@/app/services/transaction";
 
 declare global {
     interface Window {
@@ -179,7 +179,6 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
             console.error("Gagal proses pembayaran", error);
         } finally {
             setIsProcessingPayment(false);
-            redirect("/riwayat-pendaftaran");
         }
     };
 
