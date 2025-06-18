@@ -6,15 +6,15 @@ export const metadata: Metadata = {
 };
 
 interface PageProps {
-    params: {
-        id: string;
-    };
+    params: Promise<{ id: string }>;
 }
 
-export default function PembayaranDetailPage({ params }: PageProps) {
+export default async function PembayaranDetailPage(props: PageProps) {
+    const { id } = await props.params;
+
     return (
         <div className="py-32 px-16">
-            <PembayaranDetailComponent id={params.id} />
+            <PembayaranDetailComponent id={id} />
         </div>
     );
 }
