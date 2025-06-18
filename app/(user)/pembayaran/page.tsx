@@ -1,17 +1,11 @@
 'use client';
 
 import {
-    ArrowLeft,
     Clock,
     CheckCircle2,
     CreditCard,
     Banknote,
-    BookOpen,
     Calendar,
-    AlertCircle,
-    History,
-    Receipt,
-    CalendarClock,
     FileText
 } from 'lucide-react';
 import { useEffect, useState } from 'react';

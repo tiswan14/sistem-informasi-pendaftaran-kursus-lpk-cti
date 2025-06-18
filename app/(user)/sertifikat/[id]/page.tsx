@@ -7,8 +7,8 @@ import { toast } from 'react-toastify';
 const LihatSertifikatPage = () => {
     const { id } = useParams();
     const [sertifikatData, setSertifikatData] = useState<Sertifikat[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
+    const [setLoading] = useState(true);
+    const [setError] = useState<string | null>(null);
     useEffect(() => {
         const fetchData = async () => {
             try {

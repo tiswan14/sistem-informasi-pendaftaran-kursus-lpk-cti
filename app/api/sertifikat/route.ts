@@ -1,7 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from 'next/server';
 import { put } from '@vercel/blob';
-import { join } from 'path';
 
 export type SertifikatInput = {
     pendaftaranId: string;

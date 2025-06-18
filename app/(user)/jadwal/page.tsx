@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CalendarDays, Clock, BookOpenText, MapPin, Home, Info, Calendar, DoorOpen, BookOpen } from 'lucide-react';
+import { CalendarDays, Clock, MapPin, Calendar, DoorOpen, BookOpen } from 'lucide-react';
 
 const JadwalPage = () => {
     const [jadwalData, setJadwalData] = useState([]);

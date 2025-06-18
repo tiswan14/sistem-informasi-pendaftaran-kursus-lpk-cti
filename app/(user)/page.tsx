@@ -4,7 +4,6 @@ import HeroSection from "@/components/user/beranda/HeroSection";
 import HeroSectionV2 from "@/components/user/beranda/HeroSectionV2";
 import MengapaLPKCTI from "@/components/user/beranda/MengapaLPKCTI";
 import VisiMisi from "@/components/user/beranda/VisiMisi";
-import Lokasi from "@/components/user/lokasi/Lokasi";
 
 
 export default function Home() {
