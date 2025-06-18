@@ -1,15 +1,13 @@
 import KursusDetail from "@/components/user/kursus/KursusDetail";
 
-type Props = {
-    params: {
-        kursusId: string;
-    };
+type PageProps = {
+    params: { kursusId: string };
 };
-export default async function KursusDetailPage({ params }: Props) {
-    const { kursusId } = await params;
+
+export default function KursusDetailPage({ params }: PageProps) {
     return (
         <div className="py-32 px-16">
-            <KursusDetail kursusId={kursusId} />
+            <KursusDetail kursusId={params.kursusId} />
         </div>
     );
 }

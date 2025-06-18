@@ -59,14 +59,16 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
 
             window.location.href = `/pendaftaran-berhasil?namaKursus=${encodeURIComponent(kursus?.nama || '')}`;
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } catch (error: any) {
-            if (error.response?.data?.message) {
-                toast.error(error.response.data.message);
+        } catch (error) {
+            const err = error as { response?: { data?: { message?: string } } };
+
+            if (err.response?.data?.message) {
+                toast.error(err.response.data.message);
             } else {
                 toast.error("Gagal daftar kursus");
             }
         }
+
     };
 
 

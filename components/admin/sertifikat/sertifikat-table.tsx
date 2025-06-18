@@ -1,9 +1,9 @@
 "use client";
 import { formatTanggalIndonesia } from "@/utils/formatTanggal";
-import { Download, ExternalLink, Eye, FileCheck, FileCheck2, FileSearch, FileText, FileX, FolderOpen, Link, Link2, Paperclip, Printer, ScrollText } from "lucide-react";
+import { Eye } from "lucide-react";
 import { redirect } from "next/navigation";
 import { useState, useEffect } from "react";
-import { FaCertificate, FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 interface User {

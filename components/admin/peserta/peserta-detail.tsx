@@ -49,8 +49,13 @@ const PesertaDetail: React.FC<PesertaDetailProps> = ({ pesertaId }) => {
                 }
                 const data = await res.json();
                 setPeserta(data.peserta);
-            } catch (err: any) {
-                setError(err.message || "Terjadi kesalahan saat mengambil data peserta");
+            } catch (err) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError("Terjadi kesalahan saat mengambil data peserta");
+                }
+
             } finally {
                 setLoading(false);
             }

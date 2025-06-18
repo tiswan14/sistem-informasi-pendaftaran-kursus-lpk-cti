@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FaEdit, FaEye, FaInfoCircle, FaTrash } from "react-icons/fa";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import { redirect } from "next/navigation";
 import { Pagination } from "../pagination/Pagination";

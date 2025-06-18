@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
-import { FaCertificate, FaUser } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { useState } from "react";
 import { IoClose, IoMenu } from "react-icons/io5";
 import clsx from "clsx";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
-import { Home, BookOpen, Clock, CreditCard, User, LogIn, LogOut, Eye, Award, Calendar, History, UserCheck, CreativeCommons } from 'lucide-react';
+import { Home, BookOpen, CreditCard, User, LogIn, LogOut, Eye, Award, Calendar, History, CreativeCommons } from 'lucide-react';
 import { NavLoadingSkeleton, ProfileLoadingSkeleton } from "../LoadingSkeleton";
 
 
