@@ -1,7 +1,7 @@
 "use client";
 
 import JadwalTable from "@/components/admin/jadwal/jadwal-table";
-import { FiCalendar, FiUserPlus } from "react-icons/fi";
+import { FiCalendar } from "react-icons/fi";
 import Link from "next/link";
 import { useState } from "react";
 

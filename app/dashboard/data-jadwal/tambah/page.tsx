@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import {
@@ -17,109 +18,105 @@ import { SyntheticEvent } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
+type Kursus = {
+    id: string;
+    nama: string;
+    user?: {
+        nama: string;
+    };
+};
+
+type Instruktur = {
+    id: string;
+    nama: string;
+};
+
 const TambahJadwalForm = () => {
-    const [kursusId, setKursusId] = useState("");
-    const [instrukturId, setInstrukturId] = useState("");
-    const [deskripsi, setDeskripsi] = useState("");
-    const [hari, setHari] = useState("");
-    const [jamMulai, setJamMulai] = useState("");
-    const [jamSelesai, setJamSelesai] = useState("");
-    const [lokasi, setLokasi] = useState("");
-    const [ruangan, setRuangan] = useState("");
-    const [status, setStatus] = useState("aktif");
+    const [formData, setFormData] = useState({
+        kursusId: "",
+        instrukturId: "",
+        deskripsi: "",
+        hari: "",
+        jamMulai: "",
+        jamSelesai: "",
+        lokasi: "",
+        ruangan: "",
+        status: "aktif"
+    });
 
-    const [kursusList, setKursusList] = useState([]);
-    const [loadingKursus, setLoadingKursus] = useState(true);
-    const [errorKursus, setErrorKursus] = useState(null);
-
-    const [instrukturList, setInstrukturList] = useState([]);
-    const [loadingInstruktur, setLoadingInstruktur] = useState(true);
-    const [errorInstruktur, setErrorInstruktur] = useState(null);
-
+    const [kursusList, setKursusList] = useState<Kursus[]>([]);
+    const [instrukturList, setInstrukturList] = useState<Instruktur[]>([]);
     const [isPending, setIsPending] = useState(false);
-
     const router = useRouter();
-
-    const handleSubmit = async (e: SyntheticEvent) => {
-        e.preventDefault()
-        setIsPending(true)
-        try {
-            await axios.post('/api/jadwal', {
-                kursusId,
-                instrukturId,
-                deskripsi,
-                hari,
-                jamMulai,
-                jamSelesai,
-                lokasi,
-                ruangan,
-                status
-            })
-            router.push("/dashboard/data-jadwal")
-            toast.success("Jadwal berhasil ditambahkan")
-        } catch (error) {
-            console.log("Error tambah jadwal", error)
-            toast.error("Gagal menambahkan jadwal")
-        } finally {
-            setIsPending(false)
-        }
-    }
-    useEffect(() => {
-        const fetchKursus = async () => {
-            try {
-                const response = await axios.get('/api/kursus');
-                setKursusList(response.data);
-                console.log(response.data);
-
-            } catch (err) {
-                setErrorKursus(err.message || 'Gagal memuat data kursus');
-                console.error("Error fetching kursus:", err);
-            } finally {
-                setLoadingKursus(false);
-            }
-        };
-
-        fetchKursus();
-    }, []);
-
-    useEffect(() => {
-        const fetchInstruktur = async () => {
-            try {
-                const response = await axios.get('/api/instruktur/all');
-                setInstrukturList(response.data);
-            } catch (err) {
-                setErrorInstruktur(err.message || 'Gagal memuat data instruktur');
-                console.error("Error fetching instruktur:", err);
-            } finally {
-                setLoadingInstruktur(false);
-            }
-        };
-
-        fetchInstruktur();
-    }, []);
-
-
-    const handleReset = () => {
-        setKursusId("");
-        setInstrukturId("");
-        setDeskripsi("");
-        setHari("");
-        setJamMulai("");
-        setJamSelesai("");
-        setLokasi("");
-        setRuangan("");
-        setStatus("aktif");
-    }
 
     const days = [
         "Senin", "Selasa", "Rabu", "Kamis",
         "Jumat", "Sabtu", "Minggu"
     ];
 
+    const handleSubmit = async (e: SyntheticEvent) => {
+        e.preventDefault();
+
+        if (formData.jamMulai >= formData.jamSelesai) {
+            toast.error("Jam mulai tidak boleh lebih besar atau sama dengan jam selesai");
+            return;
+        }
+
+        setIsPending(true);
+        try {
+            await axios.post('/api/jadwal', formData);
+            router.push("/dashboard/data-jadwal");
+            toast.success("Jadwal berhasil ditambahkan");
+        } catch (error) {
+            console.error("Error tambah jadwal", error);
+            toast.error("Gagal menambahkan jadwal");
+        } finally {
+            setIsPending(false);
+        }
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleReset = () => {
+        setFormData({
+            kursusId: "",
+            instrukturId: "",
+            deskripsi: "",
+            hari: "",
+            jamMulai: "",
+            jamSelesai: "",
+            lokasi: "",
+            ruangan: "",
+            status: "aktif"
+        });
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const [kursusResponse, instrukturResponse] = await Promise.all([
+                    axios.get<Kursus[]>('/api/kursus'),
+                    axios.get<Instruktur[]>('/api/instruktur/all')
+                ]);
+                setKursusList(kursusResponse.data);
+                setInstrukturList(instrukturResponse.data);
+            } catch (err) {
+                console.error("Error fetching data:", err);
+                toast.error("Gagal memuat data");
+            }
+        };
+
+        fetchData();
+    }, []);
+
     return (
-        <form onSubmit={handleSubmit}
-            className="bg-white p-6 rounded-lg shadow-md"
-        >
+        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-semibold mb-5 text-gray-700 flex items-center">
                 <Calendar className="h-5 w-5 mr-2" />
                 Tambah Jadwal
@@ -135,8 +132,9 @@ const TambahJadwalForm = () => {
                             <BookOpen className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
                             <select
                                 required
-                                value={kursusId}
-                                onChange={(e) => setKursusId(e.target.value)}
+                                name="kursusId"
+                                value={formData.kursusId}
+                                onChange={handleChange}
                                 className="py-2 pl-10 pr-10 rounded-md border border-gray-300 w-full appearance-none"
                             >
                                 <option value="">Pilih Kursus</option>
@@ -150,8 +148,6 @@ const TambahJadwalForm = () => {
                         </div>
                     </div>
 
-
-
                     {/* Hari */}
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700 mb-1">Hari</label>
@@ -159,8 +155,9 @@ const TambahJadwalForm = () => {
                             <Calendar className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
                             <select
                                 required
-                                value={hari}
-                                onChange={(e) => setHari(e.target.value)}
+                                name="hari"
+                                value={formData.hari}
+                                onChange={handleChange}
                                 className="py-2 pl-10 pr-10 rounded-md border border-gray-300 w-full appearance-none"
                             >
                                 <option value="">Pilih Hari</option>
@@ -180,8 +177,9 @@ const TambahJadwalForm = () => {
                             <input
                                 required
                                 type="time"
-                                value={jamMulai}
-                                onChange={(e) => setJamMulai(e.target.value)}
+                                name="jamMulai"
+                                value={formData.jamMulai}
+                                onChange={handleChange}
                                 className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
                             />
                         </div>
@@ -195,8 +193,9 @@ const TambahJadwalForm = () => {
                             <input
                                 required
                                 type="time"
-                                value={jamSelesai}
-                                onChange={(e) => setJamSelesai(e.target.value)}
+                                name="jamSelesai"
+                                value={formData.jamSelesai}
+                                onChange={handleChange}
                                 className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
                             />
                         </div>
@@ -209,8 +208,9 @@ const TambahJadwalForm = () => {
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700 mb-1">Deskripsi (Opsional)</label>
                         <textarea
-                            value={deskripsi}
-                            onChange={(e) => setDeskripsi(e.target.value)}
+                            name="deskripsi"
+                            value={formData.deskripsi}
+                            onChange={handleChange}
                             className="py-2 px-3 rounded-md border border-gray-300 w-full h-24"
                             placeholder="Deskripsi jadwal..."
                         />
@@ -223,8 +223,9 @@ const TambahJadwalForm = () => {
                             <MapPin className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
                             <input
                                 type="text"
-                                value={lokasi}
-                                onChange={(e) => setLokasi(e.target.value)}
+                                name="lokasi"
+                                value={formData.lokasi}
+                                onChange={handleChange}
                                 className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
                                 placeholder="Contoh: Gedung A"
                             />
@@ -238,8 +239,9 @@ const TambahJadwalForm = () => {
                             <DoorOpen className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
                             <input
                                 type="text"
-                                value={ruangan}
-                                onChange={(e) => setRuangan(e.target.value)}
+                                name="ruangan"
+                                value={formData.ruangan}
+                                onChange={handleChange}
                                 className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
                                 placeholder="Contoh: Ruang 101"
                             />
@@ -252,8 +254,9 @@ const TambahJadwalForm = () => {
                         <div className="relative">
                             <CheckCircle2 className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
                             <select
-                                value={status}
-                                onChange={(e) => setStatus(e.target.value)}
+                                name="status"
+                                value={formData.status}
+                                onChange={handleChange}
                                 className="py-2 pl-10 pr-10 rounded-md border border-gray-300 w-full appearance-none"
                             >
                                 <option value="aktif">Aktif</option>

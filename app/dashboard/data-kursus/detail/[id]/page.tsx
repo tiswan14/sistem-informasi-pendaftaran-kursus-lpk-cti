@@ -12,17 +12,9 @@ import {
     AlertCircle,
     Users,
     CheckCircle,
-    XCircle,
     Image as ImageIcon,
-    Bookmark,
-    GraduationCap,
-    BarChart2,
-    Clock3,
-    Tag,
-    FileText
 } from "lucide-react";
 import { formatTanggalIndonesia } from "@/utils/formatTanggal";
-import { formatRupiah } from "@/utils/formatRupiah";
 import Image from "next/image";
 
 const InfoItem = ({ icon, title, value }) => (
