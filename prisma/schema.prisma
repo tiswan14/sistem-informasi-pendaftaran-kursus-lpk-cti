@@ -99,7 +99,7 @@ model Kursus {
 
   user        User?         @relation("InstrukturKursus", fields: [userId], references: [id], onDelete: SetNull)
   pendaftaran Pendaftaran[]
-  jadwal      Jadwal[] // Relasi one-to-many ke Jadwal
+  jadwal      Jadwal[] 
 
   @@map("kursus")
 }

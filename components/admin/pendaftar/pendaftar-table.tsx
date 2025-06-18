@@ -131,7 +131,7 @@ const PendaftarTable = () => {
 
     const handleSaveNote = async (id: string) => {
         try {
-            const response = await fetch(`/api/pendaftaran/${id}`, {
+            const response = await fetch(`/api/pendaftaran/ketarangan/${id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: newStatus, keterangan }),
@@ -148,6 +148,8 @@ const PendaftarTable = () => {
             setCurrentId(null);
             setKeterangan("");
             setNewStatus("");
+
+            toast.success("Keterangan berhasil di kirimkan")
         } catch (error) {
             console.error(error);
             toast.error('Gagal memperbarui data');
@@ -182,7 +184,7 @@ const PendaftarTable = () => {
 
 
             {addNote && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div className="fixed inset-0 bg-transparent bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-6 rounded-lg max-w-md w-full text-gray-800 shadow-lg">
                         <h3 className="text-lg font-medium mb-4">Tambah Catatan dan Ubah Status</h3>
 
@@ -194,6 +196,25 @@ const PendaftarTable = () => {
                             onChange={(e) => setKeterangan(e.target.value)}
                         />
 
+                        <div className="py-4 whitespace-nowrap text-center">
+                            <select
+                                title="Ubah status pendaftaran"
+                                value={newStatus}
+                                onChange={(e) => setNewStatus(e.target.value)}
+                                className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full appearance-none focus:outline-none focus:ring-1 focus:ring-opacity-50
+                        ${newStatus === 'Belum verifikasi' ? 'bg-gray-100 text-gray-800 focus:ring-gray-500' :
+                                        newStatus === 'Diterima' ? 'bg-green-100 text-green-800 focus:ring-green-500' :
+                                            newStatus === 'Ditolak' ? 'bg-red-100 text-red-800 focus:ring-red-500' :
+                                                newStatus === 'Lulus' ? 'bg-indigo-100 text-indigo-800 focus:ring-indigo-500' :
+                                                    'bg-yellow-100 text-yellow-800 focus:ring-yellow-500'}`}
+                            >
+                                <option value="Belum verifikasi">Belum verifikasi</option>
+                                <option value="Diterima">Diterima</option>
+                                <option value="Ditolak">Ditolak</option>
+                                <option value="Lulus">Lulus</option>
+                            </select>
+                        </div>
+
                         <div className="flex justify-end space-x-3">
                             <button
                                 onClick={handleCancel}
@@ -202,7 +223,7 @@ const PendaftarTable = () => {
                                 Batal
                             </button>
                             <button
-                                onClick={handleSaveNote}
+                                onClick={() => currentId && handleSaveNote(currentId)}
                                 disabled={!keterangan.trim()}
                                 className={`px-4 py-2 rounded-md text-white ${keterangan.trim()
                                     ? "bg-blue-600 hover:bg-blue-700"
@@ -215,7 +236,6 @@ const PendaftarTable = () => {
                     </div>
                 </div>
             )}
-
 
 
             <table className="w-full divide-y divide-gray-200">

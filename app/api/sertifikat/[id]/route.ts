@@ -1,22 +1,21 @@
-import { NextResponse } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
 import { PrismaClient } from "@/app/generated/prisma";
 import { del } from '@vercel/blob';
-import { put } from '@vercel/blob';
 
 
 const prisma = new PrismaClient();
 
-export async function PUT(request: Request, { params }: { params: { id: string } }) {
+
+
+export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
     try {
         const { id } = params;
-        const formData = await request.formData();
+        const body = await request.json();
 
-        const nomor = formData.get('nomor') as string;
-        const tanggalTerbit = formData.get('tanggalTerbit') as string;
-        const file = formData.get('file') as File | null;
+        const { nomor, tanggalTerbit, pendaftaranId } = body;
 
-        if (!nomor || !tanggalTerbit) {
-            return NextResponse.json({ error: "Nomor dan tanggal terbit wajib diisi" }, { status: 400 });
+        if (!nomor || !tanggalTerbit || !pendaftaranId) {
+            return NextResponse.json({ error: "Data tidak lengkap" }, { status: 400 });
         }
 
         const existing = await prisma.sertifikat.findUnique({ where: { id } });
@@ -24,41 +23,25 @@ export async function PUT(request: Request, { params }: { params: { id: string }
             return NextResponse.json({ error: "Sertifikat tidak ditemukan" }, { status: 404 });
         }
 
-        let fileUrl = existing.fileUrl;
-        let fileName = existing.fileName;
-        let fileType = existing.fileType;
-        let fileSize = existing.fileSize;
-
-        if (file) {
-            const blob = await put(`sertifikat/${nomor}-${Date.now()}`, file, {
-                access: 'public',
-                contentType: file.type
-            });
-
-            fileUrl = blob.url;
-            fileName = file.name;
-            fileType = file.type;
-            fileSize = file.size;
-        }
-
         const updated = await prisma.sertifikat.update({
             where: { id },
             data: {
                 nomor,
-                tanggalTerbit,
-                fileUrl,
-                fileName,
-                fileType,
-                fileSize
-            }
+                tanggalTerbit: new Date(tanggalTerbit),
+                pendaftaranId,
+            },
         });
 
-        return NextResponse.json(updated, { status: 200 });
-    } catch (error) {
-        console.error("Gagal memperbarui sertifikat:", error);
+        return NextResponse.json(updated);
+    } catch (err) {
+        console.error("Gagal update:", err);
         return NextResponse.json({ error: "Terjadi kesalahan saat memperbarui data" }, { status: 500 });
     }
 }
+
+
+
+
 
 
 export async function GET(request: Request, { params }: { params: { id: string } }) {

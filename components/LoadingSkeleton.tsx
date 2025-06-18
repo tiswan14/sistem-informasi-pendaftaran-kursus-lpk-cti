@@ -2,7 +2,7 @@ const NavLoadingSkeleton = () => {
     return (
         <div className="flex gap-4">
             {/* Skeleton untuk 2 menu item */}
-            {[...Array(2)].map((_, index) => (
+            {[...Array(4)].map((_, index) => (
                 <li key={index}>
                     <div className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg">
                         {/* Icon placeholder */}

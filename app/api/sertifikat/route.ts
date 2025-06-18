@@ -14,13 +14,19 @@ export type SertifikatInput = {
 export async function GET() {
     try {
         const allSertifikat = await prisma.sertifikat.findMany({
+            where: {
+                pendaftaran: {
+                    status: "Lulus"
+                }
+            },
             include: {
                 pendaftaran: {
                     select: {
                         id: true,
                         user: {
                             select: {
-                                nama: true
+                                nama: true,
+                                email: true
                             }
                         },
                         kursus: {
@@ -36,6 +42,7 @@ export async function GET() {
             }
         });
 
+
         return NextResponse.json(allSertifikat);
     } catch (error) {
         console.error("Gagal fetch sertifikat:", error);
@@ -46,9 +53,6 @@ export async function GET() {
 export async function POST(request: Request) {
     try {
         const formData = await request.formData();
-
-        // Debugging: Lihat semua field yang diterima
-        console.log('FormData entries:', [...formData.entries()]);
 
         const pendaftaranId = formData.get('pendaftaranId')?.toString();
         const nomor = formData.get('nomor')?.toString();
@@ -87,7 +91,7 @@ export async function POST(request: Request) {
         let fileData = null;
         if (file && file instanceof File && file.size > 0) {
             const blob = await put(
-                `CTI-${nomor}-${Date.now()}`,
+                `sertifikat/CTI-${nomor}-${Date.now()}`,
                 file,
                 { access: 'public', contentType: file.type }
             );
@@ -114,7 +118,7 @@ export async function POST(request: Request) {
             include: {
                 pendaftaran: {
                     select: {
-                        user: { select: { nama: true } },
+                        user: { select: { nama: true, email: true } },
                         kursus: { select: { nama: true } }
                     }
                 }

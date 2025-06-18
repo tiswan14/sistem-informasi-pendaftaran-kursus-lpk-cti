@@ -81,17 +81,19 @@ export const POST = async (request: Request) => {
 
 export async function GET() {
     const payments = await prisma.payment.findMany({
-        include: {
+        select: {
+            method: true,
+            amount: true,
+            createdAt: true,
+            status: true,
             pendaftaran: {
-                include: {
-                    user: true,
-                    kursus: true,
+                select: {
+                    user: { select: { id: true, nama: true, email: true } },
+                    kursus: { select: { id: true, nama: true } },
                 },
             },
         },
-        orderBy: {
-            createdAt: "desc",
-        },
+        orderBy: { createdAt: "desc" },
     });
 
     return NextResponse.json({ success: true, data: payments }, { status: 200 });

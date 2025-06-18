@@ -14,21 +14,29 @@ export type JadwalInput = {
 
 export async function GET() {
     try {
+        const urutanHari = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+
         const allJadwal = await prisma.jadwal.findMany({
             include: {
                 kursus: {
                     include: {
                         user: {
-                            select: {
-                                nama: true
-                            }
+                            select: { nama: true }
                         }
                     }
                 }
-            },
-            orderBy: {
-                jamMulai: 'asc'
             }
+        });
+
+        allJadwal.sort((a, b) => {
+            const indexA = urutanHari.indexOf(a.hari);
+            const indexB = urutanHari.indexOf(b.hari);
+
+            if (indexA === indexB) {
+                return a.jamMulai.localeCompare(b.jamMulai);
+            }
+
+            return indexA - indexB;
         });
 
         return NextResponse.json(allJadwal);

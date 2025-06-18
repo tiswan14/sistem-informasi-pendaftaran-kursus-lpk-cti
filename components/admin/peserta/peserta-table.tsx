@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { FaEye, FaTrash } from "react-icons/fa";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { SearchX } from "lucide-react";
@@ -227,6 +227,16 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                                             </a>
                                         </Tooltip>
 
+                                        <Tooltip content="Edit">
+                                            <a
+                                                href={`/dashboard/data-peserta/edit/${peserta.id}`}
+                                                className="bg-cyan-600 hover:bg-cyan-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                aria-label="Edit"
+                                            >
+                                                <FaEdit className="h-4 w-4 text-white" />
+                                            </a>
+                                        </Tooltip>
+
                                         <Tooltip content="Hapus">
                                             <button
                                                 onClick={() => setDeleteId(peserta.id)}
@@ -238,6 +248,7 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                                         </Tooltip>
                                     </div>
                                 </td>
+
                             </tr>
                         ))
                     )}

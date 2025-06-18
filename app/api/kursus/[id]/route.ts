@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@/app/generated/prisma";
 import { getKursusDetailById } from "@/lib/data";
+import { put } from '@vercel/blob'
 
 const prisma = new PrismaClient();
 
@@ -27,33 +28,64 @@ export async function PUT(
     { params }: { params: { id: string } }
 ) {
     try {
-        const body = await request.json();
+        const formData = await request.formData();
 
-        const {
-            nama,
-            deskripsi,
-            harga,
-            lamaKursus,
-            tanggalMulai,
-            tanggalSelesai,
-            kuota,
-            status,
-            userId,
-        } = body;
+        const nama = formData.get("nama")?.toString();
+        const deskripsi = formData.get("deskripsi")?.toString() || null;
+        const hargaStr = formData.get("harga")?.toString();
+        const lamaKursusStr = formData.get("lamaKursus")?.toString() || null;
+        const tanggalMulaiStr = formData.get("tanggalMulai")?.toString() || null;
+        const tanggalSelesaiStr = formData.get("tanggalSelesai")?.toString() || null;
+        const kuotaStr = formData.get("kuota")?.toString() || null;
+        const userId = formData.get("userId")?.toString() || null;
+        const status = formData.get("status")?.toString() || undefined;
+        const thumbnail = formData.get("thumbnail") as File | null;
 
+        // Validasi minimal
+        if (!nama || !hargaStr) {
+            return NextResponse.json(
+                { error: "Nama dan harga kursus harus diisi" },
+                { status: 400 }
+            );
+        }
+
+        const harga = Number(hargaStr);
+        if (isNaN(harga)) {
+            return NextResponse.json(
+                { error: "Harga harus berupa angka" },
+                { status: 400 }
+            );
+        }
+
+        const lamaKursus = lamaKursusStr ? Number(lamaKursusStr) : null;
+        const tanggalMulai = tanggalMulaiStr ? new Date(tanggalMulaiStr) : null;
+        const tanggalSelesai = tanggalSelesaiStr ? new Date(tanggalSelesaiStr) : null;
+        const kuota = kuotaStr ? Number(kuotaStr) : null;
+
+        // Handle thumbnail upload (optional update)
+        let thumbnailData = undefined; // pakai undefined supaya tidak diubah kalau tidak diisi
+        if (thumbnail && thumbnail.size > 0) {
+            const blob = await put(
+                `kursus/thumbnail-${Date.now()}`,
+                thumbnail,
+                { access: "public", contentType: thumbnail.type }
+            );
+            thumbnailData = blob.url;
+        }
 
         const updatedKursus = await prisma.kursus.update({
             where: { id: params.id },
             data: {
                 nama,
-                deskripsi: deskripsi || null,
-                harga: Number(harga),
-                lamaKursus: lamaKursus ? Number(lamaKursus) : null,
-                tanggalMulai: tanggalMulai ? new Date(tanggalMulai) : null,
-                tanggalSelesai: tanggalSelesai ? new Date(tanggalSelesai) : null,
-                kuota: kuota ? Number(kuota) : null,
+                deskripsi,
+                harga,
+                lamaKursus,
+                tanggalMulai,
+                tanggalSelesai,
+                kuota,
+                userId,
                 status,
-                userId: userId || null,
+                ...(thumbnailData !== undefined && { thumbnail: thumbnailData }), // update hanya jika ada thumbnail baru
             },
         });
 
@@ -61,11 +93,12 @@ export async function PUT(
     } catch (error) {
         console.error("Gagal memperbarui kursus:", error);
         return NextResponse.json(
-            { error: "Terjadi kesalahan saat memperbarui kursus." },
+            { error: error instanceof Error ? error.message : "Terjadi kesalahan saat memperbarui kursus." },
             { status: 500 }
         );
     }
 }
+
 
 
 export const DELETE = async (

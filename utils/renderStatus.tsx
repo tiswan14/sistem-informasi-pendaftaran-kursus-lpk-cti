@@ -1,12 +1,12 @@
 const renderStatus = (status: string) => {
     switch (status) {
-        case 'unpaid':
+        case 'paid':
             return (
                 <span className="px-3 py-1 text-xs font-semibold rounded-full bg-red-100 text-red-800">
                     Belum Dibayar
                 </span>
             );
-        case 'paid':
+        case 'unpaid':
             return (
                 <span className="px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-800">
                     Sudah Dibayar

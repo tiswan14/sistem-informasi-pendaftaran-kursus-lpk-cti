@@ -98,13 +98,7 @@ const SertifikatTable = () => {
         }
     };
 
-    if (loading) {
-        return (
-            <div className="bg-white p-6 mt-6 rounded-lg shadow-sm border border-gray-100 flex justify-center items-center h-64">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-            </div>
-        );
-    }
+
 
     if (error) {
         return (
@@ -152,22 +146,24 @@ const SertifikatTable = () => {
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    {!sertifikatData.length ? (
+                    {loading ? (
+                        <tr>
+                            <td colSpan={7} className="py-10 text-center">
+                                <div className="flex flex-col items-center justify-center gap-3">
+                                    <div className="animate-spin rounded-full h-14 w-14 border-4 border-blue-200 border-t-transparent border-r-transparent"></div>
+                                    <div>
+                                        <h3 className="text-md font-medium text-gray-600">Memuat data sertifikat...</h3>
+                                        <p className="text-sm text-gray-400 mt-1">Harap tunggu sebentar...</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    ) : sertifikatData.length === 0 ? (
                         <tr>
                             <td colSpan={7} className="py-10 text-gray-400 italic text-center">
                                 <div className="flex flex-col items-center justify-center space-y-2">
-                                    <svg
-                                        className="w-10 h-10 text-gray-300"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M9 17v-6h13v6M9 17H3v-6h6v6zm0 0V7a2 2 0 012-2h10a2 2 0 012 2v10M9 17h6"
-                                        />
+                                    <svg className="w-10 h-10 text-gray-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 17v-6h13v6M9 17H3v-6h6v6zm0 0V7a2 2 0 012-2h10a2 2 0 012 2v10M9 17h6" />
                                     </svg>
                                     <span>Belum ada data sertifikat</span>
                                 </div>
@@ -181,7 +177,7 @@ const SertifikatTable = () => {
                                 <td className="px-4 py-3 text-sm text-gray-700">{sertifikat.pendaftaran.user.nama}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{sertifikat.pendaftaran.kursus.nama}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{formatTanggalIndonesia(sertifikat.tanggalTerbit)}</td>
-                                <td className="px-4 py-3">
+                                {/* <td className="px-4 py-3">
                                     {sertifikat.fileUrl ? (
                                         <a
                                             href={sertifikat.fileUrl}
@@ -198,20 +194,30 @@ const SertifikatTable = () => {
                                             Tidak Ada File
                                         </span>
                                     )}
+                                </td> */}
+                                <td className="text-center">
+                                    <div className="flex items-center justify-center">
+                                        <button
+                                            onClick={() => redirect(`/dashboard/data-sertifikat/lihat/${sertifikat.id}`)}
+                                            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-600 transition-colors duration-200 shadow-sm hover:shadow-md"
+                                        >
+                                            <Eye className="w-5 h-5 text-blue-500" />
+                                            <span className="font-medium">Lihat Sertifikat</span>
+                                        </button>
+                                    </div>
                                 </td>
+
+
                                 <td className="px-4 py-3 text-sm text-gray-700">
                                     <div className="flex justify-start space-x-2">
                                         <Tooltip content="Edit">
-                                            <Tooltip content="Edit">
-                                                <button
-                                                    onClick={() => redirect(`/dashboard/data-sertifikat/edit/${sertifikat.id}`)}
-                                                    className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors"
-                                                >
-                                                    <FaEdit className="w-4 h-4 text-white" />
-                                                </button>
-                                            </Tooltip>
+                                            <button
+                                                onClick={() => redirect(`/dashboard/data-sertifikat/edit/${sertifikat.id}`)}
+                                                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors"
+                                            >
+                                                <FaEdit className="w-4 h-4 text-white" />
+                                            </button>
                                         </Tooltip>
-
                                         <Tooltip content="Hapus">
                                             <button
                                                 onClick={() => setDeleteId(sertifikat.id)}
@@ -226,6 +232,7 @@ const SertifikatTable = () => {
                         ))
                     )}
                 </tbody>
+
             </table>
         </div>
     );

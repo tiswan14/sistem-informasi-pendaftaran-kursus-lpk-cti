@@ -38,6 +38,35 @@ export const getTotalKursus = async () => {
     }
 }
 
+export const getTotalPendaftar = async () => {
+    try {
+        const total = await prisma.pendaftaran.count()
+        return total
+    } catch (error) {
+        console.log("Gagal menghitung instruktur: ", error);
+        return 0
+    }
+}
+
+export const getTotalJadwal = async () => {
+    try {
+        const total = await prisma.jadwal.count()
+        return total
+    } catch (error) {
+        console.log("Gagal menghitung jadwal: ", error);
+        return 0
+    }
+}
+
+export const getTotalSertifikat = async () => {
+    try {
+        const total = await prisma.sertifikat.count()
+        return total
+    } catch (error) {
+        console.log("Gagal menghitung sertifikat: ", error);
+        return 0
+    }
+}
 
 export const getPesertaDetailById = async (pesertaId: string) => {
     try {
@@ -71,6 +100,7 @@ export const getKursusDetailById = async (kursusId: string) => {
                 kuota: true,
                 status: true,
                 userId: true,
+                thumbnail: true,
                 user: {
                     select: {
                         id: true,

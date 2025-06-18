@@ -34,7 +34,7 @@ const PendaftaranBerhasilPage = () => {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-white px-4 py-24">
+        <div className="min-h-screen flex items-center justify-center bg-white px-4 py-24   ">
             <div className="bg-white p-8 rounded-xl shadow-sm w-full max-w-lg border border-gray-100">
                 {/* Success Illustration */}
                 <div className="flex justify-center mb-8" data-aos="zoom-in">

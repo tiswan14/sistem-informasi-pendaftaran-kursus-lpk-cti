@@ -29,6 +29,7 @@ type Pembayaran = {
     waktuBayar?: string | null;
     status: string;
     pendaftaran: Pendaftaran;
+    createdAt: string;
 };
 
 
@@ -113,7 +114,7 @@ const PembayaranTable = () => {
                         </tr>
                     ) : (
                         pembayaranData.slice(0, 6).map((pembayaran, index) => (
-                            <tr key={pembayaran.id}>
+                            <tr key={pembayaran.id ?? index}>
                                 <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pembayaran.pendaftaran.user.nama}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pembayaran.pendaftaran.kursus.nama}</td>
@@ -122,8 +123,9 @@ const PembayaranTable = () => {
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">{formatRupiah(pembayaran.amount)}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    {pembayaran.waktuBayar ? formatTanggalIndonesia(pembayaran.waktuBayar) : '-'}
+                                    {pembayaran.createdAt ? formatTanggalIndonesia(pembayaran.createdAt) : '-'}
                                 </td>
+
                                 <td className="px-6 py-4 whitespace-nowrap capitalize">
                                     {renderStatus(pembayaran.status)}
                                 </td>

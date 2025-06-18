@@ -3,12 +3,13 @@
 import {
     FileText,
     Hash,
-    Download,
     RefreshCw,
     Save,
     BookOpen,
     ChevronDown,
     Calendar,
+    Loader2,
+    AlertCircle,
 } from "lucide-react";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -17,12 +18,10 @@ import { useRouter, useParams } from "next/navigation";
 import { toast } from "react-toastify";
 
 const EditSertifikatForm = () => {
-    const { id } = useParams(); // Get the ID from URL params
+    const { id } = useParams();
     const [pendaftaranId, setPendaftaranId] = useState("");
     const [nomor, setNomor] = useState("");
     const [tanggalTerbit, setTanggalTerbit] = useState("");
-    const [file, setFile] = useState<File | null>(null);
-    const [currentFileUrl, setCurrentFileUrl] = useState("");
 
     const [pendaftaranList, setPendaftaranList] = useState([]);
     const [loadingPendaftaran, setLoadingPendaftaran] = useState(true);
@@ -34,15 +33,13 @@ const EditSertifikatForm = () => {
     const router = useRouter();
 
     useEffect(() => {
-        // Fetch certificate data
         const fetchSertifikat = async () => {
             try {
                 const response = await axios.get(`/api/sertifikat/${id}`);
                 const sertifikat = response.data;
                 setPendaftaranId(sertifikat.pendaftaranId);
                 setNomor(sertifikat.nomor);
-                setTanggalTerbit(sertifikat.tanggalTerbit?.split('T')[0] || ''); // Format date for input
-                setCurrentFileUrl(sertifikat.fileUrl);
+                setTanggalTerbit(sertifikat.tanggalTerbit?.split('T')[0] || '');
             } catch (err) {
                 console.error("Error fetching sertifikat:", err);
                 toast.error("Gagal memuat data sertifikat");
@@ -51,7 +48,6 @@ const EditSertifikatForm = () => {
             }
         };
 
-        // Fetch pendaftaran list
         const fetchPendaftaran = async () => {
             try {
                 const response = await axios.get('/api/pendaftaran?status=lulus');
@@ -73,18 +69,16 @@ const EditSertifikatForm = () => {
         setIsPending(true);
 
         try {
-            const formData = new FormData();
-            formData.append('pendaftaranId', pendaftaranId);
-            formData.append('nomor', nomor);
-            formData.append('tanggalTerbit', tanggalTerbit);
-            if (file) {
-                formData.append('file', file);
-            }
+            const payload = {
+                pendaftaranId,
+                nomor,
+                tanggalTerbit,
+            };
 
-            const response = await axios.put(`/api/sertifikat/${id}`, formData, {
+            const response = await axios.put(`/api/sertifikat/${id}`, payload, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
+                    'Content-Type': 'application/json',
+                },
             });
 
             router.push("/dashboard/data-sertifikat");
@@ -98,140 +92,143 @@ const EditSertifikatForm = () => {
     };
 
     const handleReset = () => {
-        // Reset only the file input, keep other fields as they are
-        setFile(null);
+        setNomor("");
+        setTanggalTerbit("");
     };
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            setFile(e.target.files[0]);
-        }
-    };
-
-    if (loadingSertifikat || loadingPendaftaran) {
-        return (
-            <div className="bg-white p-6 rounded-lg shadow-md flex justify-center items-center">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-            </div>
-        );
-    }
+    const isLoading = loadingSertifikat || loadingPendaftaran;
 
     return (
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-xl font-semibold mb-5 text-gray-700 flex items-center">
+        <div className="bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-xl font-semibold mb-6 text-gray-700 flex items-center">
                 <FileText className="h-5 w-5 mr-2" />
                 Edit Sertifikat
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-5">
-                {/* Left Column */}
+            {isLoading ? (
                 <div className="space-y-4">
-                    {/* Pendaftaran */}
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Pendaftaran (Lulus)</label>
-                        <div className="relative">
-                            <BookOpen className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
-                            <select
-                                required
-                                value={pendaftaranId}
-                                onChange={(e) => setPendaftaranId(e.target.value)}
-                                className="py-2 pl-10 pr-10 rounded-md border border-gray-300 w-full appearance-none"
-                            >
-                                <option value="">Pilih Pendaftaran</option>
-                                {pendaftaranList.map((pendaftaran) => (
-                                    <option key={pendaftaran.id} value={pendaftaran.id}>
-                                        {pendaftaran.user?.nama} - {pendaftaran.kursus?.nama}
-                                    </option>
-                                ))}
-                            </select>
-                            <ChevronDown className="absolute right-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
+                    <div className="animate-pulse flex flex-col space-y-4">
+                        <div className="h-14 bg-gray-100 rounded-md"></div>
+                        <div className="h-14 bg-gray-100 rounded-md"></div>
+                        <div className="h-14 bg-gray-100 rounded-md"></div>
+                        <div className="flex space-x-3 mt-6">
+                            <div className="flex-1 h-10 bg-gray-100 rounded-md"></div>
+                            <div className="flex-1 h-10 bg-gray-100 rounded-md"></div>
                         </div>
                     </div>
-
-                    {/* Nomor Sertifikat */}
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Nomor Sertifikat</label>
-                        <div className="relative">
-                            <Hash className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
-                            <input
-                                required
-                                type="text"
-                                value={nomor}
-                                onChange={(e) => setNomor(e.target.value)}
-                                className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
-                                placeholder="Contoh: CERT-2023-001"
-                            />
-                        </div>
-                    </div>
-
-                    {/* Tanggal Terbit */}
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Tanggal Terbit</label>
-                        <div className="relative">
-                            <Calendar className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
-                            <input
-                                required
-                                type="date"
-                                value={tanggalTerbit}
-                                onChange={(e) => setTanggalTerbit(e.target.value)}
-                                className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
-                            />
-                        </div>
+                    <div className="flex justify-center pt-4">
+                        <Loader2 className="h-6 w-6 text-blue-500 animate-spin" />
                     </div>
                 </div>
-
-                {/* Right Column */}
-                <div className="space-y-4">
-                    {/* File Upload */}
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">File Sertifikat (PDF)</label>
-                        <div className="relative">
-                            <Download className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
-                            <input
-                                type="file"
-                                accept=".pdf,.jpg,.jpeg,.png"
-                                onChange={handleFileChange}
-                                className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
-                            />
-                        </div>
-                        {file ? (
-                            <p className="mt-1 text-sm text-gray-500">
-                                File baru: {file.name}
-                            </p>
-                        ) : currentFileUrl ? (
-                            <p className="mt-1 text-sm text-gray-500">
-                                File saat ini: <a href={currentFileUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Lihat file</a>
-                            </p>
-                        ) : (
-                            <p className="mt-1 text-sm text-gray-500">
-                                Tidak ada file yang dipilih
-                            </p>
-                        )}
+            ) : errorPendaftaran ? (
+                <div className="mb-4 p-4 bg-red-50 text-red-700 rounded-md border border-red-200 flex items-start">
+                    <AlertCircle className="h-5 w-5 mr-2 mt-0.5 flex-shrink-0" />
+                    <div>
+                        <p className="font-medium">Gagal memuat data</p>
+                        <p className="text-sm">{errorPendaftaran}</p>
                     </div>
                 </div>
-            </div>
+            ) : (
+                <form onSubmit={handleSubmit}>
+                    <div className="grid md:grid-cols-2 gap-6">
+                        {/* Left Column */}
+                        <div className="space-y-5">
+                            <div className="space-y-1">
+                                <label className="block text-sm font-medium text-gray-700">Pendaftaran (Lulus)</label>
+                                <div className="relative">
+                                    <BookOpen className="absolute left-3 top-3 text-gray-400 h-5 w-5" />
+                                    <select
+                                        required
+                                        value={pendaftaranId}
+                                        onChange={(e) => setPendaftaranId(e.target.value)}
+                                        className="py-2 pl-10 pr-10 rounded-md border border-gray-300 w-full focus:ring-blue-500 focus:border-blue-500 h-10"
+                                        disabled={isPending}
+                                    >
+                                        <option value="">Pilih Pendaftaran</option>
+                                        {pendaftaranList.map((pendaftaran) => (
+                                            <option key={pendaftaran.id} value={pendaftaran.id}>
+                                                {pendaftaran.user?.nama} - {pendaftaran.kursus?.nama}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <ChevronDown className="absolute right-3 top-3 text-gray-400 h-5 w-5" />
+                                </div>
+                            </div>
 
-            {/* Buttons */}
-            <div className="flex space-x-3 mt-6">
-                <button
-                    type="button"
-                    onClick={handleReset}
-                    className="cursor-pointer flex-1 bg-gray-100 text-gray-600 py-2 px-4 text-base font-medium rounded-md shadow-sm flex items-center justify-center hover:bg-gray-200 transition-colors"
-                >
-                    <RefreshCw className="h-4 w-4 mr-2" />
-                    Reset
-                </button>
+                            <div className="space-y-1">
+                                <label className="block text-sm font-medium text-gray-700">Nomor Sertifikat</label>
+                                <div className="relative">
+                                    <Hash className="absolute left-3 top-3 text-gray-400 h-5 w-5" />
+                                    <input
+                                        required
+                                        type="text"
+                                        value={nomor}
+                                        onChange={(e) => setNomor(e.target.value)}
+                                        className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full focus:ring-blue-500 focus:border-blue-500 h-10"
+                                        placeholder="Contoh: CERT-2023-001"
+                                        disabled={isPending}
+                                    />
+                                </div>
+                            </div>
+                        </div>
 
-                <button
-                    type="submit"
-                    disabled={isPending}
-                    className="cursor-pointer flex-1 bg-blue-600 text-white py-2 px-4 text-base font-medium rounded-md shadow-sm flex items-center justify-center hover:bg-blue-700 transition-colors disabled:opacity-70"
-                >
-                    <Save className="h-4 w-4 mr-2" />
-                    {isPending ? "Menyimpan..." : "Simpan Perubahan"}
-                </button>
-            </div>
-        </form>
+                        {/* Right Column */}
+                        <div className="space-y-5">
+                            <div className="space-y-1">
+                                <label className="block text-sm font-medium text-gray-700">Tanggal Terbit</label>
+                                <div className="relative">
+                                    <Calendar className="absolute left-3 top-3 text-gray-400 h-5 w-5" />
+                                    <input
+                                        required
+                                        type="date"
+                                        value={tanggalTerbit}
+                                        onChange={(e) => setTanggalTerbit(e.target.value)}
+                                        className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full focus:ring-blue-500 focus:border-blue-500 h-10"
+                                        disabled={isPending}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex space-x-3 mt-8">
+                        <button
+                            type="button"
+                            onClick={handleReset}
+                            disabled={isPending}
+                            className={`flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium transition-colors ${isPending
+                                ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+                                }`}
+                        >
+                            <RefreshCw className="h-4 w-4 mr-2" />
+                            Reset
+                        </button>
+
+                        <button
+                            type="submit"
+                            disabled={isPending}
+                            className={`flex items-center justify-center px-4 py-2 rounded-md text-sm font-medium text-white transition-colors ${isPending
+                                ? "bg-blue-400 cursor-wait"
+                                : "bg-blue-600 hover:bg-blue-700"
+                                }`}
+                        >
+                            {isPending ? (
+                                <>
+                                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                    Menyimpan...
+                                </>
+                            ) : (
+                                <>
+                                    <Save className="h-4 w-4 mr-2" />
+                                    Simpan Perubahan
+                                </>
+                            )}
+                        </button>
+                    </div>
+                </form>
+            )}
+        </div>
     );
 };
 

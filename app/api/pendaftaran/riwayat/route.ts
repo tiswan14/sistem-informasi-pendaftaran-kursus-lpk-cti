@@ -19,6 +19,7 @@ export async function GET() {
             include: {
                 kursus: true,
                 user: true,
+                Payment: true,
             },
             orderBy: {
                 createdAt: "desc",

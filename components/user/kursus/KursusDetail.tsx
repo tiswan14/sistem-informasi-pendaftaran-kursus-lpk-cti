@@ -8,7 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Kursus, KursusDetailProps } from '@/types/kursus';
 import { redirect } from "next/navigation";
-
+import Image from "next/image";
 
 const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
     const [kursus, setKursus] = useState<Kursus | null>(null);
@@ -23,7 +23,11 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                     throw new Error(`Kursus tidak ditemukan (status ${res.status})`);
                 }
 
+
+
                 const data = await res.json();
+                console.log(data);
+
                 setKursus(data.kursus);
             } catch (err: unknown) {
                 if (err instanceof Error) {
@@ -52,6 +56,8 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                 userId: session.user.id,
                 kursusId: kursus?.id,
             });
+
+
 
             // Redirect dengan membawa nama kursus sebagai query parameter
             window.location.href = `/pendaftaran-berhasil?namaKursus=${encodeURIComponent(kursus?.nama || '')}`;
@@ -93,6 +99,23 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
 
     return (
         <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
+            {/* Thumbnail Section */}
+            <div className="relative aspect-video w-full h-64 mb-8 rounded-lg overflow-hidden bg-gray-100">
+                {kursus.thumbnail ? (
+                    <Image
+                        src={kursus.thumbnail}
+                        alt={`Thumbnail ${kursus.nama}`}
+                        fill
+                        className="object-cover transition-transform duration-500 hover:scale-105"
+                        priority
+                    />
+                ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-50">
+                        <BookOpen className="w-12 h-12 text-gray-400" />
+                    </div>
+                )}
+            </div>
+
             {/* Header Section */}
             <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
                 <div className="space-y-2">
@@ -100,7 +123,7 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                         <BookOpen className="w-5 h-5" />
                         <span className="text-sm font-medium">Detail Kursus</span>
                     </div>
-                    <h1 className="text-2xl font-bold text-gray-900">{kursus.nama}</h1>
+                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900">{kursus.nama}</h1>
                 </div>
 
                 <div className="flex items-center gap-3 bg-gray-100 px-4 py-2 rounded-lg">
@@ -185,7 +208,6 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                     <Laptop2 className="w-5 h-5" />
                     <span>Daftar Kursus</span>
                 </button>
-
 
                 <button
                     className="flex-1 py-4 px-6 bg-white text-gray-800 font-medium rounded-xl border border-gray-200 hover:border-indigo-300 hover:text-indigo-700 transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-3"

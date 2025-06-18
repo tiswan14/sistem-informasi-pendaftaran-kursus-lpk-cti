@@ -1,7 +1,8 @@
 import SertifikatTable from "@/components/admin/sertifikat/sertifikat-table";
-import { FiUserPlus } from "react-icons/fi";
+import { FiAward, FiUserPlus } from "react-icons/fi";
 import Link from "next/link";
 import { Metadata } from "next";
+import Sertifikat from "@/components/Sertifikat";
 
 export const metadata: Metadata = {
     title: "Daftar Sertifikat - LPK CTI Ciamis",
@@ -18,7 +19,7 @@ const DaftarSertifikatPage = () => {
                     href="/dashboard/data-sertifikat/tambah"
                     className="inline-flex items-center px-3 py-2 text-sm bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-all font-medium shadow-md"
                 >
-                    <FiUserPlus className="mr-2 w-3.5 h-3.5" />
+                    <FiAward className="mr-2 w-3.5 h-3.5" />
                     Tambah Sertifikat
                 </Link>
             </div>

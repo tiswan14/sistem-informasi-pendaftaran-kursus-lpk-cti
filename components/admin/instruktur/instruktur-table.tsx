@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaEye, FaInfoCircle, FaTrash } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import { redirect } from "next/navigation";
 import { Pagination } from "../pagination/Pagination";
@@ -226,15 +226,30 @@ const InstrukturTable = ({ searchQuery }: InstrukturTableProps) => {
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <div className="flex justify-center space-x-3">
+
+                                        {/* Tombol Detail (Biru) */}
+                                        <Tooltip content="Detail">
+                                            <button
+                                                onClick={() => redirect(`/dashboard/data-instruktur/detail/${instruktur.id}`)}
+                                                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                aria-label="Detail"
+                                            >
+                                                <FaEye className="h-4 w-4 text-white" />
+                                            </button>
+                                        </Tooltip>
+
+                                        {/* Tombol Edit (Cyan) */}
                                         <Tooltip content="Edit">
                                             <button
                                                 onClick={() => redirect(`/dashboard/data-instruktur/edit/${instruktur.id}`)}
-                                                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                className="bg-cyan-600 hover:bg-cyan-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
                                                 aria-label="Edit"
                                             >
                                                 <FaEdit className="h-4 w-4 text-white" />
                                             </button>
                                         </Tooltip>
+
+                                        {/* Tombol Hapus (Merah) */}
                                         <Tooltip content="Hapus">
                                             <button
                                                 onClick={() => setDeleteId(instruktur.id)}
@@ -244,8 +259,10 @@ const InstrukturTable = ({ searchQuery }: InstrukturTableProps) => {
                                                 <FaTrash className="h-4 w-4 text-white" />
                                             </button>
                                         </Tooltip>
+
                                     </div>
                                 </td>
+
                             </tr>
                         ))
                     )}

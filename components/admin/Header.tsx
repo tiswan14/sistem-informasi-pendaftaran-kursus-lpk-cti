@@ -25,51 +25,52 @@ const Header = () => {
     const isLoading = status === "loading";
 
     return (
-        <header className="bg-white border-b border-gray-200 flex items-center justify-between px-6 py-3 sticky top-0 z-40">
+        <header className="bg-white border-b border-gray-200 flex items-center justify-between px-6 py-4 sticky top-0 z-40 shadow-sm">
             {/* Left Section - Title */}
-            <div className="flex items-center">
-                <h1 className="text-lg font-semibold text-gray-800">Dashboard</h1>
+            <div className="flex items-center space-x-3">
+                <h1 className="text-xl font-bold text-gray-900 tracking-tight">Admin Panel</h1>
             </div>
 
             {/* Right Section */}
-            <div className="flex items-center gap-4 px-">
-                <div className="flex items-center gap-3">
+            <div className="flex items-center space-x-6">
+                <div className="flex items-center space-x-4">
                     {isLoading ? (
-                        <div className="">
+                        <div className="flex flex-col items-end">
                             <div className="h-5 w-24 bg-gray-200 rounded animate-pulse mb-1" />
-                            <div className="h-4 w-20 bg-gray-100 rounded animate-pulse ml-auto" />
+                            <div className="h-4 w-20 bg-gray-100 rounded animate-pulse" />
                         </div>
                     ) : (
-                        <div className="">
-                            <p className="text-sm font-medium text-gray-800">Tiswan</p>
-                            <p className="text-xs text-gray-500 text-right">admin</p>
+                        <div className="flex flex-col items-end">
+                            <p className="text-sm font-medium text-gray-900">Tiswan</p>
+                            <p className="text-xs text-gray-500 capitalize">admin</p>
                         </div>
                     )}
+
                     {/* Profile Dropdown */}
                     <div className="relative" ref={dropdownRef}>
                         <button
                             onClick={() => setDropdownOpen(!isDropdownOpen)}
-                            className="flex items-center focus:outline-none hover:opacity-90 transition"
+                            className="flex items-center focus:outline-none transition-transform hover:scale-105 group"
                             aria-label="User menu"
                         >
-                            <div className="w-9 h-9 rounded-full border-2 border-gray-200 overflow-hidden bg-gray-100 flex items-center justify-center">
+                            <div className="w-10 h-10 rounded-full border-2 border-gray-300 overflow-hidden bg-gray-100 flex items-center justify-center group-hover:ring-2 group-hover:ring-indigo-500 transition-all">
                                 {session?.user?.image ? (
                                     <Image
                                         src={session.user.image}
                                         alt="Profile"
-                                        width={36}
-                                        height={36}
+                                        width={40}
+                                        height={40}
                                         className="object-cover"
                                     />
                                 ) : (
-                                    <FaUserCircle className="text-gray-400 text-xl" />
+                                    <FaUserCircle className="text-gray-400 text-2xl" />
                                 )}
                             </div>
                         </button>
 
                         {isDropdownOpen && (
-                            <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-100 z-50 overflow-hidden animate-fade-in">
-                                <div className="px-4 py-3 border-b border-gray-100">
+                            <div className="absolute right-0 mt-3 w-56 bg-white rounded-xl shadow-lg border border-gray-100 z-50 overflow-hidden transform transition-all origin-top-right animate-fade-in-scale">
+                                <div className="px-5 py-4 border-b border-gray-100">
                                     {isLoading ? (
                                         <>
                                             <div className="h-4 bg-gray-200 rounded w-32 mb-1 animate-pulse"></div>
@@ -77,16 +78,16 @@ const Header = () => {
                                         </>
                                     ) : (
                                         <>
-                                            <p className="text-sm font-medium text-gray-900 truncate">{session?.user?.name}</p>
+                                            <p className="text-sm font-semibold text-gray-900 truncate">{session?.user?.name}</p>
                                             <p className="text-xs text-gray-500 capitalize">{session?.user?.role?.toLowerCase()}</p>
                                         </>
                                     )}
                                 </div>
 
-                                <div className="py-1">
+                                <div className="py-2">
                                     <button
                                         onClick={() => signOut()}
-                                        className="w-full flex items-center px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors border-t border-gray-100"
+                                        className="w-full flex items-center px-5 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors"
                                     >
                                         <FaSignOutAlt className="mr-3 text-red-500" />
                                         Sign Out
@@ -98,6 +99,7 @@ const Header = () => {
                 </div>
             </div>
         </header>
+
     );
 };
 

@@ -61,6 +61,7 @@ const Sidebar = () => {
                     </div>
                 </Link>
 
+
                 <Link href="/dashboard/data-peserta">
                     <div className="flex items-center gap-2 p-2 py-4 rounded-lg hover:bg-gray-100 transition-colors group">
                         <div className="p-1.5 bg-green-100 rounded-lg text-green-600">

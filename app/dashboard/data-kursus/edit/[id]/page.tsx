@@ -1,11 +1,10 @@
 "use client";
 
 import axios from 'axios';
-import { redirect, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { Calendar, BookOpen, User2, Clock, MapPin, DoorOpen, CheckCircle2, ChevronDown, RefreshCw, Save } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { Calendar, BookOpen, User2, Clock, CheckCircle2, ChevronDown, RefreshCw, Save } from 'lucide-react';
+import { redirect, useParams, useRouter } from 'next/navigation';
 
 interface Instruktur {
     id: string;
@@ -13,7 +12,8 @@ interface Instruktur {
 }
 
 const EditKursusPage = () => {
-    const { id } = useParams();
+    const { id } = useParams
+        ();
     const [kursus, setKursus] = useState(null);
     const [nama, setNama] = useState('');
     const [deskripsi, setDeskripsi] = useState('');
@@ -22,17 +22,20 @@ const EditKursusPage = () => {
     const [tanggalMulai, setTanggalMulai] = useState('');
     const [tanggalSelesai, setTanggalSelesai] = useState('');
     const [kuota, setKuota] = useState(0);
+    const [thumbnail, setThumbnail] = useState<File | null>(null);
     const [status, setStatus] = useState<'aktif' | 'nonaktif'>('aktif');
     const [instrukturId, setInstrukturId] = useState('');
     const [instrukturs, setInstrukturs] = useState<Instruktur[]>([]);
     const [loading, setLoading] = useState(true);
     const [isPending, setIsPending] = useState(false);
+    const [previewThumbnail, setPreviewThumbnail] = useState<string | null>(null); // untuk preview
 
     useEffect(() => {
         const fetchKursus = async () => {
             try {
                 const res = await axios.get(`/api/kursus/${id}`);
                 const data = res.data;
+
                 console.log("Full response:", data);
 
                 setKursus(data);
@@ -45,9 +48,15 @@ const EditKursusPage = () => {
                 setKuota(data.kursus.kuota);
                 setStatus(data.kursus.status);
                 setInstrukturId(data.kursus.userId);
+
+                // Set thumbnail lama (URL string) untuk preview
+                if (data.kursus.thumbnail) {
+                    setPreviewThumbnail(data.kursus.thumbnail);
+                }
+
                 setLoading(false);
             } catch (error) {
-                console.log(error);
+                console.error("Gagal ambil data kursus:", error);
                 setLoading(false);
             }
         };
@@ -56,6 +65,9 @@ const EditKursusPage = () => {
             fetchKursus();
         }
     }, [id]);
+
+    const router = useRouter()
+
 
     useEffect(() => {
         const fetchInstruktur = async () => {
@@ -72,39 +84,44 @@ const EditKursusPage = () => {
     }, [id]);
 
 
-    // Di dalam komponen Anda:
-    const router = useRouter();
+    ;
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsPending(true);
         try {
-            const payload = {
-                nama,
-                deskripsi,
-                harga,
-                lamaKursus,
-                tanggalMulai,
-                tanggalSelesai,
-                kuota,
-                status,
-                userId: instrukturId,
-            };
+            const formData = new FormData();
+            formData.append("nama", nama);
+            formData.append("deskripsi", deskripsi || "");
+            formData.append("harga", String(harga));
+            formData.append("lamaKursus", lamaKursus || "");
+            formData.append("tanggalMulai", tanggalMulai || "");
+            formData.append("tanggalSelesai", tanggalSelesai || "");
+            formData.append("kuota", String(kuota));
+            formData.append("status", status);
+            formData.append("userId", instrukturId);
+            if (thumbnail instanceof File) {
+                formData.append("thumbnail", thumbnail); // Jika user upload thumbnail baru
+            }
 
-            const response = await axios.put(`/api/kursus/${id}`, payload);
+            const response = await axios.put(`/api/kursus/${id}`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
 
-            console.log("Payload yang dikirim:", payload);
+            console.log("Payload yang dikirim (FormData):", formData);
             console.log("Respon dari server:", response.data);
 
             toast.success("Kursus berhasil diupdate");
-            router.push('/dashboard/data-kursus'); // Ganti redirect dengan router.push
+            router.push('/dashboard/data-kursus');
         } catch (error) {
             console.error("Gagal update:", error);
-            toast.error("Gagal mengupdate kursus"); // Tambahkan notifikasi error
         } finally {
             setIsPending(false);
         }
     };
+
 
     const handleReset = () => {
         if (kursus) {
@@ -127,7 +144,6 @@ const EditKursusPage = () => {
             </div>
         );
     }
-    if (!kursus) return <div>Kursus tidak ditemukan.</div>;
 
     return (
         <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md">
@@ -211,6 +227,43 @@ const EditKursusPage = () => {
                             />
                         </div>
                     </div>
+
+                    <div className="mb-4">
+                        <label htmlFor="thumbnail" className="block text-sm font-medium text-gray-700">
+                            Upload Thumbnail
+                        </label>
+                        <input
+                            type="file"
+                            id="thumbnail"
+                            name="thumbnail"
+                            accept="image/*"
+                            onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (file) {
+                                    setThumbnail(file);
+                                    setPreviewThumbnail(URL.createObjectURL(file)); // preview file baru
+                                }
+                            }}
+                            className="mt-1 block w-full text-sm text-gray-900 file:mr-4 file:py-2 file:px-4
+               file:rounded-full file:border-0
+               file:text-sm file:font-semibold
+               file:bg-blue-50 file:text-blue-700
+               hover:file:bg-blue-100"
+                        />
+                    </div>
+
+                    {previewThumbnail && (
+                        <div className="mb-4">
+                            <p className="text-sm text-gray-700 mb-1">Preview Thumbnail:</p>
+                            <img
+                                src={previewThumbnail}
+                                alt="Preview Thumbnail"
+                                className="w-64 rounded border shadow"
+                            />
+                        </div>
+                    )}
+
+
                 </div>
 
                 {/* Right Column */}

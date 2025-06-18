@@ -119,6 +119,11 @@ const TambahSertifikatForm = () => {
                     </div>
 
                     {/* Nomor Sertifikat */}
+
+                </div>
+
+                {/* Right Column */}
+                <div className="space-y-4">
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700 mb-1">Nomor Sertifikat</label>
                         <div className="relative">
@@ -133,12 +138,8 @@ const TambahSertifikatForm = () => {
                             />
                         </div>
                     </div>
-                </div>
-
-                {/* Right Column */}
-                <div className="space-y-4">
                     {/* File Upload */}
-                    <div className="mb-4">
+                    {/* <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700 mb-1">File Sertifikat (PDF)</label>
                         <div className="relative">
                             <Download className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
@@ -154,7 +155,7 @@ const TambahSertifikatForm = () => {
                                 File dipilih: {file.name}
                             </p>
                         )}
-                    </div>
+                    </div> */}
                 </div>
             </div>
 

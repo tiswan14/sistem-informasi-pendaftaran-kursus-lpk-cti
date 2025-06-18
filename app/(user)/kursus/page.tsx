@@ -36,8 +36,17 @@ const KursusPage = () => {
                 <h1 className="text-2xl font-bold text-gray-800 text-center mb-8">Daftar Kursus</h1>
 
                 {loading ? (
-                    <div className="flex justify-center items-center py-16">
-                        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
+                    <div className="flex flex-col items-center justify-center py-12">
+                        <div className="flex space-x-2">
+                            {[...Array(3)].map((_, i) => (
+                                <div
+                                    key={i}
+                                    className="w-4 h-4 bg-blue-500 rounded-full animate-bounce"
+                                    style={{ animationDelay: `${i * 0.15}s` }}
+                                />
+                            ))}
+                        </div>
+                        <p className="mt-4 text-gray-500">Memuat daftar kursus...</p>
                     </div>
                 ) : kursusData.length > 0 ? (
                     <div className="grid place-items-center grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">

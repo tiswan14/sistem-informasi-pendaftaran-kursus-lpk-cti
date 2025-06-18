@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
-import { FaUser } from "react-icons/fa";
+import { FaCertificate, FaUser } from "react-icons/fa";
 import { useState } from "react";
 import { IoClose, IoMenu } from "react-icons/io5";
 import clsx from "clsx";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
-import { Home, BookOpen, Clock, CreditCard, User, LogIn, LogOut, Eye, Award } from 'lucide-react';
+import { Home, BookOpen, Clock, CreditCard, User, LogIn, LogOut, Eye, Award, Calendar, History, UserCheck, CreativeCommons } from 'lucide-react';
 import { NavLoadingSkeleton, ProfileLoadingSkeleton } from "../LoadingSkeleton";
 
 
@@ -95,7 +95,7 @@ const Navlink = () => {
                     )}
                 >
 
-                    <ul className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-10 font-medium text-sm uppercase p-4 md:p-0 text-gray-700 md:text-current">
+                    <ul className="md:w-[400px] flex flex-col md:flex-row items-center justify-center gap-3 md:gap-10 font-medium text-sm uppercase p-4 md:p-0 text-gray-700 md:text-current">
                         <li>
                             <Link
                                 href="/"
@@ -111,24 +111,42 @@ const Navlink = () => {
                                 className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
                             >
                                 <BookOpen className="w-4 h-4" />
-                                Daftar Kursus
+                                Kursus
                             </Link>
                         </li>
+
                         {status === "loading" ? (
-                            // Tampilkan loading skeleton saat session sedang dimuat
                             <NavLoadingSkeleton />
                         ) : session ? (
-                            // Tampilan ketika user sudah login
                             <>
                                 <li>
                                     <Link
                                         href="/riwayat-pendaftaran"
                                         className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
                                     >
-                                        <Clock className="w-4 h-4" />
-                                        Riwayat
+                                        <History className="w-4 h-4" />
+                                        Pendaftaran
                                     </Link>
                                 </li>
+                                <li>
+                                    <Link
+                                        href="/jadwal"
+                                        className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
+                                    >
+                                        <Calendar className="w-4 h-4" />
+                                        Jadwal
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link
+                                        href="/sertifikat"
+                                        className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
+                                    >
+                                        <CreativeCommons className="w-4 h-4" />
+                                        Sertifikat
+                                    </Link>
+                                </li>
+
                                 <li>
                                     <Link
                                         href="/pembayaran"
@@ -140,12 +158,11 @@ const Navlink = () => {
                                 </li>
                             </>
                         ) : (
-                            // Tampilan ketika user belum login
                             <>
                                 <li>
                                     <Link
                                         href="/#visi-misi"
-                                        className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
+                                        className="w-21 flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
                                     >
                                         <Eye className="w-4 h-4" />
                                         Visi Misi
@@ -191,6 +208,7 @@ const Navlink = () => {
                             )}
                         </li>
                     </ul>
+
                 </div>
 
 

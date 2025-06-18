@@ -37,8 +37,17 @@ const RiwayatPendaftaranPage = () => {
                 </div>
 
                 {loading ? (
-                    <div className="flex justify-center items-center py-48">
-                        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
+                    <div className="flex flex-col items-center justify-center py-12">
+                        <div className="flex space-x-2">
+                            {[...Array(3)].map((_, i) => (
+                                <div
+                                    key={i}
+                                    className="w-4 h-4 bg-blue-500 rounded-full animate-bounce"
+                                    style={{ animationDelay: `${i * 0.15}s` }}
+                                />
+                            ))}
+                        </div>
+                        <p className="mt-4 text-gray-500">Memuat riwayat pendaftaran...</p>
                     </div>
                 ) : riwayatPendaftaran.length === 0 ? (
                     <div className="flex flex-col items-center justify-center p-12 bg-white rounded-lg shadow-sm border border-gray-200 text-center">
@@ -105,12 +114,14 @@ const RiwayatPendaftaranPage = () => {
                                     <div className="mt-4 pt-3 border-t border-gray-100">
                                         <Link href={`/sertifikat`}>
                                             <button className="flex items-center gap-3 px-4 py-2 rounded-lg 
-                  bg-gradient-to-r from-blue-50 to-blue-100
-                  hover:from-blue-100 hover:to-blue-200
-                  border border-blue-200
-                  transition-all duration-300">
-                                                <FileText className="w-5 h-5 text-blue-700" />
-                                                <span className="text-blue-700 font-medium text-sm">
+                bg-gradient-to-r from-blue-500 to-blue-600
+                hover:from-blue-600 hover:to-blue-700
+                text-white
+                font-medium text-sm
+                shadow-md
+                transition-all duration-300">
+                                                <FileText className="w-5 h-5 text-white" />
+                                                <span>
                                                     Lihat Sertifikat
                                                 </span>
                                             </button>
@@ -118,7 +129,8 @@ const RiwayatPendaftaranPage = () => {
                                     </div>
                                 )}
 
-                                {pendaftaran.status === 'Diterima' && (
+
+                                {pendaftaran.status === 'Diterima' && !pendaftaran.Payment && (
                                     <div className="mt-4 pt-4 border-t border-gray-100 flex justify-start">
                                         <Link href={`/pembayaran/${pendaftaran.id}`}>
                                             <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg flex items-center gap-2 transition-colors shadow-sm hover:shadow-md">
@@ -128,6 +140,11 @@ const RiwayatPendaftaranPage = () => {
                                         </Link>
                                     </div>
                                 )}
+
+
+
+
+
                                 <div className="mt-4 flex items-start gap-2 p-2 bg-blue-50 rounded-lg">
                                     <Info className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
                                     <span className="text-sm text-gray-700">

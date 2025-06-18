@@ -13,6 +13,7 @@ export interface Kursus {
     tanggalSelesai: Date;
     userId: string;
     user: User;
+    thumbnail: string;
 }
 
 export interface KursusDetailProps {

@@ -1,9 +1,12 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { formatRupiah } from "@/utils/formatRupiah";
 import { formatTanggalIndonesia } from "@/utils/formatTanggal";
+import { Eye } from "lucide-react";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaEdit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 interface Kursus {
@@ -111,26 +114,24 @@ const KursusTable = () => {
                 </div>
             )}
 
-            <table className="w-full divide-y divide-gray-200 text-left">
+            <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                     <tr>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">No</th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Nama Kursus</th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Instruktur</th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Durasi</th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Tanggal Mulai</th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Tanggal Selesai</th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Harga</th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Kuota</th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Status</th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Aksi</th>
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kursus</th>
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Instruktur</th>
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Durasi</th>
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Periode</th>
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga</th>
+                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
 
                 <tbody className="bg-white divide-y divide-gray-200">
                     {loading ? (
                         <tr>
-                            <td colSpan={9} className="py-10 text-center">
+                            <td colSpan={7} className="py-10 text-center">
                                 <div className="flex flex-col items-center justify-center gap-3">
                                     <div className="animate-spin rounded-full h-14 w-14 border-4 border-blue-200 border-t-transparent border-r-transparent"></div>
                                     <div>
@@ -146,67 +147,126 @@ const KursusTable = () => {
                         </tr>
                     ) : !kursusData.length ? (
                         <tr>
-                            <td colSpan={10} className="py-10 text-gray-400 italic text-center">
-                                <div className="flex flex-col items-center justify-center space-y-2">
-                                    <svg
-                                        className="w-10 h-10 text-gray-300"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M9 17v-6h13v6M9 17H3v-6h6v6zm0 0V7a2 2 0 012-2h10a2 2 0 012 2v10M9 17h6"
-                                        />
+                            <td colSpan={8} className="px-3 py-6 text-center">
+                                <div className="flex flex-col items-center justify-center text-gray-400">
+                                    <svg className="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    <span>Belum ada data kursus</span>
+                                    <p className="text-sm">Belum ada data kursus</p>
                                 </div>
                             </td>
                         </tr>
                     ) : (
                         kursusData.map((kursus, index) => (
-                            <tr key={kursus.id} className="hover:bg-gray-50 transition-colors duration-150">
-                                <td className="px-4 py-3 text-sm text-gray-700">{index + 1}</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">{kursus.nama}</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">{kursus.user?.nama || 'Belum ditentukan'}</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">{kursus.lamaKursus} bulan</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">{formatTanggalIndonesia(kursus.tanggalMulai)}</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">{formatTanggalIndonesia(kursus.tanggalSelesai)}</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">{formatRupiah(kursus.harga)}</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">{kursus.kuota ?? '-'}</td>
-                                <td className="px-4 py-3 text-center">
-                                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold
-      ${kursus.status === 'aktif'
+                            <tr key={kursus.id} className="hover:bg-gray-50">
+                                <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">{index + 1}</td>
+
+                                <td className="px-2 py-3">
+                                    <div className="flex items-center">
+                                        <div className="flex-shrink-0 h-12 w-12 bg-gray-100 rounded-md flex items-center justify-center">
+                                            {kursus.thumbnail ? (
+                                                <Image
+                                                    src={kursus.thumbnail}
+                                                    alt={kursus.nama}
+                                                    width={48}
+                                                    height={48}
+                                                    className="rounded-md object-cover h-full w-full"
+                                                />
+                                            ) : (
+                                                <div className="text-gray-400">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className="h-6 w-6"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth={1.5}
+                                                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="ml-4">
+                                            <p className="text-sm font-medium text-gray-900 line-clamp-1">{kursus.nama}</p>
+                                            <p className="text-xs text-gray-500 mt-1">Kuota: {kursus.kuota ?? '-'}</p>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">
+                                    {kursus.user?.nama || '-'}
+                                </td>
+
+                                <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">
+                                    {kursus.lamaKursus} bln
+                                </td>
+
+                                <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">
+                                    <div className="flex flex-col">
+                                        <span>{formatTanggalIndonesia(kursus.tanggalMulai)}</span>
+                                        <span className="text-xs text-gray-400">s/d</span>
+                                        <span>{formatTanggalIndonesia(kursus.tanggalSelesai)}</span>
+                                    </div>
+                                </td>
+
+                                <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {formatRupiah(kursus.harga)}
+                                </td>
+
+                                <td className="px-3 py-3 whitespace-nowrap">
+                                    <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full 
+    ${kursus.status === 'aktif'
                                             ? 'bg-green-100 text-green-800'
-                                            : 'bg-red-100 text-red-800'
-                                        }`}>
+                                            : 'bg-red-100 text-red-800'}`}>
                                         {kursus.status === 'aktif' ? 'Aktif' : 'Nonaktif'}
                                     </span>
                                 </td>
-                                <td className="px-4 py-3 text-sm text-gray-700">
-                                    <div className="flex justify-start space-x-2">
+                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <div className="flex justify-center space-x-3">
+
+                                        {/* Tombol Detail (Biru) */}
+                                        <Tooltip content="Detail">
+                                            <button
+                                                onClick={() => redirect(`/dashboard/data-kursus/detail/${kursus.id}`)}
+                                                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                aria-label="Detail"
+                                            >
+                                                <FaEye className="h-4 w-4 text-white" />
+                                            </button>
+                                        </Tooltip>
+
+                                        {/* Tombol Edit (Cyan) */}
                                         <Tooltip content="Edit">
                                             <button
                                                 onClick={() => redirect(`/dashboard/data-kursus/edit/${kursus.id}`)}
-                                                className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md transition-colors"
+                                                className="bg-cyan-600 hover:bg-cyan-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                aria-label="Edit"
                                             >
-                                                <FaEdit className="w-4 h-4 text-white" />
+                                                <FaEdit className="h-4 w-4 text-white" />
                                             </button>
                                         </Tooltip>
+
+                                        {/* Tombol Hapus (Merah) */}
                                         <Tooltip content="Hapus">
                                             <button
                                                 onClick={() => setDeleteId(kursus.id)}
-                                                className="bg-red-600 hover:bg-red-700 p-2 rounded-md transition-colors"
+                                                className="bg-red-600 hover:bg-red-700 p-2 rounded-md transition-colors flex items-center justify-center cursor-pointer"
+                                                aria-label="Hapus"
                                             >
-                                                <FaTrash className="w-4 h-4 text-white" />
+                                                <FaTrash className="h-4 w-4 text-white" />
                                             </button>
                                         </Tooltip>
+
                                     </div>
                                 </td>
-                            </tr>
 
+
+                            </tr>
                         ))
                     )}
                 </tbody>
