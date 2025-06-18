@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@/app/generated/prisma";
 import { hashSync } from "bcrypt-ts";
@@ -5,9 +6,12 @@ import { InstrukturInput } from "@/types/InstrukturInput";
 
 const prisma = new PrismaClient();
 
-export const PUT = async (request: Request, { params }: { params: { id: string } }) => {
+export const PUT = async (
+    request: Request,
+    context: { params: Promise<{ id: string }> }
+) => {
     try {
-        const id = params.id;
+        const { id } = await context.params;
 
         if (!id) {
             return new Response(JSON.stringify({ error: "ID instruktur tidak valid" }), {
@@ -32,9 +36,7 @@ export const PUT = async (request: Request, { params }: { params: { id: string }
             data: body,
         });
 
-        const { password, ...userWithoutPassword } = updateInstruktur; // eslint-disable-line @typescript-eslint/no-unused-vars
-
-
+        const { password, ...userWithoutPassword } = updateInstruktur;
 
         return new Response(JSON.stringify(userWithoutPassword), {
             status: 200,
@@ -49,6 +51,7 @@ export const PUT = async (request: Request, { params }: { params: { id: string }
         await prisma.$disconnect();
     }
 };
+
 
 
 

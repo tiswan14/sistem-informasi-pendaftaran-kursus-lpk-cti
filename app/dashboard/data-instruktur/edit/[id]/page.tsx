@@ -1,13 +1,14 @@
-// app/data-instruktur-edit/[id]/page.tsx
 import EditInstrukturForm from "@/components/admin/instruktur/edit-instruktur";
 import { getInstrukturById } from "@/lib/data";
 
 interface PageProps {
-    params: { id: string };
+    params: Promise<{ id: string }>;
 }
 
 const EditInstrukturPage = async ({ params }: PageProps) => {
-    const idInstruktur = params.id;
+    const { id } = await params;
+    const idInstruktur = id;
+
     if (!idInstruktur) {
         return <div className="p-4 text-red-500">Instruktur tidak ditemukan</div>;
     }
