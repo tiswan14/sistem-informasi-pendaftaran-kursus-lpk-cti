@@ -10,48 +10,44 @@ import {
     RefreshCw,
     Save,
     BookOpen,
-    User2,
 } from "lucide-react";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { SyntheticEvent } from "react";
+import { useEffect, useState, SyntheticEvent } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import EditJadwalSkeleton from "@/components/skeleton/EditJadwalSkeleton";
 
+
+type Kursus = {
+    id: string;
+    nama: string;
+    user?: {
+        nama: string;
+    };
+};
+
 const EditJadwalForm = () => {
     const { id } = useParams();
-    const [kursusId, setKursusId] = useState("");
-    const [instrukturId, setInstrukturId] = useState("");
-    const [deskripsi, setDeskripsi] = useState("");
-    const [hari, setHari] = useState("");
-    const [jamMulai, setJamMulai] = useState("");
-    const [jamSelesai, setJamSelesai] = useState("");
-    const [lokasi, setLokasi] = useState("");
-    const [ruangan, setRuangan] = useState("");
-    const [status, setStatus] = useState("aktif");
-
-    const [kursusList, setKursusList] = useState([]);
-    const [loadingKursus, setLoadingKursus] = useState(true);
-    const [errorKursus, setErrorKursus] = useState(null);
-
-    const [instrukturList, setInstrukturList] = useState([]);
-    const [loadingInstruktur, setLoadingInstruktur] = useState(true);
-    const [errorInstruktur, setErrorInstruktur] = useState(null);
-
-    const [isPending, setIsPending] = useState(false);
-
     const router = useRouter();
 
-    const [loading, setLoading] = useState<boolean>(true);
+    const [kursusList, setKursusList] = useState<Kursus[]>([]);
+    const [kursusId, setKursusId] = useState<string>("");
+    const [deskripsi, setDeskripsi] = useState<string>("");
+    const [hari, setHari] = useState<string>("");
+    const [jamMulai, setJamMulai] = useState<string>("");
+    const [jamSelesai, setJamSelesai] = useState<string>("");
+    const [lokasi, setLokasi] = useState<string>("");
+    const [ruangan, setRuangan] = useState<string>("");
+    const [status, setStatus] = useState<"aktif" | "nonaktif">("aktif");
 
+    const [loading, setLoading] = useState<boolean>(true);
+    const [isPending, setIsPending] = useState(false);
 
     useEffect(() => {
         const fetchJadwalData = async () => {
             try {
                 const response = await axios.get(`/api/jadwal/${id}`);
                 const jadwalData = response.data;
-
                 setKursusId(jadwalData.kursusId || "");
                 setDeskripsi(jadwalData.deskripsi || "");
                 setHari(jadwalData.hari || "");
@@ -68,16 +64,13 @@ const EditJadwalForm = () => {
             }
         };
 
-
         const fetchKursus = async () => {
             try {
                 const response = await axios.get('/api/kursus');
                 setKursusList(response.data);
             } catch (err) {
-                setErrorKursus(err.message || 'Gagal memuat data kursus');
                 console.error("Error fetching kursus:", err);
-            } finally {
-                setLoadingKursus(false);
+                toast.error("Gagal memuat data kursus");
             }
         };
 
@@ -114,16 +107,9 @@ const EditJadwalForm = () => {
         router.refresh(); // Refresh to get original data
     };
 
-    const days = [
-        "Senin", "Selasa", "Rabu", "Kamis",
-        "Jumat", "Sabtu", "Minggu"
-    ];
+    const days = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
 
-    if (loading) {
-        return (
-            <EditJadwalSkeleton />
-        )
-    }
+    if (loading) return <EditJadwalSkeleton />;
 
     return (
         <form onSubmit={handleSubmit}
@@ -262,7 +248,7 @@ const EditJadwalForm = () => {
                             <CheckCircle2 className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
                             <select
                                 value={status}
-                                onChange={(e) => setStatus(e.target.value)}
+                                onChange={(e) => setStatus(e.target.value as "aktif" | "nonaktif")}
                                 className="py-2 pl-10 pr-10 rounded-md border border-gray-300 w-full appearance-none"
                             >
                                 <option value="aktif">Aktif</option>
