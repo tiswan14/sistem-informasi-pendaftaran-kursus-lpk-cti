@@ -1,5 +1,8 @@
+// app/(user)/kursus/[kursusId]/page.tsx
 import { Metadata } from "next"
 import KursusDetail from "@/components/user/kursus/KursusDetail"
+
+export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
     title: "Kursus Detail - LPK CTI Ciamis",
