@@ -12,6 +12,7 @@ type Props = {
 export default function PembayaranDetailPage({ params }: Props) {
     return (
         <div className="py-32 px-16">
+            <h1>Semoga</h1>
             <PembayaranDetailComponent id={params.id} />
         </div>
     );
