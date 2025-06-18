@@ -5,16 +5,16 @@ export const metadata: Metadata = {
     title: "Detail Peserta - LPK CTI Ciamis",
 };
 
-const PesertaDetailPage = ({
-    params: { pesertaId },
-}: {
-    params: { pesertaId: string };
-}) => {
+interface PageProps {
+    params: Promise<{ pesertaId: string }>;
+}
+
+export default async function PesertaDetailPage(props: PageProps) {
+    const { pesertaId } = await props.params;
+
     return (
-        <div>
+        <div className="py-32 px-16">
             <PesertaDetail pesertaId={pesertaId} />
         </div>
     );
-};
-
-export default PesertaDetailPage;
+}
