@@ -3,8 +3,24 @@
 import { useEffect, useState } from "react";
 import { CalendarDays, Clock, MapPin, Calendar, DoorOpen, BookOpen } from 'lucide-react';
 
+
+type Jadwal = {
+    kursus: {
+        nama: string;
+        jadwal?: {
+            hari: string;
+            jamMulai: string;
+            jamSelesai: string;
+            ruangan?: string;
+            lokasi?: string;
+            deskripsi?: string;
+        }[];
+    };
+};
+
+
 const JadwalPage = () => {
-    const [jadwalData, setJadwalData] = useState([]);
+    const [jadwalData, setJadwalData] = useState<Jadwal[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
