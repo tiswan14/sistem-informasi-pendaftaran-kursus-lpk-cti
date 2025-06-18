@@ -5,14 +5,16 @@ export const metadata: Metadata = {
     title: "Kursus Detail - LPK CTI Ciamis",
 }
 
+type Params = {
+    params: {
+        kursusId: string
+    }
+}
 
-const KursusDetailPage = ({ params }: { params: { kursusId: string } }) => {
+export default async function KursusDetailPage({ params }: Params) {
     return (
         <div className="py-32 px-16">
             <KursusDetail kursusId={params.kursusId} />
         </div>
     )
 }
-
-export default KursusDetailPage
-
