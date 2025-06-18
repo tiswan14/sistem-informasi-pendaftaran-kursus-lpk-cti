@@ -5,25 +5,22 @@ import { InstrukturInput } from "@/types/InstrukturInput";
 
 const prisma = new PrismaClient();
 
-export const PUT = async (
-    request: Request,
-    { params }: { params: { id: string } }
-) => {
+export const PUT = async (request: Request, { params }: { params: { id: string } }) => {
     try {
-        if (!params.id) {
-            return NextResponse.json(
-                { error: "ID instruktur tidak valid" },
-                { status: 400 }
-            );
+        const id = params.id;
+
+        if (!id) {
+            return new Response(JSON.stringify({ error: "ID instruktur tidak valid" }), {
+                status: 400,
+            });
         }
 
         const body: Partial<InstrukturInput> = await request.json();
 
         if (!body || Object.keys(body).length === 0) {
-            return NextResponse.json(
-                { error: "Data update tidak boleh kosong" },
-                { status: 400 }
-            );
+            return new Response(JSON.stringify({ error: "Data update tidak boleh kosong" }), {
+                status: 400,
+            });
         }
 
         if (body.password) {
@@ -31,29 +28,30 @@ export const PUT = async (
         }
 
         const updateInstruktur = await prisma.user.update({
-            where: { id: params.id },
+            where: { id },
             data: body,
         });
 
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const { password: _, ...userWithoutPassword } = updateInstruktur;
+        const { password, ...userWithoutPassword } = updateInstruktur; // eslint-disable-line @typescript-eslint/no-unused-vars
 
-        return NextResponse.json(userWithoutPassword, { status: 200 });
 
+
+        return new Response(JSON.stringify(userWithoutPassword), {
+            status: 200,
+        });
     } catch (error: unknown) {
-        console.error("Update error:", error);
-        const message = error instanceof Error
-            ? error.message
-            : "Internal server error";
+        const message = error instanceof Error ? error.message : "Internal server error";
 
-        return NextResponse.json(
-            { error: message },
-            { status: 500 }
-        );
+        return new Response(JSON.stringify({ error: message }), {
+            status: 500,
+        });
     } finally {
         await prisma.$disconnect();
     }
 };
+
+
+
 
 
 export const DELETE = async (
