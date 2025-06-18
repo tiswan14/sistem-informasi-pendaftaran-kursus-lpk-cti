@@ -20,7 +20,19 @@ const EditInstrukturPage = async ({ params }: PageProps) => {
 
     return (
         <div className="max-w-screen px-4 py-4">
-            <EditInstrukturForm initialData={instruktur} />
+            <EditInstrukturForm
+                initialData={{
+                    ...instruktur,
+                    nik: instruktur.nik ?? '',
+                    jenisKelamin: instruktur.jenisKelamin ?? '',
+                    noHp: instruktur.noHp ?? '',
+                    email: instruktur.email ?? '',
+                    keahlian: instruktur.keahlian ?? '',
+                    jabatan: instruktur.jabatan ?? '',
+                    nama: instruktur.nama ?? '',
+                }}
+            />
+
         </div>
     );
 };

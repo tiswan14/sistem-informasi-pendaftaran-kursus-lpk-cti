@@ -20,6 +20,7 @@ import { useState, FormEvent, useEffect } from "react";
 import { toast } from "react-toastify";
 
 interface Instruktur {
+    id: string;
     nama: string;
     nik: string;
     jenisKelamin: string;
