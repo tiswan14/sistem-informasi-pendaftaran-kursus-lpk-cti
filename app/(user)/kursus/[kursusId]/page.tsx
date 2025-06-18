@@ -1,23 +1,15 @@
-// app/(user)/kursus/[kursusId]/page.tsx
-import { Metadata } from "next"
-import KursusDetail from "@/components/user/kursus/KursusDetail"
+import KursusDetail from "@/components/user/kursus/KursusDetail";
 
-export const dynamic = "force-dynamic"
-
-export const metadata: Metadata = {
-    title: "Kursus Detail - LPK CTI Ciamis",
-}
-
-type Params = {
+type Props = {
     params: {
-        kursusId: string
-    }
-}
-
-export default async function KursusDetailPage({ params }: Params) {
+        kursusId: string;
+    };
+};
+export default async function KursusDetailPage({ params }: Props) {
+    const { kursusId } = await params;
     return (
         <div className="py-32 px-16">
-            <KursusDetail kursusId={params.kursusId} />
+            <KursusDetail kursusId={kursusId} />
         </div>
-    )
+    );
 }

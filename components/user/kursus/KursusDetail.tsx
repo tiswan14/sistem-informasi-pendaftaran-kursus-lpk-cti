@@ -1,4 +1,3 @@
-// file: components/user/kursus/KursusDetail.tsx
 "use client";
 import { formatTanggalIndonesia } from "@/utils/formatTanggal";
 import { useEffect, useState } from "react";
@@ -7,7 +6,6 @@ import { useSession } from "next-auth/react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Kursus, KursusDetailProps } from '@/types/kursus';
-import { redirect } from "next/navigation";
 import Image from "next/image";
 
 const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
@@ -59,7 +57,6 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
 
 
 
-            // Redirect dengan membawa nama kursus sebagai query parameter
             window.location.href = `/pendaftaran-berhasil?namaKursus=${encodeURIComponent(kursus?.nama || '')}`;
 
         } catch (error: any) {
