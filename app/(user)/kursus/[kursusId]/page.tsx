@@ -5,20 +5,14 @@ export const metadata: Metadata = {
     title: "Kursus Detail - LPK CTI Ciamis",
 }
 
-interface PageProps {
-    params: {
-        kursusId: string
-    }
-}
 
-const KursusDetailPage = ({ params }: PageProps) => {
-    const { kursusId } = params
-
+const KursusDetailPage = ({ params }: { params: { kursusId: string } }) => {
     return (
         <div className="py-32 px-16">
-            <KursusDetail kursusId={kursusId} />
+            <KursusDetail kursusId={params.kursusId} />
         </div>
     )
 }
 
 export default KursusDetailPage
+
