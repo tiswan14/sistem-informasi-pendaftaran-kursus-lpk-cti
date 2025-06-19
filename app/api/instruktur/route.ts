@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { InstrukturInput } from "@/types/instruktur";
-import { hashSync } from "bcrypt-ts";
+import { hashSync } from "bcryptjs";
 
 const ITEM_PER_PAGE = 5;
 
