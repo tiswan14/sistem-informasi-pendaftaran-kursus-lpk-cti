@@ -4,7 +4,7 @@ import { useRef } from "react";
 import * as domtoimage from 'dom-to-image';
 import jsPDF from "jspdf";
 import { formatTanggalIndonesia } from "@/utils/formatTanggal";
-import { Award, DownloadCloud } from "lucide-react";
+import { Award } from "lucide-react";
 
 interface Props {
     nomor: string;
@@ -24,7 +24,6 @@ export default function Sertifikat({ nomor, tanggalTerbit, namaPeserta, namaKurs
             const element = sertifikatRef.current;
             const width = element.offsetWidth;
             const height = element.offsetHeight;
-            const ratio = height / width;
 
             // 2. Konversi ke PNG dengan ukuran presisi
             const dataUrl = await domtoimage.toPng(element, {
