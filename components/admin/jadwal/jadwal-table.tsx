@@ -19,8 +19,12 @@ interface Jadwal {
     } | null;
     kursus: {
         nama: string;
+        user: {
+            nama: string;
+        };
     };
 }
+
 
 const Tooltip = ({
     content,
