@@ -16,16 +16,31 @@ import { useEffect, useState } from "react";
 import { SyntheticEvent } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { toast } from "react-toastify";
+interface Pendaftaran {
+    id: string;
+    user?: {
+        nama?: string;
+    };
+    kursus?: {
+        nama?: string;
+    };
+    status: string;
+}
+
 
 const EditSertifikatForm = () => {
-    const { id } = useParams();
+    const params = useParams<{ id: string }>();
+    const id = params.id;
+
     const [pendaftaranId, setPendaftaranId] = useState("");
     const [nomor, setNomor] = useState("");
     const [tanggalTerbit, setTanggalTerbit] = useState("");
 
-    const [pendaftaranList, setPendaftaranList] = useState([]);
+    const [pendaftaranList, setPendaftaranList] = useState<Pendaftaran[]>([]);
+
     const [loadingPendaftaran, setLoadingPendaftaran] = useState(true);
-    const [errorPendaftaran, setErrorPendaftaran] = useState(null);
+    const [errorPendaftaran, setErrorPendaftaran] = useState<string | null>(null);
+
     const [loadingSertifikat, setLoadingSertifikat] = useState(true);
 
     const [isPending, setIsPending] = useState(false);
@@ -51,11 +66,19 @@ const EditSertifikatForm = () => {
         const fetchPendaftaran = async () => {
             try {
                 const response = await axios.get('/api/pendaftaran?status=lulus');
-                setPendaftaranList(response.data.filter(p => p.status.toLowerCase() === 'lulus'));
+                setPendaftaranList(
+                    response.data.filter((p: { status: string }) => p.status.toLowerCase() === 'lulus')
+                );
+
             } catch (err) {
-                setErrorPendaftaran(err.message || 'Gagal memuat data pendaftaran');
-                console.error("Error fetching pendaftaran:", err);
-            } finally {
+                if (err instanceof Error) {
+                    setErrorPendaftaran(err.message);
+                } else {
+                    setErrorPendaftaran('Gagal memuat data pendaftaran');
+                }
+            }
+
+            finally {
                 setLoadingPendaftaran(false);
             }
         };
@@ -75,18 +98,26 @@ const EditSertifikatForm = () => {
                 tanggalTerbit,
             };
 
-            const response = await axios.put(`/api/sertifikat/${id}`, payload, {
+            await axios.put(`/api/sertifikat/${id}`, payload, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
 
+
             router.push("/dashboard/data-sertifikat");
             toast.success("Sertifikat berhasil diperbarui");
-        } catch (error) {
+        } catch (error: unknown) {
             console.error("Error:", error);
-            toast.error(error.response?.data?.error || "Gagal memperbarui sertifikat");
-        } finally {
+            if (axios.isAxiosError(error)) {
+                toast.error(error.response?.data?.error || "Gagal memperbarui sertifikat");
+            } else if (error instanceof Error) {
+                toast.error(error.message);
+            } else {
+                toast.error("Gagal memperbarui sertifikat");
+            }
+        }
+        finally {
             setIsPending(false);
         }
     };

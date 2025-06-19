@@ -1,8 +1,7 @@
 import SertifikatTable from "@/components/admin/sertifikat/sertifikat-table";
-import { FiAward, FiUserPlus } from "react-icons/fi";
+import { FiAward } from "react-icons/fi";
 import Link from "next/link";
 import { Metadata } from "next";
-import Sertifikat from "@/components/Sertifikat";
 
 export const metadata: Metadata = {
     title: "Daftar Sertifikat - LPK CTI Ciamis",

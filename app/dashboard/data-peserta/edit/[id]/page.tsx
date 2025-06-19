@@ -2,8 +2,7 @@
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { User2, Calendar, BookOpen, Save, RefreshCw, IdCard, MapPin, Landmark, GraduationCap, CalendarClock, Phone, Mail, Globe, Lock, School, BookAIcon, MoonStar, Sparkle, Asterisk } from 'lucide-react';
-import { FaUserGraduate, FaYinYang } from 'react-icons/fa';
+import { User2, Calendar, Save, RefreshCw, IdCard, MapPin, GraduationCap, CalendarClock, Phone, Mail, Globe, Lock, MoonStar } from 'lucide-react';
 
 interface Peserta {
     id: string;
@@ -67,9 +66,14 @@ const EditPesertaPage = () => {
                 setNoHp(p.noHp);
                 setEmail(p.email);
                 setMediaSosial(p.mediaSosial);
-            } catch (err: any) {
-                toast.error(err.message || "Terjadi kesalahan saat mengambil data peserta");
-            } finally {
+            } catch (err) {
+                if (err instanceof Error) {
+                    toast.error(err.message);
+                } else {
+                    toast.error("Terjadi kesalahan saat mengambil data peserta");
+                }
+            }
+            finally {
                 setLoading(false);
             }
         };
@@ -96,7 +100,7 @@ const EditPesertaPage = () => {
                 noHp,
                 email,
                 mediaSosial,
-                ...(password && { password }) // Only include password if it's provided
+                ...(password && { password })
             };
 
             const res = await fetch(`/api/peserta/edit/${id}`, {
@@ -113,9 +117,14 @@ const EditPesertaPage = () => {
 
             toast.success("Data peserta berhasil diperbarui!");
             router.push('/dashboard/data-peserta');
-        } catch (err: any) {
-            toast.error(err.message || "Terjadi kesalahan saat menyimpan");
-        } finally {
+        } catch (err) {
+            if (err instanceof Error) {
+                toast.error(err.message);
+            } else {
+                toast.error("Terjadi kesalahan saat menyimpan");
+            }
+        }
+        finally {
             setIsPending(false);
         }
     };

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { FaUsers, FaClipboardList, FaChalkboardTeacher, FaCertificate, FaCalendarAlt, FaMoneyBillWave, FaUserFriends, FaClock, FaUserPlus } from "react-icons/fa";
+import { FaUsers, FaClipboardList, FaChalkboardTeacher, FaCertificate, FaCalendarAlt, FaMoneyBillWave, FaUserPlus } from "react-icons/fa";
 import axios from "axios";
 
 interface PendaftarTerbaru {
@@ -13,19 +13,21 @@ interface PendaftarTerbaru {
     keterangan?: string | null;
 }
 
+interface ApiResponse {
+    total: number;
+}
+
 const DashboardPage = () => {
-    const [hoveredCard, setHoveredCard] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
 
-    const [totalPeserta, setTotalPeserta] = useState(0);
-    const [totalInstruktur, setTotalInstruktur] = useState(0);
-    const [totalKursus, setTotalKursus] = useState(0);
-    const [totalPendaftar, setTotalPendaftar] = useState(0);
-    const [totalJadwal, setTotalJadwal] = useState(0);
-    const [totalSertifikat, setTotalSertifikat] = useState(0);
+    const [totalPeserta, setTotalPeserta] = useState<number>(0);
+    const [totalInstruktur, setTotalInstruktur] = useState<number>(0);
+    const [totalKursus, setTotalKursus] = useState<number>(0);
+    const [totalPendaftar, setTotalPendaftar] = useState<number>(0);
+    const [totalJadwal, setTotalJadwal] = useState<number>(0);
+    const [totalSertifikat, setTotalSertifikat] = useState<number>(0);
     const [pendaftarTerbaru, setPendaftarTerbaru] = useState<PendaftarTerbaru[]>([]);
-
 
     useEffect(() => {
         const fetchAllData = async () => {
@@ -39,13 +41,13 @@ const DashboardPage = () => {
                     sertifikatRes,
                     pendaftarTerbaruRes
                 ] = await Promise.all([
-                    fetch("/api/peserta/total-peserta").then(res => res.json()),
-                    fetch("/api/instruktur/total-instruktur").then(res => res.json()),
-                    fetch("/api/kursus/total-kursus").then(res => res.json()),
-                    fetch("/api/pendaftaran/total").then(res => res.json()),
-                    fetch("/api/jadwal/total").then(res => res.json()),
-                    fetch("/api/sertifikat/total").then(res => res.json()),
-                    axios.get("/api/pendaftaran/terbaru").then(res => res.data)
+                    fetch("/api/peserta/total-peserta").then(res => res.json() as Promise<ApiResponse>),
+                    fetch("/api/instruktur/total-instruktur").then(res => res.json() as Promise<ApiResponse>),
+                    fetch("/api/kursus/total-kursus").then(res => res.json() as Promise<ApiResponse>),
+                    fetch("/api/pendaftaran/total").then(res => res.json() as Promise<ApiResponse>),
+                    fetch("/api/jadwal/total").then(res => res.json() as Promise<ApiResponse>),
+                    fetch("/api/sertifikat/total").then(res => res.json() as Promise<ApiResponse>),
+                    axios.get<PendaftarTerbaru[]>("/api/pendaftaran/terbaru").then(res => res.data)
                 ]);
 
                 setTotalPeserta(pesertaRes.total);
@@ -57,10 +59,8 @@ const DashboardPage = () => {
                 setPendaftarTerbaru(pendaftarTerbaruRes);
                 console.log(pendaftarTerbaruRes);
 
-
             } catch (err) {
                 console.error("Gagal mengambil data:", err);
-                setError("Terjadi kesalahan saat memuat data dashboard");
             } finally {
                 setLoading(false);
             }
@@ -68,6 +68,7 @@ const DashboardPage = () => {
 
         fetchAllData();
     }, []);
+
     if (loading) {
         return (
             <div className="p-6 bg-white rounded-lg shadow-md">
@@ -133,8 +134,6 @@ const DashboardPage = () => {
             </div>
         );
     }
-
-
 
     return (
         <div className="p-6 bg-white rounded-lg shadow-md">
@@ -229,7 +228,6 @@ const DashboardPage = () => {
                     </div>
                 </div>
 
-
                 {/* Card 4 - Sertifikat Diberikan */}
                 <div
                     className="bg-white p-5 rounded-xl shadow-xs hover:shadow-md transition-all duration-200 border border-gray-100 hover:border-purple-100 relative overflow-hidden group"
@@ -247,13 +245,7 @@ const DashboardPage = () => {
                         </div>
                     </div>
                 </div>
-
-
-                {/* Card 6 - Jadwal Aktif */}
-
             </div>
-            {/* <EnrollemntChart /> */}
-
 
             <div className="bg-white rounded-2xl shadow-md border border-gray-200 p-6">
                 <h2 className="text-2xl font-semibold mb-6 flex items-center text-gray-800">
@@ -270,7 +262,6 @@ const DashboardPage = () => {
                             <div className="flex justify-between items-center">
                                 <div className="flex items-center space-x-4">
                                     <div className="w-11 h-11 rounded-full bg-blue-100 text-blue-800 flex items-center justify-center font-semibold">
-                                        {/* Inisial dari nama, misalnya Andi Wijaya = AW */}
                                         {registrant.nama?.split(" ").map(n => n[0]).join("").toUpperCase()}
                                     </div>
                                     <div>
@@ -282,18 +273,20 @@ const DashboardPage = () => {
                                 <div className="text-right">
                                     <div className="text-xs text-gray-400">{registrant.tanggal}</div>
                                     <div
-                                        className={`text-xs font-medium mt-1 inline-block px-3 py-1 rounded-full ${{
-                                                "Belum verifikasi": "bg-gray-200 text-gray-800",
-                                                "Diterima": "bg-blue-200 text-blue-800",
-                                                "Ditolak": "bg-red-200 text-red-800",
-                                                "Lulus": "bg-green-200 text-green-800",
-                                            }[registrant.status] || "bg-gray-100 text-gray-600"
+                                        className={`text-xs font-medium mt-1 inline-block px-3 py-1 rounded-full ${registrant.status === "Belum verifikasi"
+                                                ? "bg-gray-200 text-gray-800"
+                                                : registrant.status === "Diterima"
+                                                    ? "bg-blue-200 text-blue-800"
+                                                    : registrant.status === "Ditolak"
+                                                        ? "bg-red-200 text-red-800"
+                                                        : registrant.status === "Lulus"
+                                                            ? "bg-green-200 text-green-800"
+                                                            : "bg-gray-100 text-gray-600"
                                             }`}
                                     >
                                         {registrant.status}
                                     </div>
                                 </div>
-
                             </div>
 
                             {registrant.keterangan && (
@@ -304,9 +297,7 @@ const DashboardPage = () => {
                         </div>
                     ))}
                 </div>
-
             </div>
-
         </div>
     );
 };
