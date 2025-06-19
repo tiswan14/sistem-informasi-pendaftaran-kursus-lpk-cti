@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@/app/generated/prisma";
-import { hashSync } from "bcrypt-ts";
+import { hashSync } from "bcryptjs";
 import { InstrukturInput } from "@/types/InstrukturInput";
 
 const prisma = new PrismaClient();
