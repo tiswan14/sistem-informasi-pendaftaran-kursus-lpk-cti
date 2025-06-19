@@ -55,10 +55,7 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                 kursusId: kursus?.id,
             });
 
-
-
-            window.location.href = `/pendaftaran-berhasil?namaKursus=${encodeURIComponent(kursus?.nama || '')}`;
-
+            toast.success("Berhasil daftar kursus");
         } catch (error) {
             const err = error as { response?: { data?: { message?: string } } };
 
