@@ -36,7 +36,6 @@ type Pembayaran = {
 const PembayaranTable = () => {
     const [pembayaranData, setPembayaranData] = useState<Pembayaran[]>([]);
     const [loading, setLoading] = useState(true);
-    const [deleteId, setDeleteId] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchPembayaran = async () => {
@@ -56,9 +55,14 @@ const PembayaranTable = () => {
                     console.error("API responded with success=false", responseJson);
                     throw new Error("Response API gagal");
                 }
-            } catch (error: any) {
-                console.error("Error caught in fetchPembayaran:", error.message || error);
-            } finally {
+            } catch (error: unknown) {
+                if (error instanceof Error) {
+                    console.error("Error caught in fetchPembayaran:", error.message);
+                } else {
+                    console.error("Error caught in fetchPembayaran:", error);
+                }
+            }
+            finally {
                 setLoading(false);
             }
         };
@@ -86,7 +90,6 @@ const PembayaranTable = () => {
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Jumlah</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Waktu Bayar</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                        <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase">Aksi</th>
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
@@ -126,7 +129,7 @@ const PembayaranTable = () => {
                                     {pembayaran.createdAt ? formatTanggalIndonesia(pembayaran.createdAt) : '-'}
                                 </td>
 
-                                <td className="px-6 py-4 whitespace-nowrap capitalize">
+                                <td className="px-0 py-4 whitespace-nowrap capitalize">
                                     {renderStatus(pembayaran.status)}
                                 </td>
                                 <td className="px-6 py-4 text-center">

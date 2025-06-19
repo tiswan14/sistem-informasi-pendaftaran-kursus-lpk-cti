@@ -6,20 +6,25 @@ import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 interface Pendaftar {
-    createdAt: string | number | Date;
     id: string;
     userId: string;
     kursusId: string;
     status: string;
     tanggalDaftar: string;
+    createdAt: string | number | Date;
+    keterangan?: string; // ← digunakan di handleSaveNote
+
     user?: {
         nama: string;
         email: string;
     };
+
     kursus?: {
-        judul: string;
+        judul?: string; // ← kalau backend ngasih `judul`
+        nama?: string;  // ← kalau backend ngasih `nama`
     };
 }
+
 
 const Tooltip = ({ content, children }: { content: string; children: React.ReactNode }) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -48,9 +53,10 @@ const PendaftarTable = () => {
     const [newStatus, setNewStatus] = useState("");
 
     const [addNote, setAddNote] = useState(false);
-    const [currentId, setCurrentId] = useState(null);
+    const [currentId, setCurrentId] = useState<string | null>(null);
+
     const [keterangan, setKeterangan] = useState("");
-    const handleOpenAddNote = (id, status: string) => {
+    const handleOpenAddNote = (id: string, status: string) => {
         setCurrentId(id);
         setNewStatus(status);
         setKeterangan("");
@@ -293,7 +299,14 @@ const PendaftarTable = () => {
                                 <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pendaftar.user?.nama || "-"}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pendaftar.kursus?.nama || "-"}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{formatTanggalIndonesia(pendaftar.createdAt)}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    {formatTanggalIndonesia(
+                                        typeof pendaftar.createdAt === "number"
+                                            ? new Date(pendaftar.createdAt)
+                                            : pendaftar.createdAt
+                                    )}
+                                </td>
+
                                 <td className="py-4 whitespace-nowrap text-center">
                                     <select
                                         title="Ubah status pendaftaran"
@@ -316,7 +329,7 @@ const PendaftarTable = () => {
                                     <div className="flex justify-center space-x-3">
                                         <Tooltip content="Tambah Catatan">
                                             <button
-                                                onClick={() => handleOpenAddNote(pendaftar.id)}
+                                                onClick={() => handleOpenAddNote(pendaftar.id, pendaftar.status)}
                                                 className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md"
                                                 aria-label="Tambah Catatan"
                                             >
