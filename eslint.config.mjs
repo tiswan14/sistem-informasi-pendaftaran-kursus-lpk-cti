@@ -11,7 +11,7 @@ const compat = new FlatCompat({
 const config = [
     js.configs.recommended,
 
-    ...compat.extends('next/core-web-vitals', 'next'),
+    ...compat.extends('next/core-web-vitals'),
 
     {
         plugins: {
