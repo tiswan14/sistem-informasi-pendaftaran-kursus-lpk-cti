@@ -1,16 +1,30 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// eslint.config.mjs
+import { FlatCompat } from '@eslint/eslintrc'
+import js from '@eslint/js'
+import next from 'eslint-plugin-next'
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+    baseDirectory: process.cwd(),
+})
 
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-];
+/** @type {import("eslint").Linter.FlatConfig[]} */
+const config = [
+    js.configs.recommended,
 
-export default eslintConfig;
+    ...compat.extends('next/core-web-vitals', 'next'),
+
+    {
+        plugins: {
+            next,
+        },
+        languageOptions: {
+            ecmaVersion: 2022,
+            sourceType: 'module',
+        },
+        rules: {
+            // aturan tambahan bisa ditaruh di sini
+        },
+    },
+]
+
+export default config // ✅ NO MORE WARNING

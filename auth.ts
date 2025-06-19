@@ -3,7 +3,7 @@ import { PrismaAdapter } from '@auth/prisma-adapter'
 import { prisma } from "@/lib/prisma"
 import Credentials from "next-auth/providers/credentials"
 import { LoginSchema } from "@/lib/zod"
-import { compareSync } from "bcrypt-ts"
+import { compareSync } from "bcryptjs"
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
     adapter: PrismaAdapter(prisma),
@@ -48,7 +48,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             const role = auth?.user?.role
             const path = nextUrl.pathname
 
-            const ProtectedRoutes = ["/dashboard", "/user"]
+            const ProtectedRoutes = ["/dashboard"]
 
             if (!isLoggedIn && ProtectedRoutes.includes(nextUrl.pathname)) {
                 return Response.redirect(new URL("/login", nextUrl))
