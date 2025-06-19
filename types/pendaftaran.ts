@@ -1,20 +1,6 @@
-import { Prisma } from "@prisma/client";
+import { getPendaftaranWithRelations } from "@/lib/data";
 
-export type pendaftaranProps = Prisma.PendaftaranGetPayload<{
-    include: {
-        user: {
-            select: {
-                nama: true;
-                email: true;
-                noHp: true;
-            };
-        };
-        kursus: {
-            select: {
-                nama: true;
-                deskripsi: true;
-            };
-        };
-        Payment: true;
-    };
-}>;
+export type pendaftaranProps = Awaited<
+    ReturnType<typeof getPendaftaranWithRelations>
+>[number];
+

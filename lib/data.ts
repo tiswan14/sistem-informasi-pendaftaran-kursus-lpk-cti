@@ -217,3 +217,26 @@ export const getKursusById = async (id: string): Promise<KursusWithUser> => {
         throw error;
     }
 };
+
+
+
+export const getPendaftaranWithRelations = async () => {
+    return await prisma.pendaftaran.findMany({
+        include: {
+            user: {
+                select: {
+                    nama: true,
+                    email: true,
+                    noHp: true,
+                },
+            },
+            kursus: {
+                select: {
+                    nama: true,
+                    deskripsi: true,
+                },
+            },
+            Payment: true,
+        },
+    });
+};
