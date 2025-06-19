@@ -149,7 +149,7 @@ export interface KursusWithUser {
     id: string;
     nama: string;
     harga: number;
-    userId: string;
+    userId: string | null;
     createdAt: Date;
     updatedAt: Date;
     user: {
@@ -157,6 +157,7 @@ export interface KursusWithUser {
         nama: string;
     } | null;
 }
+
 
 export const getKursusByIdTest = async (id: string) => {
     return await prisma.kursus.findUnique({
