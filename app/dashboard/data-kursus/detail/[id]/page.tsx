@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -17,7 +17,33 @@ import {
 import { formatTanggalIndonesia } from "@/utils/formatTanggal";
 import Image from "next/image";
 
-const InfoItem = ({ icon, title, value }) => (
+// Interface untuk data Kursus
+interface UserType {
+    id: number;
+    nama: string;
+}
+
+interface KursusType {
+    id: number;
+    nama: string;
+    harga: string;
+    lamaKursus: number;
+    kuota: number;
+    tanggalMulai: string;
+    tanggalSelesai: string;
+    status: "aktif" | "nonaktif";
+    thumbnail?: string;
+    user: UserType;
+}
+
+// Props untuk InfoItem
+interface InfoItemProps {
+    icon: React.ReactNode;
+    title: string;
+    value: React.ReactNode;
+}
+
+const InfoItem = ({ icon, title, value }: InfoItemProps) => (
     <div className="flex items-start space-x-3">
         <div className="p-2 bg-blue-100 rounded-md">{icon}</div>
         <div>
@@ -27,13 +53,12 @@ const InfoItem = ({ icon, title, value }) => (
     </div>
 );
 
-
 const KursusDetailPage = () => {
     const params = useParams();
-    const id = params.id;
+    const id = params?.id as string;
 
-    const [kursus, setKursus] = useState<any>(null);
-    const [loading, setLoading] = useState(true);
+    const [kursus, setKursus] = useState<KursusType | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
@@ -45,9 +70,14 @@ const KursusDetailPage = () => {
                 }
                 const data = await res.json();
                 setKursus(data);
-            } catch (err: any) {
-                setError(err.message || "Terjadi kesalahan saat mengambil data kursus");
-            } finally {
+            } catch (err) {
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError("Terjadi kesalahan saat mengambil data kursus");
+                }
+            }
+            finally {
                 setLoading(false);
             }
         };
@@ -57,31 +87,37 @@ const KursusDetailPage = () => {
         }
     }, [id]);
 
-    if (loading) return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
-            <div className="text-center p-8 bg-white rounded-xl shadow-lg">
-                <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto" />
-                <h3 className="mt-4 text-xl font-semibold text-gray-800">Memuat Detail Kursus</h3>
-                <p className="mt-2 text-gray-600">Harap tunggu sebentar...</p>
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
+                <div className="text-center p-8 bg-white rounded-xl shadow-lg">
+                    <Loader2 className="w-12 h-12 animate-spin text-blue-600 mx-auto" />
+                    <h3 className="mt-4 text-xl font-semibold text-gray-800">Memuat Detail Kursus</h3>
+                    <p className="mt-2 text-gray-600">Harap tunggu sebentar...</p>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
 
-    if (error) return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-pink-100">
-            <div className="text-center p-8 bg-white rounded-xl shadow-lg max-w-md">
-                <AlertCircle className="w-12 h-12 text-red-500 mx-auto" />
-                <h3 className="mt-4 text-xl font-semibold text-gray-800">Terjadi Kesalahan</h3>
-                <p className="mt-2 text-gray-600">{error}</p>
-                <button
-                    onClick={() => window.location.reload()}
-                    className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                    Coba Lagi
-                </button>
+    if (error) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-pink-100">
+                <div className="text-center p-8 bg-white rounded-xl shadow-lg max-w-md">
+                    <AlertCircle className="w-12 h-12 text-red-500 mx-auto" />
+                    <h3 className="mt-4 text-xl font-semibold text-gray-800">Terjadi Kesalahan</h3>
+                    <p className="mt-2 text-gray-600">{error}</p>
+                    <button
+                        onClick={() => window.location.reload()}
+                        className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    >
+                        Coba Lagi
+                    </button>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }
+
+    if (!kursus) return null;
 
     return (
         <div className="min-h-screen py-2 px-2 bg-gray-50">
@@ -127,24 +163,15 @@ const KursusDetailPage = () => {
 
                             {kursus.thumbnail ? (
                                 <div className="inline-block border border-gray-200 bg-gray-100 rounded-md overflow-hidden">
-                                    {loading && (
-                                        <div className="flex items-center justify-center w-full h-full p-8 text-blue-500 text-sm">
-                                            Loading...
-                                        </div>
-                                    )}
                                     <Image
                                         src={kursus.thumbnail}
                                         alt={`Thumbnail ${kursus.nama}`}
-                                        onLoad={() => setLoading(false)}
-                                        width={0} // <- Ini biar ukurannya fleksibel
+                                        width={0}
                                         height={0}
-                                        sizes="100vw" // <- Ikuti ukuran layar
-                                        className={`h-auto w-auto max-w-full max-h-80 object-contain transition-opacity duration-300 ${loading ? 'opacity-0' : 'opacity-100'}`}
+                                        sizes="100vw"
+                                        className="h-auto w-auto max-w-full max-h-80 object-contain"
                                     />
                                 </div>
-
-
-
                             ) : (
                                 <div className="bg-gray-100 h-60 rounded-md flex items-center justify-center text-gray-500 italic border border-gray-200">
                                     Tidak ada thumbnail
@@ -162,10 +189,7 @@ const KursusDetailPage = () => {
                 </div>
             </div>
         </div>
-
-
-
     );
-}
+};
 
 export default KursusDetailPage;

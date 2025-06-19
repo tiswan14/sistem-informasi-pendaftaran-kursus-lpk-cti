@@ -4,7 +4,24 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Calendar, BookOpen, User2, Clock, CheckCircle2, ChevronDown, RefreshCw, Save } from 'lucide-react';
-import { redirect, useParams, useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
+import Image from 'next/image';
+
+
+interface KursusDetail {
+    kursus: {
+        nama: string;
+        deskripsi: string;
+        harga: number;
+        lamaKursus: number;
+        tanggalMulai: string;
+        tanggalSelesai: string;
+        kuota: number;
+        thumbnail?: string;
+        status: 'aktif' | 'nonaktif';
+        userId: string;
+    };
+}
 
 interface Instruktur {
     id: string;
@@ -12,9 +29,11 @@ interface Instruktur {
 }
 
 const EditKursusPage = () => {
-    const { id } = useParams
-        ();
-    const [kursus, setKursus] = useState(null);
+    const params = useParams<{ id: string }>();
+    const id = params.id;
+
+    const [kursus, setKursus] = useState<KursusDetail | null>(null);
+
     const [nama, setNama] = useState('');
     const [deskripsi, setDeskripsi] = useState('');
     const [harga, setHarga] = useState(0);
@@ -94,7 +113,7 @@ const EditKursusPage = () => {
             formData.append("nama", nama);
             formData.append("deskripsi", deskripsi || "");
             formData.append("harga", String(harga));
-            formData.append("lamaKursus", lamaKursus || "");
+            formData.append("lamaKursus", lamaKursus ? String(lamaKursus) : "");
             formData.append("tanggalMulai", tanggalMulai || "");
             formData.append("tanggalSelesai", tanggalSelesai || "");
             formData.append("kuota", String(kuota));
@@ -251,17 +270,19 @@ const EditKursusPage = () => {
                hover:file:bg-blue-100"
                         />
                     </div>
-
                     {previewThumbnail && (
-                        <div className="mb-4">
-                            <p className="text-sm text-gray-700 mb-1">Preview Thumbnail:</p>
-                            <img
-                                src={previewThumbnail}
-                                alt="Preview Thumbnail"
-                                className="w-64 rounded border shadow"
-                            />
-                        </div>
+                        <Image
+                            src={previewThumbnail}
+                            alt="Preview Thumbnail"
+                            width={256}
+                            height={0}
+                            sizes="100vw"
+                            className="w-64 h-auto rounded border shadow object-contain"
+                            unoptimized
+                        />
                     )}
+
+
 
 
                 </div>
