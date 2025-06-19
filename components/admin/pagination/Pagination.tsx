@@ -33,7 +33,8 @@ export const Pagination = ({ pagination, onPageChange }: {
         if (pageFromUrl && Number(pageFromUrl) !== currentPage) {
             onPageChange(Number(pageFromUrl));
         }
-    }, []);
+    }, [searchParams, currentPage, onPageChange]);
+
 
     const getPageNumbers = () => {
         const pages = [];
