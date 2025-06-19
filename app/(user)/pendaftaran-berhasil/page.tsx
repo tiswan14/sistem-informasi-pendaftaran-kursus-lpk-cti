@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { FaSpinner } from "react-icons/fa";

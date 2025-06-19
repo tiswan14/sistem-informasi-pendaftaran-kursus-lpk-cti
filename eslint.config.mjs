@@ -22,9 +22,11 @@ const config = [
             sourceType: 'module',
         },
         rules: {
-            // aturan tambahan bisa ditaruh di sini
+            // contoh aturan tambahan
+            'no-console': 'warn',
+            'react/react-in-jsx-scope': 'off', // Next.js tidak perlu import React
         },
     },
 ]
 
-export default config // ✅ NO MORE WARNING
+export default config
