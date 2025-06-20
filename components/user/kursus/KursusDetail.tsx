@@ -8,11 +8,13 @@ import { toast } from "react-toastify";
 import { Kursus, KursusDetailProps } from '@/types/kursus';
 import Image from "next/image";
 import Link from "next/link";
-
+import { useRouter } from "next/navigation";
 const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
     const [kursus, setKursus] = useState<Kursus | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+
+    const router = useRouter();
 
     useEffect(() => {
         const fetchKursus = async () => {
@@ -50,24 +52,35 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
             toast.error("Silahkan login terlebih dahulu");
             return;
         }
+
         try {
             await axios.post("/api/pendaftaran", {
                 userId: session.user.id,
                 kursusId: kursus?.id,
             });
 
-            toast.success("Pendaftaran berhasil! Silakan cek Riwayat Pendaftaran untuk detailnya.");
+            toast.success("Pendaftaran berhasil!\nSilahkan tunggu konfirmasi dari admin");
+            router.push("/riwayat-pendaftaran");
+
         } catch (error) {
             const err = error as { response?: { data?: { message?: string } } };
 
-            if (err.response?.data?.message) {
-                toast.error(err.response.data.message);
+            const message = err.response?.data?.message;
+
+            if (message) {
+                toast.error(message);
+
+                if (message.toLowerCase().includes("profil")) {
+                    setTimeout(() => {
+                        router.push("/peserta/profile/edit");
+                    }, 2000); // kasih delay biar toast kebaca dulu
+                }
             } else {
                 toast.error("Gagal daftar kursus");
             }
         }
-
     };
+
 
     const namaKursus = kursus?.nama;
     const pesan = encodeURIComponent(`Halo, saya ingin bertanya tentang kursus ${namaKursus}`);

@@ -99,7 +99,7 @@ model Kursus {
 
   user        User?         @relation("InstrukturKursus", fields: [userId], references: [id], onDelete: SetNull)
   pendaftaran Pendaftaran[]
-  jadwal      Jadwal[] // Relasi one-to-many ke Jadwal
+  jadwal      Jadwal[]
 
   @@map("kursus")
 }
@@ -128,7 +128,7 @@ model Pendaftaran {
   id         String   @id @default(cuid())
   userId     String
   kursusId   String
-  status     String   @default("Belum diverifikasi")
+  status     String   @default("Menunggu diverifikasi")
   keterangan String?
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt

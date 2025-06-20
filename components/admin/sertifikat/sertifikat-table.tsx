@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 interface User {
     id: string;
     nama: string;
+    tanggalLahir: string;
 }
 
 interface Kursus {
@@ -139,6 +140,7 @@ const SertifikatTable = () => {
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">No</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Nomor Sertifikat</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Nama User</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Tanggal Lahir</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Kursus</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Tanggal Terbit</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">File Sertifikat</th>
@@ -175,6 +177,7 @@ const SertifikatTable = () => {
                                 <td className="px-4 py-3 text-sm text-gray-700">{index + 1}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{sertifikat.nomor}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{sertifikat.pendaftaran.user.nama}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">{sertifikat.pendaftaran.user.tanggalLahir}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{sertifikat.pendaftaran.kursus.nama}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{formatTanggalIndonesia(sertifikat.tanggalTerbit)}</td>
                                 {/* <td className="px-4 py-3">

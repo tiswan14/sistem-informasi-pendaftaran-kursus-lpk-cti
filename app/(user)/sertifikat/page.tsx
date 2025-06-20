@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Award, BadgeCheck, CalendarDays, ScrollText } from 'lucide-react';
+import { Award, BadgeCheck, CalendarDays, FileText } from 'lucide-react';
 import { fetchSertifikat } from '@/lib/api';
 
 interface SertifikatItem {
@@ -101,7 +101,7 @@ const SertifikatPage = () => {
                                 rel="noopener noreferrer"
                                 className="flex-shrink-0 flex items-center gap-2 bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 px-4 py-2.5 rounded-lg transition-all duration-200 hover:shadow-sm"
                             >
-                                <ScrollText className="w-4 h-4" />
+                                <FileText className="w-4 h-4" />
                                 Lihat Sertifikat
                             </Link>
 

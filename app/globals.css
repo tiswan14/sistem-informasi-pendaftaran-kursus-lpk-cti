@@ -99,3 +99,8 @@ body {
     overflow-x: hidden;
 }
 
+/* Dalam global.css atau style JSX */
+html2canvas-fix {
+  --tw-bg-opacity: 1;
+  background-color: rgb(59 130 246 / var(--tw-bg-opacity)); /* Contoh untuk bg-blue-600 */
+}

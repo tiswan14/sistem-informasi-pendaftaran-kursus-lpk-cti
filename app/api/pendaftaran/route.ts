@@ -4,6 +4,9 @@ import { prisma } from "@/lib/prisma";
 export async function GET() {
     try {
         const pendaftaran = await prisma.pendaftaran.findMany({
+            orderBy: {
+                createdAt: 'desc',
+            },
             include: {
                 user: {
                     select: {
@@ -50,11 +53,53 @@ export async function POST(request: Request) {
             );
         }
 
+        const user = await prisma.user.findUnique({
+            where: { id: userId },
+            select: {
+                nama: true,
+                nik: true,
+                jenisKelamin: true,
+                tempatLahir: true,
+                tanggalLahir: true,
+                agama: true,
+                jurusan: true,
+                tahunAkademik: true,
+                noHp: true,
+                email: true,
+                mediaSosial: true,
+            },
+        });
+
+        const wajibIsi = [
+            user?.nama,
+            user?.nik,
+            user?.jenisKelamin,
+            user?.tempatLahir,
+            user?.tanggalLahir,
+            user?.agama,
+            user?.jurusan,
+            user?.tahunAkademik,
+            user?.noHp,
+            user?.email,
+            user?.mediaSosial,
+        ];
+
+        const profilLengkap = wajibIsi.every((field) => !!field);
+
+        if (!profilLengkap) {
+            return NextResponse.json(
+                {
+                    message: "Harap lengkapi profil Anda terlebih dahulu sebelum mendaftar.",
+                },
+                { status: 400 }
+            );
+        }
+
         const sudahTerdaftar = await prisma.pendaftaran.findFirst({
             where: {
                 userId,
-                kursusId
-            }
+                kursusId,
+            },
         });
 
         if (sudahTerdaftar) {
@@ -68,24 +113,26 @@ export async function POST(request: Request) {
             where: {
                 userId,
                 status: {
-                    not: "Lulus"
-                }
-            }
+                    not: "Lulus Pelatihan", 
+                },
+            },
         });
 
         if (kursusBelumSelesai) {
             return NextResponse.json(
-                { message: "Anda harus menyelesaikan kursus sebelumnya terlebih dahulu." },
+                {
+                    message:
+                        "Anda harus menyelesaikan kursus sebelumnya terlebih dahulu.",
+                },
                 { status: 400 }
             );
         }
 
-        // ✅ Buat pendaftaran
         const pendaftaran = await prisma.pendaftaran.create({
             data: {
                 user: { connect: { id: userId } },
                 kursus: { connect: { id: kursusId } },
-                status: "Belum diverifikasi"
+                status: "Menunggu diverifikasi",
             },
             include: {
                 user: true,
@@ -97,16 +144,15 @@ export async function POST(request: Request) {
                         user: {
                             select: {
                                 id: true,
-                                nama: true
-                            }
-                        }
-                    }
-                }
-            }
+                                nama: true,
+                            },
+                        },
+                    },
+                },
+            },
         });
 
         return NextResponse.json(pendaftaran, { status: 201 });
-
     } catch (error) {
         console.error("Gagal membuat pendaftaran:", error);
         return NextResponse.json(
@@ -115,4 +161,5 @@ export async function POST(request: Request) {
         );
     }
 }
+
 

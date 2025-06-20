@@ -14,6 +14,7 @@ import {
     FaChevronLeft,
     FaChevronRight,
     FaMoneyBillAlt,
+    FaRegFilePdf,
 } from "react-icons/fa";
 
 const Sidebar = () => {
@@ -122,6 +123,19 @@ const Sidebar = () => {
                             <FaCertificate size={14} />
                         </div>
                         {!collapsed && <span className="text-sm font-medium text-gray-700">Sertifikat</span>}
+                    </div>
+                </Link>
+
+                <Link href="/dashboard/data-laporan">
+                    <div className="flex items-center gap-2 p-2 py-4 rounded-lg hover:bg-blue-50 transition-colors group">
+                        <div className="p-1.5 bg-red-100 rounded-lg text-red-600 group-hover:bg-red-200">
+                            <FaRegFilePdf size={16} />
+                        </div>
+                        {!collapsed && (
+                            <span className="text-sm font-medium text-gray-800 group-hover:text-red-700">
+                                Laporan
+                            </span>
+                        )}
                     </div>
                 </Link>
             </nav>

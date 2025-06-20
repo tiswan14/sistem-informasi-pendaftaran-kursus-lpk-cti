@@ -189,16 +189,17 @@ const TambahInstrukturForm = () => {
                 <div className="space-y-4">
                     {/* Keahlian */}
                     <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Keahlian</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Jurusan</label>
                         <div className="relative">
                             <Award className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
                             <select
                                 name="keahlian"
                                 className="py-2 pl-10 pr-10 rounded-md border border-gray-300 w-full appearance-none" value={keahlian} onChange={(e) => setKeahlian(e.target.value)}
                             >
-                                <option value="">Pilih Keahlian</option>
+                                <option value="">Pilih Jurusan</option>
+                                <option value="Programming">Jaringan</option>
                                 <option value="Programming">Programming</option>
-                                <option value="Design">Design</option>
+                                <option value="Design">Design Grafis</option>
                                 <option value="Marketing">Marketing</option>
                             </select>
                             <ChevronDown className="absolute right-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
@@ -208,20 +209,38 @@ const TambahInstrukturForm = () => {
                     {/* Jabatan */}
                     <div className="mb-4">
                         <label className="block text-sm font-medium text-gray-700 mb-1">Jabatan</label>
-                        <div className="relative">
+                        <div className="relative z-10">
                             <UserSquare2 className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
                             <select
                                 name="jabatan"
-                                className="py-2 pl-10 pr-10 rounded-md border border-gray-300 w-full appearance-none" value={jabatan} onChange={(e) => setJabatan(e.target.value)}
+                                className="py-2 pl-10 pr-10 rounded-md border border-gray-300 w-full appearance-none focus:outline-none"
+                                value={jabatan}
+                                onChange={(e) => setJabatan(e.target.value)}
                             >
                                 <option value="">Pilih Jabatan</option>
-                                <option value="Senior">Senior</option>
-                                <option value="Junior">Junior</option>
-                                <option value="Manager">Manager</option>
+                                <option value="Direktur">Direktur</option>
+                                <option value="Wakil Direktur I">Wakil Direktur I</option>
+                                <option value="Wakil Direktur II">Wakil Direktur II</option>
+                                <option value="Wakil Direktur III">Wakil Direktur III</option>
+                                <option value="Sekretaris">Sekretaris</option>
+                                <option value="Bendahara">Bendahara</option>
+                                <option value="Instruktur Multimedia">Instruktur Multimedia</option>
+                                <option value="Instruktur Networking">Instruktur Networking</option>
+                                <option value="Instruktur Administrasi Perkantoran">Instruktur Administrasi Perkantoran</option>
+                                <option value="Instruktur Pemrograman Web">Instruktur Pemrograman Web</option>
+                                <option value="Instruktur Pemrograman Android">Instruktur Pemrograman Android</option>
+                                <option value="Instruktur Digital Marketing">Instruktur Digital Marketing</option>
+                                <option value="Instruktur Desain Grafis">Instruktur Desain Grafis</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Bursa Kerja">Bursa Kerja</option>
+                                <option value="Staff Ahli">Staff Ahli</option>
                             </select>
                             <ChevronDown className="absolute right-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
                         </div>
                     </div>
+
+
+
 
                     {/* Password */}
                     <div className="mb-4">

@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { BadgeDollarSign, CalendarClock, CreditCard, FileText, Loader2 } from "lucide-react";
 import Script from "next/script";
 import { formatRupiah } from "@/utils/formatRupiah";
 import transactionServices from "@/app/services/transaction";
@@ -196,29 +196,43 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
             />
 
 
-            <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+            <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-4 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                    <div className="p-8">
-                        <div className="flex justify-between items-start">
+                    <div className="p-6 md:p-8">
+                        {/* Header Section */}
+                        <div className="flex items-start space-x-4">
+                            <div className="flex-shrink-0 bg-blue-50 p-2 rounded-lg">
+                                <CreditCard className="h-6 w-6 text-blue-600" />
+                            </div>
                             <div>
-                                <h1 className="text-2xl font-bold text-gray-900">Pembayaran Kursus</h1>
-                                <p className="mt-1 text-gray-500">Lengkapi detail pembayaran Anda</p>
+                                <h1 className="text-xl font-bold text-gray-800 md:text-2xl">Pembayaran Kursus</h1>
+                                <p className="mt-1 text-sm text-gray-500">Lengkapi detail pembayaran Anda</p>
                             </div>
                         </div>
 
-                        <div className="mt-6 border-t border-gray-200 pt-6">
-                            <h2 className="text-lg font-medium text-gray-900">Detail Kursus</h2>
-                            <div className="mt-4 space-y-4">
-                                <div className="flex justify-between">
+                        {/* Course Details Section */}
+                        <div className="mt-8 pt-6 border-t border-gray-100">
+                            <div className="flex items-center space-x-3 mb-4">
+                                <div className="bg-blue-50 p-1.5 rounded-lg">
+                                    <FileText className="h-5 w-5 text-blue-600" />
+                                </div>
+                                <h2 className="text-lg font-semibold text-gray-800">Detail Kursus</h2>
+                            </div>
+
+                            <div className="space-y-3.5 text-sm">
+                                <div className="flex justify-between py-2">
                                     <span className="text-gray-600">Nama Kursus</span>
-                                    <span className="text-gray-900 font-medium">{pendaftaran.kursus.nama}</span>
+                                    <span className="text-gray-800 font-medium">{pendaftaran.kursus.nama}</span>
                                 </div>
-                                <div className="flex justify-between">
+
+                                <div className="flex justify-between py-2">
                                     <span className="text-gray-600">Harga per Bulan</span>
-                                    <span className="text-gray-900 font-medium">{formatRupiah(pendaftaran.kursus.harga)}</span>
+                                    <span className="text-gray-800 font-medium">{formatRupiah(pendaftaran.kursus.harga)}</span>
                                 </div>
-                                <div className="flex justify-between items-center">
-                                    <label htmlFor="duration" className="text-gray-600">
+
+                                <div className="flex justify-between items-center py-2">
+                                    <label htmlFor="duration" className="flex items-center text-gray-600">
+                                        <CalendarClock className="w-4 h-4 mr-2 text-blue-500" />
                                         Durasi (bulan)
                                     </label>
                                     <input
@@ -228,46 +242,55 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
                                         max={12}
                                         value={duration}
                                         onChange={(e) => setDuration(Math.max(1, parseInt(e.target.value) || 1))}
-                                        className="w-20 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                                        className="w-20 px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-right"
                                     />
                                 </div>
                             </div>
                         </div>
 
-                        <div className="mt-6 border-t border-gray-200 pt-6">
-                            <div className="flex justify-between">
-                                <span className="text-lg font-medium text-gray-900">Total Pembayaran</span>
-                                <span className="text-xl font-bold text-blue-600">{formatRupiah(totalAmount)}</span>
+                        {/* Total Payment Section */}
+                        <div className="mt-6 pt-6 border-t border-gray-100">
+                            <div className="flex justify-between items-center bg-blue-50 rounded-lg p-4">
+                                <div className="flex items-center space-x-3">
+                                    <span className="font-semibold text-gray-800">Total Pembayaran</span>
+                                </div>
+                                <span className="text-xl font-bold text-blue-600 md:text-2xl">
+                                    {formatRupiah(totalAmount)}
+                                </span>
                             </div>
                         </div>
 
+                        {/* Payment Button */}
                         <div className="mt-8">
                             <button
                                 onClick={() => handlePayment()}
                                 disabled={isProcessingPayment}
-                                className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-full flex justify-center items-center space-x-2 py-3 px-6 bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-white font-medium rounded-lg transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
                             >
                                 {isProcessingPayment ? (
                                     <>
-                                        <Loader2 className="animate-spin mr-2 h-4 w-4" />
-                                        Memproses...
+                                        <Loader2 className="animate-spin h-5 w-5" />
+                                        <span>Memproses...</span>
                                     </>
                                 ) : (
                                     "Bayar Sekarang"
                                 )}
                             </button>
                         </div>
+
+                        {/* Midtrans Info */}
                         <Script
                             src="https://app.sandbox.midtrans.com/snap/snap.js"
                             data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
                             strategy="lazyOnload"
                         />
-                        {/* Hilangkan tulisan sandbox jika ke production */}
 
-                        <div className="mt-4 text-center text-sm text-gray-500">Pembayaran aman dan terenkripsi</div>
+                        <p className="mt-4 text-center text-xs text-gray-400">
+                            Transaksi aman & terenkripsi oleh Midtrans
+                        </p>
                     </div>
                 </div>
-            </div >
+            </div>
         </>
     );
 };

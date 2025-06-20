@@ -96,6 +96,7 @@ const Navlink = () => {
                         <li>
                             <Link
                                 href="/"
+                                onClick={() => setOpen(false)}
                                 className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
                             >
                                 <Home className="w-4 h-4" />
@@ -105,6 +106,7 @@ const Navlink = () => {
                         <li>
                             <Link
                                 href="/kursus"
+                                onClick={() => setOpen(false)}
                                 className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
                             >
                                 <BookOpen className="w-4 h-4" />
@@ -119,6 +121,7 @@ const Navlink = () => {
                                 <li>
                                     <Link
                                         href="/riwayat-pendaftaran"
+                                        onClick={() => setOpen(false)}
                                         className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
                                     >
                                         <History className="w-4 h-4" />
@@ -128,6 +131,7 @@ const Navlink = () => {
                                 <li>
                                     <Link
                                         href="/jadwal"
+                                        onClick={() => setOpen(false)}
                                         className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
                                     >
                                         <Calendar className="w-4 h-4" />
@@ -137,16 +141,17 @@ const Navlink = () => {
                                 <li>
                                     <Link
                                         href="/sertifikat"
+                                        onClick={() => setOpen(false)}
                                         className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
                                     >
                                         <CreativeCommons className="w-4 h-4" />
                                         Sertifikat
                                     </Link>
                                 </li>
-
                                 <li>
                                     <Link
                                         href="/pembayaran"
+                                        onClick={() => setOpen(false)}
                                         className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
                                     >
                                         <CreditCard className="w-4 h-4" />
@@ -159,6 +164,7 @@ const Navlink = () => {
                                 <li>
                                     <Link
                                         href="/#visi-misi"
+                                        onClick={() => setOpen(false)}
                                         className="w-21 flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
                                     >
                                         <Eye className="w-4 h-4" />
@@ -168,6 +174,7 @@ const Navlink = () => {
                                 <li>
                                     <Link
                                         href="/#akreditasi"
+                                        onClick={() => setOpen(false)}
                                         className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:hover:bg-transparent md:hover:text-blue-600 md:p-0"
                                     >
                                         <Award className="w-4 h-4" />
@@ -176,19 +183,27 @@ const Navlink = () => {
                                 </li>
                             </>
                         )}
+
+                        {/* Profil di mobile */}
                         <li className="md:hidden">
                             <Link
                                 href="/profil"
+                                onClick={() => setOpen(false)}
                                 className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:p-0"
                             >
                                 <User className="w-4 h-4" />
                                 Profil
                             </Link>
                         </li>
+
+                        {/* Auth button di mobile */}
                         <li className="md:hidden pb-5">
                             {session ? (
                                 <button
-                                    onClick={() => signOut()}
+                                    onClick={() => {
+                                        setOpen(false);
+                                        signOut();
+                                    }}
                                     className="flex items-center justify-center w-full gap-2 px-4 py-2 rounded-lg transition-colors bg-red-600 hover:bg-red-700 text-white"
                                 >
                                     <LogOut className="w-5 h-5" />
@@ -197,6 +212,7 @@ const Navlink = () => {
                             ) : (
                                 <Link
                                     href="/login"
+                                    onClick={() => setOpen(false)}
                                     className="flex items-center justify-center w-full gap-2 px-4 py-2 rounded-lg transition-colors bg-blue-600 hover:bg-blue-700 text-white"
                                 >
                                     <LogIn className="w-5 h-5" />
@@ -205,6 +221,7 @@ const Navlink = () => {
                             )}
                         </li>
                     </ul>
+
 
                 </div>
 

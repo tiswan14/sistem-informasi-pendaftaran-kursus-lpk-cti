@@ -15,7 +15,7 @@ export async function GET() {
         const allSertifikat = await prisma.sertifikat.findMany({
             where: {
                 pendaftaran: {
-                    status: "Lulus"
+                    status: "Lulus Pelatihan"
                 }
             },
             include: {
@@ -25,7 +25,8 @@ export async function GET() {
                         user: {
                             select: {
                                 nama: true,
-                                email: true
+                                email: true,
+                                tanggalLahir: true
                             }
                         },
                         kursus: {
@@ -78,13 +79,6 @@ export async function POST(request: Request) {
             where: { id: pendaftaranId },
             select: { status: true }
         });
-
-        if (!pendaftaran || !['lulus', 'Lulus'].includes(pendaftaran.status)) {
-            return NextResponse.json(
-                { error: "Pendaftaran tidak ditemukan atau status tidak lulus" },
-                { status: 400 }
-            );
-        }
 
         // Handle file upload
         let fileData = null;

@@ -77,8 +77,13 @@ const TambahSertifikatForm = () => {
     useEffect(() => {
         const fetchPendaftaran = async () => {
             try {
-                const response = await axios.get('/api/pendaftaran?status=lulus');
-                setPendaftaranList(response.data.filter((p: Pendaftaran) => p.status.toLowerCase() === 'lulus'));
+                const status = "Lulus Pelatihan";
+                const response = await axios.get(`/api/pendaftaran?status=${encodeURIComponent(status)}`);
+
+                setPendaftaranList(
+                    response.data.filter((p: Pendaftaran) => p.status === status)
+                );
+
             } catch (error: unknown) {
                 console.error("Error:", error);
                 if (axios.isAxiosError(error)) {

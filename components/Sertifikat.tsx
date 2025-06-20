@@ -139,7 +139,7 @@ export default function Sertifikat({ nomor, tanggalTerbit, namaPeserta, namaKurs
             {/* --- TOMBOL DOWNLOAD --- */}
             <button
                 onClick={handleDownload}
-                className="cursor-pointer group mt-8 flex items-center gap-2 bg-gradient-to-r from-blue-600 to-emerald-400 hover:from-blue-700 hover:to-emerald-500 text-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
+                className="cursor-pointer group mt-8 flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-400 hover:from-blue-700 hover:to-blue-500 text-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 hover:scale-[1.02]"
             >
                 <Award className="w-5 h-5 transition-transform group-hover:scale-110" />
                 <span className="font-medium">Unduh Sertifikat</span>

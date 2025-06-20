@@ -13,7 +13,7 @@ export default async function PembayaranDetailPage(props: PageProps) {
     const { id } = await props.params;
 
     return (
-        <div className="py-32 px-16">
+        <div className="py-24 px-3 md:px-16">
             <PembayaranDetailComponent id={id} />
         </div>
     );

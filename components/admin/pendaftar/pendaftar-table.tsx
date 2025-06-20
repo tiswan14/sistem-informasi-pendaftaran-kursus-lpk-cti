@@ -79,6 +79,8 @@ const PendaftarTable = () => {
                 if (!res.ok) throw new Error("Gagal memuat data pendaftar");
                 const data: Pendaftar[] = await res.json();
                 setPendaftarData(data);
+                console.log(data);
+                
             } catch (error) {
                 console.error("Error:", error);
             } finally {
@@ -312,19 +314,23 @@ const PendaftarTable = () => {
                                         title="Ubah status pendaftaran"
                                         value={pendaftar.status}
                                         onChange={(e) => handleStatusChange(pendaftar.id, e.target.value)}
-                                        className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full appearance-none focus:outline-none focus:ring-1 focus:ring-opacity-50
-                            ${pendaftar.status === 'Belum verifikasi' ? 'bg-gray-100 text-gray-800 focus:ring-gray-500' :
-                                                pendaftar.status === 'Diterima' ? 'bg-green-100 text-green-800 focus:ring-green-500' :
-                                                    pendaftar.status === 'Ditolak' ? 'bg-red-100 text-red-800 focus:ring-red-500' :
-                                                        pendaftar.status === 'Lulus' ? 'bg-indigo-100 text-indigo-800 focus:ring-indigo-500' :
-                                                            'bg-yellow-100 text-yellow-800 focus:ring-yellow-500'}`}
+                                        className={`cursor-pointer px-3 py-1.5 text-xs leading-5 font-semibold rounded-full appearance-none transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1
+      ${pendaftar.status === 'Menunggu Verifikasi'
+                                                ? 'bg-gray-100 text-gray-800 focus:ring-gray-400'
+                                                : pendaftar.status === 'Terverifikasi'
+                                                    ? 'bg-yellow-100 text-yellow-800 focus:ring-yellow-500'
+                                                    : pendaftar.status === 'Lulus Pelatihan'
+                                                        ? 'bg-indigo-100 text-indigo-800 focus:ring-indigo-500'
+                                                        : 'bg-white text-gray-600 focus:ring-gray-300'}`}
                                     >
-                                        <option value="Belum verifikasi">Belum verifikasi</option>
-                                        <option value="Diterima">Diterima</option>
-                                        <option value="Ditolak">Ditolak</option>
-                                        <option value="Lulus">Lulus</option>
+                                        <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
+                                        <option value="Terverifikasi">Terverifikasi</option>
+                                        <option value="Lulus Pelatihan">Lulus Pelatihan</option>
                                     </select>
                                 </td>
+
+
+
                                 <td className="px-6 py-4 whitespace-nowrap text-center">
                                     <div className="flex justify-center space-x-3">
                                         <Tooltip content="Tambah Catatan">

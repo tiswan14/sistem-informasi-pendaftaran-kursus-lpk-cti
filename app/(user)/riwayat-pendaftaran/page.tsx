@@ -29,7 +29,7 @@ const RiwayatPendaftaranPage = () => {
 
 
     return (
-        <div className="min-h-screen p-4 md:p-8 bg-gray-50 mt-20">
+        <div className="min-h-screen p-4 md:p-8 bg-gray-50 mt-28">
             <div className="max-w-4xl mx-auto">
                 <div className="flex items-center gap-3 mb-8">
                     <History className="w-6 h-6 text-blue-600" />
@@ -76,26 +76,36 @@ const RiwayatPendaftaranPage = () => {
                                     <div>
                                         <div className="flex items-center gap-2 mb-2">
                                             <BookOpen className="w-5 h-5 text-blue-500" />
-                                            <h3 className="text-lg font-semibold text-gray-800">{pendaftaran.kursus?.nama}</h3>
+                                            <h3 className="text-lg font-semibold text-gray-800">
+                                                {pendaftaran.kursus?.nama}
+                                            </h3>
                                         </div>
 
                                         <div className="flex items-center gap-2 text-sm text-gray-600 mb-1">
                                             <CalendarDays className="w-4 h-4" />
-                                            <span>Tanggal Daftar: {new Date(pendaftaran.createdAt).toLocaleDateString('id-ID', {
-                                                day: 'numeric',
-                                                month: 'long',
-                                                year: 'numeric'
-                                            })}</span>
+                                            <span>
+                                                Tanggal Daftar:{" "}
+                                                {new Date(pendaftaran.createdAt).toLocaleDateString("id-ID", {
+                                                    day: "numeric",
+                                                    month: "long",
+                                                    year: "numeric",
+                                                })}
+                                            </span>
                                         </div>
 
                                         <div className="flex items-center gap-2 text-sm">
                                             <BadgeAlert className="w-4 h-4" />
                                             <span>Status: </span>
-                                            <span className={`px-2 py-1 rounded-full text-xs font-medium ${pendaftaran.status === 'Diterima' ? 'bg-green-100 text-green-800' :
-                                                pendaftaran.status === 'Belum diverifikasi' ? 'bg-orange-100 text-orange-800' :
-                                                    pendaftaran.status === 'Ditolak' ? 'bg-red-100 text-red-800' :
-                                                        'bg-gray-100 text-gray-800'
-                                                }`}>
+                                            <span
+                                                className={`px-2 py-1 rounded-full text-xs font-medium ${pendaftaran.status === "Terverifikasi"
+                                                        ? "bg-green-100 text-green-800"
+                                                        : pendaftaran.status === "Menunggu Verifikasi"
+                                                            ? "bg-orange-100 text-orange-800"
+                                                            : pendaftaran.status === "Lulus Pelatihan"
+                                                                ? "bg-indigo-100 text-indigo-800"
+                                                                : "bg-gray-100 text-gray-800"
+                                                    }`}
+                                            >
                                                 {pendaftaran.status}
                                             </span>
                                         </div>
@@ -103,34 +113,34 @@ const RiwayatPendaftaranPage = () => {
 
                                     <button
                                         className="text-gray-400 hover:text-gray-600 transition-colors opacity-0 group-hover:opacity-100"
-                                        onClick={() => {/* Add detail view action */ }}
+                                        onClick={() => {
+                                            /* Add detail view action */
+                                        }}
                                         aria-label="Lihat detail"
                                     >
                                         <ChevronRight className="w-5 h-5" />
                                     </button>
                                 </div>
 
-                                {pendaftaran.status === 'Lulus' && (
+                                {/* Tampilkan tombol sertifikat jika Lulus */}
+                                {pendaftaran.status === "Lulus Pelatihan" && (
                                     <div className="mt-4 pt-3 border-t border-gray-100">
                                         <Link href={`/sertifikat`}>
-                                            <button className="flex items-center gap-3 px-4 py-2 rounded-lg 
-                bg-gradient-to-r from-blue-500 to-blue-600
-                hover:from-blue-600 hover:to-blue-700
-                text-white
-                font-medium text-sm
-                shadow-md
-                transition-all duration-300">
+                                            <button
+                                                className="flex items-center gap-3 px-4 py-2 rounded-lg 
+            bg-gradient-to-r from-blue-500 to-blue-600
+            hover:from-blue-600 hover:to-blue-700
+            text-white font-medium text-sm shadow-md transition-all duration-300"
+                                            >
                                                 <FileText className="w-5 h-5 text-white" />
-                                                <span>
-                                                    Lihat Sertifikat
-                                                </span>
+                                                <span>Lihat Sertifikat</span>
                                             </button>
                                         </Link>
                                     </div>
                                 )}
 
-
-                                {pendaftaran.status === 'Diterima' && !pendaftaran.Payment && (
+                                {/* Tampilkan tombol pembayaran jika status Terverifikasi dan belum bayar */}
+                                {pendaftaran.status === "Terverifikasi" && !pendaftaran.Payment && (
                                     <div className="mt-4 pt-4 border-t border-gray-100 flex justify-start">
                                         <Link href={`/pembayaran/${pendaftaran.id}`}>
                                             <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg flex items-center gap-2 transition-colors shadow-sm hover:shadow-md">
@@ -141,19 +151,16 @@ const RiwayatPendaftaranPage = () => {
                                     </div>
                                 )}
 
-
-
-
-
                                 <div className="mt-4 flex items-start gap-2 p-2 bg-blue-50 rounded-lg">
                                     <Info className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
                                     <span className="text-sm text-gray-700">
-                                        {pendaftaran.keterangan || 'Tidak ada keterangan tambahan'}
+                                        {pendaftaran.keterangan || "Tidak ada keterangan tambahan"}
                                     </span>
                                 </div>
                             </li>
                         ))}
                     </ul>
+
                 )}
             </div>
         </div>
