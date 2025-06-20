@@ -15,7 +15,7 @@ export default async function KursusDetailPage(props: PageProps) {
     const { kursusId } = await props.params;
 
     return (
-        <div className="py-32 px-16">
+        <div className="py-32 px-2 md:px-16">
             <KursusDetail kursusId={kursusId} />
         </div>
     );

@@ -48,31 +48,47 @@ export const RegisterCredentials = async (_prevState: unknown, formData: FormDat
 }
 
 export const LoginCredentials = async (prevState: unknown, formData: FormData) => {
-    const validateFields = LoginSchema.safeParse(Object.fromEntries(formData));
+    const validateFields = LoginSchema.safeParse(Object.fromEntries(formData))
 
     if (!validateFields.success) {
         return {
             error: validateFields.error.flatten().fieldErrors,
-        };
+        }
     }
 
-    const { email, password } = validateFields.data;
+    const { email, password } = validateFields.data
 
     try {
-        await signIn("credentials", { email, password, redirectTo: "/dashboard" });
+        const user = await prisma.user.findUnique({ where: { email } })
+
+        if (!user) {
+            return { message: "Akun tidak ditemukan" }
+        }
+
+        await signIn("credentials", {
+            email,
+            password,
+            redirect: false,
+        })
+
+        return {
+            success: true,
+            role: user.role,
+        }
 
     } catch (error) {
         if (error instanceof AuthError) {
             switch (error.type) {
                 case "CredentialsSignin":
-                    return { message: "Email atau password salah" };
+                    return { message: "Email atau password salah" }
                 default:
-                    return { message: "Email atau password salah" };
+                    return { message: "Terjadi kesalahan saat login" }
             }
         }
-        throw error;
+        throw error
     }
-};
+}
+
 
 export const AddInstruktur = async (formData: FormData) => {
     const rawData = {

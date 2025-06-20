@@ -7,6 +7,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Kursus, KursusDetailProps } from '@/types/kursus';
 import Image from "next/image";
+import Link from "next/link";
 
 const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
     const [kursus, setKursus] = useState<Kursus | null>(null);
@@ -55,7 +56,7 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                 kursusId: kursus?.id,
             });
 
-            toast.success("Berhasil daftar kursus");
+            toast.success("Pendaftaran berhasil! Silakan cek Riwayat Pendaftaran untuk detailnya.");
         } catch (error) {
             const err = error as { response?: { data?: { message?: string } } };
 
@@ -67,6 +68,10 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
         }
 
     };
+
+    const namaKursus = kursus?.nama;
+    const pesan = encodeURIComponent(`Halo, saya ingin bertanya tentang kursus ${namaKursus}`);
+    const linkWhatsApp = `https://wa.me/6281223638151?text=${pesan}`;
 
 
 
@@ -95,9 +100,9 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
     }
 
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
+        <div className="max-w-4xl mx-auto p-4 sm:p-6 bg-white rounded-lg shadow-md">
             {/* Thumbnail Section */}
-            <div className="relative aspect-video w-full h-64 mb-8 rounded-lg overflow-hidden bg-gray-100">
+            <div className="relative aspect-video w-full h-48 sm:h-64 md:h-72 lg:h-80 mb-6 md:mb-8 rounded-lg overflow-hidden bg-gradient-to-br from-blue-50 to-gray-100">
                 {kursus.thumbnail ? (
                     <Image
                         src={kursus.thumbnail}
@@ -105,114 +110,131 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                         fill
                         className="object-cover transition-transform duration-500 hover:scale-105"
                         priority
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 80vw, 1024px"
                     />
                 ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-50 to-gray-50">
-                        <BookOpen className="w-12 h-12 text-gray-400" />
+                    <div className="w-full h-full flex items-center justify-center">
+                        <BookOpen className="w-10 h-10 sm:w-12 sm:h-12 text-gray-400" />
                     </div>
                 )}
             </div>
 
             {/* Header Section */}
-            <div className="flex flex-col md:flex-row justify-between items-start gap-6 mb-8">
-                <div className="space-y-2">
+            <div className="flex flex-col md:flex-row justify-between items-start gap-4 sm:gap-6 mb-6 md:mb-8">
+                <div className="space-y-1 sm:space-y-2 flex-1">
                     <div className="flex items-center gap-2 text-blue-600">
-                        <BookOpen className="w-5 h-5" />
-                        <span className="text-sm font-medium">Detail Kursus</span>
+                        <BookOpen className="w-4 h-4 sm:w-5 sm:h-5" />
+                        <span className="text-xs sm:text-sm font-medium">Detail Kursus</span>
                     </div>
-                    <h1 className="text-2xl md:text-3xl font-bold text-gray-900">{kursus.nama}</h1>
+                    <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
+                        {kursus.nama}
+                    </h1>
                 </div>
 
-                <div className="flex items-center gap-3 bg-gray-100 px-4 py-2 rounded-lg">
-                    <User className="w-5 h-5 text-gray-600" />
-                    <div>
-                        <p className="text-sm text-gray-600">Instruktur</p>
-                        <p className="font-medium">{kursus.user.nama}</p>
+                <div className="flex items-center gap-2 sm:gap-3 bg-gray-50 hover:bg-gray-100 px-3 sm:px-4 py-1 sm:py-2 rounded-lg transition-colors w-full md:w-auto">
+                    <User className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
+                    <div className="overflow-hidden">
+                        <p className="text-xs sm:text-sm text-gray-600 truncate">Instruktur</p>
+                        <p className="font-medium text-sm sm:text-base truncate">{kursus.user.nama}</p>
                     </div>
                 </div>
             </div>
 
             {/* Description */}
-            <div className="mb-8 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-sm">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3 flex items-center gap-2">
-                    <Lightbulb className="w-5 h-5 text-indigo-600" />
+            <div className="mb-6 md:mb-8 p-4 sm:p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl shadow-sm">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2 sm:mb-3 flex items-center gap-2">
+                    <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
                     Tentang Kursus
                 </h3>
-                <p className="text-gray-700 leading-relaxed">{kursus.deskripsi}</p>
+                <p className="text-gray-700 text-sm sm:text-base leading-relaxed sm:leading-loose">
+                    {kursus.deskripsi}
+                </p>
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 md:mb-8">
                 {/* Harga */}
-                <div className="p-5 border rounded-xl bg-white hover:shadow-md transition-shadow duration-300 group">
-                    <div className="flex items-center gap-4">
-                        <div className="p-3 rounded-full bg-blue-100 group-hover:bg-blue-200 transition-colors">
-                            <Banknote className="w-6 h-6 text-blue-600" />
+                <div className="p-3 sm:p-4 md:p-5 border rounded-xl bg-white hover:shadow-md transition-all duration-300 group">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                        <div className="p-2 sm:p-3 rounded-full bg-blue-100 group-hover:bg-blue-200 transition-colors">
+                            <Banknote className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                         </div>
-                        <div>
-                            <p className="text-sm text-gray-500">Harga</p>
-                            <p className="font-bold">Rp {kursus.harga.toLocaleString()}</p>
+                        <div className="overflow-hidden">
+                            <p className="text-xs sm:text-sm text-gray-500 truncate">Harga</p>
+                            <p className="font-bold text-sm sm:text-base truncate">
+                                Rp {kursus.harga.toLocaleString()}
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 {/* Durasi Belajar */}
-                <div className="p-5 border rounded-xl bg-white hover:shadow-md transition-shadow duration-300 group">
-                    <div className="flex items-center gap-4">
-                        <div className="p-3 rounded-full bg-green-100 group-hover:bg-green-200 transition-colors">
-                            <Clock3 className="w-6 h-6 text-green-600" />
+                <div className="p-3 sm:p-4 md:p-5 border rounded-xl bg-white hover:shadow-md transition-all duration-300 group">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                        <div className="p-2 sm:p-3 rounded-full bg-green-100 group-hover:bg-green-200 transition-colors">
+                            <Clock3 className="w-5 h-5 sm:w-6 sm:h-6 text-green-600" />
                         </div>
-                        <div>
-                            <p className="text-sm text-gray-500">Durasi Belajar</p>
-                            <p className="font-bold">{kursus.lamaKursus} bulan</p>
+                        <div className="overflow-hidden">
+                            <p className="text-xs sm:text-sm text-gray-500 truncate">Durasi Belajar</p>
+                            <p className="font-bold text-sm sm:text-base truncate">
+                                {kursus.lamaKursus} bulan
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 {/* Mulai Belajar */}
-                <div className="p-5 border rounded-xl bg-white hover:shadow-md transition-shadow duration-300 group">
-                    <div className="flex items-center gap-4">
-                        <div className="p-3 rounded-full bg-purple-100 group-hover:bg-purple-200 transition-colors">
-                            <CalendarDays className="w-6 h-6 text-purple-600" />
+                <div className="p-3 sm:p-4 md:p-5 border rounded-xl bg-white hover:shadow-md transition-all duration-300 group">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                        <div className="p-2 sm:p-3 rounded-full bg-purple-100 group-hover:bg-purple-200 transition-colors">
+                            <CalendarDays className="w-5 h-5 sm:w-6 sm:h-6 text-purple-600" />
                         </div>
-                        <div>
-                            <p className="text-sm text-gray-500">Mulai Belajar</p>
-                            <p className="font-bold">{formatTanggalIndonesia(kursus.tanggalMulai)}</p>
+                        <div className="overflow-hidden">
+                            <p className="text-xs sm:text-sm text-gray-500 truncate">Mulai Belajar</p>
+                            <p className="font-bold text-sm sm:text-base truncate">
+                                {formatTanggalIndonesia(kursus.tanggalMulai)}
+                            </p>
                         </div>
                     </div>
                 </div>
 
                 {/* Selesai Pada */}
-                <div className="p-5 border rounded-xl bg-white hover:shadow-md transition-shadow duration-300 group">
-                    <div className="flex items-center gap-4">
-                        <div className="p-3 rounded-full bg-pink-100 group-hover:bg-pink-200 transition-colors">
-                            <CalendarCheck2 className="w-6 h-6 text-pink-600" />
+                <div className="p-3 sm:p-4 md:p-5 border rounded-xl bg-white hover:shadow-md transition-all duration-300 group">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                        <div className="p-2 sm:p-3 rounded-full bg-pink-100 group-hover:bg-pink-200 transition-colors">
+                            <CalendarCheck2 className="w-5 h-5 sm:w-6 sm:h-6 text-pink-600" />
                         </div>
-                        <div>
-                            <p className="text-sm text-gray-500">Selesai Pada</p>
-                            <p className="font-bold">{formatTanggalIndonesia(kursus.tanggalSelesai)}</p>
+                        <div className="overflow-hidden">
+                            <p className="text-xs sm:text-sm text-gray-500 truncate">Selesai Pada</p>
+                            <p className="font-bold text-sm sm:text-base truncate">
+                                {formatTanggalIndonesia(kursus.tanggalSelesai)}
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <button
                     onClick={handleDaftar}
-                    className="cursor-pointer flex-1 py-4 px-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-xl hover:from-blue-600 hover:to-blue-500 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 transform hover:-translate-y-1"
+                    className="cursor-pointer flex-1 py-3 sm:py-4 px-4 sm:px-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg sm:rounded-xl hover:from-blue-600 hover:to-blue-500 transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2 sm:gap-3 transform hover:-translate-y-0.5 active:translate-y-0 text-sm sm:text-base"
                 >
-                    <Laptop2 className="w-5 h-5" />
+                    <Laptop2 className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span>Daftar Kursus</span>
                 </button>
 
-                <button
-                    className="flex-1 py-4 px-6 bg-white text-gray-800 font-medium rounded-xl border border-gray-200 hover:border-indigo-300 hover:text-indigo-700 transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-3"
-                    onClick={() => alert('Tanya tentang kursus ini')}
+                <Link
+                    href={linkWhatsApp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 py-3 sm:py-4 px-4 sm:px-6 bg-white text-gray-800 font-medium rounded-lg sm:rounded-xl border border-gray-200 hover:border-indigo-300 hover:text-indigo-700 transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base"
                 >
-                    <MessageCircleMore className="w-5 h-5" />
+                    <MessageCircleMore className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span>Tanya Tentang Kursus</span>
-                </button>
+                </Link>
+
+
             </div>
         </div>
     );

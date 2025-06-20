@@ -32,7 +32,7 @@ const EditPesertaPage = () => {
     // Form states
     const [nama, setNama] = useState('');
     const [nik, setNik] = useState('');
-    const [jenisKelamin, setJenisKelamin] = useState('Laki-laki');
+    const [jenisKelamin, setJenisKelamin] = useState('');
     const [tempatLahir, setTempatLahir] = useState('');
     const [tanggalLahir, setTanggalLahir] = useState('');
     const [agama, setAgama] = useState('');

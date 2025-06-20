@@ -8,7 +8,7 @@ import VisiMisi from "@/components/user/beranda/VisiMisi";
 
 export default function Home() {
     return (
-        <>
+        <> 
 
             <HeroSection />
             {/* <HeroSectionV2 /> */}

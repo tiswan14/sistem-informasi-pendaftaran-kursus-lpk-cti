@@ -1,4 +1,4 @@
- 
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -160,10 +160,11 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
                                 const errorText = await response.text();
                                 throw new Error(`Gagal simpan data payment: ${response.status} - ${errorText}`);
                             }
+                            router.push("/pembayaran");
                         } catch (err) {
                             console.error("Error simpan data payment:", err);
                         }
-                        router.push("/dashboard");
+                        router.push("/pembayaran");
                     },
                     onPending: (result: MidtransPaymentResult) =>
                         console.log("Menunggu pembayaran", result),

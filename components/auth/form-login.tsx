@@ -3,22 +3,26 @@ import { useActionState, useState, useEffect } from "react"
 import Link from "next/link"
 import { LoginCredentials } from "@/lib/action"
 import ButtonAuth from "@/components/button"
+import { useRouter } from "next/navigation";
+
 const FormLogin = () => {
+    const router = useRouter();
     const [state, formAction] = useActionState(LoginCredentials, null)
 
     const [showMessage, setShowMessage] = useState(!!state?.message);
 
-  
+
 
     useEffect(() => {
-        if (state?.message) {
-            setShowMessage(true);
-            const timer = setTimeout(() => {
-                setShowMessage(false);
-            }, 2000); // 3 detik
-            return () => clearTimeout(timer);
+        if (state?.success && state.role) {
+            if (state.role === "admin") {
+                router.replace("/dashboard")
+            } else {
+                router.replace("/")
+            }
         }
-    }, [state?.message]);
+    }, [state])
+
     return (
         <form action={formAction} className="space-y-6">
             {showMessage && (

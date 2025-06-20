@@ -24,10 +24,8 @@ const Navlink = () => {
                 {/* Info Teks */}
                 <div className="relative group order-1 flex gap-2">
                     {status === "loading" ? (
-                        // Tampilkan loading skeleton saat session sedang dimuat
                         <ProfileLoadingSkeleton />
                     ) : session ? (
-                        // Tampilan ketika ada session (user sudah login)
                         <>
                             <div className="order-1 text-right hidden md:block">
                                 <h2 className="text-sm font-semibold text-gray-700">{session.user?.name}</h2>
@@ -66,20 +64,19 @@ const Navlink = () => {
                                 </button>
                             </div>
                         </>
-                    ) : (
-                        // Tampilan ketika tidak ada session (user belum login)
+                    ) : status === "unauthenticated" ? (
                         <Link href="/login">
                             <button className="hidden md:flex cursor-pointer px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200 text-base items-center justify-center gap-2">
                                 <FiLogIn className="w-4 h-4" />
                                 Login
                             </button>
                         </Link>
-                    )}
+                    ) : null}
                 </div>
 
 
 
-                {/* Hamburger Menu for Mobile */}
+
                 <button
                     onClick={() => setOpen(!open)}
                     className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm font-medium text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"

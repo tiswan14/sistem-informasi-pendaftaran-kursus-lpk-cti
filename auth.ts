@@ -49,23 +49,31 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             const role = auth?.user?.role
             const path = nextUrl.pathname
 
-            const ProtectedRoutes = ["/dashboard"]
+            const ProtectedRoutes = ["/dashboard"];
 
             if (!isLoggedIn && ProtectedRoutes.includes(nextUrl.pathname)) {
-                return Response.redirect(new URL("/login", nextUrl))
+                return Response.redirect(new URL("/login", nextUrl));
             }
 
-            if (isLoggedIn && (nextUrl.pathname.startsWith("/login") || nextUrl.pathname.startsWith("/register"))) {
-                return Response.redirect(new URL("/", nextUrl))
+            if (
+                isLoggedIn &&
+                (nextUrl.pathname.startsWith("/login") || nextUrl.pathname.startsWith("/register"))
+            ) {
+                return Response.redirect(new URL("/", nextUrl));
             }
-
-            if (path.startsWith("/dashboard") && role !== "admin") {
-                return Response.redirect(new URL("/", nextUrl))
+            if (path.startsWith("/dashboard")) {
+                if (!isLoggedIn || role !== "admin") {
+                    return Response.redirect(new URL("/", nextUrl));
+                }
             }
 
             if (isLoggedIn && role === "admin" && path === "/") {
-                return Response.redirect(new URL("/dashboard", nextUrl))
+                return Response.redirect(new URL("/dashboard", nextUrl));
             }
+
+
+
+
 
 
             return true
