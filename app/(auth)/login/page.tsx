@@ -2,6 +2,7 @@
 import { Metadata } from "next";
 import Image from "next/image";
 import FormLogin from "@/components/auth/form-login";
+import GoogleButton from "@/components/auth/google-button";
 export const metadata: Metadata = {
     title: "Login | LPK CTI Ciamis",
 };
@@ -22,6 +23,12 @@ const LoginPage = () => {
                     Login ke Akun
                 </h1>
                 <FormLogin />
+                <div className="flex items-center gap-4 text-gray-400 text-sm">
+                    <div className="flex-1 border-t border-gray-300" />
+                    <span className="">atau</span>
+                    <div className="flex-1 border-t border-gray-300" />
+                </div>
+                <GoogleButton />
             </div>
         </div>
     );

@@ -4931,6 +4931,7 @@ export namespace Prisma {
   export type UserMinAggregateOutputType = {
     id: string | null
     nama: string | null
+    name: string | null
     nik: string | null
     jenisKelamin: string | null
     tempatLahir: string | null
@@ -4954,6 +4955,7 @@ export namespace Prisma {
   export type UserMaxAggregateOutputType = {
     id: string | null
     nama: string | null
+    name: string | null
     nik: string | null
     jenisKelamin: string | null
     tempatLahir: string | null
@@ -4977,6 +4979,7 @@ export namespace Prisma {
   export type UserCountAggregateOutputType = {
     id: number
     nama: number
+    name: number
     nik: number
     jenisKelamin: number
     tempatLahir: number
@@ -5002,6 +5005,7 @@ export namespace Prisma {
   export type UserMinAggregateInputType = {
     id?: true
     nama?: true
+    name?: true
     nik?: true
     jenisKelamin?: true
     tempatLahir?: true
@@ -5025,6 +5029,7 @@ export namespace Prisma {
   export type UserMaxAggregateInputType = {
     id?: true
     nama?: true
+    name?: true
     nik?: true
     jenisKelamin?: true
     tempatLahir?: true
@@ -5048,6 +5053,7 @@ export namespace Prisma {
   export type UserCountAggregateInputType = {
     id?: true
     nama?: true
+    name?: true
     nik?: true
     jenisKelamin?: true
     tempatLahir?: true
@@ -5143,7 +5149,8 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: string
-    nama: string
+    nama: string | null
+    name: string | null
     nik: string | null
     jenisKelamin: string | null
     tempatLahir: string | null
@@ -5184,6 +5191,7 @@ export namespace Prisma {
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     nama?: boolean
+    name?: boolean
     nik?: boolean
     jenisKelamin?: boolean
     tempatLahir?: boolean
@@ -5215,6 +5223,7 @@ export namespace Prisma {
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     nama?: boolean
+    name?: boolean
     nik?: boolean
     jenisKelamin?: boolean
     tempatLahir?: boolean
@@ -5238,6 +5247,7 @@ export namespace Prisma {
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     nama?: boolean
+    name?: boolean
     nik?: boolean
     jenisKelamin?: boolean
     tempatLahir?: boolean
@@ -5261,6 +5271,7 @@ export namespace Prisma {
   export type UserSelectScalar = {
     id?: boolean
     nama?: boolean
+    name?: boolean
     nik?: boolean
     jenisKelamin?: boolean
     tempatLahir?: boolean
@@ -5281,7 +5292,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "nik" | "jenisKelamin" | "tempatLahir" | "tanggalLahir" | "mediaSosial" | "noHp" | "email" | "agama" | "jurusan" | "tahunAkademik" | "password" | "role" | "keahlian" | "jabatan" | "image" | "emailVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "name" | "nik" | "jenisKelamin" | "tempatLahir" | "tanggalLahir" | "mediaSosial" | "noHp" | "email" | "agama" | "jurusan" | "tahunAkademik" | "password" | "role" | "keahlian" | "jabatan" | "image" | "emailVerified" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     kursusInstruktur?: boolean | User$kursusInstrukturArgs<ExtArgs>
     Account?: boolean | User$AccountArgs<ExtArgs>
@@ -5308,7 +5319,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      nama: string
+      nama: string | null
+      name: string | null
       nik: string | null
       jenisKelamin: string | null
       tempatLahir: string | null
@@ -5759,6 +5771,7 @@ export namespace Prisma {
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
     readonly nama: FieldRef<"User", 'String'>
+    readonly name: FieldRef<"User", 'String'>
     readonly nik: FieldRef<"User", 'String'>
     readonly jenisKelamin: FieldRef<"User", 'String'>
     readonly tempatLahir: FieldRef<"User", 'String'>
@@ -12472,6 +12485,7 @@ export namespace Prisma {
   export const UserScalarFieldEnum: {
     id: 'id',
     nama: 'nama',
+    name: 'name',
     nik: 'nik',
     jenisKelamin: 'jenisKelamin',
     tempatLahir: 'tempatLahir',
@@ -12864,7 +12878,8 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
-    nama?: StringFilter<"User"> | string
+    nama?: StringNullableFilter<"User"> | string | null
+    name?: StringNullableFilter<"User"> | string | null
     nik?: StringNullableFilter<"User"> | string | null
     jenisKelamin?: StringNullableFilter<"User"> | string | null
     tempatLahir?: StringNullableFilter<"User"> | string | null
@@ -12894,7 +12909,8 @@ export namespace Prisma {
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    nama?: SortOrder
+    nama?: SortOrderInput | SortOrder
+    name?: SortOrderInput | SortOrder
     nik?: SortOrderInput | SortOrder
     jenisKelamin?: SortOrderInput | SortOrder
     tempatLahir?: SortOrderInput | SortOrder
@@ -12929,7 +12945,8 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    nama?: StringFilter<"User"> | string
+    nama?: StringNullableFilter<"User"> | string | null
+    name?: StringNullableFilter<"User"> | string | null
     jenisKelamin?: StringNullableFilter<"User"> | string | null
     tempatLahir?: StringNullableFilter<"User"> | string | null
     tanggalLahir?: StringNullableFilter<"User"> | string | null
@@ -12957,7 +12974,8 @@ export namespace Prisma {
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    nama?: SortOrder
+    nama?: SortOrderInput | SortOrder
+    name?: SortOrderInput | SortOrder
     nik?: SortOrderInput | SortOrder
     jenisKelamin?: SortOrderInput | SortOrder
     tempatLahir?: SortOrderInput | SortOrder
@@ -12986,7 +13004,8 @@ export namespace Prisma {
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
-    nama?: StringWithAggregatesFilter<"User"> | string
+    nama?: StringNullableWithAggregatesFilter<"User"> | string | null
+    name?: StringNullableWithAggregatesFilter<"User"> | string | null
     nik?: StringNullableWithAggregatesFilter<"User"> | string | null
     jenisKelamin?: StringNullableWithAggregatesFilter<"User"> | string | null
     tempatLahir?: StringNullableWithAggregatesFilter<"User"> | string | null
@@ -13683,7 +13702,8 @@ export namespace Prisma {
 
   export type UserCreateInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -13713,7 +13733,8 @@ export namespace Prisma {
 
   export type UserUncheckedCreateInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -13743,7 +13764,8 @@ export namespace Prisma {
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13773,7 +13795,8 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13803,7 +13826,8 @@ export namespace Prisma {
 
   export type UserCreateManyInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -13826,7 +13850,8 @@ export namespace Prisma {
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13849,7 +13874,8 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14716,6 +14742,7 @@ export namespace Prisma {
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     nama?: SortOrder
+    name?: SortOrder
     nik?: SortOrder
     jenisKelamin?: SortOrder
     tempatLahir?: SortOrder
@@ -14739,6 +14766,7 @@ export namespace Prisma {
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
     nama?: SortOrder
+    name?: SortOrder
     nik?: SortOrder
     jenisKelamin?: SortOrder
     tempatLahir?: SortOrder
@@ -14762,6 +14790,7 @@ export namespace Prisma {
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     nama?: SortOrder
+    name?: SortOrder
     nik?: SortOrder
     jenisKelamin?: SortOrder
     tempatLahir?: SortOrder
@@ -15978,7 +16007,8 @@ export namespace Prisma {
 
   export type UserCreateWithoutAccountInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -16007,7 +16037,8 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutAccountInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -16052,7 +16083,8 @@ export namespace Prisma {
 
   export type UserUpdateWithoutAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16081,7 +16113,8 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutAccountInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16110,7 +16143,8 @@ export namespace Prisma {
 
   export type UserCreateWithoutSessionInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -16139,7 +16173,8 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutSessionInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -16184,7 +16219,8 @@ export namespace Prisma {
 
   export type UserUpdateWithoutSessionInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16213,7 +16249,8 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutSessionInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16730,7 +16767,8 @@ export namespace Prisma {
 
   export type UserCreateWithoutKursusInstrukturInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -16759,7 +16797,8 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutKursusInstrukturInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -16874,7 +16913,8 @@ export namespace Prisma {
 
   export type UserUpdateWithoutKursusInstrukturInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16903,7 +16943,8 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutKursusInstrukturInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17003,7 +17044,8 @@ export namespace Prisma {
 
   export type UserCreateWithoutJadwalInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -17032,7 +17074,8 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutJadwalInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -17122,7 +17165,8 @@ export namespace Prisma {
 
   export type UserUpdateWithoutJadwalInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17151,7 +17195,8 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutJadwalInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17180,7 +17225,8 @@ export namespace Prisma {
 
   export type UserCreateWithoutPendaftaranInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -17209,7 +17255,8 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutPendaftaranInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -17367,7 +17414,8 @@ export namespace Prisma {
 
   export type UserUpdateWithoutPendaftaranInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17396,7 +17444,8 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutPendaftaranInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17583,7 +17632,8 @@ export namespace Prisma {
 
   export type UserCreateWithoutSertifikatInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -17612,7 +17662,8 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutSertifikatInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -17690,7 +17741,8 @@ export namespace Prisma {
 
   export type UserUpdateWithoutSertifikatInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17719,7 +17771,8 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutSertifikatInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17775,7 +17828,8 @@ export namespace Prisma {
 
   export type UserCreateWithoutPaymentInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -17804,7 +17858,8 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutPaymentInput = {
     id?: string
-    nama: string
+    nama?: string | null
+    name?: string | null
     nik?: string | null
     jenisKelamin?: string | null
     tempatLahir?: string | null
@@ -17882,7 +17937,8 @@ export namespace Prisma {
 
   export type UserUpdateWithoutPaymentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17911,7 +17967,8 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutPaymentInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nama?: StringFieldUpdateOperationsInput | string
+    nama?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     nik?: NullableStringFieldUpdateOperationsInput | string | null
     jenisKelamin?: NullableStringFieldUpdateOperationsInput | string | null
     tempatLahir?: NullableStringFieldUpdateOperationsInput | string | null

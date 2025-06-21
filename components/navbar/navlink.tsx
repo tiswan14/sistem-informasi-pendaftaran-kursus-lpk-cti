@@ -16,8 +16,6 @@ const Navlink = () => {
     const [open, setOpen] = useState(false);
     const { data: session, status } = useSession();
 
-
-
     return (
         <>
             <div className="flex items-center">

@@ -4,6 +4,14 @@ import { prisma } from "@/lib/prisma"
 import Credentials from "next-auth/providers/credentials"
 import { LoginSchema } from "@/lib/zod"
 import { compareSync } from "bcryptjs"
+import Google from "next-auth/providers/google";
+
+type User = {
+    id: string;
+    name?: string | null | undefined;
+    email?: string | null | undefined;
+    image?: string | null | undefined;
+}
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
     adapter: PrismaAdapter(prisma),
@@ -20,6 +28,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 email: {},
                 password: {}
             },
+
+
+
+
             authorize: async (credentials) => {
                 const validatedFields = LoginSchema.safeParse(credentials)
 
@@ -38,9 +50,20 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
                 const passwordMatch = compareSync(password, user.password)
 
                 if (!passwordMatch) return null
-                return user
+                return {
+                    id: user.id,
+                    nama: user.nama ?? undefined,
+                    email: user.email ?? undefined,
+                    image: user.image ?? undefined,
+                    role: user.role
+                };
             }
-        })
+        }),
+        Google({
+            clientId: process.env.GOOGLE_CLIENT_ID!,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+        }),
+
     ],
     secret: process.env.JWT_SECRET,
     callbacks: {
@@ -78,6 +101,8 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
             return true
         },
+
+
         jwt({ token, user }) {
             if (user) {
                 token.role = user.role
@@ -90,7 +115,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             session.user.id = token.sub
             session.user.role = token.role
             session.user.nama = token.nama
+            session.user.name = token.name; 
             return session
-        }
-    }
+        },
+
+    },
+    events: {
+        async createUser({ user }: { user: any }) {
+            await prisma.user.update({
+                where: { id: user.id },
+                data: {
+                    nama: user.name,
+                },
+            });
+        },
+    },
 })

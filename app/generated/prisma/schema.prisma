@@ -50,7 +50,8 @@ model VerificationToken {
 
 model User {
   id            String    @id @default(cuid())
-  nama          String
+  nama          String?
+  name          String?
   nik           String?   @unique
   jenisKelamin  String?
   tempatLahir   String?
