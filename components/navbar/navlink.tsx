@@ -185,7 +185,7 @@ const Navlink = () => {
                         {/* Profil di mobile */}
                         <li className="md:hidden">
                             <Link
-                                href="/profil"
+                                href="/peserta/profile"
                                 onClick={() => setOpen(false)}
                                 className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg transition-colors hover:bg-gray-200/80 md:p-0"
                             >
