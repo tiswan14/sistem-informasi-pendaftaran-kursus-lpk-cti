@@ -273,19 +273,18 @@ const DashboardPage = () => {
                                 <div className="text-right">
                                     <div className="text-xs text-gray-400">{registrant.tanggal}</div>
                                     <div
-                                        className={`text-xs font-medium mt-1 inline-block px-3 py-1 rounded-full ${registrant.status === "Belum verifikasi"
-                                                ? "bg-gray-200 text-gray-800"
-                                                : registrant.status === "Diterima"
-                                                    ? "bg-blue-200 text-blue-800"
-                                                    : registrant.status === "Ditolak"
-                                                        ? "bg-red-200 text-red-800"
-                                                        : registrant.status === "Lulus"
-                                                            ? "bg-green-200 text-green-800"
-                                                            : "bg-gray-100 text-gray-600"
-                                            }`}
+                                        className={`text-xs font-medium mt-1 inline-block px-3 py-1 rounded-full
+    ${registrant.status === "Menunggu Verifikasi"
+                                                ? "bg-gray-100 text-gray-800"
+                                                : registrant.status === "Terverifikasi"
+                                                    ? "bg-yellow-100 text-yellow-800"
+                                                    : registrant.status === "Lulus Pelatihan"
+                                                        ? "bg-indigo-100 text-indigo-800"
+                                                        : "bg-white text-gray-600"}`}
                                     >
                                         {registrant.status}
                                     </div>
+
                                 </div>
                             </div>
 
