@@ -28,7 +28,10 @@ export async function GET() {
                 user: {
                     email: session.user.email,
                 },
-                status: "Diterima",
+                status: "Terverifikasi",
+                Payment: {
+                    isNot: null,
+                },
             },
             select: {
                 id: true,
@@ -48,6 +51,7 @@ export async function GET() {
                 createdAt: "asc",
             },
         });
+
 
         pendaftaran.forEach((item) => {
             if (item.kursus?.jadwal) {

@@ -90,8 +90,13 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-600"></div>
+            <div className="flex flex-col justify-center items-center min-h-[calc(100vh-200px)] gap-4">
+                <div className="flex gap-2">
+                    <div className="w-3 h-3 bg-blue-600 rounded-full animate-bounce"></div>
+                    <div className="w-3 h-3 bg-blue-600 rounded-full animate-bounce delay-100"></div>
+                    <div className="w-3 h-3 bg-blue-600 rounded-full animate-bounce delay-200"></div>
+                </div>
+                <p className="text-gray-600">Memuat Detail Kursus...</p>
             </div>
         );
     }

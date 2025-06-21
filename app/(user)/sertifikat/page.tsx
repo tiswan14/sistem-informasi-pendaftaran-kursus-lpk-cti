@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Award, BadgeCheck, CalendarDays, FileText } from 'lucide-react';
+import { Award, BadgeCheck, CalendarDays, FileSearch, FileText, FileX } from 'lucide-react';
 import { fetchSertifikat } from '@/lib/api';
 
 interface SertifikatItem {
@@ -65,7 +65,13 @@ const SertifikatPage = () => {
                     <p className="mt-4 text-gray-500">Memuat sertifikat...</p>
                 </div>
             ) : sertifikatList.length === 0 ? (
-                <p className="text-center text-gray-500">Belum ada sertifikat yang tersedia.</p>
+                <div className="max-w-full mx-auto p-6 rounded-xl border border-gray-200 bg-white shadow-sm text-center">
+                    <div className="flex justify-center mb-3">
+                        <FileX className="w-12 h-12 text-gray-400/80" strokeWidth={1.5} />
+                    </div>
+                    <h3 className="text-gray-700 font-medium mb-1">Tidak Ada Sertifikat</h3>
+                    <p className="text-gray-500 text-sm">Belum ada sertifikat yang tersedia saat ini.</p>
+                </div>
             ) : (
                 <div className="space-y-3">
                     {sertifikatList.map((item) => (

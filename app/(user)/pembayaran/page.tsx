@@ -81,7 +81,18 @@ const RiwayatPembayaranPage = () => {
                     <h1 className="text-2xl sm:text-2xl font-bold text-gray-900">Daftar Pembayaran</h1>
                 </div>
 
-                {loading && <p className="text-center text-gray-600">Memuat data pembayaran...</p>}
+                {loading && <div className="flex flex-col items-center justify-center py-12">
+                    <div className="flex space-x-2">
+                        {[...Array(3)].map((_, i) => (
+                            <div
+                                key={i}
+                                className="w-4 h-4 bg-blue-500 rounded-full animate-bounce"
+                                style={{ animationDelay: `${i * 0.15}s` }}
+                            />
+                        ))}
+                    </div>
+                    <p className="mt-4 text-gray-500">Memuat daftar pembayaran...</p>
+                </div>}
                 {error && <p className="text-center text-red-500">{error}</p>}
 
                 {!loading && !error && (

@@ -49,11 +49,21 @@ const LihatSertifikatPage = () => {
     }, [id]);
 
     return (
-        <div className="p-6">
+        <div className="p-6 min-h-screen">
             <h1 className="text-2xl font-bold mb-4">Detail Sertifikat</h1>
 
-            {loading && <p>Memuat...</p>}
-            {error && <p className="text-red-500">{error}</p>}
+            {/* Tampilkan error hanya jika ada error DAN tidak sedang loading */}
+            {error && !loading && <p className="text-red-500">{error}</p>}
+
+            {/* Tampilkan loading indicator hanya saat loading */}
+            {loading && (
+                <div className="flex items-center gap-2">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600"></div>
+                    <span>Memuat Sertifikat...</span>
+                </div>
+            )}
+
+            {/* Tampilkan sertifikat hanya jika tidak loading DAN data tersedia */}
             {!loading && sertifikatData && (
                 <Sertifikat
                     nomor={sertifikatData.nomor}
@@ -61,6 +71,11 @@ const LihatSertifikatPage = () => {
                     namaPeserta={sertifikatData.pendaftaran?.user?.nama || '-'}
                     namaKursus={sertifikatData.pendaftaran?.kursus?.nama || '-'}
                 />
+            )}
+
+            {/* Tambahan: Tampilkan pesan jika tidak ada data setelah loading selesai */}
+            {!loading && !sertifikatData && !error && (
+                <p className="text-gray-500">Data sertifikat tidak tersedia</p>
             )}
         </div>
     );
