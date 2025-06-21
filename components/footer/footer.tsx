@@ -132,6 +132,9 @@ const Footer = () => {
                     <p>
                         &copy; {new Date().getFullYear()} LPK Cipta Tungga Indonesia. All Rights Reserved.
                     </p>
+                    <p className="mt-2">
+                        Developed by <a href="https://tiswan-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">Tiswan</a>
+                    </p>
                 </div>
             </div>
         </footer>

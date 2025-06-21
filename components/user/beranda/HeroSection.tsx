@@ -34,10 +34,11 @@ const HeroSection = () => {
                     data-aos-easing="ease-out-cubic"
                 >
                     <BookOpen className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2 text-blue-600" />
-                    <span className="text-sm sm:text-base font-medium text-blue-700">
+                    <span className="text-sm sm:text-base font-medium text-blue-700 text-center">
                         LPK CIPTA TUNGGA INDONESIA CIAMIS
                     </span>
                 </div>
+
 
                 {/* Title */}
                 <h1
@@ -62,6 +63,14 @@ const HeroSection = () => {
                         ></span>
                     </span>
                 </h1>
+                <div className="inline-flex items-center px-4 py-2 bg-white rounded-full border border-indigo-100 shadow-xs mb-6 sm:mb-8">
+                    <span className="text-blue-700 font-medium">
+                        Diakui sebagai
+                        <span className="font-semibold bg-gradient-to-r from-blue-600 to-blue-700 text-white px-2.5 py-1 rounded-full ml-1.5">
+                            LPK Swasta Terbaik ke-2 Tingkat Jawa Barat
+                        </span>
+                    </span>
+                </div>
 
                 {/* Grid */}
                 <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8 px-4 sm:px-0">

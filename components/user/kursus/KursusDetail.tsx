@@ -172,19 +172,21 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
             {/* Stats Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 md:mb-8">
                 {/* Harga */}
+                {/* Harga per Bulan */}
                 <div className="p-3 sm:p-4 md:p-5 border rounded-xl bg-white hover:shadow-md transition-all duration-300 group">
                     <div className="flex items-center gap-3 sm:gap-4">
-                        <div className="p-2 sm:p-3 rounded-full bg-blue-100 group-hover:bg-blue-200 transition-colors">
-                            <Banknote className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+                        <div className="p-2 sm:p-3 rounded-full bg-yellow-100 group-hover:bg-yellow-200 transition-colors">
+                            <Banknote className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-600" />
                         </div>
                         <div className="overflow-hidden">
-                            <p className="text-xs sm:text-sm text-gray-500 truncate">Harga</p>
+                            <p className="text-xs sm:text-sm text-gray-500 truncate">Biaya per Bulan</p>
                             <p className="font-bold text-sm sm:text-base truncate">
-                                Rp {kursus.harga.toLocaleString()}
+                                Rp {(kursus.harga).toLocaleString("id-ID")}
                             </p>
                         </div>
                     </div>
                 </div>
+
 
                 {/* Durasi Belajar */}
                 <div className="p-3 sm:p-4 md:p-5 border rounded-xl bg-white hover:shadow-md transition-all duration-300 group">

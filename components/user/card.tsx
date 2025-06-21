@@ -89,7 +89,7 @@ const Card = ({ kursus }: CardProps) => {
                         href={`/kursus/${kursus.id}`}
                         className="w-full inline-flex items-center justify-center px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold text-sm rounded-lg shadow-md transition-all duration-200 group-hover:shadow-lg"
                     >
-                        Daftar Sekarang
+                        Daftar Kursus
                         <ArrowRight className="ml-2 transition-all duration-200 transform group-hover:translate-x-1" size={16} />
                     </Link>
                 </div>
