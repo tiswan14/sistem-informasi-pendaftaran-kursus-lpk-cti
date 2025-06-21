@@ -154,7 +154,7 @@ export interface KursusWithUser {
     updatedAt: Date;
     user: {
         id: string;
-        nama: string;
+        nama: string | null;
     } | null;
 }
 
