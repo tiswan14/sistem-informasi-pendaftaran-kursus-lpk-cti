@@ -1,7 +1,9 @@
-import { prisma } from "@/lib/prisma";
+import { PrismaClient } from "@/app/generated/prisma";
+
 import { NextResponse } from 'next/server';
 
-// Definisi type Instruktur
+const prisma = new PrismaClient();
+
 type Instruktur = {
     id: string;
     nama: string;
@@ -35,7 +37,6 @@ export async function GET(): Promise<NextResponse<Instruktur[] | ErrorResponse>>
                 email: true,
                 keahlian: true,
                 jabatan: true,
-                // Password sengaja di-exclude dari response
             },
             orderBy: {
                 nama: "asc",
