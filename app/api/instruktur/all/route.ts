@@ -4,6 +4,9 @@ import { NextResponse } from 'next/server';
 
 const prisma = new PrismaClient();
 
+export const dynamic = 'force-dynamic' 
+
+
 type Instruktur = {
     id: string;
     nama: string;
