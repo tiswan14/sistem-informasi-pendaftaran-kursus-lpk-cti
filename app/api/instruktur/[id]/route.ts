@@ -57,21 +57,33 @@ export const PUT = async (
 
 export const DELETE = async (
     request: Request,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) => {
     try {
-        const { id } = params;
+        const { id } = await context.params;
+
+        if (!id) {
+            return NextResponse.json(
+                { error: "ID instruktur tidak valid" },
+                { status: 400 }
+            );
+        }
 
         const deleteInstruktur = await prisma.user.delete({
-            where: {
-                id: id,
-            },
+            where: { id },
         });
 
-        return NextResponse.json({ deleteInstruktur }, { status: 200 });
-    } catch (error) {
-        console.error("Error menghapus instruktur:", error);
-        return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+        return NextResponse.json(
+            { deleted: deleteInstruktur },
+            { status: 200 }
+        );
+    } catch (error: unknown) {
+        const message =
+            error instanceof Error ? error.message : "Internal server error";
+        return NextResponse.json(
+            { error: message },
+            { status: 500 }
+        );
     } finally {
         await prisma.$disconnect();
     }

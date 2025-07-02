@@ -63,7 +63,13 @@ const HeroSection = () => {
                         ></span>
                     </span>
                 </h1>
-                <div className="inline-flex items-center px-4 py-2 bg-white rounded-full border border-indigo-100 shadow-xs mb-6 sm:mb-8">
+                <div
+                    className="inline-flex items-center px-4 py-2 bg-white rounded-full border border-indigo-100 shadow-xs mb-6 sm:mb-8"
+                    data-aos="zoom-in"
+                    data-aos-delay="1000"
+                    data-aos-duration="800"
+                    data-aos-easing="ease-in-out"
+                >
                     <span className="text-blue-700 font-medium">
                         Diakui sebagai
                         <span className="font-semibold bg-gradient-to-r from-blue-600 to-blue-700 text-white px-2.5 py-1 rounded-full ml-1.5">
@@ -71,6 +77,7 @@ const HeroSection = () => {
                         </span>
                     </span>
                 </div>
+
 
                 {/* Grid */}
                 <div className="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8 px-4 sm:px-0">
