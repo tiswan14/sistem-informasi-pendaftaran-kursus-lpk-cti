@@ -3,31 +3,13 @@ import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic'
 
-
-type Instruktur = {
-    id: string;
-    nama: string;
-    nik: string;
-    jenisKelamin: string;
-    noHp: string;
-    email: string;
-    keahlian: string;
-    jabatan: string;
-};
-
-// Response type untuk error
-type ErrorResponse = {
-    error: string;
-    details?: string;
-};
-
-// Fungsi utama GET handler
-export async function GET(): Promise<NextResponse<Instruktur[] | ErrorResponse>> {
+export async function GET() {
     try {
+        // Verify connection first
+        await prisma.$connect();
+
         const allInstruktur = await prisma.user.findMany({
-            where: {
-                role: "instruktur",
-            },
+            where: { role: "instruktur" },
             select: {
                 id: true,
                 nama: true,
@@ -38,27 +20,24 @@ export async function GET(): Promise<NextResponse<Instruktur[] | ErrorResponse>>
                 keahlian: true,
                 jabatan: true,
             },
-            orderBy: {
-                nama: "asc",
-            },
+            orderBy: { nama: "asc" },
         });
 
-        // Type assertion ke Instruktur[]
-        const instrukturs = allInstruktur as Instruktur[];
-
-        return NextResponse.json(instrukturs);
+        return NextResponse.json(allInstruktur);
 
     } catch (error) {
-        console.error("Gagal fetch instruktur:", error);
+        console.error("Error:", error);
 
-        const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+        const message = error instanceof Error
+            ? error.message
+            : "Unknown error occurred";
 
         return NextResponse.json(
-            {
-                error: "Gagal mengambil data instruktur",
-                details: errorMessage
-            },
+            { error: "Database error", details: message },
             { status: 500 }
         );
+    }
+    finally {
+        await prisma.$disconnect();
     }
 }
