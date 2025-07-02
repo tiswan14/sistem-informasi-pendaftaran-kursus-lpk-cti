@@ -7,23 +7,25 @@ export const dynamic = 'force-dynamic'
 
 export const PUT = async (
     request: Request,
-    { params }: { params: { id: string } }
+    context: { params: Promise<{ id: string }> }
 ) => {
     try {
-        const { id } = params;
+        const { id } = await context.params;
 
         if (!id) {
-            return NextResponse.json({ error: "ID instruktur tidak valid" }, {
-                status: 400,
-            });
+            return NextResponse.json(
+                { error: "ID instruktur tidak valid" },
+                { status: 400 }
+            );
         }
 
         const body: Partial<InstrukturInput> = await request.json();
 
         if (!body || Object.keys(body).length === 0) {
-            return NextResponse.json({ error: "Data update tidak boleh kosong" }, {
-                status: 400,
-            });
+            return NextResponse.json(
+                { error: "Data update tidak boleh kosong" },
+                { status: 400 }
+            );
         }
 
         if (body.password) {
@@ -41,14 +43,17 @@ export const PUT = async (
             status: 200,
         });
     } catch (error: unknown) {
-        const message = error instanceof Error ? error.message : "Internal server error";
-        return NextResponse.json({ error: message }, {
-            status: 500,
-        });
+        const message =
+            error instanceof Error ? error.message : "Internal server error";
+        return NextResponse.json(
+            { error: message },
+            { status: 500 }
+        );
     } finally {
         await prisma.$disconnect();
     }
 };
+
 
 export const DELETE = async (
     request: Request,
