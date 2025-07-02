@@ -68,7 +68,11 @@ const InstrukturTable = ({ searchQuery }: InstrukturTableProps) => {
 
                 const data = await res.json();
                 setInstrukturData(data.data);
-                setPagination(data.pagination);
+
+                setPagination(prev => ({
+                    ...data.pagination,
+                    currentPage: prev.currentPage // hindari reset!
+                }));
             } catch (error) {
                 console.error("Error:", error);
                 toast.error("Gagal memuat data instruktur");
@@ -79,6 +83,7 @@ const InstrukturTable = ({ searchQuery }: InstrukturTableProps) => {
 
         fetchInstruktur();
     }, [pagination.currentPage]);
+
 
     const handleDelete = async (id: number) => {
         try {

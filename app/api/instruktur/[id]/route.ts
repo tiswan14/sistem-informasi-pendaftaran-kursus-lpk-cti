@@ -1,31 +1,29 @@
 import { prisma } from "@/lib/prisma";
 import { hashSync } from "bcryptjs";
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { InstrukturInput } from "@/types/InstrukturInput";
+import { NextResponse } from "next/server";
 
-export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic'
 
-export async function PUT(
-    request: NextRequest,
+export const PUT = async (
+    request: Request,
     { params }: { params: { id: string } }
-) {
+) => {
     try {
-        await prisma.$connect();
+        const { id } = params;
 
-        const id = params.id;
         if (!id) {
-            return NextResponse.json(
-                { error: "ID instruktur tidak valid" },
-                { status: 400 }
-            );
+            return NextResponse.json({ error: "ID instruktur tidak valid" }, {
+                status: 400,
+            });
         }
 
-        const body = await request.json();
+        const body: Partial<InstrukturInput> = await request.json();
+
         if (!body || Object.keys(body).length === 0) {
-            return NextResponse.json(
-                { error: "Data update tidak boleh kosong" },
-                { status: 400 }
-            );
+            return NextResponse.json({ error: "Data update tidak boleh kosong" }, {
+                status: 400,
+            });
         }
 
         if (body.password) {
@@ -38,64 +36,38 @@ export async function PUT(
         });
 
         const { password, ...userWithoutPassword } = updateInstruktur;
-        return NextResponse.json(userWithoutPassword);
 
+        return NextResponse.json(userWithoutPassword, {
+            status: 200,
+        });
     } catch (error: unknown) {
         const message = error instanceof Error ? error.message : "Internal server error";
-        console.error("Update error:", message);
-        return NextResponse.json(
-            { error: message },
-            { status: 500 }
-        );
+        return NextResponse.json({ error: message }, {
+            status: 500,
+        });
     } finally {
         await prisma.$disconnect();
     }
-}
+};
 
-
-
-
-export async function DELETE(
-    request: NextRequest,
+export const DELETE = async (
+    request: Request,
     { params }: { params: { id: string } }
-) {
+) => {
     try {
-        await prisma.$connect();
-
-        const id = params.id;
-        if (!id) {
-            return NextResponse.json(
-                { error: "ID instruktur tidak valid" },
-                { status: 400 }
-            );
-        }
+        const { id } = params;
 
         const deleteInstruktur = await prisma.user.delete({
-            where: { id },
+            where: {
+                id: id,
+            },
         });
 
-        return NextResponse.json(
-            { success: true, data: deleteInstruktur }
-        );
-
-    } catch (error: unknown) {
-        const message = error instanceof Error ? error.message : "Internal server error";
-        console.error("Delete error:", message);
-
-        // Handle Prisma not found error specifically
-        if (message.includes('RecordNotFound')) {
-            return NextResponse.json(
-                { error: "Instruktur tidak ditemukan" },
-                { status: 404 }
-            );
-        }
-
-        return NextResponse.json(
-            { error: message },
-            { status: 500 }
-        );
+        return NextResponse.json({ deleteInstruktur }, { status: 200 });
+    } catch (error) {
+        console.error("Error menghapus instruktur:", error);
+        return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     } finally {
         await prisma.$disconnect();
     }
-}
-
+};

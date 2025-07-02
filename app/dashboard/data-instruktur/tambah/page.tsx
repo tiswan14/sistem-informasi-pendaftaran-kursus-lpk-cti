@@ -37,7 +37,6 @@ const TambahInstrukturForm = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Simulate loading
         const timer = setTimeout(() => {
             setIsLoading(false);
         }, 1000);
@@ -75,9 +74,10 @@ const TambahInstrukturForm = () => {
 
         } catch (error) {
             console.error("Error tambah instruktur:", error)
-            toast.error("Gagal menambahkan instruktur") // tampilkan toast error
             setIsPending(false)
         }
+        redirect("/dashboard/data-instruktur")
+
     }
 
 
