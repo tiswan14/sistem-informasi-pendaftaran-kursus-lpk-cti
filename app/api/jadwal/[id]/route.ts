@@ -46,30 +46,44 @@ export const PUT = async (
         const { id } = await context.params;
 
         if (!id) {
-            return NextResponse.json({ error: "ID jadwal tidak valid" }, { status: 400 });
+            return new Response(JSON.stringify({ error: "ID instruktur tidak valid" }), {
+                status: 400,
+            });
         }
 
-        const body: Partial<JadwalInput> = await request.json();
+        const body = await request.json();
 
         if (!body || Object.keys(body).length === 0) {
-            return NextResponse.json({ error: "Data update tidak boleh kosong" }, { status: 400 });
+            return new Response(JSON.stringify({ error: "Data update tidak boleh kosong" }), {
+                status: 400,
+            });
         }
 
-        const updatedJadwal = await prisma.jadwal.update({
+        if (body.password) {
+            const bcrypt = require("bcryptjs");
+            body.password = bcrypt.hashSync(body.password, 10);
+        }
+
+        const updatedInstruktur = await prisma.user.update({
             where: { id },
             data: body,
         });
 
-        return NextResponse.json(updatedJadwal, { status: 200 });
+        const { password, ...userWithoutPassword } = updatedInstruktur;
 
+        return new Response(JSON.stringify(userWithoutPassword), {
+            status: 200,
+        });
     } catch (error: unknown) {
-        console.error("Update jadwal error:", error);
         const message = error instanceof Error ? error.message : "Internal server error";
-        return NextResponse.json({ error: message }, { status: 500 });
+        return new Response(JSON.stringify({ error: message }), {
+            status: 500,
+        });
     } finally {
         await prisma.$disconnect();
     }
 };
+
 
 export const DELETE = async (
     request: Request,
