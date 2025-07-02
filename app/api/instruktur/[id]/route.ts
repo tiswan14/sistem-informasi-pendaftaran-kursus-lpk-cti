@@ -1,8 +1,8 @@
-import { PrismaClient } from '@prisma/client';
+import { prisma } from "@/lib/prisma";
+
 import { hashSync } from "bcryptjs";
 import { InstrukturInput } from "@/types/InstrukturInput";
 
-const prisma = new PrismaClient();
 
 export const dynamic = 'force-dynamic'
 
