@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@/app/generated/prisma";
+import { prisma } from "@/lib/prisma";
 import { JadwalInput } from "@/types/JadwalInput";
-
-const prisma = new PrismaClient();
 
 export const dynamic = 'force-dynamic'
 
