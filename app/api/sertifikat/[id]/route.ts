@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from 'next/server';
-import { PrismaClient } from "@/app/generated/prisma";
+import { PrismaClient } from '@prisma/client';
 import { del } from '@vercel/blob';
 
 const prisma = new PrismaClient();

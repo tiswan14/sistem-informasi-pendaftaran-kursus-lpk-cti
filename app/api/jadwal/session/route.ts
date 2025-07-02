@@ -2,7 +2,7 @@ export const runtime = 'nodejs';
 
 
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@/app/generated/prisma";
+import { PrismaClient } from '@prisma/client';
 import { auth } from "@/auth";
 
 const prisma = new PrismaClient();
@@ -18,6 +18,22 @@ const hariOrder: Record<string, number> = {
     Jumat: 5,
     Sabtu: 6,
     Minggu: 7,
+};
+
+type Jadwal = {
+    hari: keyof typeof hariOrder;
+    jamMulai: string;
+};
+
+type Kursus = {
+    id: string;
+    nama: string;
+    jadwal: Jadwal[];
+};
+
+type Pendaftaran = {
+    id: string;
+    kursus?: Kursus;
 };
 
 
@@ -59,9 +75,9 @@ export async function GET() {
         });
 
 
-        pendaftaran.forEach((item) => {
+        pendaftaran.forEach((item: Pendaftaran) => {
             if (item.kursus?.jadwal) {
-                item.kursus.jadwal.sort((a, b) => {
+                item.kursus.jadwal.sort((a: Jadwal, b: Jadwal) => {
                     if (hariOrder[a.hari] !== hariOrder[b.hari]) {
                         return hariOrder[a.hari] - hariOrder[b.hari];
                     }

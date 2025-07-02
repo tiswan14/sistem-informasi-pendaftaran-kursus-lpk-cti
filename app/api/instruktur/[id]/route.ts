@@ -1,10 +1,10 @@
-import { PrismaClient } from "@/app/generated/prisma";
+import { PrismaClient } from '@prisma/client';
 import { hashSync } from "bcryptjs";
 import { InstrukturInput } from "@/types/InstrukturInput";
 
 const prisma = new PrismaClient();
 
-export const dynamic = 'force-dynamic' 
+export const dynamic = 'force-dynamic'
 
 
 export const PUT = async (
