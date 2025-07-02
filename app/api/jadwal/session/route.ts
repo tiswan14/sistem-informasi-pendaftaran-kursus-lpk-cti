@@ -1,8 +1,14 @@
+export const runtime = 'nodejs';
+
+
 import { NextResponse } from "next/server";
 import { PrismaClient } from "@/app/generated/prisma";
 import { auth } from "@/auth";
 
 const prisma = new PrismaClient();
+
+export const dynamic = 'force-dynamic'
+
 
 const hariOrder: Record<string, number> = {
     Senin: 1,
