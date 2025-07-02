@@ -3,6 +3,9 @@ import { hash } from "bcryptjs";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = 'force-dynamic'
+
+
 export const PUT = async (
     request: Request,
     context: { params: Promise<{ id: string }> }

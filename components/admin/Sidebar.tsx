@@ -95,7 +95,7 @@ const Sidebar = () => {
                         <div className="p-1.5 bg-red-100 rounded-lg text-red-600">
                             <FaClipboardList size={14} />
                         </div>
-                        {!collapsed && <span className="text-sm font-medium text-gray-700">Pendaftaran</span>}
+                        {!collapsed && <span className="text-sm font-medium text-gray-700">Data Pendaftaran</span>}
                     </div>
                 </Link>
 
@@ -104,7 +104,7 @@ const Sidebar = () => {
                         <div className="p-1.5 bg-green-100 rounded-lg text-green-600">
                             <FaMoneyBillAlt size={14} />
                         </div>
-                        {!collapsed && <span className="text-sm font-medium text-gray-700">Pembayaran</span>}
+                        {!collapsed && <span className="text-sm font-medium text-gray-700">Data Pembayaran</span>}
                     </div>
                 </Link>
 
@@ -113,7 +113,7 @@ const Sidebar = () => {
                         <div className="p-1.5 bg-indigo-100 rounded-lg text-indigo-600">
                             <FaCalendarAlt size={14} />
                         </div>
-                        {!collapsed && <span className="text-sm font-medium text-gray-700">Jadwal</span>}
+                        {!collapsed && <span className="text-sm font-medium text-gray-700">Data Jadwal</span>}
                     </div>
                 </Link>
 
@@ -122,7 +122,7 @@ const Sidebar = () => {
                         <div className="p-1.5 bg-cyan-100 rounded-lg text-cyan-600">
                             <FaCertificate size={14} />
                         </div>
-                        {!collapsed && <span className="text-sm font-medium text-gray-700">Sertifikat</span>}
+                        {!collapsed && <span className="text-sm font-medium text-gray-700">Data Sertifikat</span>}
                     </div>
                 </Link>
 
@@ -133,7 +133,7 @@ const Sidebar = () => {
                         </div>
                         {!collapsed && (
                             <span className="text-sm font-medium text-gray-800 group-hover:text-red-700">
-                                Laporan
+                                Data Laporan
                             </span>
                         )}
                     </div>

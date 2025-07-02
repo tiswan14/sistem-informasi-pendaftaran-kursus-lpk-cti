@@ -1,9 +1,12 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@/app/generated/prisma';
-import { sendEmail } from "@/lib/email"; // Pastikan file ini sudah kamu buat
+import { sendEmail } from "@/lib/email"; 
 
 
 const prisma = new PrismaClient();
+
+export const dynamic = 'force-dynamic'
+
 
 // GET handler
 export async function GET(

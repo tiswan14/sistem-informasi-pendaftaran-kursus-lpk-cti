@@ -4,6 +4,9 @@ import { del } from '@vercel/blob';
 
 const prisma = new PrismaClient();
 
+export const dynamic = 'force-dynamic'
+
+
 // PUT: Update data sertifikat
 export async function PUT(
     request: NextRequest,

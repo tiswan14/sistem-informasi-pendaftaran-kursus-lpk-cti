@@ -4,6 +4,9 @@ import { JadwalInput } from "@/types/JadwalInput";
 
 const prisma = new PrismaClient();
 
+export const dynamic = 'force-dynamic'
+
+
 export const GET = async (
     request: Request,
     context: { params: Promise<{ id: string }> }

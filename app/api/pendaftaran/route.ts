@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
+export const dynamic = 'force-dynamic'
+
+
 export async function GET() {
     try {
         const pendaftaran = await prisma.pendaftaran.findMany({
@@ -113,7 +116,7 @@ export async function POST(request: Request) {
             where: {
                 userId,
                 status: {
-                    not: "Lulus Pelatihan", 
+                    not: "Lulus Pelatihan",
                 },
             },
         });

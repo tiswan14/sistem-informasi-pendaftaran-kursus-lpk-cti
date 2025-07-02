@@ -1,6 +1,9 @@
 import { NextResponse } from 'next/server';
 import { getTotalPeserta } from '@/lib/data';
 
+export const dynamic = 'force-dynamic'
+
+
 export async function GET() {
     try {
         const total = await getTotalPeserta();

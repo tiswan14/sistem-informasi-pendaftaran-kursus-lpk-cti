@@ -14,6 +14,9 @@ export type KursusInput = {
     userId?: string;
 }
 
+export const dynamic = 'force-dynamic'
+
+
 
 export async function POST(request: Request) {
     try {

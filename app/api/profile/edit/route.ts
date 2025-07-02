@@ -4,6 +4,9 @@ import { auth } from "@/auth";
 
 const prisma = new PrismaClient();
 
+export const dynamic = 'force-dynamic'
+
+
 export async function PATCH(request: Request) {
     try {
         const session = await auth();

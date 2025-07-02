@@ -10,6 +10,9 @@ export type SertifikatInput = {
     fileSize?: number;
 }
 
+export const dynamic = 'force-dynamic'
+
+
 export async function GET() {
     try {
         const allSertifikat = await prisma.sertifikat.findMany({

@@ -1,6 +1,9 @@
 import createTransaction from "@/lib/transaction";
 import { NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic'
+
+
 export async function POST(req: Request) {
     try {
         const payload = await req.json();
