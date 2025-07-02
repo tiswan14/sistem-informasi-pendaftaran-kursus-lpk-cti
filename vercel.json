@@ -1,0 +1,13 @@
+{
+    "eslint": {
+        "ignoreDuringBuilds": true
+    },
+    "experimental": {
+        "appDir": true
+    },
+    "build": {
+        "env": {
+            "NODE_ENV": "production"
+        }
+    }
+}
