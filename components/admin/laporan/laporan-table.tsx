@@ -124,7 +124,7 @@ const LaporanTable = ({ tanggalMulai, tanggalSelesai, status }: LaporanTableProp
 
     const statistikStatus = {
         'Terverifikasi': pendaftaran.filter(d => d.status === 'Terverifikasi').length,
-        'Menunggu Verifikasi': pendaftaran.filter(d => d.status === 'Menunggu diverifikasi').length,
+        'Menunggu Verifikasi': pendaftaran.filter(d => d.status === 'Menunggu Verifikasi').length,
         'Lulus': pendaftaran.filter(d => d.status === 'Lulus Pelatihan').length,
     };
 
@@ -431,13 +431,13 @@ const LaporanTable = ({ tanggalMulai, tanggalSelesai, status }: LaporanTableProp
             <div className="flex justify-end items-center mb-4">
                 <div className="flex gap-3">
 
-                    <button
+                    {/* <button
                         onClick={exportToPNG}
                         className="px-4 py-2 bg-sky-500 text-white rounded-lg hover:bg-sky-600 text-sm flex items-center gap-2 transition-all duration-200 shadow hover:shadow-md active:scale-95 group"
                     >
                         <DownloadIcon className="w-4 h-4 group-hover:scale-110" />
                         <span>Unduh Grafik</span>
-                    </button>
+                    </button> */}
 
                     <button
                         onClick={handlePrint}
