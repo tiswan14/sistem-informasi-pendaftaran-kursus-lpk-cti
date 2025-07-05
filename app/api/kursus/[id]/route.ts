@@ -39,7 +39,6 @@ export async function PUT(
         const lamaKursusStr = formData.get("lamaKursus")?.toString() || null;
         const tanggalMulaiStr = formData.get("tanggalMulai")?.toString() || null;
         const tanggalSelesaiStr = formData.get("tanggalSelesai")?.toString() || null;
-        const kuotaStr = formData.get("kuota")?.toString() || null;
         const userId = formData.get("userId")?.toString() || null;
         const status = formData.get("status")?.toString() || undefined;
         const thumbnail = formData.get("thumbnail") as File | null;
@@ -62,7 +61,6 @@ export async function PUT(
         const lamaKursus = lamaKursusStr ? Number(lamaKursusStr) : null;
         const tanggalMulai = tanggalMulaiStr ? new Date(tanggalMulaiStr) : null;
         const tanggalSelesai = tanggalSelesaiStr ? new Date(tanggalSelesaiStr) : null;
-        const kuota = kuotaStr ? Number(kuotaStr) : null;
 
         let thumbnailData = undefined;
         if (thumbnail && thumbnail.size > 0) {
@@ -83,7 +81,6 @@ export async function PUT(
                 lamaKursus,
                 tanggalMulai,
                 tanggalSelesai,
-                kuota,
                 userId,
                 status,
                 ...(thumbnailData !== undefined && { thumbnail: thumbnailData }),

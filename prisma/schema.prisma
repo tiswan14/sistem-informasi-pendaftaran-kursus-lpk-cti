@@ -89,7 +89,6 @@ model Kursus {
   deskripsi      String?
   harga          Int
   lamaKursus     Int?
-  kuota          Int?
   status         String    @default("aktif")
   thumbnail      String?
   tanggalMulai   DateTime?

@@ -23,8 +23,6 @@ const DaftarKursusPage = () => {
                 </Link>
             </div>
 
-
-
             <KursusTable />
         </div>
     );

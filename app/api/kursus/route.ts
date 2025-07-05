@@ -7,7 +7,6 @@ export type KursusInput = {
     deskripsi?: string;
     harga: number;
     lamaKursus?: number;
-    kuota?: number;
     thumbnail?: string;
     tanggalMulai?: string | Date;
     tanggalSelesai?: string | Date;
@@ -27,8 +26,6 @@ export async function POST(request: Request) {
         const hargaStr = formData.get("harga")?.toString();
         const lamaKursusStr = formData.get("lamaKursus")?.toString() || null;
         const tanggalMulaiStr = formData.get("tanggalMulai")?.toString() || null;
-        const kuotaStr = formData.get("kuota")?.toString() || null;
-        const kuota = kuotaStr ? Number(kuotaStr) : null;
         const tanggalSelesaiStr = formData.get("tanggalSelesai")?.toString() || null;
         const userId = formData.get("userId")?.toString() || null;
         const thumbnail = formData.get("thumbnail") as File | null;
@@ -68,7 +65,6 @@ export async function POST(request: Request) {
                 deskripsi,
                 harga,
                 lamaKursus,
-                kuota,
                 tanggalMulai,
                 tanggalSelesai,
                 userId,

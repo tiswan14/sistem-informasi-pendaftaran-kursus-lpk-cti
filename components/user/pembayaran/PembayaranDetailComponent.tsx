@@ -7,6 +7,7 @@ import { BadgeDollarSign, CalendarClock, CreditCard, FileText, Loader2 } from "l
 import Script from "next/script";
 import { formatRupiah } from "@/utils/formatRupiah";
 import transactionServices from "@/app/services/transaction";
+import { formatTanggalIndonesia } from "@/utils/formatTanggal";
 
 declare global {
     interface Window {
@@ -29,6 +30,9 @@ interface Kursus {
     id: string;
     nama: string;
     harga: number;
+    tanggalMulai: string;
+    tanggalSelesai: string;
+    lamaKursus: number;
     user: User; // Pengajar
 }
 
@@ -114,7 +118,8 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
             </div>
         );
     }
-    const totalAmount = pendaftaran.kursus.harga * duration;
+    const totalAmount = pendaftaran.kursus.harga * pendaftaran.kursus.lamaKursus;
+
 
     const handlePayment = async () => {
         setIsProcessingPayment(true);
@@ -190,7 +195,7 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
     return (
         <>
             <Script
-                src="https://app.sandbox.midtrans.com/snap/snap.js"
+                src="https://app.midtrans.com/snap/snap.js"
                 data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
                 strategy="lazyOnload"
             />
@@ -206,57 +211,73 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
                             </div>
                             <div>
                                 <h1 className="text-xl font-bold text-gray-800 md:text-2xl">Pembayaran Kursus</h1>
-                                <p className="mt-1 text-sm text-gray-500">Lengkapi detail pembayaran Anda</p>
+                                <p className="text-sm text-gray-500 mt-1">Lengkapi pembayaran untuk mengakses kursus</p>
                             </div>
                         </div>
 
                         {/* Course Details Section */}
                         <div className="mt-8 pt-6 border-t border-gray-100">
-                            <div className="flex items-center space-x-3 mb-4">
-                                <div className="bg-blue-50 p-1.5 rounded-lg">
-                                    <FileText className="h-5 w-5 text-blue-600" />
-                                </div>
-                                <h2 className="text-lg font-semibold text-gray-800">Detail Kursus</h2>
-                            </div>
+                            <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                                <svg className="w-5 h-5 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                                Detail Kursus
+                            </h2>
 
-                            <div className="space-y-3.5 text-sm">
-                                <div className="flex justify-between py-2">
+                            <div className="space-y-3.5 text-sm text-gray-700">
+                                <div className="flex justify-between py-2.5 px-3 bg-gray-50 rounded-lg">
                                     <span className="text-gray-600">Nama Kursus</span>
-                                    <span className="text-gray-800 font-medium">{pendaftaran.kursus.nama}</span>
+                                    <span className="font-medium text-gray-800">{pendaftaran.kursus.nama}</span>
                                 </div>
 
-                                <div className="flex justify-between py-2">
+                                <div className="flex justify-between py-2.5 px-3 rounded-lg">
+                                    <span className="text-gray-600">Instruktur</span>
+                                    <span className="font-medium text-gray-800">{pendaftaran.kursus.user.nama}</span>
+                                </div>
+
+                                <div className="flex justify-between py-2.5 px-3 bg-gray-50 rounded-lg">
+                                    <span className="text-gray-600">Tanggal Mulai</span>
+                                    <span className="font-medium text-gray-800">{formatTanggalIndonesia(pendaftaran.kursus.tanggalMulai)}</span>
+                                </div>
+
+                                <div className="flex justify-between py-2.5 px-3 rounded-lg">
+                                    <span className="text-gray-600">Tanggal Selesai</span>
+                                    <span className="font-medium text-gray-800">{formatTanggalIndonesia(pendaftaran.kursus.tanggalSelesai)}</span>
+                                </div>
+
+                                <div className="flex justify-between py-2.5 px-3 bg-gray-50 rounded-lg">
                                     <span className="text-gray-600">Harga per Bulan</span>
-                                    <span className="text-gray-800 font-medium">{formatRupiah(pendaftaran.kursus.harga)}</span>
+                                    <span className="font-medium text-gray-800">{formatRupiah(pendaftaran.kursus.harga)}</span>
                                 </div>
 
-                                <div className="flex justify-between items-center py-2">
-                                    <label htmlFor="duration" className="flex items-center text-gray-600">
+                                <div className="flex justify-between py-2.5 px-3 rounded-lg">
+                                    <span className="flex items-center text-gray-600">
                                         <CalendarClock className="w-4 h-4 mr-2 text-blue-500" />
-                                        Durasi (bulan)
-                                    </label>
-                                    <input
-                                        type="number"
-                                        id="duration"
-                                        min={1}
-                                        max={12}
-                                        value={duration}
-                                        onChange={(e) => setDuration(Math.max(1, parseInt(e.target.value) || 1))}
-                                        className="w-20 px-3 py-1.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-right"
-                                    />
+                                        Durasi Kursus
+                                    </span>
+                                    <span className="font-medium text-gray-800">{pendaftaran.kursus.lamaKursus} bulan</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Total Payment Section */}
-                        <div className="mt-6 pt-6 border-t border-gray-100">
-                            <div className="flex justify-between items-center bg-blue-50 rounded-lg p-4">
-                                <div className="flex items-center space-x-3">
-                                    <span className="font-semibold text-gray-800">Total Pembayaran</span>
+                        <div className="mt-8">
+                            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-5 space-y-3 border border-blue-100">
+                                <h3 className="font-semibold text-gray-800 text-lg flex items-center">
+                                    <svg className="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                    Total Pembayaran
+                                </h3>
+
+                                <div className="flex justify-between items-center bg-white/70 py-2 px-3 rounded-lg">
+                                    <span className="text-sm text-gray-500">
+                                        ({formatRupiah(pendaftaran.kursus.harga)} × {pendaftaran.kursus.lamaKursus} bulan)
+                                    </span>
+                                    <span className="text-xl font-bold text-blue-600">
+                                        {formatRupiah(pendaftaran.kursus.harga * pendaftaran.kursus.lamaKursus)}
+                                    </span>
                                 </div>
-                                <span className="text-xl font-bold text-blue-600 md:text-2xl">
-                                    {formatRupiah(totalAmount)}
-                                </span>
                             </div>
                         </div>
 
@@ -265,15 +286,20 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
                             <button
                                 onClick={() => handlePayment()}
                                 disabled={isProcessingPayment}
-                                className="w-full flex justify-center items-center space-x-2 py-3 px-6 bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-white font-medium rounded-lg transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                                className="w-full flex justify-center items-center space-x-2 py-3.5 px-6 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-white font-medium rounded-lg shadow-md transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed"
                             >
                                 {isProcessingPayment ? (
                                     <>
                                         <Loader2 className="animate-spin h-5 w-5" />
-                                        <span>Memproses...</span>
+                                        <span>Memproses Pembayaran...</span>
                                     </>
                                 ) : (
-                                    "Bayar Sekarang"
+                                    <>
+                                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                                        </svg>
+                                        <span>Bayar Sekarang</span>
+                                    </>
                                 )}
                             </button>
                         </div>
@@ -285,9 +311,14 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
                             strategy="lazyOnload"
                         />
 
-                        <p className="mt-4 text-center text-xs text-gray-400">
-                            Transaksi aman & terenkripsi oleh Midtrans
-                        </p>
+                        <div className="mt-4 flex items-center justify-center space-x-2">
+                            <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                            </svg>
+                            <p className="text-xs text-gray-400">
+                                Transaksi aman & terenkripsi oleh Midtrans
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

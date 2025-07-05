@@ -16,7 +16,6 @@ interface KursusDetail {
         lamaKursus: number;
         tanggalMulai: string;
         tanggalSelesai: string;
-        kuota: number;
         thumbnail?: string;
         status: 'aktif' | 'nonaktif';
         userId: string;
@@ -40,7 +39,6 @@ const EditKursusPage = () => {
     const [lamaKursus, setLamaKursus] = useState(0);
     const [tanggalMulai, setTanggalMulai] = useState('');
     const [tanggalSelesai, setTanggalSelesai] = useState('');
-    const [kuota, setKuota] = useState(0);
     const [thumbnail, setThumbnail] = useState<File | null>(null);
     const [status, setStatus] = useState<'aktif' | 'nonaktif'>('aktif');
     const [instrukturId, setInstrukturId] = useState('');
@@ -64,7 +62,6 @@ const EditKursusPage = () => {
                 setLamaKursus(data.kursus.lamaKursus);
                 setTanggalMulai(data.kursus.tanggalMulai);
                 setTanggalSelesai(data.kursus.tanggalSelesai);
-                setKuota(data.kursus.kuota);
                 setStatus(data.kursus.status);
                 setInstrukturId(data.kursus.userId);
 
@@ -116,7 +113,6 @@ const EditKursusPage = () => {
             formData.append("lamaKursus", lamaKursus ? String(lamaKursus) : "");
             formData.append("tanggalMulai", tanggalMulai || "");
             formData.append("tanggalSelesai", tanggalSelesai || "");
-            formData.append("kuota", String(kuota));
             formData.append("status", status);
             formData.append("userId", instrukturId);
             if (thumbnail instanceof File) {
@@ -150,11 +146,23 @@ const EditKursusPage = () => {
             setLamaKursus(kursus.kursus.lamaKursus);
             setTanggalMulai(kursus.kursus.tanggalMulai);
             setTanggalSelesai(kursus.kursus.tanggalSelesai);
-            setKuota(kursus.kursus.kuota);
             setStatus(kursus.kursus.status);
             setInstrukturId(kursus.kursus.userId);
         }
     };
+
+
+    useEffect(() => {
+        if (tanggalMulai && lamaKursus > 0) {
+            const mulai = new Date(tanggalMulai);
+            const selesai = new Date(mulai);
+            selesai.setMonth(mulai.getMonth() + lamaKursus);
+            const formatted = selesai.toISOString().split("T")[0];
+
+            setTanggalSelesai(formatted);
+        }
+    }, [tanggalMulai, lamaKursus]);
+
 
     if (loading) {
         return (
@@ -241,9 +249,10 @@ const EditKursusPage = () => {
                             <input
                                 type="date"
                                 value={tanggalSelesai ? tanggalSelesai.split('T')[0] : ''}
-                                onChange={(e) => setTanggalSelesai(e.target.value)}
-                                className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
+                                disabled
+                                className="py-2 pl-10 pr-4 rounded-md border border-gray-200 w-full bg-gray-100 text-gray-500 cursor-not-allowed"
                             />
+
                         </div>
                     </div>
 
@@ -300,21 +309,7 @@ const EditKursusPage = () => {
                         />
                     </div>
 
-                    {/* Kuota */}
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Kuota</label>
-                        <div className="relative">
-                            <User2 className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
-                            <input
-                                type="number"
-                                value={kuota}
-                                onChange={(e) => setKuota(Number(e.target.value))}
-                                className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
-                                placeholder="Jumlah kuota"
-                                min={0}
-                            />
-                        </div>
-                    </div>
+
 
                     {/* Instruktur */}
                     <div className="mb-4">

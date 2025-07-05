@@ -49,9 +49,15 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
 
     const handleDaftar = async () => {
         if (!session?.user?.id) {
-            toast.error("Silahkan login terlebih dahulu");
+            toast.error("Silakan login terlebih dahulu");
+
+            setTimeout(() => {
+                router.push("/login");
+            }, 1500);
+
             return;
         }
+
 
         try {
             await axios.post("/api/pendaftaran", {
@@ -73,7 +79,7 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                 if (message.toLowerCase().includes("profil")) {
                     setTimeout(() => {
                         router.push("/peserta/profile/edit");
-                    }, 2000); // kasih delay biar toast kebaca dulu
+                    }, 2000);
                 }
             } else {
                 toast.error("Gagal daftar kursus");

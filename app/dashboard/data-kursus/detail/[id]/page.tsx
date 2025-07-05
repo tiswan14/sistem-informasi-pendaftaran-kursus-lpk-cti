@@ -28,7 +28,6 @@ interface KursusType {
     nama: string;
     harga: string;
     lamaKursus: number;
-    kuota: number;
     tanggalMulai: string;
     tanggalSelesai: string;
     status: "aktif" | "nonaktif";
@@ -139,7 +138,6 @@ const KursusDetailPage = () => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
                             <InfoItem icon={<DollarSign className="text-blue-600" />} title="Harga Kursus" value={kursus.harga} />
                             <InfoItem icon={<Clock className="text-blue-600" />} title="Durasi" value={`${kursus.lamaKursus} bulan`} />
-                            <InfoItem icon={<Users className="text-blue-600" />} title="Kuota" value={`${kursus.kuota} peserta`} />
                             <InfoItem icon={<Calendar className="text-blue-600" />} title="Mulai" value={formatTanggalIndonesia(kursus.tanggalMulai)} />
                             <InfoItem icon={<Calendar className="text-blue-600" />} title="Selesai" value={formatTanggalIndonesia(kursus.tanggalSelesai)} />
                             <InfoItem icon={<User className="text-blue-600" />} title="Instruktur" value={kursus.user.nama} />

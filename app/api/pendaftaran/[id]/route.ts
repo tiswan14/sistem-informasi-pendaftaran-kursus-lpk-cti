@@ -28,6 +28,9 @@ export async function GET(
                         id: true,
                         nama: true,
                         harga: true,
+                        tanggalMulai: true,
+                        tanggalSelesai: true,
+                        lamaKursus: true,
                         user: {
                             select: {
                                 id: true,

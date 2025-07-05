@@ -20,7 +20,6 @@ const TambahKursus = () => {
         lamaKursus: '',
         tanggalMulai: '',
         tanggalSelesai: '',
-        kuota: '',
         status: 'aktif',
     })
     const [thumbnailFile, setThumbnailFile] = useState<File | null>(null)
@@ -73,7 +72,6 @@ const TambahKursus = () => {
             fd.append("lamaKursus", formData.lamaKursus || "");
             fd.append("tanggalMulai", formData.tanggalMulai || "");
             fd.append("tanggalSelesai", formData.tanggalSelesai || "");
-            fd.append("kuota", formData.kuota || "");
             fd.append("status", formData.status || "");
             fd.append("userId", instrukturId || "");
 
@@ -109,6 +107,25 @@ const TambahKursus = () => {
     };
 
 
+    useEffect(() => {
+        if (formData.tanggalMulai && formData.lamaKursus) {
+            const mulai = new Date(formData.tanggalMulai);
+            const durasiBulan = parseInt(formData.lamaKursus);
+
+            if (!isNaN(durasiBulan)) {
+                const selesai = new Date(mulai);
+                selesai.setMonth(selesai.getMonth() + durasiBulan);
+
+                setFormData((prev) => ({
+                    ...prev,
+                    tanggalSelesai: selesai.toISOString().split("T")[0], // yyyy-mm-dd
+                }));
+            }
+        }
+    }, [formData.tanggalMulai, formData.lamaKursus]);
+
+
+
     const handleReset = () => {
         setFormData({
             nama: '',
@@ -117,7 +134,6 @@ const TambahKursus = () => {
             lamaKursus: '',
             tanggalMulai: '',
             tanggalSelesai: '',
-            kuota: '',
             status: ''
         })
         setInstrukturId('')
@@ -171,6 +187,43 @@ const TambahKursus = () => {
                         </div>
                     </div>
 
+
+
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-800 mb-1">Thumbnail</label>
+                        <div className="relative flex items-center">
+                            <div className="absolute left-3 pointer-events-none">
+                                <ImageIcon className="w-5 h-5 text-gray-400" />
+                            </div>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => e.target.files?.[0] && setThumbnailFile(e.target.files[0])}
+                                className="block w-full pl-10 text-sm text-gray-700 border-2 border-gray-200 rounded-lg cursor-pointer bg-gray-50 focus:ring-2 focus:ring-blue-500 py-2 px-3"
+                            />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-semibold text-gray-800 mb-1">Tanggal Mulai</label>
+                        <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <Calendar className="h-4 w-4 text-gray-500" />
+                            </div>
+                            <input
+                                type="date"
+                                name="tanggalMulai"
+                                value={formData.tanggalMulai}
+                                onChange={handleChange}
+                                min={new Date().toISOString().split("T")[0]}
+                                className="block w-full pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 focus:ring-2 focus:ring-blue-500 bg-gray-50"
+                            />
+
+                        </div>
+                    </div>
+
+
+
                     <div>
                         <label className="block text-sm font-semibold text-gray-800 mb-1">Lama Kursus (bulan)</label>
                         <div className="relative">
@@ -188,37 +241,6 @@ const TambahKursus = () => {
                             />
                         </div>
                     </div>
-
-                    <div>
-                        <label className="block text-sm font-semibold text-gray-800 mb-1">Tanggal Mulai</label>
-                        <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <Calendar className="h-4 w-4 text-gray-500" />
-                            </div>
-                            <input
-                                type="date"
-                                name="tanggalMulai"
-                                value={formData.tanggalMulai}
-                                onChange={handleChange}
-                                className="block w-full pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 focus:ring-2 focus:ring-blue-500 bg-gray-50"
-                            />
-                        </div>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-semibold text-gray-800 mb-1">Thumbnail</label>
-                        <div className="relative flex items-center">
-                            <div className="absolute left-3 pointer-events-none">
-                                <ImageIcon className="w-5 h-5 text-gray-400" />
-                            </div>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={(e) => e.target.files?.[0] && setThumbnailFile(e.target.files[0])}
-                                className="block w-full pl-10 text-sm text-gray-700 border-2 border-gray-200 rounded-lg cursor-pointer bg-gray-50 focus:ring-2 focus:ring-blue-500 py-2 px-3"
-                            />
-                        </div>
-                    </div>
                 </div>
 
                 <div className="space-y-4">
@@ -233,23 +255,6 @@ const TambahKursus = () => {
                         />
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-semibold text-gray-800 mb-1">Kuota</label>
-                        <div className="relative">
-                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <User2 className="h-4 w-4 text-gray-500" />
-                            </div>
-                            <input
-                                type="number"
-                                name="kuota"
-                                value={formData.kuota}
-                                onChange={handleChange}
-                                className="block w-full pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 focus:ring-2 focus:ring-blue-500 bg-gray-50"
-                                placeholder="Jumlah kuota"
-                                min="0"
-                            />
-                        </div>
-                    </div>
 
                     <div>
                         <label className="block text-sm font-semibold text-gray-800 mb-1">Tanggal Selesai</label>
@@ -261,9 +266,10 @@ const TambahKursus = () => {
                                 type="date"
                                 name="tanggalSelesai"
                                 value={formData.tanggalSelesai}
-                                onChange={handleChange}
-                                className="block w-full pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 focus:ring-2 focus:ring-blue-500 bg-gray-50"
+                                disabled
+                                className="block w-full pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 bg-gray-100 text-gray-500 cursor-not-allowed"
                             />
+
                         </div>
                     </div>
 

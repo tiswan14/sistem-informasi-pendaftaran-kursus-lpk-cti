@@ -2,7 +2,6 @@
 "use client";
 import { formatRupiah } from "@/utils/formatRupiah";
 import { formatTanggalIndonesia } from "@/utils/formatTanggal";
-import { Eye } from "lucide-react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -193,7 +192,6 @@ const KursusTable = () => {
                                         </div>
                                         <div className="ml-4">
                                             <p className="text-sm font-medium text-gray-900 line-clamp-1">{kursus.nama}</p>
-                                            <p className="text-xs text-gray-500 mt-1">Kuota: {kursus.kuota ?? '-'}</p>
                                         </div>
                                     </div>
                                 </td>
@@ -203,7 +201,7 @@ const KursusTable = () => {
                                 </td>
 
                                 <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">
-                                    {kursus.lamaKursus} bln
+                                    {kursus.lamaKursus} bulan
                                 </td>
 
                                 <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">
@@ -215,7 +213,7 @@ const KursusTable = () => {
                                 </td>
 
                                 <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    {formatRupiah(kursus.harga)}
+                                    {formatRupiah(kursus.harga)}<span className="text-xs text-gray-400">/bulan</span>
                                 </td>
 
                                 <td className="px-3 py-3 whitespace-nowrap">
