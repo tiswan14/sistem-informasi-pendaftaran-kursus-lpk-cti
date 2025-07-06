@@ -42,6 +42,7 @@ const EditPesertaPage = () => {
     const [email, setEmail] = useState('');
     const [mediaSosial, setMediaSosial] = useState('');
     const [password, setPassword] = useState('');
+    const [showInputLainnya, setShowInputLainnya] = useState(false);
 
     useEffect(() => {
         const fetchPeserta = async () => {
@@ -278,25 +279,47 @@ const EditPesertaPage = () => {
                         <label className="block text-sm font-medium text-gray-700 mb-1">Jurusan</label>
                         <div className="relative">
                             <GraduationCap className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
+
                             <select
-                                value={jurusan}
-                                onChange={(e) => setJurusan(e.target.value)}
+                                value={showInputLainnya ? "lainnya" : jurusan}
+                                onChange={(e) => {
+                                    const selected = e.target.value;
+                                    if (selected === "lainnya") {
+                                        setShowInputLainnya(true);
+                                        setJurusan("");
+                                    } else {
+                                        setShowInputLainnya(false);
+                                        setJurusan(selected);
+                                    }
+                                }}
                                 className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full bg-white"
                                 required
                             >
                                 <option value="">Pilih Jurusan</option>
-                                <option value="Microsoft Office">Microsoft Office</option>
-                                <option value="Desain Grafis">Desain Grafis</option>
-                                <option value="Pemrograman Dasar">Pemrograman</option>
-                                <option value="Web Development">Web Development</option>
-                                <option value="Digital Marketing">Digital Marketing</option>
-                                <option value="Editing Video">Editing Video</option>
-                                <option value="Teknik Jaringan Komputer">Teknik Jaringan Komputer</option>
-                                <option value="Data Analyst Dasar">Data Analyst Dasar</option>
-                                <option value="UI/UX Design">UI/UX Design</option>
+                                <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
+                                <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
+                                <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
+                                <option value="Multimedia">Multimedia</option>
+                                <option value="Teknik Elektronika Industri">Teknik Elektronika Industri</option>
+                                <option value="Akuntansi dan Keuangan Lembaga">Akuntansi dan Keuangan</option>
+                                <option value="Manajemen Perkantoran dan Layanan Bisnis">Manajemen Perkantoran</option>
+                                <option value="Pemasaran Digital">Pemasaran Digital</option>
+                                <option value="lainnya">Lainnya (Tulis Sendiri)</option>
                             </select>
                         </div>
+
+                        {showInputLainnya && (
+                            <input
+                                type="text"
+                                value={jurusan}
+                                onChange={(e) => setJurusan(e.target.value)}
+                                className="mt-3 py-2 px-4 rounded-md border border-gray-300 w-full"
+                                placeholder="Tulis jurusan lainnya..."
+                                required
+                            />
+                        )}
                     </div>
+
 
 
                     {/* Tahun Akademik */}

@@ -59,7 +59,6 @@ export async function POST(request: Request) {
             hari,
             jamMulai,
             jamSelesai,
-            lokasi,
             ruangan,
             status
         } = body;
@@ -78,7 +77,6 @@ export async function POST(request: Request) {
                 hari,
                 jamMulai,
                 jamSelesai,
-                lokasi,
                 ruangan,
                 status: status || "aktif"
             },

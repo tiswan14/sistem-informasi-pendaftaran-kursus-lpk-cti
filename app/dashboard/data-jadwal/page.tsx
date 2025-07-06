@@ -1,39 +1,100 @@
 "use client";
 
 import JadwalTable from "@/components/admin/jadwal/jadwal-table";
-import { FiCalendar } from "react-icons/fi";
+import { CalendarPlus, CalendarDays, BookOpen, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-
+interface Kursus {
+    id: number;
+    nama: string;
+}
 
 const DaftarJadwalPage = () => {
     const [filterHari, setFilterHari] = useState("");
+    const [daftarKursus, setDaftarKursus] = useState<Kursus[]>([]);
+    const [filterKursus, setFilterKursus] = useState("");
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchKursus = async () => {
+            try {
+                const res = await axios.get("/api/kursus");
+                setDaftarKursus(res.data);
+            } catch (err) {
+                console.error("Gagal ambil kursus:", err);
+                toast.error("Gagal memuat data kursus");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchKursus();
+    }, []);
 
     const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setFilterHari(e.target.value);
     };
 
+    const handleKursusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setFilterKursus(e.target.value);
+    };
+
+
     return (
-        <div className="max-w-screen-xl px-4">
-            <div className="px-3 flex mb-6 justify-between gap-3">
-                <div>
-                    <h1 className="text-2xl font-bold text-gray-800 mb-4">Daftar Jadwal</h1>
+        <div className="max-w-screen-xl mx-auto px-4 py-6">
+            <div className="bg-white rounded-xl shadow-sm p-6">
+                {/* Header Section */}
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+                    <div className="flex items-center gap-3">
+                        <CalendarDays className="w-8 h-8 text-blue-600" />
+                        <div>
+                            <h1 className="text-2xl font-bold text-gray-800 mb-1">Daftar Jadwal</h1>
+                            <p className="text-sm text-gray-500">Kelola jadwal kursus yang tersedia</p>
+                        </div>
+                    </div>
 
                     <Link
                         href="/dashboard/data-jadwal/tambah"
-                        className="inline-flex items-center px-4 py-2 text-sm bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-all font-medium shadow-md w-full sm:w-auto"
+                        className="inline-flex items-center px-4 py-2.5 text-sm bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all font-medium shadow-md w-full md:w-auto justify-center"
                     >
-                        <FiCalendar className="mr-2 w-3.5 h-3.5" />
+                        <CalendarPlus className="mr-2 w-4 h-4" />
                         Tambah Jadwal
                     </Link>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-3 items-start sm:items-center">
-                    <div className="flex gap-3 items-center w-full sm:w-auto">
+
+                {/* Filter Controls */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div>
+                        <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
+                            <BookOpen className="w-4 h-4" />
+                            Filter Kursus
+                        </label>
+                        <select
+                            onChange={handleKursusChange}
+                            value={filterKursus}
+                            className="text-sm border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
+                        >
+                            <option value="">Semua Kursus</option>
+                            {daftarKursus.map((kursus) => (
+                                <option key={kursus.id} value={kursus.nama}>
+                                    {kursus.nama}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-1">
+                            <CalendarDays className="w-4 h-4" />
+                            Filter Hari
+                        </label>
                         <select
                             onChange={handleSortChange}
                             value={filterHari}
-                            className="text-sm border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-0 w-full sm:w-auto"
+                            className="text-sm border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
                         >
                             <option value="">Semua Hari</option>
                             <option value="Senin">Senin</option>
@@ -46,10 +107,12 @@ const DaftarJadwalPage = () => {
                         </select>
                     </div>
                 </div>
+
+                <JadwalTable
+                    filterHari={filterHari}
+                    filterKursus={filterKursus}
+                />
             </div>
-
-
-            <JadwalTable filterHari={filterHari} />
         </div>
     );
 };

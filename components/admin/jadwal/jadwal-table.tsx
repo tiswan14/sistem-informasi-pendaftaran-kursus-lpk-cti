@@ -11,7 +11,6 @@ interface Jadwal {
     hari: string;
     jamMulai: string;
     jamSelesai: string;
-    lokasi?: string | null;
     ruangan?: string | null;
     status: string;
     instruktur?: {
@@ -53,7 +52,14 @@ const Tooltip = ({
     );
 };
 
-const JadwalTable = ({ filterHari }: { filterHari?: string }) => {
+const JadwalTable = ({
+    filterHari,
+    filterKursus,
+}: {
+    filterHari?: string;
+    filterKursus?: string;
+}) => {
+
 
     const [jadwalData, setJadwalData] = useState<Jadwal[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
@@ -100,9 +106,12 @@ const JadwalTable = ({ filterHari }: { filterHari?: string }) => {
         }
     };
 
-    const filteredData = filterHari
-        ? jadwalData.filter(jadwal => jadwal.hari.toLowerCase() === filterHari.toLowerCase())
-        : jadwalData;
+    const filteredData = jadwalData.filter(jadwal => {
+        const cocokHari = filterHari ? jadwal.hari.toLowerCase() === filterHari.toLowerCase() : true;
+        const cocokKursus = filterKursus ? jadwal.kursus.nama.toLowerCase() === filterKursus.toLowerCase() : true;
+        return cocokHari && cocokKursus;
+    });
+
 
 
     return (
@@ -137,7 +146,6 @@ const JadwalTable = ({ filterHari }: { filterHari?: string }) => {
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Hari</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Kursus</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Instruktur</th>
-                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Lokasi</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Ruangan</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Mulai</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Selesai</th>
@@ -176,7 +184,6 @@ const JadwalTable = ({ filterHari }: { filterHari?: string }) => {
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.hari}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.kursus.nama}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.kursus.user.nama || 'Belum ditentukan'}</td>
-                                <td className="px-4 py-3 text-sm text-gray-700">{jadwal.lokasi || '-'}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.ruangan || '-'}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.jamMulai}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.jamSelesai}</td>

@@ -12,7 +12,6 @@ type Jadwal = {
             jamMulai: string;
             jamSelesai: string;
             ruangan?: string;
-            lokasi?: string;
             deskripsi?: string;
         }[];
     };
@@ -100,18 +99,8 @@ const JadwalPage = () => {
                                                         Ruangan
                                                     </div>
                                                 </th>
-                                                <th scope="col" className="px-4 py-3 text-left text-sm md:text-base font-semibold text-blue-800 uppercase tracking-wider">
-                                                    <div className="flex items-center gap-2">
-                                                        <MapPin className="w-4 h-4 md:w-5 md:h-5" />
-                                                        Lokasi
-                                                    </div>
-                                                </th>
-                                                <th scope="col" className="px-5 py-3 text-left text-sm md:text-base font-semibold text-blue-800 uppercase tracking-wider">
-                                                    <div className="flex items-center gap-2">
-                                                        <BookOpen className="w-4 h-4 md:w-5 md:h-5" />
-                                                        Materi
-                                                    </div>
-                                                </th>
+
+
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-gray-100">
@@ -131,16 +120,8 @@ const JadwalPage = () => {
                                                             {jadwal.ruangan || '-'}
                                                         </span>
                                                     </td>
-                                                    <td className="px-4 py-3">
-                                                        <span className={`text-base ${jadwal.lokasi ? "text-gray-700" : "text-gray-400"}`}>
-                                                            {jadwal.lokasi || '-'}
-                                                        </span>
-                                                    </td>
-                                                    <td className="px-5 py-3">
-                                                        <span className={`text-base ${jadwal.deskripsi ? "text-gray-700" : "text-gray-400"}`}>
-                                                            {jadwal.deskripsi || '-'}
-                                                        </span>
-                                                    </td>
+
+
                                                 </tr>
                                             ))}
                                         </tbody>

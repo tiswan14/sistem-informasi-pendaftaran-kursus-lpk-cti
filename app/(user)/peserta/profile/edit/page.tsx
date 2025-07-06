@@ -317,17 +317,21 @@ const EditProfilePage = () => {
                                     <select
                                         {...register("jurusan")}
                                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                        required
                                     >
                                         <option value="">-- Pilih Jurusan --</option>
-                                        <option value="Desain Grafis">Desain Grafis</option>
-                                        <option value="Pemrograman">Pemrograman</option>
-                                        <option value="Jaringan Komputer">Jaringan Komputer</option>
+                                        <option value="Teknik Komputer dan Jaringan">Teknik Komputer dan Jaringan</option>
+                                        <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
+                                        <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
                                         <option value="Multimedia">Multimedia</option>
-                                        <option value="Teknik Komputer">Teknik Komputer</option>
-                                        <option value="Data Analyst">Data Analyst</option>
-                                        <option value="IT Support">IT Support</option>
+                                        <option value="Teknik Elektronika Industri">Teknik Elektronika Industri</option>
+                                        <option value="Akuntansi dan Keuangan">Akuntansi</option>
+                                        <option value="Manajemen Perkantoran">Manajemen Perkantoran</option>
+                                        <option value="Pemasaran Digital">Pemasaran Digital</option>
+                                        <option value="Lainnya">Lainnya</option>
                                     </select>
                                 </div>
+
 
                                 <div className="space-y-1">
                                     <label className="flex items-center gap-2 text-sm font-medium text-gray-700">

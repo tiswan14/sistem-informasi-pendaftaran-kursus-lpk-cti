@@ -4,6 +4,7 @@ import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { SearchX } from "lucide-react";
+import { formatTanggalIndonesia } from "@/utils/formatTanggal";
 interface Peserta {
     id: string;
     nama: string;
@@ -11,6 +12,7 @@ interface Peserta {
     jenisKelamin: string;
     jurusan: string;
     tahunAkademik: string;
+    createdAt: string;
 }
 
 // Tooltip Component
@@ -129,29 +131,31 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                     </div>
                 </div>
             )}
-
             <table className="w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                     <tr>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            No
+                        <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            #
                         </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Nama
+                        <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Nama Peserta
                         </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Email
                         </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Jenis Kelamin
                         </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Jurusan
                         </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Tahun Akademik
                         </th>
-                        <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Bergabung
+                        </th>
+                        <th scope="col" className="px-4 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Aksi
                         </th>
                     </tr>
@@ -159,7 +163,7 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                 <tbody className="bg-white divide-y divide-gray-200">
                     {loading ? (
                         <tr>
-                            <td colSpan={6} className="py-10 text-center">
+                            <td colSpan={8} className="py-10 text-center">
                                 <div className="flex flex-col items-center justify-center gap-3">
                                     <div className="animate-spin rounded-full h-14 w-14 border-4 border-blue-200 border-t-transparent border-r-transparent"></div>
                                     <div>
@@ -175,7 +179,7 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                         </tr>
                     ) : filteredPeserta.length === 0 ? (
                         <tr>
-                            <td colSpan={7} className="py-10 text-center">
+                            <td colSpan={8} className="py-10 text-center">
                                 <div className="flex flex-col items-center justify-center gap-2">
                                     <SearchX className="w-10 h-10 text-gray-400" />
                                     <h3 className="text-md font-medium text-gray-500">
@@ -190,16 +194,16 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                                 key={peserta.id}
                                 className="hover:bg-gray-50 transition-colors duration-150 ease-in-out"
                             >
-                                <td className="px-7 py-4 whitespace-nowrap">
-                                    <div className="text-sm font-medium text-gray-900">{index + 1}</div>
+                                <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {index + 1}
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm font-medium text-gray-900">{peserta.nama}</div>
+                                <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {peserta.nama}
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-500">{peserta.email}</div>
+                                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {peserta.email}
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
+                                <td className="px-4 py-4 whitespace-nowrap">
                                     <span
                                         className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${peserta.jenisKelamin === "Laki-laki"
                                             ? "bg-blue-100 text-blue-800"
@@ -209,14 +213,17 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                                         {peserta.jenisKelamin}
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-500">{peserta.jurusan}</div>
+                                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {peserta.jurusan}
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-500">{peserta.tahunAkademik}</div>
+                                <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {peserta.tahunAkademik}
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <div className="flex justify-center space-x-3">
+                                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    {formatTanggalIndonesia(peserta.createdAt)}
+                                </td>
+                                <td className="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <div className="flex justify-center space-x-2">
                                         <Tooltip content="Detail">
                                             <a
                                                 href={`/dashboard/data-peserta/${peserta.id}`}
@@ -226,7 +233,6 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                                                 <FaEye className="h-4 w-4 text-white" />
                                             </a>
                                         </Tooltip>
-
                                         <Tooltip content="Edit">
                                             <a
                                                 href={`/dashboard/data-peserta/edit/${peserta.id}`}
@@ -236,7 +242,6 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                                                 <FaEdit className="h-4 w-4 text-white" />
                                             </a>
                                         </Tooltip>
-
                                         <Tooltip content="Hapus">
                                             <button
                                                 onClick={() => setDeleteId(peserta.id)}
@@ -248,12 +253,10 @@ const PesertaTable = ({ searchQuery }: PesertaTableProps) => {
                                         </Tooltip>
                                     </div>
                                 </td>
-
                             </tr>
                         ))
                     )}
                 </tbody>
-
             </table>
         </div>
     );

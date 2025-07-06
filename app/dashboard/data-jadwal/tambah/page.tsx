@@ -39,7 +39,6 @@ const TambahJadwalForm = () => {
         hari: "",
         jamMulai: "",
         jamSelesai: "",
-        lokasi: "",
         ruangan: "",
         status: "aktif"
     });
@@ -91,7 +90,6 @@ const TambahJadwalForm = () => {
             hari: "",
             jamMulai: "",
             jamSelesai: "",
-            lokasi: "",
             ruangan: "",
             status: "aktif"
         });
@@ -216,21 +214,6 @@ const TambahJadwalForm = () => {
                         />
                     </div>
 
-                    {/* Lokasi */}
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Lokasi (Opsional)</label>
-                        <div className="relative">
-                            <MapPin className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
-                            <input
-                                type="text"
-                                name="lokasi"
-                                value={formData.lokasi}
-                                onChange={handleChange}
-                                className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
-                                placeholder="Contoh: Gedung A"
-                            />
-                        </div>
-                    </div>
 
                     {/* Ruangan */}
                     <div className="mb-4">

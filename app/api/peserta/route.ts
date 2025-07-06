@@ -8,8 +8,11 @@ export async function GET() {
     try {
         const peserta = await prisma.user.findMany({
             where: { role: "peserta" },
-            orderBy: { nama: "asc" },
+            orderBy: {
+                createdAt: "desc",
+            },
         });
+
 
         return NextResponse.json(peserta);
     } catch (error) {

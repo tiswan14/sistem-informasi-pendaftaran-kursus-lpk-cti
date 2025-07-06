@@ -36,7 +36,6 @@ const EditJadwalForm = () => {
     const [hari, setHari] = useState<string>("");
     const [jamMulai, setJamMulai] = useState<string>("");
     const [jamSelesai, setJamSelesai] = useState<string>("");
-    const [lokasi, setLokasi] = useState<string>("");
     const [ruangan, setRuangan] = useState<string>("");
     const [status, setStatus] = useState<"aktif" | "nonaktif">("aktif");
 
@@ -53,7 +52,6 @@ const EditJadwalForm = () => {
                 setHari(jadwalData.hari || "");
                 setJamMulai(jadwalData.jamMulai || "");
                 setJamSelesai(jadwalData.jamSelesai || "");
-                setLokasi(jadwalData.lokasi || "");
                 setRuangan(jadwalData.ruangan || "");
                 setStatus(jadwalData.status || "aktif");
             } catch (error) {
@@ -88,7 +86,6 @@ const EditJadwalForm = () => {
                 hari,
                 jamMulai,
                 jamSelesai,
-                lokasi,
                 ruangan,
                 status
             });
@@ -211,20 +208,6 @@ const EditJadwalForm = () => {
                         />
                     </div>
 
-                    {/* Lokasi */}
-                    <div className="mb-4">
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Lokasi (Opsional)</label>
-                        <div className="relative">
-                            <MapPin className="absolute left-3 top-2.5 text-gray-400 h-5 w-5 pointer-events-none" />
-                            <input
-                                type="text"
-                                value={lokasi}
-                                onChange={(e) => setLokasi(e.target.value)}
-                                className="py-2 pl-10 pr-4 rounded-md border border-gray-300 w-full"
-                                placeholder="Contoh: Gedung A"
-                            />
-                        </div>
-                    </div>
 
                     {/* Ruangan */}
                     <div className="mb-4">
