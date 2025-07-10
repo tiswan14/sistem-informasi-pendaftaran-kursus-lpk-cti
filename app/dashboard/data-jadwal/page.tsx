@@ -34,12 +34,26 @@ const DaftarJadwalPage = () => {
         fetchKursus();
     }, []);
 
+
+    useEffect(() => {
+        const savedHari = localStorage.getItem("filterHari");
+        const savedKursus = localStorage.getItem("filterKursus");
+
+        if (savedHari) setFilterHari(savedHari);
+        if (savedKursus) setFilterKursus(savedKursus);
+    }, []);
+
     const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setFilterHari(e.target.value);
+        const value = e.target.value;
+        setFilterHari(value);
+        localStorage.setItem("filterHari", value);
     };
 
+
     const handleKursusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setFilterKursus(e.target.value);
+        const value = e.target.value;
+        setFilterKursus(value);
+        localStorage.setItem("filterKursus", value);
     };
 
 

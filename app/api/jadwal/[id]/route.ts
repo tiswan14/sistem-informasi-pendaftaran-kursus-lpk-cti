@@ -46,7 +46,7 @@ export const PUT = async (
         const { id } = await context.params;
 
         if (!id) {
-            return new Response(JSON.stringify({ error: "ID instruktur tidak valid" }), {
+            return new Response(JSON.stringify({ error: "ID jadwal tidak valid" }), {
                 status: 400,
             });
         }
@@ -59,23 +59,16 @@ export const PUT = async (
             });
         }
 
-        if (body.password) {
-            const bcrypt = require("bcryptjs");
-            body.password = bcrypt.hashSync(body.password, 10);
-        }
-
-        const updatedInstruktur = await prisma.user.update({
+        const updatedJadwal = await prisma.jadwal.update({
             where: { id },
             data: body,
         });
 
-        const { password, ...userWithoutPassword } = updatedInstruktur;
-
-        return new Response(JSON.stringify(userWithoutPassword), {
+        return new Response(JSON.stringify(updatedJadwal), {
             status: 200,
         });
     } catch (error: unknown) {
-        const message = error instanceof Error ? error.message : "Internal server error";
+        const message = error instanceof Error ? error.message : "Terjadi kesalahan pada server";
         return new Response(JSON.stringify({ error: message }), {
             status: 500,
         });
@@ -83,6 +76,7 @@ export const PUT = async (
         await prisma.$disconnect();
     }
 };
+
 
 
 export const DELETE = async (

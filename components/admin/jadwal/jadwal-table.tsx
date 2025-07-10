@@ -106,6 +106,7 @@ const JadwalTable = ({
         }
     };
 
+
     const filteredData = jadwalData.filter(jadwal => {
         const cocokHari = filterHari ? jadwal.hari.toLowerCase() === filterHari.toLowerCase() : true;
         const cocokKursus = filterKursus ? jadwal.kursus.nama.toLowerCase() === filterKursus.toLowerCase() : true;
@@ -149,6 +150,7 @@ const JadwalTable = ({
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Ruangan</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Mulai</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Selesai</th>
+                        <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Durasi</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Status</th>
                         <th className="px-4 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider text-left">Aksi</th>
                     </tr>
@@ -187,6 +189,21 @@ const JadwalTable = ({
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.ruangan || '-'}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.jamMulai}</td>
                                 <td className="px-4 py-3 text-sm text-gray-700">{jadwal.jamSelesai}</td>
+                                <td className="px-4 py-3 text-sm text-gray-700">
+                                    {(() => {
+                                        const [jamMulai, menitMulai] = jadwal.jamMulai.split(":").map(Number);
+                                        const [jamSelesai, menitSelesai] = jadwal.jamSelesai.split(":").map(Number);
+
+                                        const mulai = jamMulai * 60 + menitMulai;
+                                        const selesai = jamSelesai * 60 + menitSelesai;
+                                        const totalMenit = selesai - mulai;
+                                        const jam = Math.floor(totalMenit / 60);
+                                        const menit = totalMenit % 60;
+
+                                        return `${jam} jam ${menit > 0 ? `${menit} menit` : ""}`;
+                                    })()}
+                                </td>
+
                                 <td className="px-4 py-3 text-center">
                                     <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${jadwal.status === 'aktif' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
                                         {jadwal.status === 'aktif' ? 'Aktif' : 'Nonaktif'}

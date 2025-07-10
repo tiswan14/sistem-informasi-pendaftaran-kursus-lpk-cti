@@ -312,30 +312,37 @@ const PendaftarTable = () => {
                                 </td>
 
                                 <td className="py-4 whitespace-nowrap text-center">
-                                    <select
-                                        title="Ubah status pendaftaran"
-                                        value={pendaftar.status}
-                                        onChange={(e) => handleStatusChange(pendaftar.id, e.target.value)}
-                                        className={`cursor-pointer px-3 py-1.5 text-xs leading-5 font-semibold rounded-full appearance-none transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1
-      ${pendaftar.status === 'Menunggu Verifikasi'
-                                                ? 'bg-gray-100 text-gray-800 focus:ring-gray-400'
-                                                : pendaftar.status === 'Terverifikasi'
-                                                    ? 'bg-yellow-100 text-yellow-800 focus:ring-yellow-500'
-                                                    : pendaftar.status === 'Lulus Pelatihan'
-                                                        ? 'bg-indigo-100 text-indigo-800 focus:ring-indigo-500'
-                                                        : 'bg-white text-gray-600 focus:ring-gray-300'}`}
-                                    >
-                                        <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
-                                        <option value="Terverifikasi">Terverifikasi</option>
-                                        <option value="Lulus Pelatihan">Lulus Pelatihan</option>
-                                    </select>
+                                    <div className="relative inline-block">
+                                        <select
+                                            title="Ubah status pendaftaran"
+                                            value={pendaftar.status}
+                                            onChange={(e) => handleStatusChange(pendaftar.id, e.target.value)}
+                                            className={`cursor-pointer pl-3 pr-8 py-2 text-sm leading-5 font-medium rounded-md border shadow-sm appearance-none transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-1
+                ${pendaftar.status === 'Menunggu Verifikasi'
+                                                    ? 'bg-gray-50 text-gray-700 border-gray-300 focus:ring-gray-400'
+                                                    : pendaftar.status === 'Terverifikasi'
+                                                        ? 'bg-yellow-50 text-yellow-700 border-yellow-200 focus:ring-yellow-400'
+                                                        : pendaftar.status === 'Lulus Pelatihan'
+                                                            ? 'bg-indigo-50 text-indigo-700 border-indigo-200 focus:ring-indigo-400'
+                                                            : 'bg-white text-gray-600 border-gray-300 focus:ring-gray-300'}`}
+                                        >
+                                            <option value="Menunggu Verifikasi">Menunggu Verifikasi</option>
+                                            <option value="Terverifikasi">Terverifikasi</option>
+                                            <option value="Lulus Pelatihan">Lulus Pelatihan</option>
+                                        </select>
+                                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </div>
                                 </td>
 
 
 
                                 <td className="px-6 py-4 whitespace-nowrap text-center">
                                     <div className="flex justify-center space-x-3">
-                                        <Tooltip content="Tambah Catatan">
+                                        {/* <Tooltip content="Tambah Catatan">
                                             <button
                                                 onClick={() => handleOpenAddNote(pendaftar.id, pendaftar.status)}
                                                 className="bg-blue-600 hover:bg-blue-700 p-2 rounded-md"
@@ -343,7 +350,7 @@ const PendaftarTable = () => {
                                             >
                                                 <FilePlus className="h-4 w-4 text-white" />
                                             </button>
-                                        </Tooltip>
+                                        </Tooltip> */}
                                         <Tooltip content="Hapus">
                                             <button
                                                 onClick={() => setDeleteId(pendaftar.id)}
