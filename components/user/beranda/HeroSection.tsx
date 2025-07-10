@@ -1,6 +1,7 @@
 "use client";
 
-import { BookOpen, Code, Cpu, Monitor, Zap } from "lucide-react";
+import { ArrowRight, BookOpen, Code, Cpu, Monitor, Zap } from "lucide-react";
+import Link from "next/link";
 
 const HeroSection = () => {
     return (
@@ -141,6 +142,22 @@ const HeroSection = () => {
                         </span>
                         <span>dengan jaminan sertifikasi kompetensi BNSP</span>
                     </p>
+                </div>
+
+                <div
+                    className="mt-8 sm:mt-10"
+                    data-aos="fade-up"
+                    data-aos-delay="1800"
+                    data-aos-duration="800"
+                    data-aos-easing="ease-out-cubic"
+                >
+                    <Link
+                        href="/kursus"  
+                        className="inline-flex items-center justify-center px-8 py-3 sm:px-10 sm:py-4 text-base sm:text-lg font-bold text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-full shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:-translate-y-1"
+                    >
+                        Daftar Sekarang
+                        <ArrowRight className="w-5 h-5 ml-2" />
+                    </Link>
                 </div>
             </div>
         </section>
