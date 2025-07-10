@@ -40,39 +40,43 @@ const TambahSertifikatForm = () => {
 
     const router = useRouter();
 
-    const handleSubmit = async (e: SyntheticEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsPending(true);
+
+        if (!pendaftaranId || !nomor) {
+            toast.error("Pendaftaran dan nomor sertifikat wajib diisi");
+            setIsPending(false);
+            return;
+        }
 
         try {
             const formData = new FormData();
             formData.append('pendaftaranId', pendaftaranId);
             formData.append('nomor', nomor);
-            if (file) {
-                formData.append('file', file);
-            }
 
             await axios.post('/api/sertifikat', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
+                headers: { 'Content-Type': 'multipart/form-data' },
             });
 
-
-            router.push("/dashboard/data-sertifikat");
-            toast.success("Sertifikat berhasil ditambahkan");
+            toast.success('Sertifikat berhasil ditambahkan');
+            router.push('/dashboard/data-sertifikat');
         } catch (error) {
-            console.error("Error:", error);
             if (axios.isAxiosError(error)) {
-                toast.error(error.response?.data?.error || "Gagal menambahkan sertifikat");
+                toast.error(error.response?.data?.error || 'Gagal menambahkan sertifikat');
             } else {
-                toast.error("Gagal menambahkan sertifikat");
+                toast.error('Terjadi kesalahan saat menambahkan sertifikat');
             }
-        }
-        finally {
+        } finally {
             setIsPending(false);
         }
     };
+
+    const resetForm = () => {
+        setPendaftaranId('');
+        setNomor('');
+    };
+
 
     useEffect(() => {
         const fetchPendaftaran = async () => {

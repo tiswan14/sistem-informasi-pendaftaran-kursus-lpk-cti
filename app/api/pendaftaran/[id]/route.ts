@@ -82,7 +82,6 @@ export async function PATCH(
 
         const { user, kursus } = updatedPendaftaran;
 
-        // Kirim email jika status berubah ke Terverifikasi
         if (status === "Terverifikasi") {
             await sendEmail({
                 to: user.email,
@@ -96,25 +95,6 @@ export async function PATCH(
       <br />
       <p>Terima kasih,</p>
       <p><strong>LPK CTI</strong></p>
-    `,
-            });
-        }
-
-
-        // Kirim email jika status berubah ke Lulus Pelatihan
-        if (status === "Lulus Pelatihan") {
-            await sendEmail({
-                to: user.email,
-                subject: `Selamat! Anda Telah Lulus Pelatihan`,
-                html: `
-      <p>Halo <strong>${user.nama}</strong>,</p>
-      <p>Selamat! Anda telah <strong>lulus</strong> dari pelatihan <strong>${kursus.nama}</strong>.</p>
-      <p>Terima kasih telah mengikuti pelatihan bersama kami.</p>
-      <p>Anda dapat mengunduh sertifikat melalui halaman berikut:</p>
-      <p><a href="https://lpk-cti.up.railway.app/sertifikat" target="_blank">🔗 Lihat Sertifikat</a></p>
-      <br />
-      <p>Salam sukses,</p>
-      <p><strong>Tim LPK CTI</strong></p>
     `,
             });
         }

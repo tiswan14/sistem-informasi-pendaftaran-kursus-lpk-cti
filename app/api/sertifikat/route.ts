@@ -1,13 +1,11 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from 'next/server';
 import { put } from '@vercel/blob';
+import { sendEmail } from "@/lib/email";
 
 export type SertifikatInput = {
     pendaftaranId: string;
     nomor: string;
-    fileName?: string;
-    fileType?: string;
-    fileSize?: number;
 }
 
 export const dynamic = 'force-dynamic'
@@ -56,12 +54,9 @@ export async function GET() {
 export async function POST(request: Request) {
     try {
         const formData = await request.formData();
-
         const pendaftaranId = formData.get('pendaftaranId')?.toString();
         const nomor = formData.get('nomor')?.toString();
-        const file = formData.get('file') as File | null;
 
-        // Validasi
         if (!pendaftaranId || !nomor) {
             return NextResponse.json(
                 { error: "Pendaftaran ID dan nomor sertifikat wajib diisi" },
@@ -69,7 +64,6 @@ export async function POST(request: Request) {
             );
         }
 
-        // Cek duplikat nomor sertifikat
         if (await prisma.sertifikat.findUnique({ where: { nomor } })) {
             return NextResponse.json(
                 { error: "Nomor sertifikat sudah digunakan" },
@@ -77,39 +71,10 @@ export async function POST(request: Request) {
             );
         }
 
-        // Cek status pendaftaran
-        const pendaftaran = await prisma.pendaftaran.findUnique({
-            where: { id: pendaftaranId },
-            select: { status: true }
-        });
-
-        // Handle file upload
-        let fileData = null;
-        if (file && file instanceof File && file.size > 0) {
-            const blob = await put(
-                `sertifikat/CTI-${nomor}-${Date.now()}`,
-                file,
-                { access: 'public', contentType: file.type }
-            );
-
-
-            fileData = {
-                url: blob.url,
-                name: file.name,
-                type: file.type,
-                size: file.size
-            };
-        }
-
-        // Buat sertifikat
         const newSertifikat = await prisma.sertifikat.create({
             data: {
                 pendaftaranId,
                 nomor,
-                fileUrl: fileData?.url || null,
-                fileName: fileData?.name || null,
-                fileType: fileData?.type || null,
-                fileSize: fileData?.size || null
             },
             include: {
                 pendaftaran: {
@@ -121,12 +86,29 @@ export async function POST(request: Request) {
             }
         });
 
+        const { user, kursus } = newSertifikat.pendaftaran;
+
+        await sendEmail({
+            to: user.email,
+            subject: `Sertifikat Telah Diterbitkan`,
+            html: `
+  <p>Yth. <strong>${user.nama}</strong>,</p>
+  <p>Selamat! Sertifikat Anda untuk program pelatihan <strong>${kursus.nama}</strong> dengan nomor <strong>${nomor}</strong> telah resmi diterbitkan.</p>
+  <p>Anda dapat melihat atau mengunduh sertifikat melalui halaman berikut:</p>
+  <p><a href="https://lpk-cti.up.railway.app/riwayat-sertifikat" target="_blank">🔗 Riwayat Sertifikat</a></p>
+  <br />
+  <p>Terima kasih atas partisipasi Anda.</p>
+  <p><strong>Salam hormat,</strong><br />LPK CTI</p>
+`
+
+        });
+
         return NextResponse.json(newSertifikat, { status: 201 });
     } catch (error) {
-        console.error("Error:", error);
         return NextResponse.json(
             { error: error instanceof Error ? error.message : "Internal server error" },
             { status: 500 }
         );
     }
 }
+

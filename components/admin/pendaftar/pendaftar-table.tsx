@@ -1,7 +1,7 @@
 "use client";
 import { formatTanggalIndonesia } from "@/utils/formatTanggal";
-import { FilePlus } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useRouter } from 'next/navigation';
 import { FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 
@@ -47,6 +47,7 @@ const Tooltip = ({ content, children }: { content: string; children: React.React
 
 
 const PendaftarTable = () => {
+    const router = useRouter();
     const [pendaftarData, setPendaftarData] = useState<Pendaftar[]>([]);
     const [loading, setLoading] = useState(true);
     const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -125,16 +126,22 @@ const PendaftarTable = () => {
                 throw new Error('Gagal memperbarui status');
             }
 
-            // Update local state
             setPendaftarData(pendaftarData.map(pendaftar =>
                 pendaftar.id === id ? { ...pendaftar, status: newStatus } : pendaftar
             ));
+
+            toast.success('Status berhasil diperbarui');
+
+            if (newStatus === "Lulus Pelatihan") {
+                router.push("/dashboard/data-sertifikat/tambah");
+            }
 
         } catch (error) {
             console.error('Error:', error);
             toast.error('Gagal memperbarui status');
         }
     };
+
 
 
     const handleSaveNote = async (id: string) => {
@@ -253,6 +260,7 @@ const PendaftarTable = () => {
                     <tr>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">No</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Pendaftar</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Nama Kursus</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tanggal Daftar</th>
                         <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
@@ -302,6 +310,7 @@ const PendaftarTable = () => {
                             <tr key={pendaftar.id}>
                                 <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pendaftar.user?.nama || "-"}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">{pendaftar.user?.email || "-"}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pendaftar.kursus?.nama || "-"}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">
                                     {formatTanggalIndonesia(
