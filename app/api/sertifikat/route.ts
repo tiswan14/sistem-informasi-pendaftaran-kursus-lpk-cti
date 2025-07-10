@@ -95,7 +95,7 @@ export async function POST(request: Request) {
   <p>Yth. <strong>${user.nama}</strong>,</p>
   <p>Selamat! Sertifikat Anda untuk program pelatihan <strong>${kursus.nama}</strong> dengan nomor <strong>${nomor}</strong> telah resmi diterbitkan.</p>
   <p>Anda dapat melihat atau mengunduh sertifikat melalui halaman berikut:</p>
-  <p><a href="https://lpk-cti.up.railway.app/riwayat-sertifikat" target="_blank">🔗 Riwayat Sertifikat</a></p>
+ <p><a href="https://kursus-lpkcti.vercel.app/sertifikat" target="_blank">🔗 Riwayat Sertifikat</a></p>
   <br />
   <p>Terima kasih atas partisipasi Anda.</p>
   <p><strong>Salam hormat,</strong><br />LPK CTI</p>

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { prisma } from "@/lib/prisma";
-import { sendEmail } from "@/lib/email"; 
+import { sendEmail } from "@/lib/email";
 
 export const dynamic = 'force-dynamic'
 
@@ -91,7 +91,7 @@ export async function PATCH(
       <p>Pendaftaran Anda untuk kursus <strong>${kursus.nama}</strong> telah <strong>terverifikasi</strong>.</p>
       <p>Silakan segera melakukan pembayaran melalui sistem kami untuk melanjutkan proses pelatihan.</p>
       <p>Anda dapat melihat status dan melakukan pembayaran melalui halaman berikut:</p>
-      <p><a href="https://lpk-cti.up.railway.app/riwayat-pendaftaran" target="_blank">🔗 Cek Riwayat Pendaftaran</a></p>
+      <p><a href="https://kursus-lpkcti.vercel.app/riwayat-pendaftaran" target="_blank">🔗 Cek Riwayat Pendaftaran</a></p>
       <br />
       <p>Terima kasih,</p>
       <p><strong>LPK CTI</strong></p>
