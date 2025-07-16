@@ -25,7 +25,7 @@ const Sidebar = () => {
     };
 
     return (
-        <aside className={`${collapsed ? 'w-20' : 'w-64'} bg-white text-gray-700 flex flex-col h-screen border-r border-gray-200 transition-all duration-300`}>
+        <aside className={`${collapsed ? 'w-20' : 'w-64'} bg-white text-gray-700 flex flex-col fixed h-screen border-r border-gray-200 transition-all duration-300`}>
             {/* Logo and Title */}
             <div className={`py-4 px-5 flex items-center ${collapsed ? 'justify-center' : 'justify-between'} border-b border-gray-200 h-[78px]`}>
                 {!collapsed && (
@@ -42,13 +42,6 @@ const Sidebar = () => {
                         <span className="text-lg font-semibold text-gray-800">LPK CTI</span>
                     </div>
                 )}
-                <button
-                    onClick={toggleSidebar}
-                    className="p-2 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-700 transition-colors"
-                    aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-                >
-                    {collapsed ? <FaChevronRight size={14} /> : <FaChevronLeft size={14} />}
-                </button>
             </div>
 
             {/* Navigation */}

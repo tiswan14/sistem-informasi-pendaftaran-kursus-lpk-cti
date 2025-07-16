@@ -6,7 +6,11 @@ import { useState, useRef, useEffect } from "react";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 
-const Header = () => {
+interface HeaderProps {
+    collapsed?: boolean;
+}
+
+const Header = ({ collapsed }: HeaderProps) => {
     const [isDropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     const { data: session, status } = useSession();
@@ -25,7 +29,7 @@ const Header = () => {
     const isLoading = status === "loading";
 
     return (
-        <header className="bg-white border-b border-gray-200 flex items-center justify-between px-6 py-4 sticky top-0 z-40 shadow-sm">
+        <header className={`bg-white border-b border-gray-200 flex items-center justify-between px-6 py-4 sticky top-0 z-40 shadow-sm ${collapsed ? "ml-20" : "ml-64"} transition-all duration-300`}>
             {/* Left Section - Title */}
             <div className="flex items-center space-x-3">
                 <h1 className="text-xl font-bold text-gray-900 tracking-tight">Admin Panel</h1>
@@ -41,8 +45,8 @@ const Header = () => {
                         </div>
                     ) : (
                         <div className="flex flex-col items-end">
-                            <p className="text-sm font-medium text-gray-900">Tiswan</p>
-                            <p className="text-xs text-gray-500 capitalize">admin</p>
+                            <p className="text-sm font-medium text-gray-900">{session?.user?.name || 'Admin'}</p>
+                            <p className="text-xs text-gray-500 capitalize">{session?.user?.role?.toLowerCase() || 'admin'}</p>
                         </div>
                     )}
 
@@ -99,7 +103,6 @@ const Header = () => {
                 </div>
             </div>
         </header>
-
     );
 };
 
