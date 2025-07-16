@@ -1,4 +1,4 @@
-export const runtime = 'edge';
+export const runtime = 'nodejs';
 
-import { handlers } from "@/auth" 
+import { handlers } from "@/auth"
 export const { GET, POST } = handlers
