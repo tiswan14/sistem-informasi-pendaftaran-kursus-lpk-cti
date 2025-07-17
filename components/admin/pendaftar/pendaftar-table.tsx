@@ -309,7 +309,17 @@ const PendaftarTable = () => {
                         pendaftarData.map((pendaftar, index) => (
                             <tr key={pendaftar.id}>
                                 <td className="px-6 py-4 whitespace-nowrap">{index + 1}</td>
-                                <td className="px-6 py-4 whitespace-nowrap">{pendaftar.user?.nama || "-"}</td>
+                                <td className="px-6 py-4 whitespace-nowrap">
+                                    {(() => {
+                                        const nama = pendaftar.user?.nama;
+                                        if (!nama) return "-";
+                                        const parts = nama.trim().split(" ");
+                                        if (parts.length === 1) return parts[0];
+                                        if (parts.length === 2) return `${parts[0]} ${parts[1][0]}.`;
+                                        return `${parts[0]} ${parts[1]} ${parts[parts.length - 1][0]}.`;
+                                    })()}
+                                </td>
+
                                 <td className="px-6 py-4 whitespace-nowrap">{pendaftar.user?.email || "-"}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">{pendaftar.kursus?.nama || "-"}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">

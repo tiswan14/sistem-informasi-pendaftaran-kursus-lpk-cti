@@ -9,6 +9,7 @@ import { Kursus, KursusDetailProps } from '@/types/kursus';
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { FaWhatsapp } from "react-icons/fa";
 const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
     const [kursus, setKursus] = useState<Kursus | null>(null);
     const [loading, setLoading] = useState(true);
@@ -185,7 +186,7 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                             <Banknote className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-600" />
                         </div>
                         <div className="overflow-hidden">
-                            <p className="text-xs sm:text-sm text-gray-500 truncate">Biaya per Bulan</p>
+                            <p className="text-xs sm:text-sm text-gray-500 truncate">Biaya Kursus</p>
                             <p className="font-bold text-sm sm:text-base truncate">
                                 Rp {(kursus.harga).toLocaleString("id-ID")}
                             </p>
@@ -203,7 +204,7 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                         <div className="overflow-hidden">
                             <p className="text-xs sm:text-sm text-gray-500 truncate">Durasi Belajar</p>
                             <p className="font-bold text-sm sm:text-base truncate">
-                                {kursus.lamaKursus} bulan
+                                {kursus.lamaKursus} jam
                             </p>
                         </div>
                     </div>
@@ -256,7 +257,7 @@ const KursusDetail: React.FC<KursusDetailProps> = ({ kursusId }) => {
                     rel="noopener noreferrer"
                     className="flex-1 py-3 sm:py-4 px-4 sm:px-6 bg-white text-gray-800 font-medium rounded-lg sm:rounded-xl border border-gray-200 hover:border-indigo-300 hover:text-indigo-700 transition-all duration-300 shadow-sm hover:shadow-md flex items-center justify-center gap-2 sm:gap-3 text-sm sm:text-base"
                 >
-                    <MessageCircleMore className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
                     <span>Tanya Tentang Kursus</span>
                 </Link>
 

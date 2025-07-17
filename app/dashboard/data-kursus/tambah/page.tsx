@@ -110,19 +110,23 @@ const TambahKursus = () => {
     useEffect(() => {
         if (formData.tanggalMulai && formData.lamaKursus) {
             const mulai = new Date(formData.tanggalMulai);
-            const durasiBulan = parseInt(formData.lamaKursus);
+            const totalJam = parseInt(formData.lamaKursus);
 
-            if (!isNaN(durasiBulan)) {
+            const jamPerHari = 2; // asumsi 2 jam per hari
+            const totalHari = Math.ceil(totalJam / jamPerHari);
+
+            if (!isNaN(totalHari)) {
                 const selesai = new Date(mulai);
-                selesai.setMonth(selesai.getMonth() + durasiBulan);
+                selesai.setDate(selesai.getDate() + totalHari);
 
                 setFormData((prev) => ({
                     ...prev,
-                    tanggalSelesai: selesai.toISOString().split("T")[0], // yyyy-mm-dd
+                    tanggalSelesai: selesai.toISOString().split("T")[0], // format yyyy-mm-dd
                 }));
             }
         }
     }, [formData.tanggalMulai, formData.lamaKursus]);
+
 
 
 
@@ -225,7 +229,7 @@ const TambahKursus = () => {
 
 
                     <div>
-                        <label className="block text-sm font-semibold text-gray-800 mb-1">Lama Kursus (bulan)</label>
+                        <label className="block text-sm font-semibold text-gray-800 mb-1">Lama Kursus (jam)</label>
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                 <Clock className="h-4 w-4 text-gray-500" />
@@ -236,7 +240,7 @@ const TambahKursus = () => {
                                 value={formData.lamaKursus}
                                 onChange={handleChange}
                                 className="block w-full pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 focus:ring-2 focus:ring-blue-500 bg-gray-50"
-                                placeholder="Durasi dalam bulan"
+                                placeholder="Durasi dalam jam"
                                 min="0"
                             />
                         </div>

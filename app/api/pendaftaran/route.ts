@@ -87,7 +87,6 @@ export async function POST(request: Request) {
             user?.tahunAkademik,
             user?.noHp,
             user?.email,
-            user?.mediaSosial,
         ];
 
         const profilLengkap = wajibIsi.every((field) => !!field);

@@ -118,7 +118,6 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
             </div>
         );
     }
-    const totalAmount = pendaftaran.kursus.harga * pendaftaran.kursus.lamaKursus;
 
 
     const handlePayment = async () => {
@@ -131,7 +130,7 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
                     phone: pendaftaran?.user.noHp || "",
                 },
                 transaction: {
-                    total: totalAmount,
+                    total: pendaftaran?.kursus.harga || 0,
                 },
             };
 
@@ -187,6 +186,14 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
             setIsProcessingPayment(false);
         }
     };
+    function hitungDurasiHari(tanggalMulai: string, tanggalSelesai: string): number {
+        const mulai = new Date(tanggalMulai);
+        const selesai = new Date(tanggalSelesai);
+        const selisih = selesai.getTime() - mulai.getTime();
+        const hari = Math.ceil(selisih / (1000 * 60 * 60 * 24)) + 1; // ditambah 1 supaya inklusif
+        return hari;
+    }
+
 
 
 
@@ -246,7 +253,7 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
                                 </div>
 
                                 <div className="flex justify-between py-2.5 px-3 bg-gray-50 rounded-lg">
-                                    <span className="text-gray-600">Harga per Bulan</span>
+                                    <span className="text-gray-600">Harga Kursus</span>
                                     <span className="font-medium text-gray-800">{formatRupiah(pendaftaran.kursus.harga)}</span>
                                 </div>
 
@@ -255,8 +262,11 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
                                         <CalendarClock className="w-4 h-4 mr-2 text-blue-500" />
                                         Durasi Kursus
                                     </span>
-                                    <span className="font-medium text-gray-800">{pendaftaran.kursus.lamaKursus} bulan</span>
+                                    <span className="font-medium text-gray-800">
+                                        {pendaftaran.kursus.lamaKursus} jam / {hitungDurasiHari(pendaftaran.kursus.tanggalMulai, pendaftaran.kursus.tanggalSelesai)} hari
+                                    </span>
                                 </div>
+
                             </div>
                         </div>
 
@@ -272,12 +282,13 @@ const PembayaranDetailComponent: React.FC<PembayaranDetailProps> = ({ id }) => {
 
                                 <div className="flex justify-between items-center bg-white/70 py-2 px-3 rounded-lg">
                                     <span className="text-sm text-gray-500">
-                                        ({formatRupiah(pendaftaran.kursus.harga)} × {pendaftaran.kursus.lamaKursus} bulan)
+                                        Paket {pendaftaran.kursus.lamaKursus} jam
                                     </span>
                                     <span className="text-xl font-bold text-blue-600">
-                                        {formatRupiah(pendaftaran.kursus.harga * pendaftaran.kursus.lamaKursus)}
+                                        {formatRupiah(pendaftaran.kursus.harga)}
                                     </span>
                                 </div>
+
                             </div>
                         </div>
 

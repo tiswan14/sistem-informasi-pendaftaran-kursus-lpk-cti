@@ -201,7 +201,7 @@ const KursusTable = () => {
                                 </td>
 
                                 <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">
-                                    {kursus.lamaKursus} bulan
+                                    {kursus.lamaKursus} jam
                                 </td>
 
                                 <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">
@@ -213,7 +213,7 @@ const KursusTable = () => {
                                 </td>
 
                                 <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    {formatRupiah(kursus.harga)}<span className="text-xs text-gray-400">/bulan</span>
+                                    {formatRupiah(kursus.harga)}<span className="text-xs text-gray-400"></span>
                                 </td>
 
                                 <td className="px-3 py-3 whitespace-nowrap">

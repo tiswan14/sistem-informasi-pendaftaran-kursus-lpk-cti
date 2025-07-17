@@ -63,7 +63,7 @@ const DetailInstrukturPage = () => {
         { label: "Jenis Kelamin", value: instruktur.jenisKelamin, icon: UserCircle },
         { label: "Nomor HP", value: instruktur.noHp, icon: Phone },
         { label: "Email", value: instruktur.email, icon: Mail },
-        { label: "Keahlian", value: instruktur.keahlian, icon: Wrench },
+        { label: "Jurusan", value: instruktur.keahlian, icon: Wrench },
         { label: "Jabatan", value: instruktur.jabatan, icon: Briefcase },
     ];
 
