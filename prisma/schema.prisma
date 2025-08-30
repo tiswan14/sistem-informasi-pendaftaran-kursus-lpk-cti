@@ -91,6 +91,7 @@ model Kursus {
   lamaKursus     Int?
   status         String    @default("aktif")
   thumbnail      String?
+  kuota          Int?
   tanggalMulai   DateTime?
   tanggalSelesai DateTime?
   createdAt      DateTime  @default(now())

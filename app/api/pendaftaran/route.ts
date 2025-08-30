@@ -133,6 +133,45 @@ export async function POST(request: Request) {
             );
         }
 
+        // === Cek kuota kursus ===
+        const kursus = await prisma.kursus.findUnique({
+            where: { id: kursusId },
+            select: {
+                id: true,
+                nama: true,
+                kuota: true,
+                _count: {
+                    select: {
+                        pendaftaran: {
+                            where: {
+                                // Hanya hitung pendaftaran yang aktif/valid
+                                status: {
+                                    notIn: ["Dibatalkan", "Ditolak"]
+                                }
+                            }
+                        }
+                    }
+                },
+            },
+        });
+
+        if (!kursus) {
+            return NextResponse.json(
+                { message: "Kursus tidak ditemukan." },
+                { status: 404 }
+            );
+        }
+
+        const { kuota, _count } = kursus;
+
+        if (kuota !== null && (kuota === 0 || _count.pendaftaran > kuota)) {
+            return NextResponse.json(
+                { message: "Kuota kursus sudah penuh, tidak bisa mendaftar." },
+                { status: 400 }
+            );
+        }
+
+
         const pendaftaran = await prisma.pendaftaran.create({
             data: {
                 user: { connect: { id: userId } },

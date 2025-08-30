@@ -64,7 +64,6 @@ export async function PATCH(
 
     try {
         const { status }: { status: string } = await request.json();
-
         const allowedStatus = ["Menunggu Verifikasi", "Terverifikasi", "Lulus Pelatihan"];
 
         if (!allowedStatus.includes(status)) {
@@ -76,40 +75,42 @@ export async function PATCH(
             data: { status },
             include: {
                 user: { select: { email: true, nama: true } },
-                kursus: { select: { nama: true } },
+                kursus: { select: { nama: true, id: true } },
             },
         });
 
         const { user, kursus } = updatedPendaftaran;
 
         if (status === "Terverifikasi") {
+            await prisma.kursus.update({
+                where: { id: kursus.id },
+                data: { kuota: { decrement: 1 } },
+            });
+
             await sendEmail({
                 to: user.email,
                 subject: `Pendaftaran Anda Telah Diverifikasi`,
                 html: `
-      <p>Halo <strong>${user.nama}</strong>,</p>
-      <p>Pendaftaran Anda untuk kursus <strong>${kursus.nama}</strong> telah <strong>terverifikasi</strong>.</p>
-      <p>Silakan segera melakukan pembayaran melalui sistem kami untuk melanjutkan proses pelatihan.</p>
-      <p>Anda dapat melihat status dan melakukan pembayaran melalui halaman berikut:</p>
-      <p><a href="https://kursus-lpkcti.vercel.app/riwayat-pendaftaran" target="_blank">🔗 Cek Riwayat Pendaftaran</a></p>
-      <br />
-      <p>Terima kasih,</p>
-      <p><strong>LPK CTI</strong></p>
-    `,
+          <p>Halo <strong>${user.nama}</strong>,</p>
+          <p>Pendaftaran Anda untuk kursus <strong>${kursus.nama}</strong> telah <strong>terverifikasi</strong>.</p>
+          <p>Silakan segera melakukan pembayaran melalui sistem kami untuk melanjutkan proses pelatihan.</p>
+          <p><a href="https://kursus-lpkcti.vercel.app/riwayat-pendaftaran" target="_blank">🔗 Cek Riwayat Pendaftaran</a></p>
+          <br />
+          <p>Terima kasih,</p>
+          <p><strong>LPK CTI</strong></p>
+        `,
             });
         }
 
-
         return NextResponse.json(updatedPendaftaran);
     } catch (error: unknown) {
-        console.error("Error:", error);
-        const message =
-            error instanceof Error ? error.message : "Gagal memperbarui status";
+        const message = error instanceof Error ? error.message : "Gagal memperbarui status";
         return NextResponse.json({ error: message }, { status: 500 });
     } finally {
         await prisma.$disconnect();
     }
 }
+
 
 
 // DELETE handler

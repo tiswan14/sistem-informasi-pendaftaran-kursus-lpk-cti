@@ -6394,9 +6394,9 @@ export namespace Prisma {
     deskripsi: string | null
     harga: number | null
     lamaKursus: number | null
-    kuota: number | null
     status: string | null
     thumbnail: string | null
+    kuota: number | null
     tanggalMulai: Date | null
     tanggalSelesai: Date | null
     createdAt: Date | null
@@ -6410,9 +6410,9 @@ export namespace Prisma {
     deskripsi: string | null
     harga: number | null
     lamaKursus: number | null
-    kuota: number | null
     status: string | null
     thumbnail: string | null
+    kuota: number | null
     tanggalMulai: Date | null
     tanggalSelesai: Date | null
     createdAt: Date | null
@@ -6426,9 +6426,9 @@ export namespace Prisma {
     deskripsi: number
     harga: number
     lamaKursus: number
-    kuota: number
     status: number
     thumbnail: number
+    kuota: number
     tanggalMulai: number
     tanggalSelesai: number
     createdAt: number
@@ -6456,9 +6456,9 @@ export namespace Prisma {
     deskripsi?: true
     harga?: true
     lamaKursus?: true
-    kuota?: true
     status?: true
     thumbnail?: true
+    kuota?: true
     tanggalMulai?: true
     tanggalSelesai?: true
     createdAt?: true
@@ -6472,9 +6472,9 @@ export namespace Prisma {
     deskripsi?: true
     harga?: true
     lamaKursus?: true
-    kuota?: true
     status?: true
     thumbnail?: true
+    kuota?: true
     tanggalMulai?: true
     tanggalSelesai?: true
     createdAt?: true
@@ -6488,9 +6488,9 @@ export namespace Prisma {
     deskripsi?: true
     harga?: true
     lamaKursus?: true
-    kuota?: true
     status?: true
     thumbnail?: true
+    kuota?: true
     tanggalMulai?: true
     tanggalSelesai?: true
     createdAt?: true
@@ -6591,9 +6591,9 @@ export namespace Prisma {
     deskripsi: string | null
     harga: number
     lamaKursus: number | null
-    kuota: number | null
     status: string
     thumbnail: string | null
+    kuota: number | null
     tanggalMulai: Date | null
     tanggalSelesai: Date | null
     createdAt: Date
@@ -6626,9 +6626,9 @@ export namespace Prisma {
     deskripsi?: boolean
     harga?: boolean
     lamaKursus?: boolean
-    kuota?: boolean
     status?: boolean
     thumbnail?: boolean
+    kuota?: boolean
     tanggalMulai?: boolean
     tanggalSelesai?: boolean
     createdAt?: boolean
@@ -6646,9 +6646,9 @@ export namespace Prisma {
     deskripsi?: boolean
     harga?: boolean
     lamaKursus?: boolean
-    kuota?: boolean
     status?: boolean
     thumbnail?: boolean
+    kuota?: boolean
     tanggalMulai?: boolean
     tanggalSelesai?: boolean
     createdAt?: boolean
@@ -6663,9 +6663,9 @@ export namespace Prisma {
     deskripsi?: boolean
     harga?: boolean
     lamaKursus?: boolean
-    kuota?: boolean
     status?: boolean
     thumbnail?: boolean
+    kuota?: boolean
     tanggalMulai?: boolean
     tanggalSelesai?: boolean
     createdAt?: boolean
@@ -6680,9 +6680,9 @@ export namespace Prisma {
     deskripsi?: boolean
     harga?: boolean
     lamaKursus?: boolean
-    kuota?: boolean
     status?: boolean
     thumbnail?: boolean
+    kuota?: boolean
     tanggalMulai?: boolean
     tanggalSelesai?: boolean
     createdAt?: boolean
@@ -6690,7 +6690,7 @@ export namespace Prisma {
     userId?: boolean
   }
 
-  export type KursusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "deskripsi" | "harga" | "lamaKursus" | "kuota" | "status" | "thumbnail" | "tanggalMulai" | "tanggalSelesai" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["kursus"]>
+  export type KursusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nama" | "deskripsi" | "harga" | "lamaKursus" | "status" | "thumbnail" | "kuota" | "tanggalMulai" | "tanggalSelesai" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["kursus"]>
   export type KursusInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | Kursus$userArgs<ExtArgs>
     pendaftaran?: boolean | Kursus$pendaftaranArgs<ExtArgs>
@@ -6717,9 +6717,9 @@ export namespace Prisma {
       deskripsi: string | null
       harga: number
       lamaKursus: number | null
-      kuota: number | null
       status: string
       thumbnail: string | null
+      kuota: number | null
       tanggalMulai: Date | null
       tanggalSelesai: Date | null
       createdAt: Date
@@ -7156,9 +7156,9 @@ export namespace Prisma {
     readonly deskripsi: FieldRef<"Kursus", 'String'>
     readonly harga: FieldRef<"Kursus", 'Int'>
     readonly lamaKursus: FieldRef<"Kursus", 'Int'>
-    readonly kuota: FieldRef<"Kursus", 'Int'>
     readonly status: FieldRef<"Kursus", 'String'>
     readonly thumbnail: FieldRef<"Kursus", 'String'>
+    readonly kuota: FieldRef<"Kursus", 'Int'>
     readonly tanggalMulai: FieldRef<"Kursus", 'DateTime'>
     readonly tanggalSelesai: FieldRef<"Kursus", 'DateTime'>
     readonly createdAt: FieldRef<"Kursus", 'DateTime'>
@@ -12515,9 +12515,9 @@ export namespace Prisma {
     deskripsi: 'deskripsi',
     harga: 'harga',
     lamaKursus: 'lamaKursus',
-    kuota: 'kuota',
     status: 'status',
     thumbnail: 'thumbnail',
+    kuota: 'kuota',
     tanggalMulai: 'tanggalMulai',
     tanggalSelesai: 'tanggalSelesai',
     createdAt: 'createdAt',
@@ -13035,9 +13035,9 @@ export namespace Prisma {
     deskripsi?: StringNullableFilter<"Kursus"> | string | null
     harga?: IntFilter<"Kursus"> | number
     lamaKursus?: IntNullableFilter<"Kursus"> | number | null
-    kuota?: IntNullableFilter<"Kursus"> | number | null
     status?: StringFilter<"Kursus"> | string
     thumbnail?: StringNullableFilter<"Kursus"> | string | null
+    kuota?: IntNullableFilter<"Kursus"> | number | null
     tanggalMulai?: DateTimeNullableFilter<"Kursus"> | Date | string | null
     tanggalSelesai?: DateTimeNullableFilter<"Kursus"> | Date | string | null
     createdAt?: DateTimeFilter<"Kursus"> | Date | string
@@ -13054,9 +13054,9 @@ export namespace Prisma {
     deskripsi?: SortOrderInput | SortOrder
     harga?: SortOrder
     lamaKursus?: SortOrderInput | SortOrder
-    kuota?: SortOrderInput | SortOrder
     status?: SortOrder
     thumbnail?: SortOrderInput | SortOrder
+    kuota?: SortOrderInput | SortOrder
     tanggalMulai?: SortOrderInput | SortOrder
     tanggalSelesai?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -13076,9 +13076,9 @@ export namespace Prisma {
     deskripsi?: StringNullableFilter<"Kursus"> | string | null
     harga?: IntFilter<"Kursus"> | number
     lamaKursus?: IntNullableFilter<"Kursus"> | number | null
-    kuota?: IntNullableFilter<"Kursus"> | number | null
     status?: StringFilter<"Kursus"> | string
     thumbnail?: StringNullableFilter<"Kursus"> | string | null
+    kuota?: IntNullableFilter<"Kursus"> | number | null
     tanggalMulai?: DateTimeNullableFilter<"Kursus"> | Date | string | null
     tanggalSelesai?: DateTimeNullableFilter<"Kursus"> | Date | string | null
     createdAt?: DateTimeFilter<"Kursus"> | Date | string
@@ -13095,9 +13095,9 @@ export namespace Prisma {
     deskripsi?: SortOrderInput | SortOrder
     harga?: SortOrder
     lamaKursus?: SortOrderInput | SortOrder
-    kuota?: SortOrderInput | SortOrder
     status?: SortOrder
     thumbnail?: SortOrderInput | SortOrder
+    kuota?: SortOrderInput | SortOrder
     tanggalMulai?: SortOrderInput | SortOrder
     tanggalSelesai?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -13119,9 +13119,9 @@ export namespace Prisma {
     deskripsi?: StringNullableWithAggregatesFilter<"Kursus"> | string | null
     harga?: IntWithAggregatesFilter<"Kursus"> | number
     lamaKursus?: IntNullableWithAggregatesFilter<"Kursus"> | number | null
-    kuota?: IntNullableWithAggregatesFilter<"Kursus"> | number | null
     status?: StringWithAggregatesFilter<"Kursus"> | string
     thumbnail?: StringNullableWithAggregatesFilter<"Kursus"> | string | null
+    kuota?: IntNullableWithAggregatesFilter<"Kursus"> | number | null
     tanggalMulai?: DateTimeNullableWithAggregatesFilter<"Kursus"> | Date | string | null
     tanggalSelesai?: DateTimeNullableWithAggregatesFilter<"Kursus"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Kursus"> | Date | string
@@ -13902,9 +13902,9 @@ export namespace Prisma {
     deskripsi?: string | null
     harga: number
     lamaKursus?: number | null
-    kuota?: number | null
     status?: string
     thumbnail?: string | null
+    kuota?: number | null
     tanggalMulai?: Date | string | null
     tanggalSelesai?: Date | string | null
     createdAt?: Date | string
@@ -13920,9 +13920,9 @@ export namespace Prisma {
     deskripsi?: string | null
     harga: number
     lamaKursus?: number | null
-    kuota?: number | null
     status?: string
     thumbnail?: string | null
+    kuota?: number | null
     tanggalMulai?: Date | string | null
     tanggalSelesai?: Date | string | null
     createdAt?: Date | string
@@ -13938,9 +13938,9 @@ export namespace Prisma {
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     harga?: IntFieldUpdateOperationsInput | number
     lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13956,9 +13956,9 @@ export namespace Prisma {
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     harga?: IntFieldUpdateOperationsInput | number
     lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13974,9 +13974,9 @@ export namespace Prisma {
     deskripsi?: string | null
     harga: number
     lamaKursus?: number | null
-    kuota?: number | null
     status?: string
     thumbnail?: string | null
+    kuota?: number | null
     tanggalMulai?: Date | string | null
     tanggalSelesai?: Date | string | null
     createdAt?: Date | string
@@ -13990,9 +13990,9 @@ export namespace Prisma {
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     harga?: IntFieldUpdateOperationsInput | number
     lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14005,9 +14005,9 @@ export namespace Prisma {
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     harga?: IntFieldUpdateOperationsInput | number
     lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14847,9 +14847,9 @@ export namespace Prisma {
     deskripsi?: SortOrder
     harga?: SortOrder
     lamaKursus?: SortOrder
-    kuota?: SortOrder
     status?: SortOrder
     thumbnail?: SortOrder
+    kuota?: SortOrder
     tanggalMulai?: SortOrder
     tanggalSelesai?: SortOrder
     createdAt?: SortOrder
@@ -14869,9 +14869,9 @@ export namespace Prisma {
     deskripsi?: SortOrder
     harga?: SortOrder
     lamaKursus?: SortOrder
-    kuota?: SortOrder
     status?: SortOrder
     thumbnail?: SortOrder
+    kuota?: SortOrder
     tanggalMulai?: SortOrder
     tanggalSelesai?: SortOrder
     createdAt?: SortOrder
@@ -14885,9 +14885,9 @@ export namespace Prisma {
     deskripsi?: SortOrder
     harga?: SortOrder
     lamaKursus?: SortOrder
-    kuota?: SortOrder
     status?: SortOrder
     thumbnail?: SortOrder
+    kuota?: SortOrder
     tanggalMulai?: SortOrder
     tanggalSelesai?: SortOrder
     createdAt?: SortOrder
@@ -16283,9 +16283,9 @@ export namespace Prisma {
     deskripsi?: string | null
     harga: number
     lamaKursus?: number | null
-    kuota?: number | null
     status?: string
     thumbnail?: string | null
+    kuota?: number | null
     tanggalMulai?: Date | string | null
     tanggalSelesai?: Date | string | null
     createdAt?: Date | string
@@ -16300,9 +16300,9 @@ export namespace Prisma {
     deskripsi?: string | null
     harga: number
     lamaKursus?: number | null
-    kuota?: number | null
     status?: string
     thumbnail?: string | null
+    kuota?: number | null
     tanggalMulai?: Date | string | null
     tanggalSelesai?: Date | string | null
     createdAt?: Date | string
@@ -16560,9 +16560,9 @@ export namespace Prisma {
     deskripsi?: StringNullableFilter<"Kursus"> | string | null
     harga?: IntFilter<"Kursus"> | number
     lamaKursus?: IntNullableFilter<"Kursus"> | number | null
-    kuota?: IntNullableFilter<"Kursus"> | number | null
     status?: StringFilter<"Kursus"> | string
     thumbnail?: StringNullableFilter<"Kursus"> | string | null
+    kuota?: IntNullableFilter<"Kursus"> | number | null
     tanggalMulai?: DateTimeNullableFilter<"Kursus"> | Date | string | null
     tanggalSelesai?: DateTimeNullableFilter<"Kursus"> | Date | string | null
     createdAt?: DateTimeFilter<"Kursus"> | Date | string
@@ -17009,9 +17009,9 @@ export namespace Prisma {
     deskripsi?: string | null
     harga: number
     lamaKursus?: number | null
-    kuota?: number | null
     status?: string
     thumbnail?: string | null
+    kuota?: number | null
     tanggalMulai?: Date | string | null
     tanggalSelesai?: Date | string | null
     createdAt?: Date | string
@@ -17026,9 +17026,9 @@ export namespace Prisma {
     deskripsi?: string | null
     harga: number
     lamaKursus?: number | null
-    kuota?: number | null
     status?: string
     thumbnail?: string | null
+    kuota?: number | null
     tanggalMulai?: Date | string | null
     tanggalSelesai?: Date | string | null
     createdAt?: Date | string
@@ -17124,9 +17124,9 @@ export namespace Prisma {
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     harga?: IntFieldUpdateOperationsInput | number
     lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17141,9 +17141,9 @@ export namespace Prisma {
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     harga?: IntFieldUpdateOperationsInput | number
     lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17294,9 +17294,9 @@ export namespace Prisma {
     deskripsi?: string | null
     harga: number
     lamaKursus?: number | null
-    kuota?: number | null
     status?: string
     thumbnail?: string | null
+    kuota?: number | null
     tanggalMulai?: Date | string | null
     tanggalSelesai?: Date | string | null
     createdAt?: Date | string
@@ -17311,9 +17311,9 @@ export namespace Prisma {
     deskripsi?: string | null
     harga: number
     lamaKursus?: number | null
-    kuota?: number | null
     status?: string
     thumbnail?: string | null
+    kuota?: number | null
     tanggalMulai?: Date | string | null
     tanggalSelesai?: Date | string | null
     createdAt?: Date | string
@@ -17489,9 +17489,9 @@ export namespace Prisma {
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     harga?: IntFieldUpdateOperationsInput | number
     lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17506,9 +17506,9 @@ export namespace Prisma {
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     harga?: IntFieldUpdateOperationsInput | number
     lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18001,9 +18001,9 @@ export namespace Prisma {
     deskripsi?: string | null
     harga: number
     lamaKursus?: number | null
-    kuota?: number | null
     status?: string
     thumbnail?: string | null
+    kuota?: number | null
     tanggalMulai?: Date | string | null
     tanggalSelesai?: Date | string | null
     createdAt?: Date | string
@@ -18091,9 +18091,9 @@ export namespace Prisma {
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     harga?: IntFieldUpdateOperationsInput | number
     lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18108,9 +18108,9 @@ export namespace Prisma {
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     harga?: IntFieldUpdateOperationsInput | number
     lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18125,9 +18125,9 @@ export namespace Prisma {
     deskripsi?: NullableStringFieldUpdateOperationsInput | string | null
     harga?: IntFieldUpdateOperationsInput | number
     lamaKursus?: NullableIntFieldUpdateOperationsInput | number | null
-    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     status?: StringFieldUpdateOperationsInput | string
     thumbnail?: NullableStringFieldUpdateOperationsInput | string | null
+    kuota?: NullableIntFieldUpdateOperationsInput | number | null
     tanggalMulai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     tanggalSelesai?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

@@ -92,13 +92,29 @@ export async function GET() {
                         id: true,
                         nama: true
                     }
+                },
+                pendaftaran: {
+                    where: {
+                        status: "Terverifikasi"
+                    },
+                    select: {
+                        id: true // bisa dikurangi, hanya untuk .length
+                    }
                 }
             },
             orderBy: {
                 nama: "asc"
             }
         });
-        return NextResponse.json(allKursus);
+
+        // Hitung jumlah pendaftar terverifikasi dan hapus array-nya agar response ringan
+        const kursusWithCount = allKursus.map(kursus => ({
+            ...kursus,
+            jumlahTerverifikasi: kursus.pendaftaran.length,
+            pendaftaran: undefined // hapus data array pendaftaran agar ringan
+        }));
+
+        return NextResponse.json(kursusWithCount);
 
     } catch (error) {
         console.error("Gagal fetch kursus:", error);

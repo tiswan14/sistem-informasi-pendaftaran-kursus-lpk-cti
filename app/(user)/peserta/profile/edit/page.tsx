@@ -209,6 +209,11 @@ const EditProfilePage = () => {
                                     )}
                                 </div>
 
+                                {errors.nik && (
+                                    <p className="text-sm text-red-500 mt-1">{errors.nik.message}</p>
+                                )}
+
+
                                 <div className="space-y-1">
                                     <label className="flex items-center gap-2 text-sm font-medium text-gray-700">
                                         <Bookmark className="w-5 h-5 text-blue-500" />
@@ -216,11 +221,23 @@ const EditProfilePage = () => {
                                     </label>
                                     <input
                                         type="text"
-                                        {...register("nik")}
+                                        inputMode="numeric"
+                                        {...register("nik", {
+                                            required: "NIK wajib diisi",
+                                            pattern: {
+                                                value: /^[0-9]+$/,
+                                                message: "NIK hanya boleh berisi angka"
+                                            }
+                                        })}
+                                        onInput={(e) => {
+                                            const input = e.target as HTMLInputElement;
+                                            input.value = input.value.replace(/[^0-9]/g, "");
+                                        }}
                                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                         placeholder="Masukkan NIK"
                                     />
                                 </div>
+
 
                                 <div className="space-y-1">
                                     <label className="flex items-center gap-2 text-sm font-medium text-gray-700">

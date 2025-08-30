@@ -21,6 +21,7 @@ const TambahKursus = () => {
         tanggalMulai: '',
         tanggalSelesai: '',
         status: 'aktif',
+        kuota: '',
     })
     const [thumbnailFile, setThumbnailFile] = useState<File | null>(null)
     const [instrukturId, setInstrukturId] = useState<string>('')
@@ -74,6 +75,8 @@ const TambahKursus = () => {
             fd.append("tanggalSelesai", formData.tanggalSelesai || "");
             fd.append("status", formData.status || "");
             fd.append("userId", instrukturId || "");
+            fd.append("kuota", formData.kuota || "");
+
 
             if (thumbnailFile) {
                 fd.append("thumbnail", thumbnailFile);
@@ -138,7 +141,8 @@ const TambahKursus = () => {
             lamaKursus: '',
             tanggalMulai: '',
             tanggalSelesai: '',
-            status: ''
+            status: '',
+            kuota: '',
         })
         setInstrukturId('')
     }
@@ -246,6 +250,25 @@ const TambahKursus = () => {
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <label className="block text-sm font-semibold text-gray-800 mb-1">Kuota Peserta</label>
+                    <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <User2 className="h-4 w-4 text-gray-500" />
+                        </div>
+                        <input
+                            type="number"
+                            name="kuota"
+                            value={formData.kuota}
+                            onChange={handleChange}
+                            className="block w-full pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 focus:ring-2 focus:ring-blue-500 bg-gray-50"
+                            placeholder="Jumlah kuota peserta"
+                            min="1"
+                        />
+                    </div>
+                </div>
+
 
                 <div className="space-y-4">
                     <div>

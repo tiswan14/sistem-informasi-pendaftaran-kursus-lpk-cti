@@ -17,6 +17,7 @@ import { toast } from "react-toastify";
 interface Pendaftaran {
     id: string;
     status: string;
+    sertifikat?: boolean;
     user?: {
         nama?: string;
     };
@@ -85,7 +86,9 @@ const TambahSertifikatForm = () => {
                 const response = await axios.get(`/api/pendaftaran?status=${encodeURIComponent(status)}`);
 
                 setPendaftaranList(
-                    response.data.filter((p: Pendaftaran) => p.status === status)
+                    response.data.filter((p: Pendaftaran) =>
+                        p.status === status && !p.sertifikat
+                    )
                 );
 
             } catch (error: unknown) {

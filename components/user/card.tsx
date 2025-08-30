@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
-import { UserCircle, Users, ArrowRight, Star, BookOpen } from 'lucide-react';
+import { UserCircle, Users, ArrowRight, Star, BookOpen, AlertCircle, AlertCircleIcon } from 'lucide-react';
 import Image from "next/image";
 
 interface Kursus {
@@ -9,7 +9,7 @@ interface Kursus {
     nama: string;
     harga: number;
     createdAt: string;
-    kapasitas?: number;
+    kuota?: number;
     thumbnail?: string;
 }
 
@@ -44,13 +44,25 @@ const Card = ({ kursus }: CardProps) => {
                         <BookOpen className="text-gray-300" size={32} />
                     </div>
                 )}
-                {/* Badge untuk kapasitas */}
-                {kursus.kapasitas !== undefined && (
+                {kursus.kuota !== undefined && (
                     <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full shadow-sm flex items-center gap-1">
-                        <Users size={14} className="text-blue-600" />
-                        <span className="text-xs font-medium text-gray-700">{kursus.kapasitas} tersisa</span>
+                        {kursus.kuota === 0 ? (
+                            <>
+                                <AlertCircleIcon size={14} className="text-red-600" />
+                                <span className="text-xs font-medium text-red-600">Penuh</span>
+                            </>
+                        ) : (
+                            <>
+                                <Users size={14} className="text-blue-600" />
+                                <span className="text-xs font-medium text-gray-700">
+                                    {kursus.kuota} tersisa
+                                </span>
+                            </>
+                        )}
                     </div>
                 )}
+
+
             </div>
 
             {/* Konten */}
@@ -86,12 +98,24 @@ const Card = ({ kursus }: CardProps) => {
 
                     {/* Tombol Daftar */}
                     <Link
-                        href={`/kursus/${kursus.id}`}
-                        className="w-full inline-flex items-center justify-center px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold text-sm rounded-lg shadow-md transition-all duration-200 group-hover:shadow-lg"
+                        href={kursus.kuota === 0 ? "#" : `/kursus/${kursus.id}`}
+                        className={`w-full inline-flex items-center justify-center px-4 py-3 
+    font-semibold text-sm rounded-lg shadow-md transition-all duration-200 
+    group-hover:shadow-lg
+    ${kursus.kuota === 0
+                                ? "bg-gray-400 cursor-not-allowed pointer-events-none text-gray-200"
+                                : "bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white"
+                            }`}
                     >
-                        Daftar Kursus
-                        <ArrowRight className="ml-2 transition-all duration-200 transform group-hover:translate-x-1" size={16} />
+                        {kursus.kuota === 0 ? "Kuota Penuh" : "Daftar Kursus"}
+                        {kursus.kuota !== 0 && (
+                            <ArrowRight
+                                className="ml-2 transition-all duration-200 transform group-hover:translate-x-1"
+                                size={16}
+                            />
+                        )}
                     </Link>
+
                 </div>
             </div>
         </div>

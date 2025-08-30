@@ -2,6 +2,7 @@
 "use client";
 import { formatRupiah } from "@/utils/formatRupiah";
 import { formatTanggalIndonesia } from "@/utils/formatTanggal";
+import { ClockIcon } from "lucide-react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -116,28 +117,29 @@ const KursusTable = () => {
             <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                     <tr>
-                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
-                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kursus</th>
-                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Instruktur</th>
-                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Durasi</th>
-                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Periode</th>
-                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga</th>
-                        <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                        <th className="px-3 py-2 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">#</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kursus</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Instruktur</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Durasi</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kuota</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Periode</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Harga</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
                     </tr>
                 </thead>
 
                 <tbody className="bg-white divide-y divide-gray-200">
                     {loading ? (
                         <tr>
-                            <td colSpan={7} className="py-10 text-center">
+                            <td colSpan={9} className="py-12 text-center">
                                 <div className="flex flex-col items-center justify-center gap-3">
-                                    <div className="animate-spin rounded-full h-14 w-14 border-4 border-blue-200 border-t-transparent border-r-transparent"></div>
+                                    <div className="animate-spin rounded-full h-14 w-14 border-4 border-blue-500 border-t-transparent"></div>
                                     <div>
-                                        <h3 className="text-md font-medium text-gray-600">
+                                        <h3 className="text-md font-medium text-gray-700">
                                             Memuat data kursus
                                         </h3>
-                                        <p className="text-sm text-gray-400 mt-1">
+                                        <p className="text-sm text-gray-500 mt-1">
                                             Harap tunggu sebentar...
                                         </p>
                                     </div>
@@ -146,36 +148,38 @@ const KursusTable = () => {
                         </tr>
                     ) : !kursusData.length ? (
                         <tr>
-                            <td colSpan={8} className="px-3 py-6 text-center">
+                            <td colSpan={9} className="px-4 py-8 text-center">
                                 <div className="flex flex-col items-center justify-center text-gray-400">
-                                    <svg className="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-10 h-10 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
-                                    <p className="text-sm">Belum ada data kursus</p>
+                                    <p className="text-sm font-medium">Belum ada data kursus</p>
                                 </div>
                             </td>
                         </tr>
                     ) : (
                         kursusData.map((kursus, index) => (
-                            <tr key={kursus.id} className="hover:bg-gray-50">
-                                <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">{index + 1}</td>
+                            <tr key={kursus.id} className="hover:bg-gray-50/50 transition-colors">
+                                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500 font-medium">
+                                    {index + 1}
+                                </td>
 
-                                <td className="px-2 py-3">
+                                <td className="px-4 py-4">
                                     <div className="flex items-center">
-                                        <div className="flex-shrink-0 h-12 w-12 bg-gray-100 rounded-md flex items-center justify-center">
+                                        <div className="flex-shrink-0 h-10 w-10 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
                                             {kursus.thumbnail ? (
                                                 <Image
                                                     src={kursus.thumbnail}
                                                     alt={kursus.nama}
-                                                    width={48}
-                                                    height={48}
-                                                    className="rounded-md object-cover h-full w-full"
+                                                    width={40}
+                                                    height={40}
+                                                    className="object-cover h-full w-full"
                                                 />
                                             ) : (
                                                 <div className="text-gray-400">
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
-                                                        className="h-6 w-6"
+                                                        className="h-5 w-5"
                                                         fill="none"
                                                         viewBox="0 0 24 24"
                                                         stroke="currentColor"
@@ -192,41 +196,65 @@ const KursusTable = () => {
                                         </div>
                                         <div className="ml-4">
                                             <p className="text-sm font-medium text-gray-900 line-clamp-1">{kursus.nama}</p>
+                                            <p className="text-xs text-gray-500 mt-1">{kursus.kategori}</p>
                                         </div>
                                     </div>
                                 </td>
 
-                                <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">
-                                    {kursus.user?.nama || '-'}
+                                <td className="px-4 py-4 whitespace-nowrap">
+                                    <p className="text-sm text-gray-900 font-medium">{kursus.user?.nama || '-'}</p>
+                                    <p className="text-xs text-gray-500">Instruktur</p>
                                 </td>
 
-                                <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">
-                                    {kursus.lamaKursus} jam
-                                </td>
-
-                                <td className="px-3 py-3 whitespace-nowrap text-sm text-gray-500">
-                                    <div className="flex flex-col">
-                                        <span>{formatTanggalIndonesia(kursus.tanggalMulai)}</span>
-                                        <span className="text-xs text-gray-400">s/d</span>
-                                        <span>{formatTanggalIndonesia(kursus.tanggalSelesai)}</span>
+                                <td className="px-4 py-4 whitespace-nowrap">
+                                    <div className="bg-blue-50 text-blue-700 px-2 py-1 rounded-full text-xs font-medium inline-flex items-center">
+                                        <ClockIcon className="h-3 w-3 mr-1" />
+                                        {kursus.lamaKursus} jam
                                     </div>
                                 </td>
 
-                                <td className="px-3 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    {formatRupiah(kursus.harga)}<span className="text-xs text-gray-400"></span>
+                                <td className="px-4 py-4 whitespace-nowrap">
+                                    <div className="flex flex-col">
+                                        <div className="flex items-center justify-between text-xs mb-1">
+                                            <span className="text-gray-500">Terisi</span>
+                                            <span className="font-medium">{kursus.jumlahTerverifikasi}/{kursus.kuota}</span>
+                                        </div>
+                                        <div className="w-full bg-gray-200 rounded-full h-1.5">
+                                            <div
+                                                className="bg-green-500 h-1.5 rounded-full"
+                                                style={{ width: `${Math.min(100, (kursus.jumlahTerverifikasi / kursus.kuota) * 100)}%` }}
+                                            ></div>
+                                        </div>
+                                        <span className="text-xs text-gray-500 mt-1">
+                                            {kursus.kuota - kursus.jumlahTerverifikasi} tersisa
+                                        </span>
+                                    </div>
                                 </td>
 
-                                <td className="px-3 py-3 whitespace-nowrap">
-                                    <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full 
-    ${kursus.status === 'aktif'
+                                <td className="px-4 py-4 whitespace-nowrap">
+                                    <div className="flex flex-col">
+                                        <span className="text-sm text-gray-900">{formatTanggalIndonesia(kursus.tanggalMulai)}</span>
+                                        <span className="text-xs text-gray-500">s/d {formatTanggalIndonesia(kursus.tanggalSelesai)}</span>
+                                    </div>
+                                </td>
+
+                                <td className="px-4 py-4 whitespace-nowrap">
+                                    <span className="text-sm font-semibold text-gray-900">
+                                        {formatRupiah(kursus.harga)}
+                                    </span>
+                                </td>
+
+                                <td className="px-4 py-4 whitespace-nowrap">
+                                    <span className={`px-2.5 py-1 inline-flex text-xs leading-4 font-medium rounded-full 
+                            ${kursus.status === 'aktif'
                                             ? 'bg-green-100 text-green-800'
                                             : 'bg-red-100 text-red-800'}`}>
                                         {kursus.status === 'aktif' ? 'Aktif' : 'Nonaktif'}
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <div className="flex justify-center space-x-3">
 
+                                <td className="px-4 py-4 whitespace-nowrap text-right">
+                                    <div className="flex justify-end space-x-2">
                                         {/* Tombol Detail (Biru) */}
                                         <Tooltip content="Detail">
                                             <button
@@ -259,11 +287,8 @@ const KursusTable = () => {
                                                 <FaTrash className="h-4 w-4 text-white" />
                                             </button>
                                         </Tooltip>
-
                                     </div>
                                 </td>
-
-
                             </tr>
                         ))
                     )}

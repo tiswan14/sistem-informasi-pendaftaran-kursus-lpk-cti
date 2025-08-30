@@ -41,6 +41,7 @@ export async function PUT(
         const tanggalSelesaiStr = formData.get("tanggalSelesai")?.toString() || null;
         const userId = formData.get("userId")?.toString() || null;
         const status = formData.get("status")?.toString() || undefined;
+        const kuotaStr = formData.get("kuota")?.toString();
         const thumbnail = formData.get("thumbnail") as File | null;
 
         if (!nama || !hargaStr) {
@@ -61,6 +62,18 @@ export async function PUT(
         const lamaKursus = lamaKursusStr ? Number(lamaKursusStr) : null;
         const tanggalMulai = tanggalMulaiStr ? new Date(tanggalMulaiStr) : null;
         const tanggalSelesai = tanggalSelesaiStr ? new Date(tanggalSelesaiStr) : null;
+
+        let kuota: number | undefined = undefined;
+        if (kuotaStr) {
+            const parsedKuota = Number(kuotaStr);
+            if (isNaN(parsedKuota)) {
+                return NextResponse.json(
+                    { error: "Kuota harus berupa angka" },
+                    { status: 400 }
+                );
+            }
+            kuota = parsedKuota;
+        }
 
         let thumbnailData = undefined;
         if (thumbnail && thumbnail.size > 0) {
@@ -83,6 +96,7 @@ export async function PUT(
                 tanggalSelesai,
                 userId,
                 status,
+                ...(kuota !== undefined && { kuota }),
                 ...(thumbnailData !== undefined && { thumbnail: thumbnailData }),
             },
         });
@@ -91,11 +105,18 @@ export async function PUT(
     } catch (error) {
         console.error("Gagal memperbarui kursus:", error);
         return NextResponse.json(
-            { error: error instanceof Error ? error.message : "Terjadi kesalahan saat memperbarui kursus." },
+            {
+                error:
+                    error instanceof Error
+                        ? error.message
+                        : "Terjadi kesalahan saat memperbarui kursus.",
+            },
             { status: 500 }
         );
     }
 }
+
+
 
 export const DELETE = async (
     request: Request,
